@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">EduCarts</string>
+    <string name="next">Next</string>
+    <string name="welcome_to_educarts">Welcome to Educarts</string>
+    <string name="skip">Skip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started">Get Started</string>
+    <string name="personal_account">Personal account</string>
+    <string name="institution_account">Institution account</string>
+</resources>
