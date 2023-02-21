@@ -24,7 +24,11 @@ class ThirdOnBoardingFragment: Fragment(R.layout.fragment_third_on_boarding) {
         binding.getStarted.setOnClickListener {
             finishOnBoarding()
             findNavController().navigate(R.id.action_onBoardingViewPagerFragment_to_getStartedFragment)
-//            Toast.makeText(requireContext(), "${isOnBoardingFinished()}", Toast.LENGTH_SHORT).show()
+        }
+
+        //navigate to log in fragment
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardingViewPagerFragment_to_loginFragment)
         }
     }
 

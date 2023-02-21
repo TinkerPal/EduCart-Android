@@ -7,19 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.adapters.OnBoardingAdapter
 import tech.hackcity.educarts.databinding.FragmentOnBoardingViewPagerBinding
+import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 class OnBoardingViewPagerFragment : Fragment(R.layout.fragment_on_boarding_view_pager) {
 
     private lateinit var binding: FragmentOnBoardingViewPagerBinding
     var sharedPreferences: SharedPreferences? = null
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentOnBoardingViewPagerBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
+
+        setupToolbar()
 
         if (isOnBoardingFinished()) {
             findNavController().navigate(R.id.action_onBoardingViewPagerFragment_to_getStartedFragment)
@@ -39,6 +44,15 @@ class OnBoardingViewPagerFragment : Fragment(R.layout.fragment_on_boarding_view_
     private fun isOnBoardingFinished(): Boolean {
         sharedPreferences = requireContext().getSharedPreferences("onBoardingPref", Context.MODE_PRIVATE)
         return sharedPreferences!!.getBoolean("isOnBoardingFinished", false)
+    }
+
+    private fun setupToolbar() {
+        sharedViewModel.setToolbarVisibility(true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupToolbar()
     }
 
 }

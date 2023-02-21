@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_onBoardingViewPagerFragment_to_getStartedFragment"
             app:destination="@id/getStartedFragment" />
+        <action
+            android:id="@+id/action_onBoardingViewPagerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,9 @@
         <action
             android:id="@+id/action_getStartedFragment_to_createPersonalAccountFragment"
             app:destination="@id/createPersonalAccountFragment" />
+        <action
+            android:id="@+id/action_getStartedFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/createPersonalAccountFragment"
@@ -32,6 +38,9 @@
         <action
             android:id="@+id/action_createPersonalAccountFragment_to_OTPFragment"
             app:destination="@id/OTPFragment" />
+        <action
+            android:id="@+id/action_createPersonalAccountFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
@@ -45,6 +54,22 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="tech.hackcity.educarts.ui.fragment.auth.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:label="Verification"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_createPersonalAccountFragment"
+            app:destination="@id/createPersonalAccountFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.auth.ForgotPasswordFragment"
+        android:label="Forgot Password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_OTPFragment"
+            app:destination="@id/OTPFragment" />
+    </fragment>
 </navigation>

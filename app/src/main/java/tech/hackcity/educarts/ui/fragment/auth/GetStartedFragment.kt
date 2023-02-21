@@ -26,6 +26,11 @@ class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
         binding.personalAccountBtn.setOnClickListener {
             findNavController().navigate(R.id.action_getStartedFragment_to_createPersonalAccountFragment)
         }
+
+        //navigate to log in fragment
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(R.id.action_getStartedFragment_to_loginFragment)
+        }
     }
 
     private fun setupToolbar() {

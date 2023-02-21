@@ -39,6 +39,11 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             findNavController().navigate(R.id.action_createPersonalAccountFragment_to_OTPFragment)
         }
 
+        //navigate to login fragment
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(R.id.action_createPersonalAccountFragment_to_loginFragment)
+        }
+
     }
 
     private fun setupToolbar() {

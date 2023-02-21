@@ -88,7 +88,7 @@
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:padding="5dp"
             android:text="@string/forgot_password"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signInBtn"

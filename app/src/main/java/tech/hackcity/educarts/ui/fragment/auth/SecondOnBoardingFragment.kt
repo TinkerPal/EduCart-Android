@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.fragment.auth
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentSecondOnBoardingBinding
@@ -20,6 +21,11 @@ class SecondOnBoardingFragment: Fragment(R.layout.fragment_second_on_boarding) {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.onBoardingViewPager)
         binding.nextBtn.setOnClickListener {
             viewPager?.currentItem = 2
+        }
+
+        //navigate to log in fragment
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardingViewPagerFragment_to_loginFragment)
         }
     }
 }
