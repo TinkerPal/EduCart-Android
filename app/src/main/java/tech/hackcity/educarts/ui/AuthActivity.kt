@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -49,15 +50,16 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-//        supportActionBar?.title = ""
+        val slideInTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_top)
+        val slideOutTop = AnimationUtils.loadAnimation(this, R.anim.slide_out_top)
 
         sharedViewModel.isToolbarVisible().observe(this) {isToolbarVisible ->
             if (!isToolbarVisible) {
                 binding.toolbar.visibility = View.GONE
-//                supportActionBar?.hide()
+                binding.toolbar.startAnimation(slideOutTop)
             }else {
                 binding.toolbar.visibility = View.VISIBLE
-//                supportActionBar?.show()
+                binding.toolbar.startAnimation(slideInTop)
             }
         }
 
