@@ -19,6 +19,8 @@ class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
     private lateinit var binding: FragmentForgotPasswordBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
+    private var isEmailTextInput = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentForgotPasswordBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
@@ -28,6 +30,22 @@ class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
         //navigate to otp fragment
         binding.sendEmailBtn.setOnClickListener {
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_OTPFragment)
+        }
+
+        binding.swapTextInputTxt.setOnClickListener {
+            swapTextInput()
+        }
+    }
+
+    private fun swapTextInput() {
+        if (isEmailTextInput) {
+            isEmailTextInput = false
+            binding.emailTextInputLayout.visibility = View.GONE
+            binding.phoneTextInputLayout.visibility = View.VISIBLE
+        }else {
+            isEmailTextInput = true
+            binding.emailTextInputLayout.visibility = View.VISIBLE
+            binding.phoneTextInputLayout.visibility = View.GONE
         }
     }
 

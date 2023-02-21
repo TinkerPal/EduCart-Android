@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/ic_baseline_error_outline_24">
@@ -98,9 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_baseline_error_outline_24">
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -110,29 +108,129 @@
                 android:inputType="textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_baseline_error_outline_24">
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="55dp"-->
+        <!--            android:background="@drawable/text_input_bg"-->
+        <!--            android:layout_marginHorizontal="20dp"-->
+        <!--            android:layout_marginBottom="15dp">-->
 
-            <com.google.android.material.textfield.TextInputEditText
+
+        <!--&lt;!&ndash;            <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginStart="60dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/text_input_bg"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:hint="@string/phone"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:inputType="phone" />&ndash;&gt;-->
+
+        <!--            <com.hbb20.CountryCodePicker-->
+        <!--                android:id="@+id/ccp"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:ccpDialog_cornerRadius="20dp"-->
+        <!--                app:ccpDialog_keyboardAutoPopup="false"-->
+        <!--                app:ccpDialog_showCloseIcon="true"-->
+        <!--                app:ccp_arrowSize="12sp"-->
+        <!--                app:ccp_autoFormatNumber="true"-->
+        <!--                app:ccp_showArrow="true"-->
+        <!--                app:ccp_showFlag="true"-->
+        <!--                app:ccp_showFullName="false"-->
+        <!--                app:ccp_showNameCode="false"-->
+        <!--                app:ccp_showPhoneCode="true"-->
+        <!--                app:ccp_textSize="14sp"-->
+        <!--                app:ccp_useFlagEmoji="true" />-->
+
+
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/phoneLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/text_input_bg"
-                android:hint="@string/phone"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:ccpDialog_cornerRadius="20dp"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccpDialog_showCloseIcon="true"
+                    app:ccp_arrowSize="12sp"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_showArrow="true"
+                    app:ccp_showFlag="true"
+                    app:ccp_showFullName="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showPhoneCode="true"
+                    app:ccp_textSize="14sp"
+                    app:ccp_useFlagEmoji="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/phoneNumberET"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@android:color/transparent"
+                    android:inputType="phone"
+                    android:padding="15dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/verifyIcon"
+                    app:layout_constraintStart_toEndOf="@id/ccp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/verifyIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_baseline_done_all_24"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:background="@color/white"
+                android:text="@string/phone"
+                android:textColor="@color/primary_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/phoneLayout"
+                app:layout_constraintStart_toStartOf="@id/phoneLayout"
+                app:layout_constraintTop_toTopOf="@id/phoneLayout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/ic_baseline_error_outline_24">
