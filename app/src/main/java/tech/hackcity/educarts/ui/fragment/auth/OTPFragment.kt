@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.fragment.auth
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
 import tech.hackcity.educarts.databinding.FragmentOtpBinding
@@ -17,5 +18,8 @@ class OTPFragment: Fragment(R.layout.fragment_otp) {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        binding.verifyOTPBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_OTPFragment_to_loginFragment)
+        }
     }
 }

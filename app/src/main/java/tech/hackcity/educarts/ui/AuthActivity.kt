@@ -30,6 +30,8 @@ class AuthActivity : AppCompatActivity() {
         sharedViewModel.isToolbarVisible().observe(this) {isToolbarVisible ->
             if (!isToolbarVisible) {
                 supportActionBar?.hide()
+            }else {
+                supportActionBar?.show()
             }
         }
 

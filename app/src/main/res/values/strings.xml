@@ -8,4 +8,23 @@
     <string name="get_started">Get Started</string>
     <string name="personal_account">Personal account</string>
     <string name="institution_account">Institution account</string>
+    <string name="choose_an_account_type_to_n_get_started">Choose an account type to \n get started</string>
+    <string name="educarts_is_a_payment_solution_you_can_trust">EduCarts is a payment solution you can trust</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="country_of_residence">Country of residence</string>
+    <string name="phone">Phone</string>
+    <string name="verify_your_account">Verify your account</string>
+    <string name="proceed">Proceed</string>
+    <string name="verify">Verify</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="didn_t_recieve_code">Didn\'t recieve code?</string>
+    <string name="forgot_password">Forgot Password</string>
 </resources>

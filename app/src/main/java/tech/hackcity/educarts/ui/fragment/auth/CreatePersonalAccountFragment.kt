@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentCreatePersonalAccountBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
@@ -14,6 +15,7 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal_account) {
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var isTermsAndConditionAgreed = false
 
     private lateinit var binding: FragmentCreatePersonalAccountBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,9 +24,33 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
 
         setupToolbar()
 
+        binding.checkboxTC.setOnClickListener {
+            if (isTermsAndConditionAgreed) {
+                isTermsAndConditionAgreed = false
+                disableButtons()
+            }else {
+                isTermsAndConditionAgreed = true
+                enableButtons()
+            }
+        }
+
+        //navigate to OTP
+        binding.signupBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_createPersonalAccountFragment_to_OTPFragment)
+        }
+
     }
 
     private fun setupToolbar() {
         sharedViewModel.setToolbarVisibility(false)
+    }
+
+    private fun enableButtons() {
+        binding.signupBtn.isEnabled = true
+        binding.signupBtn.setBackgroundResource(R.drawable.primary_button)
+    }
+    private fun disableButtons() {
+        binding.signupBtn.isEnabled = false
+        binding.signupBtn.setBackgroundResource(R.drawable.disabled_button)
     }
 }

@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -91,18 +91,22 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="5dp"
-                android:text="Already have an account?" />
+                android:text="@string/already_have_an_account" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
                 android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:padding="5dp"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textStyle="bold" />
 
 
         </LinearLayout>
+
     </LinearLayout>
 
 
