@@ -64,9 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@drawable/ic_baseline_error_outline_24">
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -81,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:layout_marginTop="10dp"
             android:focusable="true"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"

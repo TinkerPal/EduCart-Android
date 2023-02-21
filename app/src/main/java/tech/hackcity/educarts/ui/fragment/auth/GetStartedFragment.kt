@@ -12,7 +12,7 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 /**
  *Created by Victor Loveday on 2/19/23
  */
-class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
+class GetStartedFragment : Fragment(R.layout.fragment_get_started) {
 
     private lateinit var binding: FragmentGetStartedBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -26,6 +26,7 @@ class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
         binding.personalAccountBtn.setOnClickListener {
             findNavController().navigate(R.id.action_getStartedFragment_to_createPersonalAccountFragment)
         }
+
 
         //navigate to log in fragment
         binding.signInText.setOnClickListener {

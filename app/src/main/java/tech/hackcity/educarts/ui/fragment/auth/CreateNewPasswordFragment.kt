@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.databinding.FragmentCreateNewPasswordBinding
+import tech.hackcity.educarts.databinding.FragmentForgotPasswordBinding
 import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
 import tech.hackcity.educarts.databinding.FragmentLoginBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
@@ -13,36 +14,24 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 /**
  *Created by Victor Loveday on 2/20/23
  */
-class LoginFragment: Fragment(R.layout.fragment_login) {
+class CreateNewPasswordFragment: Fragment(R.layout.fragment_create_new_password) {
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentCreateNewPasswordBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentLoginBinding.bind(view)
+        binding = FragmentCreateNewPasswordBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
-
-        //navigate to create personal account fragment
-        binding.signUpText.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_createPersonalAccountFragment)
-        }
-
-        //navigate to forgot password fragment
-        binding.forgotPasswordTxt.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
-        }
-
     }
 
     private fun setupToolbar() {
-        sharedViewModel.setToolbarVisibility(false)
+        sharedViewModel.setToolbarVisibility(true)
     }
 
     override fun onResume() {
         super.onResume()
         setupToolbar()
     }
-
 }

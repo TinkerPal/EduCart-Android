@@ -69,6 +69,16 @@
                 android:textColor="@color/primary_color"
                 app:backgroundTint="@null" />
 
+            <!--            <Button-->
+            <!--                android:id="@+id/personalAccountBtn"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_marginHorizontal="10dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:fontFamily="@font/railway"-->
+            <!--                android:text="@string/personal_account"-->
+            <!--                android:textAllCaps="false" />-->
+
             <Button
                 android:id="@+id/personalAccountBtn"
                 android:layout_width="0dp"
