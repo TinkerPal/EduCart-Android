@@ -44,7 +44,7 @@ class AuthActivity : AppCompatActivity() {
         val toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupToolbar()
     }

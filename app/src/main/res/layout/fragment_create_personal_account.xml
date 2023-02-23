@@ -214,7 +214,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:background="@color/white"
                 android:text="@string/phone"
                 android:textColor="@color/primary_color"
                 android:textSize="12sp"

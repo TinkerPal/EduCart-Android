@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/home_icon_selector"/>
+
+    <item android:id="@+id/walletFragment"
+        android:title="@string/wallet"
+        android:icon="@drawable/wallet_icon_selector"/>
+
+    <item android:id="@+id/paymentFragment"
+        android:title="@string/payment"
+        android:icon="@drawable/payment_icon_selector"/>
+
+    <item android:id="@+id/supportFragment"
+        android:title="@string/support"
+        android:icon="@drawable/support_icon_selector"/>
+
+    <item android:id="@+id/accountFragment"
+        android:title="@string/account"
+        android:icon="@drawable/account_icon_selector"/>
+
+</menu>

@@ -17,4 +17,14 @@ class SharedViewModel : ViewModel() {
     fun setToolbarVisibility(tv: Boolean){
         toolBarVisibility.postValue(tv)
     }
+
+    private var destination: MutableLiveData<String> = MutableLiveData<String>()
+
+    fun getDestination(): MutableLiveData<String> {
+        return destination
+    }
+
+    fun updateDestination(d: String) {
+        destination.postValue(d)
+    }
 }

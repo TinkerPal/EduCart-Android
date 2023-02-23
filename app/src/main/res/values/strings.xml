@@ -3,7 +3,6 @@
     <string name="next">Next</string>
     <string name="welcome_to_educarts">Welcome to Educarts</string>
     <string name="skip">Skip</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_started">Get Started</string>
     <string name="personal_account">Personal account</string>
@@ -34,4 +33,28 @@
     <string name="create_your_new_password">Create your new password</string>
     <string name="enter_your_new_password">Enter your new password</string>
     <string name="reset_password">Reset password</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="support">Support</string>
+    <string name="payment">Payment</string>
+    <string name="wallet">Wallet</string>
+    <string name="verification_badge">Verification badge</string>
+    <string name="copy">Copy</string>
+    <string name="view_profile">View profile</string>
+    <string name="identity_verification">Identity verification</string>
+    <string name="faqs">FAQs</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="terms_38_conditions_of_use"><![CDATA[Terms & conditions of use]]></string>
+    <string name="rate_us">Rate us</string>
+    <string name="sign_out">Sign out</string>
+    <string name="security_settings">Security settings</string>
+    <string name="notification">Notification</string>
+    <string name="biometric_login">Biometric login</string>
+    <string name="email_address">Email address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="institution_of_study">Institution of study</string>
+    <string name="address_book">Address book</string>
+    <string name="payment_method">Payment method</string>
+    <string name="my_wallet">My wallet</string>
+    <string name="delete_account">Delete account</string>
 </resources>

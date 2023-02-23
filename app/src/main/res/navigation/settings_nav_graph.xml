@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/account_nav_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.ProfileFragment"
+        android:label="Profile">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profileFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.EditProfileFragment"
+        android:label="Edit Profile" />
+    <fragment
+        android:id="@+id/addressBookFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.AddressBookFragment"
+        android:label="AddressBookFragment">
+        <action
+            android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
+            app:destination="@id/addAddressBookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAddressBookFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.AddAddressBookFragment"
+        android:label="AddAddressBookFragment" />
+
+</navigation>
