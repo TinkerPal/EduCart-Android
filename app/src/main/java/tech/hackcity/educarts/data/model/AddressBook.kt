@@ -13,5 +13,6 @@ data class AddressBook(
     val homeAddress: String,
     val apartmentNumber: String?,
     val city: String,
-    val country: String
+    val country: String,
+    val activeAddress: Boolean
 )
