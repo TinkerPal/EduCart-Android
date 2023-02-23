@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/addressBookFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.AddressBookFragment"
-        android:label="AddressBookFragment">
+        android:label="Address Book">
         <action
             android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
             app:destination="@id/addAddressBookFragment"
@@ -43,6 +43,6 @@
     <fragment
         android:id="@+id/addAddressBookFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.AddAddressBookFragment"
-        android:label="AddAddressBookFragment" />
+        android:label="Add Address Book" />
 
 </navigation>

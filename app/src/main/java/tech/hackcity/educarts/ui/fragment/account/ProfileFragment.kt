@@ -22,6 +22,11 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
         binding = FragmentProfileBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
+        //navigate to address book
+        binding.addressBook.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_addressBookFragment)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -34,7 +39,6 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
         when(item.itemId) {
             R.id.editProfileIcon -> {
                 findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
-                Toast.makeText(requireContext(), "Hello", Toast.LENGTH_SHORT).show()
             }
         }
         return super.onOptionsItemSelected(item)

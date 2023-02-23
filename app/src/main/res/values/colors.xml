@@ -12,7 +12,11 @@
     <color name="secondary_color">#DB8000</color>
     <color name="light_gray">#ECECEC</color>
     <color name="faded_red">#F18E89</color>
+
     <color name="profile_bg">#E5E5E5</color>
+
+    <color name="header2">#3E3E42</color>
+    <color name="paragraph4">#3E3E42</color>
 
     <color name="mtrl_textinput_default_box_stroke_color">#DFDEDE</color>
 
