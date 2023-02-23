@@ -9,5 +9,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "address_book_table")
 data class AddressBook(
     @PrimaryKey(autoGenerate = true)
-    val id: Int
+    val id: Int,
+    val homeAddress: String,
+    val apartmentNumber: String?,
+    val city: String,
+    val country: String
 )
