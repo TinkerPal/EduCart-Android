@@ -108,4 +108,7 @@ dependencies {
 
     //PinView
     implementation project(path: ":otpview")
+
+    //Country code picker
+    implementation project(path: ':CountryPicker')
 }

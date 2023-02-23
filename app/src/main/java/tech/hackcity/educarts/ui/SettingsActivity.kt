@@ -48,7 +48,7 @@ class SettingsActivity : AppCompatActivity() {
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.settings_nav_graph)
 
-        val destination = intent.getStringExtra("destination")
+        val destination = "Profile"
         if (destination != null) {
             when(destination) {
                 "Profile" -> {

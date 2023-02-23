@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/profile_bg"
+    android:scrollbars="none"
     tools:context=".ui.fragment.account.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -305,12 +306,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_marginBottom="20dp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="20dp"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="5dp"
                 android:text="@string/delete_account"
                 android:textColor="@color/faded_red" />
 
