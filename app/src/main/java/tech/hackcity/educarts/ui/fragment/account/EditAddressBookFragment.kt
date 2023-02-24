@@ -53,15 +53,15 @@ class EditAddressBookFragment: Fragment(R.layout.fragment_edit_address_book) {
          val country = binding.countryET.text.toString().trim()
 
         if (home.isNotEmpty() && city.isNotEmpty() && country.isNotEmpty()) {
-            addHomeAddress(args.address.id, home, apartment, city, country)
+            addHomeAddress(args.address.id, home, apartment, city, country, args.address.isAddressActive)
             findNavController().navigate(R.id.action_editAddressBookFragment_to_addressBookFragment)//go back to address book
         }else {
             Toast.makeText(requireContext(), "Empty fields", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun addHomeAddress(id: Int, home: String, apartment: String, city: String, country: String) {
-        val address = AddressBook(id, home, apartment, city, country, false)
+    private fun addHomeAddress(id: Int, home: String, apartment: String, city: String, country: String, isAddressActive: Boolean) {
+        val address = AddressBook(id, home, apartment, city, country, isAddressActive)
         addressBookViewModel.saveAddress(address)
     }
 }

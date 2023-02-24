@@ -15,5 +15,5 @@ data class AddressBook(
     val apartmentNumber: String,
     val city: String,
     val country: String,
-    val activeAddress: Boolean
+    val isAddressActive: Boolean
 ): Serializable

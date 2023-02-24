@@ -55,7 +55,7 @@ class AddressBookAdapter(private val context: Context) :
                 onActivateClickListener?.let {it(address)}
             }
 
-            when(address.activeAddress) {
+            when(address.isAddressActive) {
                 true ->  activeAddressIndicator.setImageResource(R.drawable.tick_circle)
                 false -> activeAddressIndicator.setImageResource(R.drawable.round_bg_gray)
             }

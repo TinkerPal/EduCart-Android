@@ -11,9 +11,9 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.adapters.AddressBookAdapter
 import tech.hackcity.educarts.data.model.AddressBook
 import tech.hackcity.educarts.databinding.FragmentAddressBookBinding
-import tech.hackcity.educarts.databinding.FragmentProfileBinding
 import tech.hackcity.educarts.ui.viewmodels.AddressBookViewModel
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.observeOnce
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -42,7 +42,6 @@ class AddressBookFragment: Fragment(R.layout.fragment_address_book) {
     }
 
     private fun setupAddressBookRecyclerView() {
-
         addressBookAdapter = AddressBookAdapter(requireContext())
         binding.addressBookRV.apply {
             adapter = addressBookAdapter
@@ -66,37 +65,29 @@ class AddressBookFragment: Fragment(R.layout.fragment_address_book) {
 
     private fun editAddress() {
         addressBookAdapter.setOnEditClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("address", it)
-            }
-            findNavController().navigate(
-                R.id.action_addressBookFragment_to_editAddressBookFragment,
-                bundle
-            )
-//            val action = AddressBookFragmentDirections.actionAddressBookFragmentToEditAddressBookFragment(it)
-//            findNavController().navigate(action)
+            val action = AddressBookFragmentDirections.actionAddressBookFragmentToEditAddressBookFragment(it)
+            findNavController().navigate(action)
         }
     }
 
     private fun selectAddress() {
-        addressBookAdapter.setOnActivateClickListener { selectedAddress ->
+        addressBookAdapter.setOnActivateClickListener {
 
-            val isAddressSelected: Boolean = !selectedAddress.activeAddress
-            val address = AddressBook(selectedAddress.id, selectedAddress.homeAddress, selectedAddress.apartmentNumber, selectedAddress.city, selectedAddress.country, isAddressSelected)
-            addressBookViewModel.saveAddress(address)
+            //save selected address
+            val isAddressSelected: Boolean = !it.isAddressActive
+            val selectedAddress = AddressBook(it.id, it.homeAddress, it.apartmentNumber, it.city, it.country, isAddressSelected)
+            addressBookViewModel.saveAddress(selectedAddress)
 
-//            sharedViewModel.updateAddress(selectedAddress)
-//
-//            sharedViewModel.getAddress().observe(viewLifecycleOwner) {
-//
-//
-//            }
+            //unselect previously selected addresses
+            addressBookViewModel.readAllAddresses.observeOnce(viewLifecycleOwner) { allAddress ->
+                for (address in allAddress) {
+                    if (it.id != address.id) {
+                        val previousAddress = AddressBook(address.id, address.homeAddress, address.apartmentNumber, address.city, address.country, false)
+                        addressBookViewModel.saveAddress(previousAddress)
+                    }
+                }
+            }
 
-//            addressBookViewModel.readAllAddresses.observe(viewLifecycleOwner){ allAddress ->
-//                for (a in allAddress) {
-//                    addressBookViewModel.saveAddress(a)
-//                }
-//            }
         }
     }
 }
