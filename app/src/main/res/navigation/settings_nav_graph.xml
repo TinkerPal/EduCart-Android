@@ -28,6 +28,7 @@
         android:id="@+id/editProfileFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.EditProfileFragment"
         android:label="Edit Profile" />
+
     <fragment
         android:id="@+id/addressBookFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.AddressBookFragment"
@@ -39,10 +40,46 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_addressBookFragment_to_editAddressBookFragment"
+            app:destination="@id/editAddressBookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/addAddressBookFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.AddAddressBookFragment"
-        android:label="Add Address Book" />
+        android:label="Add Address ">
+        <action
+            android:id="@+id/action_addAddressBookFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/addressBookFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editAddressBookFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.EditAddressBookFragment"
+        android:label="Edit Address" >
+        <argument
+            android:name="address"
+            app:argType="tech.hackcity.educarts.data.model.AddressBook" />
+        <action
+            android:id="@+id/action_editAddressBookFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/addressBookFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 </navigation>
