@@ -89,4 +89,10 @@
         android:label="Identity Verification" >
     </fragment>
 
+    <fragment
+        android:id="@+id/faqsFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.FAQsFragment"
+        android:label="FAQs" >
+    </fragment>
+
 </navigation>

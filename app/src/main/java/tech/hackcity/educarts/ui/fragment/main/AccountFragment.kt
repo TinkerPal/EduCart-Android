@@ -40,6 +40,11 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
             intent.putExtra("destination", "IDV")
             startActivity(intent)
         }
+        binding.faqs.setOnClickListener {
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            intent.putExtra("destination", "FAQS")
+            startActivity(intent)
+        }
     }
 
     private fun securitySettings() {

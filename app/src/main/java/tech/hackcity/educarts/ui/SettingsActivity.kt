@@ -58,6 +58,9 @@ class SettingsActivity : AppCompatActivity() {
                 "IDV" -> {
                     navGraph.setStartDestination(R.id.identityVerificationFragment)
                 }
+                "FAQS" -> {
+                    navGraph.setStartDestination(R.id.faqsFragment)
+                }
             }
 
             navController.graph = navGraph
