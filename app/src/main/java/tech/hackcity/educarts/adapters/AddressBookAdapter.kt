@@ -12,9 +12,9 @@ import tech.hackcity.educarts.data.model.AddressBook
 import tech.hackcity.educarts.databinding.AddressBookItemBinding
 
 class AddressBookAdapter(private val context: Context) :
-    RecyclerView.Adapter<AddressBookAdapter.LiteracyLessonViewHolder>() {
+    RecyclerView.Adapter<AddressBookAdapter.AddressBookViewHolder>() {
 
-    inner class LiteracyLessonViewHolder(val binding: AddressBookItemBinding) :
+    inner class AddressBookViewHolder(val binding: AddressBookItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<AddressBook>() {
@@ -32,8 +32,8 @@ class AddressBookAdapter(private val context: Context) :
 
     override fun getItemCount() = addressList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LiteracyLessonViewHolder {
-        return LiteracyLessonViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressBookViewHolder {
+        return AddressBookViewHolder(
             AddressBookItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -43,7 +43,7 @@ class AddressBookAdapter(private val context: Context) :
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: LiteracyLessonViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AddressBookViewHolder, position: Int) {
         holder.binding.apply {
             val address = addressList[position]
             addressTV.text = "${address.apartmentNumber}, ${address.homeAddress}, ${address.city}, ${address.country}"
