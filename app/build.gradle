@@ -111,4 +111,7 @@ dependencies {
 
     //Country code picker
     implementation project(path: ':CountryPicker')
+
+    //Horizontal step indicator
+//    implementation project(path: ':HorizontalStepIndicator')
 }

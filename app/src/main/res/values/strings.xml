@@ -67,4 +67,9 @@
     <string name="country">Country</string>
     <string name="apartment_number">Apartment number</string>
     <string name="add">Add</string>
+    <string name="choose_any_of_the_following_document_to_get_started">Choose any of the following document to get started</string>
+    <string name="international_passport">International passport</string>
+    <string name="national_id_nin">National ID/NIN</string>
+    <string name="kindly_provide_an_original_with_colour">Kindly provide an original with colour</string>
+    <string name="voter_s_card">Voter\'s card</string>
 </resources>

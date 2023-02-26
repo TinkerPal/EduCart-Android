@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -48,14 +49,14 @@ class SettingsActivity : AppCompatActivity() {
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.settings_nav_graph)
 
-        val destination = "Profile"
+        val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when(destination) {
                 "Profile" -> {
                     navGraph.setStartDestination(R.id.profileFragment)
                 }
                 "IDV" -> {
-                    Toast.makeText(this, "IDV", Toast.LENGTH_SHORT).show()
+                    navGraph.setStartDestination(R.id.identityVerificationFragment)
                 }
             }
 

@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CountryPicker" />
+            <option value="$PROJECT_DIR$/HorizontalStepIndicator" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/otpview" />
           </set>

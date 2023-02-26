@@ -25,6 +25,11 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         binding = FragmentAccountBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        setupNavigation()
+        securitySettings()
+    }
+
+    private fun setupNavigation() {
         binding.viewProfile.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             intent.putExtra("destination", "Profile")
@@ -35,11 +40,9 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
             intent.putExtra("destination", "IDV")
             startActivity(intent)
         }
-
-        showSecuritySetting()
     }
 
-    private fun showSecuritySetting() {
+    private fun securitySettings() {
         binding.securitySettings.setOnClickListener {
             if (binding.hiddenView.visibility == View.VISIBLE) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
