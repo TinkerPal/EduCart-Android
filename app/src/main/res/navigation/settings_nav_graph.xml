@@ -95,4 +95,10 @@
         android:label="FAQs" >
     </fragment>
 
+    <fragment
+        android:id="@+id/createPinFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.CreatePinFragment"
+        android:label="PIN" >
+    </fragment>
+
 </navigation>

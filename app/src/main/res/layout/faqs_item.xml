@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.511"
-        tools:layout_editor_absoluteX="-55dp">
+        >
 
         <RelativeLayout
             android:id="@+id/fixed_layout"

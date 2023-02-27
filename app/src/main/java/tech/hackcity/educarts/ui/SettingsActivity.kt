@@ -61,6 +61,9 @@ class SettingsActivity : AppCompatActivity() {
                 "FAQS" -> {
                     navGraph.setStartDestination(R.id.faqsFragment)
                 }
+                "PIN" -> {
+                    navGraph.setStartDestination(R.id.createPinFragment)
+                }
             }
 
             navController.graph = navGraph

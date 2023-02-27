@@ -190,6 +190,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
 
                         <LinearLayout
+                            android:id="@+id/createPin"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:clickable="true"
@@ -206,13 +207,14 @@
                                 android:drawablePadding="5dp"
                                 android:layout_marginStart="30dp"
                                 android:gravity="center"
-                                android:text="Password and PIN"
+                                android:text="@string/password_and_pin"
                                 android:textSize="16sp"
                                 app:drawableStartCompat="@drawable/lock" />
 
                         </LinearLayout>
 
                         <RelativeLayout
+                            android:id="@+id/biometricLogin"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:clickable="true"

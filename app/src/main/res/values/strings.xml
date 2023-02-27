@@ -73,4 +73,11 @@
     <string name="kindly_provide_an_original_with_colour">Kindly provide an original with colour</string>
     <string name="voter_s_card">Voter\'s card</string>
     <string name="frequently_asked_questions">Frequently asked questions</string>
+    <string name="chat">Chat</string>
+    <string name="was_this_helpful_no_chat_with_us">Was this helpful? No? Chat with us</string>
+    <string name="secure_transactions">Secure transactions</string>
+    <string name="password_and_pin">Password and PIN</string>
+    <string name="enter_a_4_digit_transaction_pin">Enter a 4-digit transaction PIN</string>
+    <string name="transaction_pin">Transaction PIN</string>
+    <string name="confirm_transaction_pin">Confirm transaction PIN</string>
 </resources>
