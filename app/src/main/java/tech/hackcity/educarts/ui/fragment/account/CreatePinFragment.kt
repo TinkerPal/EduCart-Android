@@ -19,7 +19,7 @@ import tech.hackcity.educarts.databinding.FragmentCreatePinBinding
 /**
  *Created by Victor Loveday on 2/27/23
  */
-class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
+class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
 
     private lateinit var binding: FragmentCreatePinBinding
     var sharedPreferences: SharedPreferences? = null
@@ -44,7 +44,8 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
         guideTexts()
 
         binding.getStartedBtn.setOnClickListener {
-            val slideInBottom = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_bottom_slow)
+            val slideInBottom =
+                AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_bottom_slow)
             binding.guideLayout.visibility = View.GONE
             binding.enter4DigitLayout.apply {
                 visibility = View.VISIBLE
@@ -55,7 +56,8 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
         }
 
         binding.createPinBtn.setOnClickListener {
-            val slideInBottom = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_bottom_slow)
+            val slideInBottom =
+                AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_bottom_slow)
             binding.enter4DigitLayout.visibility = View.GONE
             binding.securityQuestionsLayout.apply {
                 visibility = View.VISIBLE
@@ -85,14 +87,14 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
                 isAnswer1Provided = false
                 binding.answer1TextInputLayout.error = "Field can't be empty"
                 disableSubmitButton()
-            }else {
+            } else {
                 isAnswer1Provided = true
                 binding.answer1TextInputLayout.error = null
             }
 
             if (isAnswer1Provided && isAnswer2Provided) {
                 enableSubmitButton()
-            }else {
+            } else {
                 disableSubmitButton()
             }
         }
@@ -103,14 +105,14 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
                 isAnswer2Provided = false
                 binding.answer2TextInputLayout.error = "Field can't be empty"
                 disableSubmitButton()
-            }else {
+            } else {
                 isAnswer2Provided = true
                 binding.answer2TextInputLayout.error = null
             }
 
             if (isAnswer1Provided && isAnswer2Provided) {
                 enableSubmitButton()
-            }else {
+            } else {
                 disableSubmitButton()
             }
         }
@@ -123,17 +125,21 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
             "What was your first pet’s name?",
             "The first concert you attended is?",
             "Your mother’s maiden name is?",
-            "The name of your first teacher is?")
+            "The name of your first teacher is?"
+        )
 
         val securityQuestions2 = arrayListOf(
             "What was your first pet’s name?",
             "Your favourite childhood book is?",
             "The first concert you attended is?",
             "Your mother’s maiden name is?",
-            "The name of your first teacher is?")
+            "The name of your first teacher is?"
+        )
 
-        val arrayAdapter1 = ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions1)
-        val arrayAdapter2 = ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions2)
+        val arrayAdapter1 =
+            ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions1)
+        val arrayAdapter2 =
+            ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions2)
         binding.question1.setAdapter(arrayAdapter1)
         binding.question2.setAdapter(arrayAdapter2)
 
@@ -149,18 +155,42 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
             if (pin != confirmPin) {
                 binding.confirmPinTextInputLayout.error = "Pin does not match"
                 disableCreatePinButton()
-                if (pin.length < 4 || pin.length > 4) {
+                if (pin.length < 4 || pin.length > 4 || confirmPin.length < 4 || confirmPin.length > 4) {
                     disableCreatePinButton()
                 }
-            }else {
+            } else {
+                if (pin.length < 4 || pin.length > 4) {
+                    disableCreatePinButton()
+                } else {
+                    enableCreatePinButton()
+                }
                 binding.confirmPinTextInputLayout.error = null
-                enableCreatePinButton()
+            }
+        }
+
+        binding.pinET.doOnTextChanged { text, start, before, count ->
+            pin = binding.pinET.text.toString().trim()
+            val confirmPin = binding.confirmPinET.text.toString().trim()
+            if (pin != confirmPin) {
+                binding.confirmPinTextInputLayout.error = "Pin does not match"
+                disableCreatePinButton()
+                if (pin.length < 4 || pin.length > 4 || confirmPin.length < 4 || confirmPin.length > 4) {
+                    disableCreatePinButton()
+                }
+            } else {
+                if (pin.length < 4 || pin.length > 4) {
+                    disableCreatePinButton()
+                } else {
+                    enableCreatePinButton()
+                }
+                binding.confirmPinTextInputLayout.error = null
             }
         }
     }
 
     private fun guideTexts() {
-        val guideTxt1 = SpannableStringBuilder("Your transaction PIN will be used to confirm all transactions made through our system. The security questions will be used to verify your identity in case you forget your transaction PIN.")
+        val guideTxt1 =
+            SpannableStringBuilder("Your transaction PIN will be used to confirm all transactions made through our system. The security questions will be used to verify your identity in case you forget your transaction PIN.")
         val style = StyleSpan(Typeface.BOLD)
         guideTxt1.setSpan(style, 0, 20, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         binding.guideTxt1.text = guideTxt1
@@ -180,13 +210,15 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
         binding.submitBtn.isEnabled = false
         binding.submitBtn.setBackgroundResource(R.drawable.disabled_button)
     }
+
     private fun enableSubmitButton() {
         binding.submitBtn.isEnabled = true
         binding.submitBtn.setBackgroundResource(R.drawable.primary_button)
     }
 
     private fun hideIntroGuide() {
-        sharedPreferences = requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
+        sharedPreferences =
+            requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
         val editor = sharedPreferences!!.edit()
         editor.putBoolean("isIntroGuideSeen", true)
         editor.apply()
@@ -194,12 +226,16 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
     }
 
     private fun isIntroGuideSeen(): Boolean {
-        sharedPreferences = requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
+        sharedPreferences =
+            requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
         return sharedPreferences!!.getBoolean("isIntroGuideSeen", false)
     }
 
     private fun saveTransactionalPinCreationStatus() {
-        sharedPreferences = requireContext().getSharedPreferences("transactionalPinCreationPref", Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(
+            "transactionalPinCreationPref",
+            Context.MODE_PRIVATE
+        )
         val editor = sharedPreferences!!.edit()
         editor.putBoolean("isTransactionalPinCreated", true)
         editor.apply()

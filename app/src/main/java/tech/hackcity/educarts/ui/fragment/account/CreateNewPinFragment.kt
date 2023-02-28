@@ -55,12 +55,35 @@ class CreateNewPinFragment: Fragment(R.layout.fragment_create_new_pin) {
             if (pin != confirmPin) {
                 binding.confirmPinTextInputLayout.error = "Pin does not match"
                 disableCreatePinButton()
-                if (pin.length < 4 || pin.length > 4) {
+                if (pin.length < 4 || pin.length > 4 || confirmPin.length < 4 || confirmPin.length > 4) {
                     disableCreatePinButton()
                 }
-            }else {
+            } else {
+                if (pin.length < 4 || pin.length > 4) {
+                    disableCreatePinButton()
+                } else {
+                    enableCreatePinButton()
+                }
                 binding.confirmPinTextInputLayout.error = null
-                enableCreatePinButton()
+            }
+        }
+
+        binding.newPinET.doOnTextChanged { text, start, before, count ->
+            pin = binding.newPinET.text.toString().trim()
+            val confirmPin = binding.confirmNewPinET.text.toString().trim()
+            if (pin != confirmPin) {
+                binding.confirmPinTextInputLayout.error = "Pin does not match"
+                disableCreatePinButton()
+                if (pin.length < 4 || pin.length > 4 || confirmPin.length < 4 || confirmPin.length > 4) {
+                    disableCreatePinButton()
+                }
+            } else {
+                if (pin.length < 4 || pin.length > 4) {
+                    disableCreatePinButton()
+                } else {
+                    enableCreatePinButton()
+                }
+                binding.confirmPinTextInputLayout.error = null
             }
         }
     }
