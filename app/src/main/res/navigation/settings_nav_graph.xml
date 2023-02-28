@@ -30,7 +30,7 @@
         android:id="@+id/editProfileFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.EditProfileFragment"
         android:label="Edit Profile"
-        tools:layout="@layout/fragment_edit_profile"/>
+        tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/addressBookFragment"
@@ -50,7 +50,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -85,7 +85,7 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/addressBookFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -93,15 +93,13 @@
         android:id="@+id/identityVerificationFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.IdentityVerificationFragment"
         android:label="Identity Verification"
-        tools:layout="@layout/fragment_identity_verification">
-    </fragment>
+        tools:layout="@layout/fragment_identity_verification" />
 
     <fragment
         android:id="@+id/faqsFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.FAQsFragment"
         android:label="FAQs"
-        tools:layout="@layout/fragment_faqs">
-    </fragment>
+        tools:layout="@layout/fragment_faqs" />
 
     <fragment
         android:id="@+id/passwordAndPinFragment"
@@ -114,22 +112,28 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_passwordAndPinFragment_to_changePinFragment"
             app:destination="@id/changePinFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_passwordAndPinFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/createPinFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.CreatePinFragment"
         android:label="PIN"
-        tools:layout="@layout/fragment_create_pin">
-    </fragment>
+        tools:layout="@layout/fragment_create_pin" />
 
     <fragment
         android:id="@+id/changePinFragment"
@@ -142,8 +146,14 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.ChangePasswordFragment"
+        android:label="Change password"
+        tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/forgotPinFragment"
@@ -159,14 +169,14 @@
         android:id="@+id/OTPFragment"
         android:name="tech.hackcity.educarts.ui.fragment.auth.OTPFragment"
         android:label="Verification"
-        tools:layout="@layout/fragment_otp" >
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_OTPFragment_to_createNewPinFragment"
             app:destination="@id/createNewPinFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="destination"
             app:argType="string" />
@@ -176,8 +186,6 @@
         android:id="@+id/createNewPinFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.CreateNewPinFragment"
         android:label="Create new PIN"
-        tools:layout="@layout/fragment_create_new_pin">
-    </fragment>
-
+        tools:layout="@layout/fragment_create_new_pin" />
 
 </navigation>

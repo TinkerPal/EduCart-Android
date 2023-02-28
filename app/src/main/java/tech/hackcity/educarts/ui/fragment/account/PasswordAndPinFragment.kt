@@ -34,7 +34,11 @@ class PasswordAndPinFragment: Fragment(R.layout.fragment_password_and_pin) {
             binding.heading.text = "Change PIN"
             binding.description.text = "Change your transactional pin"
         }
-        binding.pin.setOnClickListener {
+
+        binding.changePassword.setOnClickListener {
+            findNavController().navigate(R.id.action_passwordAndPinFragment_to_changePasswordFragment)
+        }
+        binding.createOrChangePin.setOnClickListener {
             if (isTransactionalPinCreated) {
                 findNavController().navigate(R.id.action_passwordAndPinFragment_to_changePinFragment)
             }else {

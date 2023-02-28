@@ -97,4 +97,8 @@
     <string name="enter_new_pin">Enter new PIN</string>
     <string name="confirm_new_pin">Confirm new PIN</string>
     <string name="forgot_pin">Forgot PIN</string>
+    <string name="change_your_password">Change your password</string>
+    <string name="enter_old_password">Enter old password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="confirm_new_password">Confirm new password</string>
 </resources>

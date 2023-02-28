@@ -158,15 +158,15 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/railway"
-                android:text="@string/security_questions"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:fontFamily="@font/railway"-->
+<!--                android:text="@string/security_questions"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold" />-->
 
 
             <com.google.android.material.textfield.TextInputLayout
