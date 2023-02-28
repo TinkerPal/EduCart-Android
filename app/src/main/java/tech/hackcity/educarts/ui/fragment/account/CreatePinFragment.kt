@@ -10,7 +10,6 @@ import android.text.style.StyleSpan
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
@@ -65,7 +64,7 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
         }
 
         binding.submitBtn.setOnClickListener {
-            createSecurityPin()
+            createTransactionalPin()
         }
 
         validatePinInput()
@@ -73,7 +72,7 @@ class CreatePinFragment: Fragment(R.layout.fragment_create_pin) {
         validateSecurityAnswers()
     }
 
-    private fun createSecurityPin() {
+    private fun createTransactionalPin() {
         val transactionPin = TransactionPin(pin, question1, answer1, question2, answer2)
         saveTransactionalPinCreationStatus()
         activity?.finish()

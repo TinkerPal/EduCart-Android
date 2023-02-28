@@ -32,7 +32,7 @@ class OTPFragment: Fragment(R.layout.fragment_otp) {
                     findNavController().navigate(R.id.action_OTPFragment_to_loginFragment)
                 }
                 "Create Personal Account" -> {
-                    findNavController().navigate(R.id.action_OTPFragment_to_createPinFragment)
+                    findNavController().navigate(R.id.action_OTPFragment_to_createNewPinFragment)
                 }
             }
         }
