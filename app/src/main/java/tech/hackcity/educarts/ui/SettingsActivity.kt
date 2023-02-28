@@ -61,8 +61,8 @@ class SettingsActivity : AppCompatActivity() {
                 "FAQS" -> {
                     navGraph.setStartDestination(R.id.faqsFragment)
                 }
-                "PIN" -> {
-                    navGraph.setStartDestination(R.id.createPinFragment)
+                "Password and PIN" -> {
+                    navGraph.setStartDestination(R.id.passwordAndPinFragment)
                 }
             }
 

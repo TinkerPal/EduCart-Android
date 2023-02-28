@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/account_nav_graph"
     app:startDestination="@id/profileFragment">
 
@@ -96,9 +97,69 @@
     </fragment>
 
     <fragment
+        android:id="@+id/passwordAndPinFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.PasswordAndPinFragment"
+        android:label="Password and PIN" >
+        <action
+            android:id="@+id/action_passwordAndPinFragment_to_createPinFragment"
+            app:destination="@id/createPinFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_passwordAndPinFragment_to_changePinFragment"
+            app:destination="@id/changePinFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/createPinFragment"
         android:name="tech.hackcity.educarts.ui.fragment.account.CreatePinFragment"
         android:label="PIN" >
     </fragment>
+
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.ChangePinFragment"
+        android:label="Change PIN" >
+        <action
+            android:id="@+id/action_changePinFragment_to_forgotPinFragment"
+            app:destination="@id/forgotPinFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPinFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.account.ForgotPinFragment"
+        android:label="Forgot PIN" >
+        <action
+            android:id="@+id/action_forgotPinFragment_to_OTPFragment"
+            app:destination="@id/OTPFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/OTPFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.auth.OTPFragment"
+        android:label="Verification"
+        tools:layout="@layout/fragment_otp" >
+        <action
+            android:id="@+id/action_OTPFragment_to_createPinFragment"
+            app:destination="@id/createPinFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="destination"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>

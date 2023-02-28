@@ -29,7 +29,8 @@ class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
 
         //navigate to otp fragment
         binding.sendEmailBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_forgotPasswordFragment_to_OTPFragment)
+            val action = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOTPFragment("Login")
+            findNavController().navigate(action)
         }
 
         binding.swapTextInputTxt.setOnClickListener {

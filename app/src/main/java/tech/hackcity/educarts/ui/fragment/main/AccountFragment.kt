@@ -47,7 +47,7 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         }
         binding.createPin.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "PIN")
+            intent.putExtra("destination", "Password and PIN")
             startActivity(intent)
         }
     }

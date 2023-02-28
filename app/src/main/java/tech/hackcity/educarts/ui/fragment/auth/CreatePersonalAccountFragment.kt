@@ -36,7 +36,8 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
 
         //navigate to OTP
         binding.signupBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_createPersonalAccountFragment_to_OTPFragment)
+            val action = CreatePersonalAccountFragmentDirections.actionCreatePersonalAccountFragmentToOTPFragment("Login")
+            findNavController().navigate(action)
         }
 
         //navigate to login fragment

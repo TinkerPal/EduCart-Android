@@ -80,4 +80,21 @@
     <string name="enter_a_4_digit_transaction_pin">Enter a 4-digit transaction PIN</string>
     <string name="transaction_pin">Transaction PIN</string>
     <string name="confirm_transaction_pin">Confirm transaction PIN</string>
+    <string name="create_pin">Create PIN</string>
+    <string name="security_questions">Security questions</string>
+    <string name="security_question_1">Security Question 1</string>
+    <string name="security_question_2">Security Question 2</string>
+    <string name="answer">Answer</string>
+    <string name="finish">Finish</string>
+    <string name="submit">Submit</string>
+    <string name="change_password">Change password</string>
+    <string name="reset_your_password_to_a_new_one">Reset your password to a new one</string>
+    <string name="pin">PIN</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="change_your_transactional_pin">Change your transactional PIN</string>
+    <string name="enter_old_pin">Enter old PIN</string>
+    <string name="update">Update</string>
+    <string name="enter_new_pin">Enter new PIN</string>
+    <string name="confirm_new_pin">Confirm new PIN</string>
+    <string name="forgot_pin">Forgot PIN</string>
 </resources>
