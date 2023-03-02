@@ -95,22 +95,21 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="tech.hackcity.educarts.ui.fragment.auth.LoginFragment"
-        android:label="Verification"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_createPersonalAccountFragment"
             app:destination="@id/createPersonalAccountFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -132,4 +131,22 @@
         android:name="tech.hackcity.educarts.ui.fragment.auth.CreateNewPasswordFragment"
         android:label="fragment_create_new_password"
         tools:layout="@layout/fragment_create_new_password" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/firstOnBoardingFragment"-->
+<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.FirstOnBoardingFragment"-->
+<!--        android:label=""-->
+<!--        tools:layout="@layout/fragment_first_on_boarding" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/secondOnBoardingFragment"-->
+<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.SecondOnBoardingFragment"-->
+<!--        android:label=""-->
+<!--        tools:layout="@layout/fragment_second_on_boarding" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/thirdOnBoardingFragment"-->
+<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.ThirdOnBoardingFragment"-->
+<!--        android:label=""-->
+<!--        tools:layout="@layout/fragment_third_on_boarding" />-->
 </navigation>

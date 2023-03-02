@@ -1,5 +1,8 @@
 package tech.hackcity.educarts.ui
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -12,6 +15,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
@@ -45,4 +49,5 @@ class MainActivity : AppCompatActivity() {
         }
         binding.bottomNav.itemIconTintList = null
     }
+
 }

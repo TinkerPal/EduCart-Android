@@ -33,7 +33,7 @@ class AuthActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.onBoardingViewPagerFragment, R.id.getStartedFragment,
-                R.id.createPersonalAccountFragment, R.id.loginFragment,
+                R.id.createPersonalAccountFragment, R.id.loginFragment
             )
         )
 
@@ -53,11 +53,11 @@ class AuthActivity : AppCompatActivity() {
         val slideInTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_top)
         val slideOutTop = AnimationUtils.loadAnimation(this, R.anim.slide_out_top)
 
-        sharedViewModel.isToolbarVisible().observe(this) {isToolbarVisible ->
+        sharedViewModel.isToolbarVisible().observe(this) { isToolbarVisible ->
             if (!isToolbarVisible) {
                 binding.toolbar.visibility = View.GONE
                 binding.toolbar.startAnimation(slideOutTop)
-            }else {
+            } else {
                 binding.toolbar.visibility = View.VISIBLE
                 binding.toolbar.startAnimation(slideInTop)
             }
