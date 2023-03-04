@@ -26,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
 
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]

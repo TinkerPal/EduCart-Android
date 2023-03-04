@@ -107,7 +107,8 @@ dependencies {
     implementation 'com.hbb20:ccp:2.5.0'
 
     //Biometrics
-    implementation "androidx.biometric:biometric:1.1.0"
+    def biometricLibraryVersion = "1.1.0"
+    implementation "androidx.biometric:biometric:$biometricLibraryVersion"
 
     //PinView
     implementation project(path: ":otpview")
