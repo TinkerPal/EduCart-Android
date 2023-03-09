@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -27,6 +28,9 @@ class AuthActivity : AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
+
+        //keep app on light mode only
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         //initialize viewModel(s)
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
