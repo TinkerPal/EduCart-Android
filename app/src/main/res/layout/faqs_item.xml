@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:textColor="@color/text_light"
                 android:layout_marginHorizontal="16dp"
                 android:drawablePadding="5dp"
                 android:fontFamily="@font/montserrat_regular"

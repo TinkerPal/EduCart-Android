@@ -4,7 +4,8 @@
     android:id="@+id/textViewFeelings"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/railway"
+    android:fontFamily="@font/montserrat_regular"
+    android:textColor="@color/text_light"
     android:padding="15dp"
     android:textSize="16sp"
     tools:text="TextView" />

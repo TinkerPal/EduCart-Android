@@ -46,8 +46,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="Malik Wasiu"
-                android:textColor="@color/white"
+                android:textColor="@color/text_heading_night"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@id/profileImage"
                 app:layout_constraintStart_toStartOf="@id/profileImage"
@@ -65,10 +66,11 @@
                     android:id="@+id/walletID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/montserrat_regular"
                     android:text="Wallet ID: 132411e4e67"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_night"
                     android:textSize="14sp" />
 
                 <TextView
@@ -113,15 +115,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="@string/first_name"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="Maleek"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_heading_light" />
 
                     <View
                         android:layout_width="match_parent"
@@ -134,15 +139,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="@string/last_name"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="Wasiu"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_heading_light" />
 
                     <View
                         android:layout_width="match_parent"
@@ -155,15 +163,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="@string/email_address"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="malian@gmail.com"
-                        android:textStyle="bold" />
+                        android:textColor="@color/text_heading_light" />
 
 
                 </LinearLayout>
@@ -189,6 +200,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/phone_number"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
@@ -196,7 +209,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:text="+234838298323"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -210,6 +224,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/country_of_residence"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
@@ -217,7 +233,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:text="Nigeria"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light" />
 
                     <View
                         android:layout_width="match_parent"
@@ -231,6 +248,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/institution_of_study"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
@@ -238,7 +257,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:text="Bayero University, Kano"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_heading_light" />
 
 
                 </LinearLayout>
@@ -275,6 +295,8 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginHorizontal="20dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/text_light"
                             android:text="@string/address_book"
                             android:textSize="12sp" />
 
@@ -286,7 +308,8 @@
                             android:layout_marginHorizontal="20dp"
                             android:layout_marginTop="3dp"
                             android:text="Nil"
-                            android:textStyle="bold" />
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/text_heading_light"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -313,6 +336,8 @@
                         android:layout_marginTop="10dp"
                         android:paddingHorizontal="20dp"
                         android:text="@string/payment_method"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_light"
                         android:textSize="12sp" />
 
                     <TextView
@@ -321,7 +346,8 @@
                         android:layout_marginTop="3dp"
                         android:paddingHorizontal="20dp"
                         android:text="@string/my_wallet"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/text_heading_light" />
 
                 </LinearLayout>
 
@@ -336,6 +362,7 @@
                 android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="5dp"

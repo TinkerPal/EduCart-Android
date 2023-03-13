@@ -19,8 +19,8 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/railway"
             android:text="@string/verify_your_account"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/text_heading_light"
+            android:textSize="20sp" />
 
         <ImageView
             android:layout_width="100dp"
@@ -35,9 +35,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/railway"
+            android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
             android:text="To verify your account, enter the 4 digit sent to you at wasiu@gmail.com"
+            android:textColor="@color/text_light"
             android:textStyle="normal" />
 
         <com.goodiebag.pinview.Pinview
@@ -69,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="5dp"
-                android:text="@string/didn_t_recieve_code" />
+                android:text="@string/didn_t_recieve_code"
+                android:textColor="@color/text_light" />
 
             <TextView
                 android:id="@+id/resendCodeTxt"
@@ -81,7 +83,7 @@
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:padding="5dp"
                 android:text="@string/resend_code"
-                android:textStyle="bold" />
+                android:textColor="@color/text_heading_light" />
 
 
         </LinearLayout>
@@ -93,6 +95,7 @@
             android:layout_height="50dp"
             android:layout_margin="40dp"
             android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_regular"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/verify"
             android:textAllCaps="false"

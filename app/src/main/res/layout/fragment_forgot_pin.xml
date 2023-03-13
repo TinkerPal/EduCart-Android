@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:fontFamily="@font/railway"-->
-<!--            android:text="@string/security_questions"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:fontFamily="@font/railway"-->
+        <!--            android:text="@string/security_questions"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:textStyle="bold" />-->
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="none"
                 android:text="Your favourite childhood book is?" />
 
@@ -57,6 +58,7 @@
                 android:id="@+id/answer1ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/answer"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -77,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="none"
                 android:text="What was your first pet’s name?" />
 
@@ -96,6 +99,7 @@
                 android:id="@+id/answer2ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="@string/answer"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -110,6 +114,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/primary_button"
             android:enabled="true"
+            android:fontFamily="@font/montserrat_regular"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/submit"
             android:textAllCaps="false"

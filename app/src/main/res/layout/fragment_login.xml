@@ -28,13 +28,14 @@
             android:fontFamily="@font/railway"
             android:text="@string/sign_in"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/text_heading_light"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:fontFamily="@font/railway"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/text_light"
             android:gravity="center"
             android:text="@string/enter_your_account_information_to_continue" />
 
@@ -75,6 +76,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:layout_marginTop="10dp"
+            android:textColor="@color/text_light"
             android:focusable="true"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
@@ -89,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
+            android:fontFamily="@font/montserrat_regular"
             android:background="@drawable/primary_button"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/sign_in"
@@ -108,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="5dp"
+                android:textColor="@color/text_light"
                 android:text="@string/don_t_have_an_account" />
 
             <TextView
@@ -116,11 +120,11 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
+                android:textColor="@color/text_heading_light"
                 android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:padding="5dp"
-                android:text="@string/sign_up"
-                android:textStyle="bold" />
+                android:text="@string/sign_up" />
 
 
         </LinearLayout>

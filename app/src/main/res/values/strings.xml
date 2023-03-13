@@ -112,4 +112,5 @@
     <string name="others">Others</string>
     <string name="credentials_evaluation">Credentials Evaluation</string>
     <string name="admission_docs_shipment">Admission Docs Shipment</string>
+    <string name="how_it_works">How it works?</string>
 </resources>

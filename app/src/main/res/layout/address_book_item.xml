@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="3dp"
             android:text="@string/address"
-            android:textColor="@color/paragraph4"
+            android:textColor="@color/text_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="3dp"
             android:text="@string/edit"
-            android:textColor="@color/paragraph3"
+            android:textColor="@color/text_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +55,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:lineHeight="20dp"
             android:text="Apartment, Home address, State, Country"
-            android:textColor="@color/header2"
+            android:textColor="@color/text_heading_light"
             app:layout_constraintBottom_toBottomOf="@id/locationIcon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/locationIcon"
@@ -82,7 +82,7 @@
             android:layout_marginEnd="5dp"
             android:paddingVertical="3dp"
             android:text="@string/use_for_transaction"
-            android:textColor="@color/paragraph4"
+            android:textColor="@color/text_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

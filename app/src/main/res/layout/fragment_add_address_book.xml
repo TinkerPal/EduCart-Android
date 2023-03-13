@@ -143,6 +143,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/montserrat_regular"
             android:background="@drawable/primary_button"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/add"

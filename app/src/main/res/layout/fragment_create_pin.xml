@@ -42,6 +42,7 @@
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:text="Secure your account by setting up a transaction pin and answering three (3) security questions"
+                android:textColor="@color/text_light"
                 android:textSize="12sp" />
 
             <TextView
@@ -52,6 +53,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
+                android:textColor="@color/text_light"
                 android:textSize="12sp"
                 tools:text="Your transaction PIN will be used to confirm all transactions made through our system. The security questions will be used to verify your identity in case you forget your transaction PIN." />
 
@@ -64,6 +66,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/primary_button"
+                android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/get_started"
                 android:textAllCaps="false"
@@ -158,15 +161,15 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:fontFamily="@font/railway"-->
-<!--                android:text="@string/security_questions"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold" />-->
+            <!--            <TextView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:fontFamily="@font/railway"-->
+            <!--                android:text="@string/security_questions"-->
+            <!--                android:textSize="18sp"-->
+            <!--                android:textStyle="bold" />-->
 
 
             <com.google.android.material.textfield.TextInputLayout

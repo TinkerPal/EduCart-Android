@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.main.PaymentFragment">
 
 
@@ -22,15 +22,15 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
-                android:layout_weight="1"
-                android:paddingVertical="5dp"
-                android:background="@drawable/text_input_bg"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -42,8 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
+                    android:textColor="@color/text_light"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/application_fee" />
 
             </LinearLayout>
@@ -52,15 +53,15 @@
                 android:id="@+id/sevisFee"
                 android:layout_width="0dp"
                 android:layout_height="110dp"
-                android:layout_weight="1"
-                android:paddingVertical="5dp"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -72,8 +73,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
+                    android:textColor="@color/text_light"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/sevis_fee" />
 
             </LinearLayout>
@@ -90,15 +92,15 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
-                android:layout_weight="1"
-                android:paddingVertical="5dp"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -109,9 +111,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    android:textColor="@color/text_light"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/tuition_fee" />
 
             </LinearLayout>
@@ -119,15 +122,15 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
-                android:layout_weight="1"
-                android:paddingVertical="5dp"
-                android:background="@drawable/text_input_bg"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -138,9 +141,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    android:textColor="@color/text_light"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/visa_fee" />
 
             </LinearLayout>
@@ -157,16 +161,16 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_weight="1"
+                android:layout_height="100dp"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingVertical="5dp"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -178,8 +182,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
+                    android:textColor="@color/text_light"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/credentials_evaluation" />
 
             </LinearLayout>
@@ -187,15 +192,15 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/text_input_bg"
                 android:clickable="true"
-                android:paddingVertical="5dp"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -206,9 +211,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    android:textColor="@color/text_light"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
                     android:text="@string/admission_docs_shipment" />
 
             </LinearLayout>
@@ -225,17 +231,17 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_weight="1"
+                android:layout_height="100dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-                android:paddingVertical="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/text_input_bg"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -247,8 +253,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
                     android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/text_light"
+                    android:gravity="center"
                     android:text="@string/others" />
 
             </LinearLayout>

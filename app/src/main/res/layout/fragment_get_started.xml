@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="50dp"
+            android:textColor="@color/text_light"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/educarts_is_a_payment_solution_you_can_trust" />
 
@@ -61,8 +62,8 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/montserrat_regular"
                 android:background="@drawable/primary_button_outline"
-                android:fontFamily="@font/railway"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/institution_account"
                 android:textAllCaps="false"
@@ -86,7 +87,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/primary_button"
-                android:fontFamily="@font/railway"
+                android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/personal_account"
                 android:textAllCaps="false"

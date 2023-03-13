@@ -19,7 +19,7 @@
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
         android:text="@string/frequently_asked_questions"
-        android:textColor="@color/header2"
+        android:textColor="@color/text_heading_light"
         android:textSize="16sp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,7 +44,7 @@
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
         android:text="@string/was_this_helpful_no_chat_with_us"
-        android:textColor="@color/header2"
+        android:textColor="@color/text_heading_light"
         android:textSize="16sp" />
 
     <com.google.android.material.button.MaterialButton

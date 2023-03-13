@@ -33,6 +33,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/railway"
                 android:text="@string/enter_a_4_digit_transaction_pin"
+                android:textColor="@color/text_heading_light"
                 android:textSize="18sp" />
 
 
@@ -50,6 +51,7 @@
                     android:id="@+id/newPinET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/enter_new_pin"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,6 +73,7 @@
                     android:id="@+id/confirmNewPinET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/confirm_new_pin"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,6 +87,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/disabled_button"
                 android:enabled="false"
+                android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/create_pin"
                 android:textAllCaps="false"

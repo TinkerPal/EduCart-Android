@@ -44,7 +44,7 @@
             android:gravity="center"
             android:fontFamily="@font/montserrat_regular"
             android:text="Click the button below to add to your address  book"
-            android:textColor="@color/paragraph4"
+            android:textColor="@color/text_light"
             android:textSize="14sp" />
 
 
