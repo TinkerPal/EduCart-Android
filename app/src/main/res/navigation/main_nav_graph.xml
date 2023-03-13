@@ -9,9 +9,9 @@
         android:name="tech.hackcity.educarts.ui.fragment.main.HomeFragment"
         android:label="Home" />
     <fragment
-        android:id="@+id/walletFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.main.WalletFragment"
-        android:label="Wallet" />
+        android:id="@+id/myOrderFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.main.MyOrderFragment"
+        android:label="@string/my_order" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="tech.hackcity.educarts.ui.fragment.main.PaymentFragment"

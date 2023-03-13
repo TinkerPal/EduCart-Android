@@ -1,31 +1,26 @@
 package tech.hackcity.educarts.ui
 
-import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.databinding.ActivitySettingsBinding
-import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.databinding.ActivityPaymentBinding
 
+class PaymentActivity : AppCompatActivity() {
 
-class SettingsActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivitySettingsBinding
+    private lateinit var binding: ActivityPaymentBinding
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        binding = ActivityPaymentBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
 
@@ -33,11 +28,11 @@ class SettingsActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.accountFragment)
+            setOf(R.id.paymentFragment)
         )
 
         //Toolbar
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.accountNavHostFragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.paymentNavHostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()
 
         val toolbar = binding.toolbar
@@ -49,22 +44,13 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupDestination() {
-        val navGraph = navController.navInflater.inflate(R.navigation.settings_nav_graph)
+        val navGraph = navController.navInflater.inflate(R.navigation.payment_nav_graph)
 
         val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when(destination) {
-                "Profile" -> {
-                    navGraph.setStartDestination(R.id.profileFragment)
-                }
-                "IDV" -> {
-                    navGraph.setStartDestination(R.id.identityVerificationFragment)
-                }
-                "FAQS" -> {
-                    navGraph.setStartDestination(R.id.faqsFragment)
-                }
-                "Password and PIN" -> {
-                    navGraph.setStartDestination(R.id.passwordAndPinFragment)
+                "SEVIS fee" -> {
+                    navGraph.setStartDestination(R.id.sevisFeeFragment)
                 }
             }
 
@@ -76,4 +62,5 @@ class SettingsActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
 }

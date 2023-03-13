@@ -104,4 +104,12 @@
     <string name="enter_your_account_information_to_continue">Enter your account information to continue</string>
     <string name="welcome_back">Welcome back!</string>
     <string name="change_account">Change account</string>
+    <string name="my_order">My Order</string>
+    <string name="application_fee">Application Fee</string>
+    <string name="sevis_fee">SEVIS Fee</string>
+    <string name="tuition_fee">Tuition Fee</string>
+    <string name="visa_fee">Visa Fee</string>
+    <string name="others">Others</string>
+    <string name="credentials_evaluation">Credentials Evaluation</string>
+    <string name="admission_docs_shipment">Admission Docs Shipment</string>
 </resources>
