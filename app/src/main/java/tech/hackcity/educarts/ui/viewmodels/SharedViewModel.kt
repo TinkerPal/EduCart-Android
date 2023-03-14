@@ -38,4 +38,14 @@ class SharedViewModel : ViewModel() {
     fun updateAddress(ad: AddressBook) {
         address.postValue(ad)
     }
+
+    private var stepIndicator: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    fun getStepIndicator(): MutableLiveData<Int> {
+        return stepIndicator
+    }
+
+    fun updateStepIndicator(step: Int) {
+        stepIndicator.postValue(step)
+    }
 }

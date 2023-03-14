@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.payment.SEVISFeeFragment">
+    tools:context=".ui.fragment.payment.sevisfee.SEVISFeeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,12 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="16sp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
             android:text="@string/sevis_fee"
-            android:textColor="@color/text_heading_light" />
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,41 +69,51 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="45dp"
             android:fontFamily="@font/montserrat_regular"
-            android:textSize="16sp"
             android:gravity="center"
-            android:text="Choose one of the options below to get started"
-            android:textColor="@color/text_heading_light" />
+            android:text="@string/choose_one_of_the_options_below_to_get_started"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <RadioButton
+                android:id="@+id/carryAllSevisFeeForMe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Carry out all the SEVIS Fee Payment for me"/>
+                android:text="@string/carry_out_all_the_sevis_fee_payment_for_me" />
 
             <RadioButton
+                android:id="@+id/iHaveSevisPaymentCoupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I have generated SEVIS Payment Coupon"/>
+                android:text="@string/i_have_generated_sevis_payment_coupon" />
         </RadioGroup>
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signInBtn"
+            android:id="@+id/getStartedBtn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_regular"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/get_started"
-            android:fontFamily="@font/montserrat_regular"
             android:textAllCaps="false"
             app:backgroundTint="@null" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp" />
 
     </LinearLayout>
 

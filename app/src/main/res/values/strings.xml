@@ -113,4 +113,21 @@
     <string name="credentials_evaluation">Credentials Evaluation</string>
     <string name="admission_docs_shipment">Admission Docs Shipment</string>
     <string name="how_it_works">How it works?</string>
+    <string name="choose_one_of_the_options_below_to_get_started">Choose one of the options below to get started</string>
+    <string name="carry_out_all_the_sevis_fee_payment_for_me">Carry out all the SEVIS Fee Payment for me</string>
+    <string name="i_have_generated_sevis_payment_coupon">I have generated SEVIS Payment Coupon</string>
+    <string name="please_fill_the_following_form_as_it_is_in_your_form_i_20_or_ds_2019">Please fill the following form as it is in your Form I-20 or DS-2019</string>
+    <string name="sevis_id">SEVIS ID</string>
+    <string name="given_name_first_amp_middle_name"><![CDATA[Given Name(First & Middle Name)]]></string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="upload_i_20_or_ds_2019_form_here">Upload I-20 or DS-2019 form here</string>
+    <string name="browse_and_chose_the_files_you_want_to_upload_from_your_file">Browse and chose the files you want to upload from your file</string>
+    <string name="upload_your_recent_passport_here">Upload your recent Passport here</string>
+    <string name="form_type">Form type</string>
+    <string name="country_of_citizenship">Country of citizenship</string>
+    <string name="country_of_birth">Country of birth</string>
+    <string name="category">Category</string>
+    <string name="state">State</string>
+    <string name="street_address_2">Street address 2</string>
+    <string name="street_address_1">Street address 1</string>
 </resources>
