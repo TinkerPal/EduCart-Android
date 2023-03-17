@@ -13,16 +13,16 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_profileFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
@@ -40,16 +40,16 @@
         <action
             android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
             app:destination="@id/addAddressBookFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_addressBookFragment_to_editAddressBookFragment"
             app:destination="@id/editAddressBookFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
@@ -61,9 +61,9 @@
         <action
             android:id="@+id/action_addAddressBookFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_left_slow"
             app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/addressBookFragment"
             app:popUpToInclusive="true" />
@@ -80,9 +80,9 @@
         <action
             android:id="@+id/action_editAddressBookFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_left"
+            app:enterAnim="@anim/slide_in_left_slow"
             app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/addressBookFragment"
             app:popUpToInclusive="true" />
@@ -109,23 +109,23 @@
         <action
             android:id="@+id/action_passwordAndPinFragment_to_createPinFragment"
             app:destination="@id/createPinFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_passwordAndPinFragment_to_changePinFragment"
             app:destination="@id/changePinFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_passwordAndPinFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
@@ -143,9 +143,9 @@
         <action
             android:id="@+id/action_changePinFragment_to_forgotPinFragment"
             app:destination="@id/forgotPinFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
@@ -173,9 +173,9 @@
         <action
             android:id="@+id/action_OTPFragment_to_createNewPinFragment"
             app:destination="@id/createNewPinFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="destination"

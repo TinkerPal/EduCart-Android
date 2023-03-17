@@ -130,4 +130,16 @@
     <string name="state">State</string>
     <string name="street_address_2">Street address 2</string>
     <string name="street_address_1">Street address 1</string>
+    <string name="order_summary">Order summary</string>
+    <string name="excahnge_rate">Excahnge Rate</string>
+    <string name="proceed_to_payment">Proceed to payment</string>
+    <string name="bank_transfer">Bank Transfer</string>
+    <string name="paypal">PayPal</string>
+    <string name="debit_credit_card">Debit/Credit Card</string>
+    <string name="card_number">Card number</string>
+    <string name="exp_date">Exp Date</string>
+    <string name="cvv">CVV</string>
+    <string name="upload_receipt">Upload Receipt</string>
+    <string name="payment_through_card">Payment through Card</string>
+    <string name="confirm_payment">Confirm payment</string>
 </resources>

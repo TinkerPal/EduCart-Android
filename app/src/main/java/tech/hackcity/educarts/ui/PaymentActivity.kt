@@ -81,8 +81,8 @@ class PaymentActivity : AppCompatActivity() {
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.payment_nav_graph)
 
-//        val destination = intent.getStringExtra("destination")
-        val destination = "SEVIS fee"
+        val destination = intent.getStringExtra("destination")
+//        val destination = "SEVIS fee"
         if (destination != null) {
             when(destination) {
                 "SEVIS fee" -> {

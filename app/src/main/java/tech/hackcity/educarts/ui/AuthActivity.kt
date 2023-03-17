@@ -55,7 +55,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        val slideInTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_top)
+        val slideInTop = AnimationUtils.loadAnimation(this, R.anim.slide_in_top_slow)
         val slideOutTop = AnimationUtils.loadAnimation(this, R.anim.slide_out_top)
 
         sharedViewModel.isToolbarVisible().observe(this) { isToolbarVisible ->
