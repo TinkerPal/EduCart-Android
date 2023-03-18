@@ -30,7 +30,7 @@ class MakeAllSEVISFeePaymentForMeFragment :
         binding = FragmentMakeAllSevisFeePaymentForMeBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.updateStepIndicator(1)
+        sharedViewModel.updateStepIndicator(arrayOf(1,3))
 
         setupDatePicker()
         setupFormStepNavigation()
@@ -46,7 +46,7 @@ class MakeAllSEVISFeePaymentForMeFragment :
                     visibility = View.VISIBLE
                     startAnimation(animate)
                 }
-                sharedViewModel.updateStepIndicator(2)
+                sharedViewModel.updateStepIndicator(arrayOf(2,3))
             }, 100)
         }
 
@@ -57,13 +57,14 @@ class MakeAllSEVISFeePaymentForMeFragment :
                     visibility = View.VISIBLE
                     startAnimation(animate)
                 }
-                sharedViewModel.updateStepIndicator(3)
+                sharedViewModel.updateStepIndicator(arrayOf(3,3))
             }, 100)
         }
 
         binding.nextBtn3.setOnClickListener {
-            findNavController().navigate(R.id.action_makeAllSEVISFeePaymentForMeFragment_to_orderSummaryFragment)
-            sharedViewModel.updateStepIndicator(0)
+            val action = MakeAllSEVISFeePaymentForMeFragmentDirections.actionMakeAllSEVISFeePaymentForMeFragmentToOrderSummaryFragment()
+            findNavController().navigate(action)
+            sharedViewModel.updateStepIndicator(arrayOf(0,3))
         }
 
     }

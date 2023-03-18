@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentOrderSummaryBinding
 import tech.hackcity.educarts.ui.CheckoutActivity
@@ -17,13 +19,22 @@ class OrderSummaryFragment: Fragment(R.layout.fragment_order_summary) {
 
     private lateinit var binding: FragmentOrderSummaryBinding
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentOrderSummaryBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        goBackToPrecedingFragmentToModifyOrder()
+        navigateToCheckOut()
+    }
+
+    private fun goBackToPrecedingFragmentToModifyOrder() {
+        binding.modifyOrder.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
+            activity?.onBackPressed()
+        }
+    }
+
+    private fun navigateToCheckOut() {
         binding.proceedToPaymentBtn.setOnClickListener {
             val intent = Intent(requireContext(), CheckoutActivity::class.java)
             intent.putExtra("service", "SEVIS Fee")

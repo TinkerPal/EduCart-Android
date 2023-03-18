@@ -17,6 +17,13 @@
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_sevisFeeFragment_to_haveSEVISPaymentCouponFragment"
+            app:destination="@id/haveSEVISPaymentCouponFragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -37,6 +44,42 @@
         android:id="@+id/orderSummaryFragment"
         android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.OrderSummaryFragment"
         android:label="@string/order_summary"
-        tools:layout="@layout/fragment_order_summary" />
+        tools:layout="@layout/fragment_order_summary" >
+        <action
+            android:id="@+id/action_orderSummaryFragment_to_makeAllSEVISFeePaymentForMeFragment"
+            app:destination="@id/makeAllSEVISFeePaymentForMeFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/makeAllSEVISFeePaymentForMeFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_orderSummaryFragment_to_haveSEVISPaymentCouponFragment"
+            app:destination="@id/haveSEVISPaymentCouponFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/haveSEVISPaymentCouponFragment"
+            app:popUpToInclusive="true"/>
+<!--        <argument-->
+<!--            android:name="precedingFragment"-->
+<!--            app:argType="string" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/haveSEVISPaymentCouponFragment"
+        android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.HaveSEVISPaymentCouponFragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_have_sevis_payment_coupon" >
+        <action
+            android:id="@+id/action_haveSEVISPaymentCouponFragment_to_orderSummaryFragment"
+            app:destination="@id/orderSummaryFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 </navigation>

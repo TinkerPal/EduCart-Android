@@ -58,13 +58,13 @@ class PaymentActivity : AppCompatActivity() {
         val animate1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom_slow)
         val animate2 = AnimationUtils.loadAnimation(this, R.anim.slide_out_right)
 
-        sharedViewModel.getStepIndicator().observe(this) { currentStep ->
-            if (currentStep > 0) {
+        sharedViewModel.getStepIndicator().observe(this) { step ->
+            if (step[0] > 0) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     binding.stepIndicator.apply {
                         visibility = View.VISIBLE
                         startAnimation(animate1)
-                        binding.stepIndicator.text = "$currentStep/3"
+                        binding.stepIndicator.text = "${step[0]}/${step[1]}"
                     }
                 }, 100)
 

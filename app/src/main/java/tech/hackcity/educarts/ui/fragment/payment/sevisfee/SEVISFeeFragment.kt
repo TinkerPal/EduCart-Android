@@ -41,7 +41,10 @@ class SEVISFeeFragment: Fragment(R.layout.fragment_sevis_fee) {
                     binding.progressBar.visibility = View.VISIBLE
                     findNavController().navigate(R.id.action_sevisFeeFragment_to_makeAllSEVISFeePaymentForMeFragment)
                 }
-                2 -> Toast.makeText(requireContext(), "Coming soon", Toast.LENGTH_SHORT).show()
+                2 -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    findNavController().navigate(R.id.action_sevisFeeFragment_to_haveSEVISPaymentCouponFragment)
+                }
 
                 else -> Toast.makeText(requireContext(), "Select a service", Toast.LENGTH_SHORT).show()
 
@@ -51,7 +54,7 @@ class SEVISFeeFragment: Fragment(R.layout.fragment_sevis_fee) {
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.updateStepIndicator(0)
+        sharedViewModel.updateStepIndicator(arrayOf(0,3))
     }
 
 }

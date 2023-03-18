@@ -245,19 +245,28 @@
             app:backgroundTint="@null" />
 
         <TextView
+            android:id="@+id/modifyOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingVertical="10dp"
             android:paddingHorizontal="5dp"
-            android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="Modify order"
+            android:text="@string/modify_order"
             android:textColor="@color/text_light" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp" />
 
     </LinearLayout>
 

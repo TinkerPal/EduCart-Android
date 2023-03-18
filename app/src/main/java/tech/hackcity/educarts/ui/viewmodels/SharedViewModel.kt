@@ -39,13 +39,17 @@ class SharedViewModel : ViewModel() {
         address.postValue(ad)
     }
 
-    private var stepIndicator: MutableLiveData<Int> = MutableLiveData<Int>()
 
-    fun getStepIndicator(): MutableLiveData<Int> {
+    //This array will only have two element
+    // The first index is the current step
+    // The second index is the overall step
+    private var stepIndicator: MutableLiveData<Array<Int>> = MutableLiveData<Array<Int>>()
+
+    fun getStepIndicator(): MutableLiveData<Array<Int>> {
         return stepIndicator
     }
 
-    fun updateStepIndicator(step: Int) {
+    fun updateStepIndicator(step: Array<Int>) {
         stepIndicator.postValue(step)
     }
 }
