@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingViewPagerFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.OnBoardingViewPagerFragment"
+        android:name="tech.hackcity.educarts.ui.auth.OnBoardingViewPagerFragment"
         android:label=""
         tools:layout="@layout/fragment_on_boarding_view_pager" >
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/getStartedFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.GetStartedFragment"
+        android:name="tech.hackcity.educarts.ui.auth.GetStartedFragment"
         android:label=""
         tools:layout="@layout/fragment_get_started" >
         <action
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/createPersonalAccountFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.CreatePersonalAccountFragment"
+        android:name="tech.hackcity.educarts.ui.auth.CreatePersonalAccountFragment"
         android:label=""
         tools:layout="@layout/fragment_create_personal_account" >
         <action
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.OTPFragment"
+        android:name="tech.hackcity.educarts.ui.auth.OTPFragment"
         android:label="Verification"
         tools:layout="@layout/fragment_otp" >
         <action
@@ -94,7 +94,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.LoginFragment"
+        android:name="tech.hackcity.educarts.ui.auth.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_createPersonalAccountFragment"
@@ -114,7 +114,7 @@
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.ForgotPasswordFragment"
+        android:name="tech.hackcity.educarts.ui.auth.ForgotPasswordFragment"
         android:label="Forgot Password"
         tools:layout="@layout/fragment_forgot_password" >
         <action
@@ -128,7 +128,7 @@
 
     <fragment
         android:id="@+id/createNewPasswordFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.auth.CreateNewPasswordFragment"
+        android:name="tech.hackcity.educarts.ui.auth.CreateNewPasswordFragment"
         android:label="fragment_create_new_password"
         tools:layout="@layout/fragment_create_new_password" />
 
