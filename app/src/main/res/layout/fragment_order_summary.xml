@@ -217,7 +217,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="@string/excahnge_rate"
+            android:text="@string/exchange_rate"
             android:textColor="@color/text_light" />
 
         <TextView

@@ -131,7 +131,7 @@
     <string name="street_address_2">Street address 2</string>
     <string name="street_address_1">Street address 1</string>
     <string name="order_summary">Order summary</string>
-    <string name="excahnge_rate">Excahnge Rate</string>
+    <string name="exchange_rate">Exchange rate</string>
     <string name="proceed_to_payment">Proceed to payment</string>
     <string name="bank_transfer">Bank Transfer</string>
     <string name="paypal">PayPal</string>
@@ -145,4 +145,28 @@
     <string name="please_choose_your_form_type_and_upload_the_pdf_or_a_clear_screenshot_of_the_sevis_payment_coupon_generated">Please choose your form type and upload the pdf or a clear screenshot of the SEVIS Payment Coupon generated.</string>
     <string name="upload_sevis_fee_coupon_here">Upload SEVIS Fee Coupon here</string>
     <string name="modify_order">Modify order</string>
+    <string name="good_morning">Good Morning %1$s</string>
+    <string name="track_order">Track order</string>
+    <string name="consultation">Consultation</string>
+    <string name="recent_activity">Recent activity</string>
+    <string name="no_payment_made_yet">No payment made yet!</string>
+    <string name="your_recent_payment_history_will_appear_here">Your recent payment history will appear here.</string>
+    <string name="view_all">View all ></string>
+    <string name="coming_soon">Coming soon…</string>
+    <string name="payment_activities">Payment activities</string>
+    <string name="this_screen_is_yet_to_be_implemented">This screen is yet to be implemented</string>
+    <string name="track_your_order_here">Track your order here</string>
+    <string name="enter_the_tracking_id_for_your_order_status">Enter the tracking ID for your order status</string>
+    <string name="order_id">Order ID</string>
+    <string name="track_my_order">Track my order</string>
+    <string name="your_oder_status">Your oder status</string>
+    <string name="order_id_">Order ID:</string>
+    <string name="order_description">Order description:</string>
+    <string name="download_receipt">Download receipt</string>
+
+    <string name="payment_pending">Payment pending</string>
+    <string name="payment_confirmed">Payment confirmed</string>
+    <string name="order_in_process">Order in process</string>
+    <string name="order_completed">Order completed</string>
+
 </resources>

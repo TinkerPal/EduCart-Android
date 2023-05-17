@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/sevisFeeFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.SEVISFeeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFeeFragment"
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_sevis_fee">
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/makeAllSEVISFeePaymentForMeFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.MakeAllSEVISFeePaymentForMeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.MakeAllSEVISFeePaymentForMeFragment"
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_make_all_sevis_fee_payment_for_me" >
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/orderSummaryFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.OrderSummaryFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.OrderSummaryFragment"
         android:label="@string/order_summary"
         tools:layout="@layout/fragment_order_summary" >
         <action
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/haveSEVISPaymentCouponFragment"
-        android:name="tech.hackcity.educarts.ui.fragment.payment.sevisfee.HaveSEVISPaymentCouponFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.HaveSEVISPaymentCouponFragment"
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_have_sevis_payment_coupon" >
         <action
