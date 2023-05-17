@@ -153,4 +153,20 @@
     <string name="your_recent_payment_history_will_appear_here">Your recent payment history will appear here.</string>
     <string name="view_all">View all ></string>
     <string name="coming_soon">Coming soon…</string>
+    <string name="payment_activities">Payment activities</string>
+    <string name="this_screen_is_yet_to_be_implemented">This screen is yet to be implemented</string>
+    <string name="track_your_order_here">Track your order here</string>
+    <string name="enter_the_tracking_id_for_your_order_status">Enter the tracking ID for your order status</string>
+    <string name="order_id">Order ID</string>
+    <string name="track_my_order">Track my order</string>
+    <string name="your_oder_status">Your oder status</string>
+    <string name="order_id_">Order ID:</string>
+    <string name="order_description">Order description:</string>
+    <string name="download_receipt">Download receipt</string>
+
+    <string name="payment_pending">Payment pending</string>
+    <string name="payment_confirmed">Payment confirmed</string>
+    <string name="order_in_process">Order in process</string>
+    <string name="order_completed">Order completed</string>
+
 </resources>
