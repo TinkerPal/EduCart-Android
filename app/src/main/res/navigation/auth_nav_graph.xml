@@ -3,90 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/onBoardingViewPagerFragment">
-
-    <fragment
-        android:id="@+id/onBoardingViewPagerFragment"
-        android:name="tech.hackcity.educarts.ui.auth.OnBoardingViewPagerFragment"
-        android:label=""
-        tools:layout="@layout/fragment_on_boarding_view_pager" >
-        <action
-            android:id="@+id/action_onBoardingViewPagerFragment_to_getStartedFragment"
-            app:destination="@id/getStartedFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
-            android:id="@+id/action_onBoardingViewPagerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/getStartedFragment"
-        android:name="tech.hackcity.educarts.ui.auth.GetStartedFragment"
-        android:label=""
-        tools:layout="@layout/fragment_get_started" >
-        <action
-            android:id="@+id/action_getStartedFragment_to_createPersonalAccountFragment"
-            app:destination="@id/createPersonalAccountFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
-        <action
-            android:id="@+id/action_getStartedFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
-    </fragment>
+    app:startDestination="@id/createPersonalAccountFragment">
 
     <fragment
         android:id="@+id/createPersonalAccountFragment"
-        android:name="tech.hackcity.educarts.ui.auth.CreatePersonalAccountFragment"
+        android:name="tech.hackcity.educarts.ui.auth.register.CreatePersonalAccountFragment"
         android:label=""
-        tools:layout="@layout/fragment_create_personal_account" >
+        tools:layout="@layout/fragment_create_personal_account">
         <action
             android:id="@+id/action_createPersonalAccountFragment_to_OTPFragment"
             app:destination="@id/OTPFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_createPersonalAccountFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="tech.hackcity.educarts.ui.auth.OTPFragment"
+        android:name="tech.hackcity.educarts.ui.auth.verifyOTP.OTPFragment"
         android:label="Verification"
-        tools:layout="@layout/fragment_otp" >
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_OTPFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_OTPFragment_to_createNewPasswordFragment"
             app:destination="@id/createNewPasswordFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="destination"
             app:argType="string" />
@@ -116,14 +74,14 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="tech.hackcity.educarts.ui.auth.ForgotPasswordFragment"
         android:label="Forgot Password"
-        tools:layout="@layout/fragment_forgot_password" >
+        tools:layout="@layout/fragment_forgot_password">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_OTPFragment"
             app:destination="@id/OTPFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -132,21 +90,4 @@
         android:label="fragment_create_new_password"
         tools:layout="@layout/fragment_create_new_password" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/firstOnBoardingFragment"-->
-<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.FirstOnBoardingFragment"-->
-<!--        android:label=""-->
-<!--        tools:layout="@layout/fragment_first_on_boarding" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/secondOnBoardingFragment"-->
-<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.SecondOnBoardingFragment"-->
-<!--        android:label=""-->
-<!--        tools:layout="@layout/fragment_second_on_boarding" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/thirdOnBoardingFragment"-->
-<!--        android:name="tech.hackcity.educarts.ui.fragment.auth.ThirdOnBoardingFragment"-->
-<!--        android:label=""-->
-<!--        tools:layout="@layout/fragment_third_on_boarding" />-->
 </navigation>

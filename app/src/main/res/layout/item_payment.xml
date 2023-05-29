@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="65dp">
+    android:layout_height="65dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
 
     <View
         android:layout_width="match_parent"
@@ -62,13 +65,13 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/text_light"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="March 3, 2023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

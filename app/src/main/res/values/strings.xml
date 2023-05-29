@@ -2,6 +2,9 @@
     <string name="app_name">EduCarts</string>
     <string name="next">Next</string>
     <string name="welcome_to_educarts">Welcome to Educarts</string>
+    <string name="educarts_delivers_fast_payment_to_schools">Educarts deliver fast payments to schools</string>
+    <string name="educarts_provide_reasonable_exchange_rates">Educarts provides reasonable exchange rate</string>
+    <string name="educarts_provide_support_to_complex_student_transaction">Educarts provide support to complex student transactions</string>
     <string name="skip">Skip</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_started">Get Started</string>
@@ -28,6 +31,7 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="enter_your_email_address_and_we_ll_send_you_instructions_to_reset_your_password">Enter your email address and we\'ll send you instructions to reset your password</string>
     <string name="send_email">Send email</string>
+    <string name="send_message">Send message</string>
     <string name="use_phone_number_instead">Use phone number instead?</string>
     <string name="create_new_password">Create new password</string>
     <string name="create_your_new_password">Create your new password</string>
@@ -131,6 +135,7 @@
     <string name="street_address_2">Street address 2</string>
     <string name="street_address_1">Street address 1</string>
     <string name="order_summary">Order summary</string>
+    <string name="payment_summary">Payment summary</string>
     <string name="exchange_rate">Exchange rate</string>
     <string name="proceed_to_payment">Proceed to payment</string>
     <string name="bank_transfer">Bank Transfer</string>
@@ -148,6 +153,7 @@
     <string name="good_morning">Good Morning %1$s</string>
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
+    <string name="consultation_fees">Consultation fees</string>
     <string name="recent_activity">Recent activity</string>
     <string name="no_payment_made_yet">No payment made yet!</string>
     <string name="your_recent_payment_history_will_appear_here">Your recent payment history will appear here.</string>
@@ -163,10 +169,40 @@
     <string name="order_id_">Order ID:</string>
     <string name="order_description">Order description:</string>
     <string name="download_receipt">Download receipt</string>
-
     <string name="payment_pending">Payment pending</string>
     <string name="payment_confirmed">Payment confirmed</string>
     <string name="order_in_process">Order in process</string>
     <string name="order_completed">Order completed</string>
-
+    <string name="checkout">Checkout</string>
+    <string name="need_help">Need help?</string>
+    <string name="we_are_always_here_for_you">We are always here for you.</string>
+    <string name="submit_a_consultation_form_and_we_will_get_back_to_you_as_soon_as_npossible">Submit a consultation form and we will get back to you as soon as \npossible.</string>
+    <string name="live_chat_support">Live chat support</string>
+    <string name="have_a_live_chat_with_us_we_are_always_24_7_here_to_listen_to_your_concern">Have a live chat with us, we are always 24/7 here to listen to your \nconcern.</string>
+    <string name="go_to_faqs">Go to FAQs</string>
+    <string name="sevis_fee_n">SEVIS fee \n</string>
+    <string name="tuition_fee_n">Tuition Fee \n</string>
+    <string name="docs_shipment">Docs Shipment</string>
+    <string name="visa_fee_n">Visa fee \n</string>
+    <string name="others_n">Others \n</string>
+    <string name="educonsult">EduConsult</string>
+    <string name="live_chat">Live chat</string>
+    <string name="what_do_you_want_to_consult_on">What do you want to consult on?</string>
+    <string name="a_brief_details_of_your_consultation">A brief details of your consultation</string>
+    <string name="secure_your_account_by_setting_up_a_transaction_pin_and_answering_three_3_security_questions">Secure your account by setting up a transaction pin and answering three (3) security questions</string>
+    <string name="consultation_faqs">Consultation FAQs</string>
+    <string name="select_your_prefer_way_for_the_consultation">Select your prefer way for the consultation</string>
+    <string name="input_phone_number_to_call">Input Phone Number to call</string>
+    <string name="select_date_time_for_the_consultation"><![CDATA[Select date & time for the consultation?]]></string>
+    <string name="phone_call">Phone call</string>
+    <string name="zoom_video_call">Zoom video call</string>
+    <string name="today">Today</string>
+    <string name="time">Time</string>
+    <string name="now">Now</string>
+    <string name="later">Later</string>
+    <string name="by_proceeding_to_sign_up_you_re_agreein_to_our_terms_and_conditions">By proceeding to sign up, you\'re agreein to our terms and conditions</string>
+    <string name="field_can_not_be_empty">Field can not be empty!</string>
+    <string name="missing_field">Missing field</string>
+    <string name="wrongly_formatted_email">Wrongly formatted email</string>
+    <string name="wrongly_formatted_phone_number">Wrongly formatted phone number</string>
 </resources>

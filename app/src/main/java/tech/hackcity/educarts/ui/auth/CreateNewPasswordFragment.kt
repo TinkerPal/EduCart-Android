@@ -7,7 +7,6 @@ import androidx.fragment.app.activityViewModels
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentCreateNewPasswordBinding
 import tech.hackcity.educarts.databinding.FragmentForgotPasswordBinding
-import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
 import tech.hackcity.educarts.databinding.FragmentLoginBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 

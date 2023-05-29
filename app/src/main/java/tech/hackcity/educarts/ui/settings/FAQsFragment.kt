@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.ui.adapters.FAQsAdapter
-import tech.hackcity.educarts.data.model.FAQ
+import tech.hackcity.educarts.domain.model.FAQ
 import tech.hackcity.educarts.databinding.FragmentFaqsBinding
 
 /**

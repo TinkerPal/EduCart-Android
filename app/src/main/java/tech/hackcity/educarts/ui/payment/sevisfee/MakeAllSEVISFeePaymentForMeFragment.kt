@@ -1,18 +1,18 @@
 package tech.hackcity.educarts.ui.payment.sevisfee
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentMakeAllSevisFeePaymentForMeBinding
+import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,8 +62,10 @@ class MakeAllSEVISFeePaymentForMeFragment :
         }
 
         binding.nextBtn3.setOnClickListener {
-            val action = MakeAllSEVISFeePaymentForMeFragmentDirections.actionMakeAllSEVISFeePaymentForMeFragmentToOrderSummaryFragment()
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
+            intent.putExtra("title", resources.getString(R.string.sevis_fee))
+            intent.putExtra("service", resources.getString(R.string.sevis_fee))
+            startActivity(intent)
             sharedViewModel.updateStepIndicator(arrayOf(0,3))
         }
 

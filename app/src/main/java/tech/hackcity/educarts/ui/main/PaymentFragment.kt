@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentPaymentBinding
-import tech.hackcity.educarts.ui.PaymentActivity
+import tech.hackcity.educarts.ui.payment.PaymentActivity
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -24,7 +24,7 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
 
     private fun setupNavigation() {
 
-        binding.sevisFee.setOnClickListener {
+        binding.sevisFeeTV.setOnClickListener {
             val intent = Intent(requireContext(), PaymentActivity::class.java)
             intent.putExtra("destination", "SEVIS fee")
             startActivity(intent)

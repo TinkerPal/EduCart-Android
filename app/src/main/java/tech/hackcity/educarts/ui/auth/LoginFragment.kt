@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
 import tech.hackcity.educarts.databinding.FragmentLoginBinding
-import tech.hackcity.educarts.ui.MainActivity
+import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/app_icon_foreground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:text="@string/educonsult"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/select_your_prefer_way_for_the_consultation"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/primary_colour_circle" />
+
+        <RadioGroup
+            android:id="@+id/callTypeRG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <RadioButton
+                android:id="@+id/phoneCallRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:drawableStart="@drawable/unchecked_circle"
+                android:fontFamily="@font/montserrat_medium"
+                android:layoutDirection="rtl"
+                android:padding="16dp"
+                android:text="@string/phone_call"
+                android:textAlignment="textStart"
+                android:textColor="@drawable/radio_button_text_selector" />
+
+            <RadioButton
+                android:id="@+id/zoomCallRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:drawableStart="@drawable/unchecked_circle"
+                android:fontFamily="@font/montserrat_medium"
+                android:layoutDirection="rtl"
+                android:padding="16dp"
+                android:text="@string/zoom_video_call"
+                android:textAlignment="textStart"
+                android:textColor="@drawable/radio_button_text_selector" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/input_phone_number_to_call"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/primary_colour_circle" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/consultation_faqs"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <AutoCompleteTextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="@string/consultation_faqs" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/select_date_time_for_the_consultation"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/primary_colour_circle" />
+
+
+        <RadioGroup
+            android:id="@+id/timeTypeRG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <RadioButton
+                android:id="@+id/nowRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:drawableStart="@drawable/unchecked_circle"
+                android:fontFamily="@font/montserrat_medium"
+                android:layoutDirection="rtl"
+                android:padding="16dp"
+                android:text="@string/now"
+                android:textAlignment="textStart"
+                android:textColor="@drawable/radio_button_text_selector" />
+
+            <RadioButton
+                android:id="@+id/laterRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_selector"
+                android:button="@null"
+                android:drawableStart="@drawable/unchecked_circle"
+                android:fontFamily="@font/montserrat_medium"
+                android:layoutDirection="rtl"
+                android:padding="16dp"
+                android:text="@string/later"
+                android:textAlignment="textStart"
+                android:textColor="@drawable/radio_button_text_selector" />
+
+        </RadioGroup>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="@string/today" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="@string/time" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="50dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/primary_button"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/nextBtn"
+                app:layout_constraintEnd_toEndOf="@id/nextBtn"
+                app:layout_constraintStart_toStartOf="@id/nextBtn"
+                app:layout_constraintTop_toTopOf="@id/nextBtn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

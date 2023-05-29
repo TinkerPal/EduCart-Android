@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.payment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -38,7 +39,7 @@ class AllPaymentActivity : AppCompatActivity() {
         }
 
         allPaymentAdapter.setOnItemClickListener {
-
+            startActivity(Intent(this, OrderDetailsActivity::class.java))
         }
     }
 

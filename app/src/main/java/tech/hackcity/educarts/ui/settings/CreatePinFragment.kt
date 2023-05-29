@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.data.model.TransactionPin
+import tech.hackcity.educarts.domain.model.TransactionPin
 import tech.hackcity.educarts.databinding.FragmentCreatePinBinding
 
 /**

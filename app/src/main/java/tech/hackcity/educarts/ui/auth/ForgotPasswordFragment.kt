@@ -7,14 +7,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentForgotPasswordBinding
-import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
-import tech.hackcity.educarts.databinding.FragmentLoginBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**
  *Created by Victor Loveday on 2/20/23
  */
-class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
+class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
 
     private lateinit var binding: FragmentForgotPasswordBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -29,7 +27,8 @@ class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
 
         //navigate to otp fragment
         binding.sendEmailBtn.setOnClickListener {
-            val action = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOTPFragment("Login")
+            val action =
+                ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOTPFragment("Login")
             findNavController().navigate(action)
         }
 
@@ -43,10 +42,13 @@ class ForgotPasswordFragment: Fragment(R.layout.fragment_forgot_password) {
             isEmailTextInput = false
             binding.emailTextInputLayout.visibility = View.GONE
             binding.phoneTextInputLayout.visibility = View.VISIBLE
-        }else {
+            binding.sendEmailBtn.text = resources.getString(R.string.send_email)
+        } else {
             isEmailTextInput = true
             binding.emailTextInputLayout.visibility = View.VISIBLE
             binding.phoneTextInputLayout.visibility = View.GONE
+            binding.sendEmailBtn.text = resources.getString(R.string.send_message)
+
         }
     }
 

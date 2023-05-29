@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import tech.hackcity.educarts.data.model.payment.PaymentHistory
+import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.databinding.ItemPaymentBinding
 
 class AllPaymentAdapter(private val context: Context) :

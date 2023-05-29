@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.model.AddressBook
 import tech.hackcity.educarts.databinding.AddressBookItemBinding
 
 class AddressBookAdapter(private val context: Context) :

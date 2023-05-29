@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import tech.hackcity.educarts.data.UserDatabase
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.model.AddressBook
 import tech.hackcity.educarts.data.repositories.AddressBookRepository
 
 /**

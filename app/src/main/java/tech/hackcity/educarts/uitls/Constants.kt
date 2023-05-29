@@ -1,6 +1,6 @@
 package tech.hackcity.educarts.uitls
 
-import tech.hackcity.educarts.data.model.payment.PaymentHistory
+import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 
 /**
  *Created by Victor Loveday on 5/11/23

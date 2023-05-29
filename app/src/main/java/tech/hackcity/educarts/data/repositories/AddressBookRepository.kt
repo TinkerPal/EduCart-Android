@@ -1,8 +1,8 @@
 package tech.hackcity.educarts.data.repositories
 
 import androidx.lifecycle.LiveData
-import tech.hackcity.educarts.data.dao.AddressBookDao
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.dao.AddressBookDao
+import tech.hackcity.educarts.domain.model.AddressBook
 
 /**
  *Created by Victor Loveday on 2/23/23

@@ -76,7 +76,7 @@
         tools:layout="@layout/fragment_edit_address_book">
         <argument
             android:name="address"
-            app:argType="tech.hackcity.educarts.data.model.AddressBook" />
+            app:argType="tech.hackcity.educarts.domain.model.AddressBook" />
         <action
             android:id="@+id/action_editAddressBookFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
@@ -167,7 +167,7 @@
 
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="tech.hackcity.educarts.ui.auth.OTPFragment"
+        android:name="tech.hackcity.educarts.ui.auth.verifyOTP.OTPFragment"
         android:label="Verification"
         tools:layout="@layout/fragment_otp">
         <action

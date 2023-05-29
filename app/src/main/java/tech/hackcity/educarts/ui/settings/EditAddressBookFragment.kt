@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.model.AddressBook
 import tech.hackcity.educarts.databinding.FragmentEditAddressBookBinding
 import tech.hackcity.educarts.ui.viewmodels.AddressBookViewModel
 

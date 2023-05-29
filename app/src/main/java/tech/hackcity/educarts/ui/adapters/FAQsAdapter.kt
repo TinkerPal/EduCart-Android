@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.data.model.AddressBook
-import tech.hackcity.educarts.data.model.FAQ
+import tech.hackcity.educarts.domain.model.FAQ
 import tech.hackcity.educarts.databinding.FaqsItemBinding
 
 class FAQsAdapter(private val context: Context) :

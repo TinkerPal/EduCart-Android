@@ -5,8 +5,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import tech.hackcity.educarts.data.dao.AddressBookDao
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.dao.AddressBookDao
+import tech.hackcity.educarts.domain.model.AddressBook
 
 @Database(entities = [AddressBook::class], version = 1)
 

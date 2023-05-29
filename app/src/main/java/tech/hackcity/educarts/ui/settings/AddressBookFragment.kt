@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.ui.adapters.AddressBookAdapter
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.model.AddressBook
 import tech.hackcity.educarts.databinding.FragmentAddressBookBinding
 import tech.hackcity.educarts.ui.viewmodels.AddressBookViewModel
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
