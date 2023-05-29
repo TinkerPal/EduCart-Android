@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="tech.hackcity.educarts.ui.auth.LoginFragment"
+        android:name="tech.hackcity.educarts.ui.auth.login.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_createPersonalAccountFragment"

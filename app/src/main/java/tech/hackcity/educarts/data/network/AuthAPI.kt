@@ -4,6 +4,7 @@ import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import tech.hackcity.educarts.domain.model.auth.LoginResponse
 import tech.hackcity.educarts.domain.model.auth.RegisterUserResponse
 import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
 
@@ -30,4 +31,11 @@ interface AuthAPI {
         @Field("id") id: String,
         @Field("otp") otp: String
     ): Response<VerifyOTPResponse>
+
+    @FormUrlEncoded
+    @POST("auth/login/")
+    suspend fun loginUser(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Response<LoginResponse>
 }
