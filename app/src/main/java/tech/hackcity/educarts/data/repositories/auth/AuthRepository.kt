@@ -4,9 +4,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
-import tech.hackcity.educarts.domain.model.auth.LoginResponse
-import tech.hackcity.educarts.domain.model.auth.RegisterUserResponse
-import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
+import tech.hackcity.educarts.domain.model.auth.*
 import tech.hackcity.educarts.uitls.Coroutines
 
 /**
@@ -36,15 +34,33 @@ class AuthRepository(
         }
     }
 
-    suspend fun verifyOTP(id: String, otp: String): VerifyOTPResponse {
+    suspend fun verifyOTPForNewAccount(id: String, otp: String): VerifyOTPResponse {
         return apiRequest {
-            api.authenticationAPI.verifyOTP(id, otp)
+            api.authenticationAPI.verifyOTPForNewAccount(id, otp)
+        }
+    }
+
+    suspend fun verifyOTPForPasswordReset(id: String, otp: String): VerifyOTPResponse {
+        return apiRequest {
+            api.authenticationAPI.verifyOTPForPasswordReset(id, otp)
         }
     }
 
     suspend fun loginUser(email: String, password: String): LoginResponse {
         return apiRequest {
             api.authenticationAPI.loginUser(email, password)
+        }
+    }
+
+    suspend fun forgotPassword(email: String): ForgotPasswordResponse {
+        return apiRequest {
+            api.authenticationAPI.forgotPassword(email)
+        }
+    }
+
+    suspend fun createNewPassword(id: String, password: String): CreateNewPasswordResponse {
+        return apiRequest {
+            api.authenticationAPI.createNewPassword(id, password, password)
         }
     }
 

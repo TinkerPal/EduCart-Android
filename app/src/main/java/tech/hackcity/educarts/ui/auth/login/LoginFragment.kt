@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.auth.login
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -75,6 +76,12 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
     override fun onRequestSuccessful(response: LoginResponse) {
         startActivity(Intent(requireContext(), MainActivity::class.java))
         activity?.finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.white))
+        sharedViewModel.setToolbarVisibility(false)
     }
 
 }

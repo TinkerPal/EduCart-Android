@@ -114,7 +114,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
     }
 
     override fun onRequestSuccessful(response: RegisterUserResponse) {
-        context?.toast(response.data.id)
+        val email = response.data.email
         hideButtonLoadingState(
             binding.signupBtn,
             binding.progressBar,
@@ -123,7 +123,8 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
 
         val action =
             CreatePersonalAccountFragmentDirections.actionCreatePersonalAccountFragmentToOTPFragment(
-                "login"
+                "login",
+                resources.getString(R.string.to_verify_your_account_we_will_send_an_otp, email)
             )
         findNavController().navigate(action)
     }

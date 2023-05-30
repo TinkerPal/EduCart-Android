@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.auth.verifyOTP
+package tech.hackcity.educarts.ui.auth.forgotPassword
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -13,50 +13,51 @@ import java.net.SocketTimeoutException
 /**
  *Created by Victor Loveday on 5/29/23
  */
-class VerifyOTPViewModel(
+class ForgotPasswordViewModel(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    var id: String? = null
-    var otp: String? = null
+    var email: String? = null
 
-    var verifyOTPListener: VerifyOTPListener? = null
+    var forgotPasswordListener: ForgotPasswordListener? = null
 
-    fun onVerifyButtonClickedListener(context: Context) {
-        verifyOTPListener?.onRequestStarted()
-        if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
-            verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
+    fun onSendOTPButtonClicked(context: Context) {
+        forgotPasswordListener?.onRequestStarted()
+
+        if (email.isNullOrEmpty()) {
+            forgotPasswordListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
         Coroutines.main {
             val response = try {
-                repository.verifyOTPForNewAccount(id!!, otp!!)
+                repository.forgotPassword(email!!)
 
             } catch (e: IOException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                forgotPasswordListener?.onRequestFailed(e.message!!)
                 return@main
 
             } catch (e: NoInternetException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                forgotPasswordListener?.onRequestFailed(e.message!!)
                 return@main
 
             } catch (e: HttpException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                forgotPasswordListener?.onRequestFailed(e.message!!)
                 return@main
 
             } catch (e: SocketTimeoutException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                forgotPasswordListener?.onRequestFailed(e.message!!)
                 return@main
 
             }
 
             if (!response.error) {
-                verifyOTPListener?.onRequestSuccessful(response)
-
+                forgotPasswordListener?.onRequestSuccessful(response)
+                repository.saveUserId(response.data.id)
             } else {
-                verifyOTPListener?.onRequestFailed(response.message)
+                forgotPasswordListener?.onRequestFailed(response.message)
             }
         }
+
     }
 }

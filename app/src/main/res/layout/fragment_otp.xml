@@ -30,6 +30,7 @@
             android:src="@drawable/mail_icon_green" />
 
         <TextView
+            android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,7 +38,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="To verify your account, enter the 4 digit sent to you at wasiu@gmail.com"
+            tools:text="To verify your account, enter the 4 digit sent to you at wasiu@gmail.com"
             android:textColor="@color/text_light"
             android:textSize="16sp"
             android:textStyle="normal" />
@@ -114,30 +115,31 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/verifyOTPBtn"
+                android:id="@+id/verifyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/primary_button"
+                app:layout_constraintTop_toTopOf="parent"
                 android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/verify"
                 android:textAllCaps="false"
-                app:backgroundTint="@null"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:backgroundTint="@null" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@id/verifyOTPBtn"
-                app:layout_constraintEnd_toEndOf="@id/verifyOTPBtn"
-                app:layout_constraintStart_toStartOf="@id/verifyOTPBtn"
-                app:layout_constraintTop_toTopOf="@id/verifyOTPBtn" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="@id/verifyBtn"
+                app:layout_constraintBottom_toBottomOf="@id/verifyBtn"
+                app:layout_constraintStart_toStartOf="@id/verifyBtn"
+                app:layout_constraintEnd_toEndOf="@id/verifyBtn"
+                android:visibility="invisible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

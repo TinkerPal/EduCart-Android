@@ -30,6 +30,8 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        binding.message.text = args.message
+
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
@@ -38,8 +40,8 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
         val viewModel = ViewModelProvider(this, factory)[VerifyOTPViewModel::class.java]
         viewModel.verifyOTPListener = this
 
-        binding.verifyOTPBtn.setOnClickListener {
-            viewModel.id = sharePreferencesManager.fetchUserId()
+        binding.verifyBtn.setOnClickListener {
+            viewModel.id = sharePreferencesManager.fetchUserId().toString()
             viewModel.otp = binding.pinView.value
 
             viewModel.onVerifyButtonClickedListener(requireContext())
@@ -51,6 +53,9 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
             "login" -> {
                 findNavController().navigate(R.id.action_OTPFragment_to_loginFragment)
             }
+            "reset password" -> {
+                findNavController().navigate(R.id.action_OTPFragment_to_createNewPasswordFragment)
+            }
             "create pin" -> {
                 findNavController().navigate(R.id.action_OTPFragment_to_createNewPinFragment)
             }
@@ -58,13 +63,13 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     }
 
     override fun onRequestStarted() {
-        showButtonLoadingState(binding.verifyOTPBtn, binding.progressBar, "")
+        showButtonLoadingState(binding.verifyBtn, binding.progressBar, "")
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(message)
         hideButtonLoadingState(
-            binding.verifyOTPBtn,
+            binding.verifyBtn,
             binding.progressBar,
             resources.getString(R.string.verify)
         )
@@ -73,7 +78,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     override fun onRequestSuccessful(response: VerifyOTPResponse) {
         context?.toast(response.message)
         hideButtonLoadingState(
-            binding.verifyOTPBtn,
+            binding.verifyBtn,
             binding.progressBar,
             resources.getString(R.string.verify)
         )

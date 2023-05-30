@@ -48,6 +48,9 @@
         <argument
             android:name="destination"
             app:argType="string" />
+        <argument
+            android:name="message"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -72,7 +75,7 @@
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="tech.hackcity.educarts.ui.auth.ForgotPasswordFragment"
+        android:name="tech.hackcity.educarts.ui.auth.forgotPassword.ForgotPasswordFragment"
         android:label="Forgot Password"
         tools:layout="@layout/fragment_forgot_password">
         <action
@@ -86,8 +89,16 @@
 
     <fragment
         android:id="@+id/createNewPasswordFragment"
-        android:name="tech.hackcity.educarts.ui.auth.CreateNewPasswordFragment"
-        android:label="fragment_create_new_password"
-        tools:layout="@layout/fragment_create_new_password" />
+        android:name="tech.hackcity.educarts.ui.auth.forgotPassword.CreateNewPasswordFragment"
+        android:label="@string/create_new_password"
+        tools:layout="@layout/fragment_create_new_password" >
+        <action
+            android:id="@+id/action_createNewPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 </navigation>
