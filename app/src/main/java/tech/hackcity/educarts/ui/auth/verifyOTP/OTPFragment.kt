@@ -30,7 +30,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.message.text = args.message
+//        binding.message.text = args.message
 
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())

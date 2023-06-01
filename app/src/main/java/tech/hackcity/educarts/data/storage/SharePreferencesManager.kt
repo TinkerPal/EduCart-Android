@@ -11,9 +11,10 @@ class SharePreferencesManager(context: Context) {
         context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
     companion object {
+        const val USER_ID = "user_id"
         const val USER_LOGGED_IN = "user_logged_in"
         const val APP_FIRST_TIME_LAUNCHED_STATUS = "app_first_time_launched_status"
-        const val USER_ID = "user_id"
+        const val TRANSACTION_PIN_CREATED = "transaction_pin_created"
     }
 
     fun clearSharedPreference() {
@@ -50,6 +51,16 @@ class SharePreferencesManager(context: Context) {
 
     fun fetchAppFirstTimeLaunchStatus(): Boolean{
         return prefs.getBoolean(APP_FIRST_TIME_LAUNCHED_STATUS, false)
+    }
+
+    fun savePinCreationStatus(isCreated: Boolean) {
+        val editor = prefs.edit()
+        editor.putBoolean(TRANSACTION_PIN_CREATED, isCreated)
+        editor.apply()
+    }
+
+    fun isTransactionPinCreated(): Boolean {
+        return prefs.getBoolean(TRANSACTION_PIN_CREATED, false)
     }
 
 }

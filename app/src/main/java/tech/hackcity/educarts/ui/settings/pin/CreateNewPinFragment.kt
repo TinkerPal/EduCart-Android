@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.pin
 
 import android.content.Context
 import android.content.SharedPreferences

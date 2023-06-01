@@ -78,15 +78,16 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun setupDestination() {
-        val navGraph = navController.navInflater.inflate(R.navigation.sevis_fee_nav_graph)
+        val navGraph = navController.navInflater.inflate(R.navigation.payment_nav_graph)
 
         val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when(destination) {
-                "SEVIS fee" -> {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        navGraph.setStartDestination(R.id.sevisFeeFragment)
-                    }, 100)
+                "sevis fee" -> {
+                    navGraph.setStartDestination(R.id.sevisFeeFragment)
+                }
+                "application fee" -> {
+                    navGraph.setStartDestination(R.id.applicationFeeFragment)
                 }
             }
 

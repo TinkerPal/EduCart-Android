@@ -26,7 +26,6 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
     CreateNewPasswordListener {
 
     private lateinit var binding: FragmentCreateNewPasswordBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentCreateNewPasswordBinding.bind(view)

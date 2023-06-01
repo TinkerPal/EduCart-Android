@@ -20,7 +20,6 @@ class EditAddressBookFragment: Fragment(R.layout.fragment_edit_address_book) {
     private lateinit var binding: FragmentEditAddressBookBinding
 
     private lateinit var addressBookViewModel: AddressBookViewModel
-
     private val args: EditAddressBookFragmentArgs by navArgs ()
 
 

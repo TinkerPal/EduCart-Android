@@ -131,13 +131,13 @@
 
     <fragment
         android:id="@+id/createPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.CreatePinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.CreatePinFragment"
         android:label="PIN"
         tools:layout="@layout/fragment_create_pin" />
 
     <fragment
         android:id="@+id/changePinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ChangePinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.ChangePinFragment"
         android:label="Change PIN"
         tools:layout="@layout/fragment_change_pin">
         <action
@@ -151,7 +151,7 @@
 
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ChangePasswordFragment"
+        android:name="tech.hackcity.educarts.ui.settings.changePassword.ChangePasswordFragment"
         android:label="Change password"
         tools:layout="@layout/fragment_change_password" />
 
@@ -184,7 +184,7 @@
 
     <fragment
         android:id="@+id/createNewPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.CreateNewPinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.CreateNewPinFragment"
         android:label="Create new PIN"
         tools:layout="@layout/fragment_create_new_pin" />
 

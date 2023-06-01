@@ -175,7 +175,7 @@ fun compareTwoPasswordFields(
 }
 
 
-fun clickableLink(context: Context, text: String, url: String, spannableTextView: TextView) {
+fun clickableLink(context: Context, text: String, url: String, spannableTextView: TextView, startSpan: Int, endSpan: Int) {
     try {
         val spanned = SpannableString(text)
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
@@ -186,12 +186,12 @@ fun clickableLink(context: Context, text: String, url: String, spannableTextView
 
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
-                ds.color = ContextCompat.getColor(context, R.color.secondary_color)
+                ds.color = ContextCompat.getColor(context, R.color.dark_gray)
                 ds.isUnderlineText = false
             }
         }
 
-        spanned.setSpan(clickableSpan, 30, 59, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spanned.setSpan(clickableSpan, startSpan, endSpan, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableTextView.text = spanned
         spannableTextView.movementMethod = LinkMovementMethod.getInstance()
     } catch (e: Exception) {

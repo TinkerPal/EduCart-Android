@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.pin
 
 import android.os.Bundle
 import android.view.View

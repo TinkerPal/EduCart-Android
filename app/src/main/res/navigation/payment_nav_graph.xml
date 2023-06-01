@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_nav_graph"
+    app:startDestination="@id/sevisFeeFragment">
+
+    <fragment
+        android:id="@+id/sevisFeeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFeeFragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_sevis_fee">
+        <action
+            android:id="@+id/action_sevisFeeFragment_to_makeAllSEVISFeePaymentForMeFragment"
+            app:destination="@id/makeAllSEVISFeePaymentForMeFragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_sevisFeeFragment_to_haveSEVISPaymentCouponFragment"
+            app:destination="@id/haveSEVISPaymentCouponFragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/makeAllSEVISFeePaymentForMeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.MakeAllSEVISFeePaymentForMeFragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_make_all_sevis_fee_payment_for_me" />
+
+    <fragment
+        android:id="@+id/haveSEVISPaymentCouponFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.HaveSEVISPaymentCouponFragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_have_sevis_payment_coupon" />
+    <fragment
+        android:id="@+id/applicationFeeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeFragment"
+        android:label="@string/application_fee"
+        tools:layout="@layout/fragment_application_fee">
+        <action
+            android:id="@+id/action_applicationFeeFragment_to_selectSchoolOrProgramFragment"
+            app:destination="@id/selectSchoolOrProgramFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectSchoolOrProgramFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.SelectSchoolOrProgramFragment"
+        android:label="@string/apply_to_a_school"
+        tools:layout="@layout/fragment_select_school_or_program">
+        <action
+            android:id="@+id/action_selectSchoolOrProgramFragment_to_schoolInformationFragment"
+            app:destination="@id/schoolInformationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_selectSchoolOrProgramFragment_to_programInformationFragment"
+            app:destination="@id/programInformationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/schoolInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.SchoolInformationFragment"
+        android:label=""
+        tools:layout="@layout/fragment_school_information">
+        <argument
+            android:name="school"
+            app:argType="tech.hackcity.educarts.domain.model.payment.School" />
+        <action
+            android:id="@+id/action_schoolInformationFragment_to_schoolFormApplicationLinkFragment"
+            app:destination="@id/schoolFormApplicationLinkFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/programInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ProgramInformationFragment"
+        android:label=""
+        tools:layout="@layout/fragment_program_information">
+
+        <argument
+            android:name="program"
+            app:argType="tech.hackcity.educarts.domain.model.payment.Program" />
+        <action
+            android:id="@+id/action_programInformationFragment_to_gradeEligibilityFragment"
+            app:destination="@id/gradeEligibilityFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_programInformationFragment_to_schoolFormApplicationLinkFragment"
+            app:destination="@id/schoolFormApplicationLinkFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/gradeEligibilityFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.GradeEligibilityFragment"
+        android:label="@string/grade_eligibility"
+        tools:layout="@layout/fragment_grade_eligibility" />
+    <fragment
+        android:id="@+id/schoolFormApplicationLinkFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.SchoolFormApplicationLinkFragment"
+        android:label=""
+        tools:layout="@layout/fragment_school_form_application_link">
+        <argument
+            android:name="pageTitle"
+            app:argType="string" />
+        <argument
+            android:name="schoolLink"
+            app:argType="string" />
+        <argument
+            android:name="service"
+            app:argType="string" />
+        <argument
+            android:name="school"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_schoolFormApplicationLinkFragment_to_universityPortalLoginDetailsFragment"
+            app:destination="@id/universityPortalLoginDetailsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/universityPortalLoginDetailsFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.UniversityPortalLoginDetailsFragment"
+        android:label="UniversityPortalLoginDetailsFragment"
+        tools:layout="@layout/fragment_university_portal_login_details" >
+        <argument
+            android:name="pageTitle"
+            app:argType="string" />
+        <argument
+            android:name="service"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

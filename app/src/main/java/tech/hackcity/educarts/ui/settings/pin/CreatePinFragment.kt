@@ -1,6 +1,5 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.pin
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
@@ -13,8 +12,8 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.domain.model.TransactionPin
 import tech.hackcity.educarts.databinding.FragmentCreatePinBinding
+import tech.hackcity.educarts.domain.model.TransactionPin
 
 /**
  *Created by Victor Loveday on 2/27/23
@@ -22,7 +21,6 @@ import tech.hackcity.educarts.databinding.FragmentCreatePinBinding
 class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
 
     private lateinit var binding: FragmentCreatePinBinding
-    var sharedPreferences: SharedPreferences? = null
 
     private var pin = ""
     private var question1 = ""
@@ -36,10 +34,6 @@ class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
         binding = FragmentCreatePinBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        if (isIntroGuideSeen()) {
-            binding.guideLayout.visibility = View.GONE
-            binding.enter4DigitLayout.visibility = View.VISIBLE
-        }
 
         guideTexts()
 
@@ -52,7 +46,6 @@ class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
                 startAnimation(slideInBottom)
             }
 
-            hideIntroGuide()
         }
 
         binding.createPinBtn.setOnClickListener {
@@ -76,7 +69,6 @@ class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
 
     private fun createTransactionalPin() {
         val transactionPin = TransactionPin(pin, question1, answer1, question2, answer2)
-        saveTransactionalPinCreationStatus()
         activity?.finish()
     }
 
@@ -85,7 +77,8 @@ class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
             answer1 = binding.answer1ET.text.toString().trim()
             if (answer1.isEmpty()) {
                 isAnswer1Provided = false
-                binding.answer1TextInputLayout.error = "Field can't be empty"
+                binding.answer1TextInputLayout.error =
+                    resources.getString(R.string.field_can_not_be_empty)
                 disableSubmitButton()
             } else {
                 isAnswer1Provided = true
@@ -216,29 +209,5 @@ class CreatePinFragment : Fragment(R.layout.fragment_create_pin) {
         binding.submitBtn.setBackgroundResource(R.drawable.primary_button)
     }
 
-    private fun hideIntroGuide() {
-        sharedPreferences =
-            requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
-        val editor = sharedPreferences!!.edit()
-        editor.putBoolean("isIntroGuideSeen", true)
-        editor.apply()
-
-    }
-
-    private fun isIntroGuideSeen(): Boolean {
-        sharedPreferences =
-            requireContext().getSharedPreferences("createPinIntroGuidPref", Context.MODE_PRIVATE)
-        return sharedPreferences!!.getBoolean("isIntroGuideSeen", false)
-    }
-
-    private fun saveTransactionalPinCreationStatus() {
-        sharedPreferences = requireContext().getSharedPreferences(
-            "transactionalPinCreationPref",
-            Context.MODE_PRIVATE
-        )
-        val editor = sharedPreferences!!.edit()
-        editor.putBoolean("isTransactionalPinCreated", true)
-        editor.apply()
-    }
 
 }

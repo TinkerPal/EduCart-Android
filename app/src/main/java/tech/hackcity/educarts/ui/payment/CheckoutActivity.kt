@@ -34,14 +34,12 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun displayPaymentMethods() {
-//        val animate = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
         binding.payWithCreditOrDebitBtn.text = "Pay $currency $amount"
 
         binding.cards.setOnClickListener {
             binding.payWithBankTransferLayout.visibility = View.GONE
             binding.payWithCardLayout.apply {
                 visibility = View.VISIBLE
-//                startAnimation(animate)
             }
 
             binding.payWithCreditOrDebitBtn.text = "Pay $currency $amount"
@@ -60,12 +58,12 @@ class CheckoutActivity : AppCompatActivity() {
     private fun displayService() {
         binding.title.text = service
         when(service) {
-            "Application Fee" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}
-            "SEVIS Fee" -> binding.serviceImage.setImageResource(R.drawable.sevis_fee)
-            "Tuition Fee" -> {binding.serviceImage.setImageResource(R.drawable.tution_fee)}
-            "Visa Fee" -> {binding.serviceImage.setImageResource(R.drawable.visa_fee)}
-            "Credential Evaluation" -> {binding.serviceImage.setImageResource(R.drawable.credential_evaluation)}
-            "Admission Docs Shipment" -> {binding.serviceImage.setImageResource(R.drawable.admission_docs_shipment)}
+            "Application fee" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}
+            "SEVIS fee" -> binding.serviceImage.setImageResource(R.drawable.sevis_fee)
+            "Tuition fee" -> {binding.serviceImage.setImageResource(R.drawable.tution_fee)}
+            "Visa fee" -> {binding.serviceImage.setImageResource(R.drawable.visa_fee)}
+            "Credential evaluation" -> {binding.serviceImage.setImageResource(R.drawable.credential_evaluation)}
+            "Admission docs shipment" -> {binding.serviceImage.setImageResource(R.drawable.admission_docs_shipment)}
             "Consultation fees" -> {binding.serviceImage.setImageResource(R.drawable.app_icon_foreground)}
             else -> {binding.serviceImage.setImageResource(R.drawable.others)}
         }
