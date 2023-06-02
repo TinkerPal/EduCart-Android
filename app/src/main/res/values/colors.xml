@@ -11,6 +11,7 @@
     <color name="disabled_color">#BAC6D2</color>
     <color name="secondary_color">#DB8000</color>
     <color name="light_gray">#ECECEC</color>
+    <color name="gray">#D9D9D9</color>
     <color name="faded_red">#F18E89</color>
     <color name="light_blue">#D5E9FD</color>
     <color name="light_orange">#FBF2E6</color>

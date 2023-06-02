@@ -1,8 +1,8 @@
 package tech.hackcity.educarts.ui.intro
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityGetStartedBinding
 import tech.hackcity.educarts.ui.auth.AuthActivity
@@ -24,7 +24,6 @@ class GetStartedActivity : AppCompatActivity() {
         }
 
 
-        //navigate to log in fragment
         binding.signInText.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
             intent.putExtra("destination", "login")

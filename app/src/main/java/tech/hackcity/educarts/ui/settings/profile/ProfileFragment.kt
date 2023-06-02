@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.profile
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +13,7 @@ import tech.hackcity.educarts.databinding.FragmentProfileBinding
 /**
  *Created by Victor Loveday on 2/22/23
  */
-class ProfileFragment: Fragment(R.layout.fragment_profile) {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private lateinit var binding: FragmentProfileBinding
 
@@ -35,7 +35,7 @@ class ProfileFragment: Fragment(R.layout.fragment_profile) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.editProfileIcon -> {
                 findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
             }

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentConsultation2Binding
-import tech.hackcity.educarts.ui.payment.CheckoutActivity
 import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 

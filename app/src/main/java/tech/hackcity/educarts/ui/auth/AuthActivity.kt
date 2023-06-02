@@ -13,15 +13,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityAuthBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.changeToolbarColor
 import tech.hackcity.educarts.uitls.hideToolBar
 import tech.hackcity.educarts.uitls.showToolBar
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
+
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

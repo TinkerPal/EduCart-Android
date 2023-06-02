@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.intro
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
@@ -19,6 +20,7 @@ class OnBoardingActivity : AppCompatActivity() {
     var onBoardingAdapter: OnBoardingAdapter? = null
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
+    var next: Button? = null
     var position = 0
 
 
@@ -32,6 +34,7 @@ class OnBoardingActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         tabLayout = binding.tabs
+        next = binding.nextBtn
         setupSliders()
     }
 
@@ -63,21 +66,24 @@ class OnBoardingActivity : AppCompatActivity() {
 
         position = viewPager!!.currentItem
 
+        next?.setOnClickListener {
+            if (position < onBoardingList.size) {
+                position++
+                viewPager!!.currentItem = position
+            }
+            if (position == onBoardingList.size) {
+                startActivity(Intent(this, GetStartedActivity::class.java))
+                finish()
+            }
+        }
+
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 position = tab!!.position
                 if (tab.position == onBoardingList.size - 1) {
-                    binding.nextBtn.apply {
-                        text = resources.getString(R.string.get_started)
-                        setOnClickListener {
-                            startActivity(Intent(this@OnBoardingActivity, GetStartedActivity::class.java))
-                            finish()
-                        }
-                    }
+                    next!!.text = resources.getString(R.string.get_started)
                 } else {
-                    binding.nextBtn.apply {
-                        text = resources.getString(R.string.next)
-                    }
+                    next!!.text = resources.getString(R.string.next)
                 }
             }
 

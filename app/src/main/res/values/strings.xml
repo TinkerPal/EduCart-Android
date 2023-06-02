@@ -7,6 +7,7 @@
     <string name="educarts_provide_support_to_complex_student_transaction">Educarts provide support to complex student transactions</string>
     <string name="skip">Skip</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_biometric_feature_perform_on_this_device">No biometric feature perform on this device</string>
     <string name="get_started">Get Started</string>
     <string name="personal_account">Personal account</string>
     <string name="institution_account">Institution account</string>
@@ -42,6 +43,7 @@
     <string name="account">Account</string>
     <string name="support">Support</string>
     <string name="payment">Payment</string>
+    <string name="paying_amount">Pay %1$s %2$s</string>
     <string name="wallet">Wallet</string>
     <string name="verification_badge">Verification badge</string>
     <string name="copy">Copy</string>
@@ -112,6 +114,7 @@
     <string name="my_order">My Order</string>
     <string name="application_fee">Application fee</string>
     <string name="sevis_fee">SEVIS fee</string>
+    <string name="select_a_service">Select a service</string>
     <string name="tuition_fee">Tuition fee</string>
     <string name="visa_fee">Visa fee</string>
     <string name="others">Others</string>
@@ -237,11 +240,6 @@
     <string name="required">Required</string>
     <string name="writing_requirements">Writing requirements</string>
     <string name="apply_now">Apply now</string>
-
-
-
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDPBPlnQgDu5vDDCGCLOAMAegZNfmuDcPk</string>
-    <string name="program_intake">Program intake</string>
     <string name="program_level">Program level</string>
     <string name="program_length">Program length</string>
     <string name="cost_of_living">Cost of living</string>
@@ -288,4 +286,10 @@
     <string name="application_price">Application price</string>
     <string name="university_name">University name</string>
 
+
+
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDPBPlnQgDu5vDDCGCLOAMAegZNfmuDcPk</string>
+    <string name="program_intake">Program intake</string>
+    <string name="done">Done</string>
 </resources>

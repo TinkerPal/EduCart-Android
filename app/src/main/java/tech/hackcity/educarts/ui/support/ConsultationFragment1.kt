@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentConsultation1Binding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Constants
 
 /**
  *Created by Victor Loveday on 5/17/23
@@ -25,7 +26,7 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1) {
         binding = FragmentConsultation1Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.updateStepIndicator(arrayOf(1,2))
+        sharedViewModel.updateStepIndicator(arrayOf(1, 2))
 
         setupConsultationFAQs()
 
@@ -35,18 +36,13 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1) {
     }
 
     private fun setupConsultationFAQs() {
-        val consultationFAQs = arrayListOf(
-            "Payment for institution",
-            "How to get abroad admission docs",
-            "How to apply for admission abroad",
-            "Where to get my visa?",
-            "Other"
-        )
-
         val arrayAdapter1 =
-            ArrayAdapter(requireContext(), R.layout.security_questions_item, consultationFAQs)
+            ArrayAdapter(
+                requireContext(),
+                R.layout.security_questions_item,
+                Constants.dummyConsultationFAQs
+            )
         binding.question.setAdapter(arrayAdapter1)
-
         question = binding.question.text.toString()
     }
 

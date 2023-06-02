@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricPrompt
@@ -13,6 +12,7 @@ import tech.hackcity.educarts.databinding.ActivityUnlockBinding
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.uitls.BiometricAuthListener
 import tech.hackcity.educarts.uitls.BiometricUtils
+import tech.hackcity.educarts.uitls.toast
 
 class UnlockActivity : AppCompatActivity(), BiometricAuthListener {
 
@@ -53,8 +53,8 @@ class UnlockActivity : AppCompatActivity(), BiometricAuthListener {
                 listener = this,
                 cryptoObject = null,
             )
-        }else {
-            Toast.makeText(this, "No biometric feature perform on this device", Toast.LENGTH_SHORT).show()
+        } else {
+            toast(resources.getString(R.string.no_biometric_feature_perform_on_this_device))
         }
     }
 

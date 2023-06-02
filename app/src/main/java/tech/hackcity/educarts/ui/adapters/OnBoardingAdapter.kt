@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
-import com.bumptech.glide.Glide
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.databinding.OnBoardingItemBinding
 import tech.hackcity.educarts.domain.model.OnBoarding
 
 /**
@@ -15,10 +15,10 @@ import tech.hackcity.educarts.domain.model.OnBoarding
  */
 class OnBoardingAdapter(
     private var context: Context,
-    private var onBoarding: List<OnBoarding>
+    private var onBoardingDataList: List<OnBoarding>
 ) : PagerAdapter() {
     override fun getCount(): Int {
-        return onBoarding.size
+        return onBoardingDataList.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -30,21 +30,17 @@ class OnBoardingAdapter(
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val binding = OnBoardingItemBinding.inflate(LayoutInflater.from(context), container, false)
-        val view = binding.root
+        val view = LayoutInflater.from(context).inflate(R.layout.on_boarding_item, null)
 
-        Glide.with(context)
-            .load(onBoarding[position].image)
-            .into(binding.image)
+        val illustrationImage: ImageView = view.findViewById(R.id.image)
+        val title: TextView = view.findViewById(R.id.title)
+        val description: TextView = view.findViewById(R.id.description)
 
-        binding.title.text = onBoarding[position].title
-        binding.description.text = onBoarding[position].desc
+        illustrationImage.setImageResource(onBoardingDataList[position].image)
+        title.text = onBoardingDataList[position].title
+        description.text = onBoardingDataList[position].desc
 
-//        binding.imageCardView.setBackgroundResource(R.drawable.intro_sreen_image_place_holder)
-
-        //add view to container
         container.addView(view)
-
         return view
     }
 }

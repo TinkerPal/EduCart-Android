@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.pin
 
 import android.os.Bundle
 import android.view.View
@@ -22,25 +22,29 @@ class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
         binding = FragmentForgotPinBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        setupSecurityQuestions()
+        setupDummySecurityQuestions()
 
         setupNavigation()
     }
 
     private fun setupNavigation() {
         binding.submitBtn.setOnClickListener {
-            val action = ForgotPinFragmentDirections.actionForgotPinFragmentToOTPFragment("Create Personal Account")
+            val action =
+                ForgotPinFragmentDirections.actionForgotPinFragmentToOTPFragment(
+                    "Create Personal Account"
+                )
             findNavController().navigate(action)
         }
     }
 
-    private fun setupSecurityQuestions() {
+    private fun setupDummySecurityQuestions() {
         val securityQuestions1 = arrayListOf("Your favourite childhood book is?")
-
         val securityQuestions2 = arrayListOf("What was your first pet’s name?")
 
-        val arrayAdapter1 = ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions1)
-        val arrayAdapter2 = ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions2)
+        val arrayAdapter1 =
+            ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions1)
+        val arrayAdapter2 =
+            ArrayAdapter(requireContext(), R.layout.security_questions_item, securityQuestions2)
         binding.question1.setAdapter(arrayAdapter1)
         binding.question2.setAdapter(arrayAdapter2)
 

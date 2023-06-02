@@ -1,20 +1,19 @@
-package tech.hackcity.educarts.ui.settings
+package tech.hackcity.educarts.ui.settings.addressBook
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.domain.model.AddressBook
 import tech.hackcity.educarts.databinding.FragmentAddAddressBookBinding
-import tech.hackcity.educarts.ui.viewmodels.AddressBookViewModel
+import tech.hackcity.educarts.domain.model.AddressBook
+import tech.hackcity.educarts.uitls.toast
 
 /**
  *Created by Victor Loveday on 2/22/23
  */
-class AddAddressBookFragment: Fragment(R.layout.fragment_add_address_book) {
+class AddAddressBookFragment : Fragment(R.layout.fragment_add_address_book) {
 
     private lateinit var binding: FragmentAddAddressBookBinding
 
@@ -38,11 +37,14 @@ class AddAddressBookFragment: Fragment(R.layout.fragment_add_address_book) {
         val cityAddress = binding.cityET.text.toString().trim()
         val countryAddress = binding.countryET.text.toString().trim()
 
-        if (homeAddress.isNotEmpty() && apartmentAddress.isNotEmpty() && cityAddress.isNotEmpty() && countryAddress.isNotEmpty()) {
+        if (homeAddress.isNotEmpty() && apartmentAddress.isNotEmpty()
+            && cityAddress.isNotEmpty() && countryAddress.isNotEmpty()
+        ) {
             addHomeAddress(homeAddress, apartmentAddress, cityAddress, countryAddress)
             findNavController().navigate(R.id.action_addAddressBookFragment_to_addressBookFragment)//go back to address book
-        }else {
-            Toast.makeText(requireContext(), "Empty fields", Toast.LENGTH_SHORT).show()
+
+        } else {
+            context?.toast(resources.getString(R.string.field_can_not_be_empty))
         }
     }
 

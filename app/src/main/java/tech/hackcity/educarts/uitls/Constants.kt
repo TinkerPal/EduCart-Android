@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.uitls
 
+import tech.hackcity.educarts.domain.model.FAQ
 import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.domain.model.payment.Program
 import tech.hackcity.educarts.domain.model.payment.School
@@ -144,4 +145,23 @@ object Constants {
         Photo(1, "https://media.publit.io/file/download-Ab.jpeg"),
         Photo(2, "https://media.publit.io/file/dummy_pic1.png")
     )
+
+    val dummyConsultationFAQs = arrayListOf(
+        "Payment for institution",
+        "How to get abroad admission docs",
+        "How to apply for admission abroad",
+        "Where to get my visa?",
+        "Other"
+    )
+
+    val faq1 = FAQ(0, "Who designed EduCarts mobile app?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq2 = FAQ(1, "Who designed EduCarts web app?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq3 = FAQ(2, "Who designed EduCarts backend?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq4 = FAQ(3, "Who designed EduCarts frontend?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq5 = FAQ(4, "Who designed EduCarts architecture?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq6 = FAQ(5, "Who designed EduCarts logo?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq7 = FAQ(6, "Who designed EduCarts business model?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val faq8 = FAQ(7, "Who designed EduCarts?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
+    val dummyFAQ:List<FAQ> = arrayListOf(faq1, faq2, faq3, faq3, faq4, faq5, faq6, faq7)
+
 }
