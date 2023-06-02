@@ -52,6 +52,7 @@ class OrderSummaryActivity : AppCompatActivity() {
         binding.service.text = service
         when(service) {
             "Application fee" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}
+            "Application review" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}
             "SEVIS fee" -> binding.serviceImage.setImageResource(R.drawable.sevis_fee)
             "Tuition fee" -> {binding.serviceImage.setImageResource(R.drawable.tution_fee)}
             "Visa fee" -> {binding.serviceImage.setImageResource(R.drawable.visa_fee)}

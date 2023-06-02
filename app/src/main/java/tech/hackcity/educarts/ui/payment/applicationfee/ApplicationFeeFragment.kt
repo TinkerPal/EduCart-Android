@@ -21,5 +21,13 @@ class ApplicationFeeFragment : Fragment(R.layout.fragment_application_fee) {
         binding.applyToSchool.setOnClickListener {
             findNavController().navigate(R.id.action_applicationFeeFragment_to_selectSchoolOrProgramFragment)
         }
+        binding.applicationFeePaymentOnly.setOnClickListener {
+            findNavController().navigate(R.id.action_applicationFeeFragment_to_applicationFeePaymentOnly)
+        }
+        binding.applicationReview.setOnClickListener {
+            findNavController().navigate(R.id.action_applicationFeeFragment_to_applicationReviewFragment)
+        }
+
+
     }
 }

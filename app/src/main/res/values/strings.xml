@@ -282,5 +282,10 @@
     <string name="any_additional_information">Any additional information</string>
     <string name="describe_here">Describe here</string>
     <string name="upload_application_forms_here">Upload application forms here</string>
+    <string name="school_information">School information</string>
+    <string name="applicant_s_full_name">Applicant’s full name</string>
+    <string name="school_s_website_link">School\'s website link</string>
+    <string name="application_price">Application price</string>
+    <string name="university_name">University name</string>
 
 </resources>

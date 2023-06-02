@@ -30,8 +30,8 @@ class UniversityPortalLoginDetailsFragment :
 
         binding.proceedBtn.setOnClickListener {
             val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
-            intent.putExtra("title", resources.getString(R.string.application_fee))
-            intent.putExtra("service", resources.getString(R.string.application_fee))
+            intent.putExtra("title", args.pageTitle)
+            intent.putExtra("service", args.service)
             startActivity(intent)
         }
     }

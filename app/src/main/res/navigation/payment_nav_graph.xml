@@ -37,6 +37,7 @@
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.HaveSEVISPaymentCouponFragment"
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_have_sevis_payment_coupon" />
+
     <fragment
         android:id="@+id/applicationFeeFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeFragment"
@@ -49,7 +50,22 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_applicationFeeFragment_to_applicationFeePaymentOnly"
+            app:destination="@id/applicationFeePaymentOnly"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_applicationFeeFragment_to_applicationReviewFragment"
+            app:destination="@id/applicationReviewFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/selectSchoolOrProgramFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.SelectSchoolOrProgramFragment"
@@ -70,6 +86,7 @@
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/schoolInformationFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.SchoolInformationFragment"
@@ -86,6 +103,7 @@
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/programInformationFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ProgramInformationFragment"
@@ -110,6 +128,7 @@
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/gradeEligibilityFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.GradeEligibilityFragment"
@@ -140,10 +159,11 @@
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/universityPortalLoginDetailsFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.UniversityPortalLoginDetailsFragment"
-        android:label="UniversityPortalLoginDetailsFragment"
+        android:label=""
         tools:layout="@layout/fragment_university_portal_login_details" >
         <argument
             android:name="pageTitle"
@@ -151,6 +171,33 @@
         <argument
             android:name="service"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/applicationFeePaymentOnly"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeePaymentOnly"
+        android:label="@string/application_fee_payment_only"
+        tools:layout="@layout/fragment_application_fee_payment_only" >
+        <action
+            android:id="@+id/action_applicationFeePaymentOnly_to_universityPortalLoginDetailsFragment"
+            app:destination="@id/universityPortalLoginDetailsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/applicationReviewFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationReviewFragment"
+        android:label="@string/application_review"
+        tools:layout="@layout/fragment_application_review" >
+        <action
+            android:id="@+id/action_applicationReviewFragment_to_universityPortalLoginDetailsFragment"
+            app:destination="@id/universityPortalLoginDetailsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
 </navigation>
