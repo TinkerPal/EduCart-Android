@@ -294,11 +294,11 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/trackOrder"
+                android:id="@+id/trackOrderTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/card_border1"
+                android:background="@drawable/light_blue_card_bg"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -311,11 +311,12 @@
                 app:drawableTopCompat="@drawable/icon_track_path" />
 
             <TextView
+                android:id="@+id/consultationTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/card_border1"
+                android:background="@drawable/light_orange_card_bg"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -328,10 +329,11 @@
                 app:drawableTopCompat="@drawable/icon_head_phone" />
 
             <TextView
+                android:id="@+id/faqsTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/card_border1"
+                android:background="@drawable/light_green_card_bg"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -364,6 +366,7 @@
                 android:id="@+id/viewAllPayments"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
+                android:paddingHorizontal="15dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:clickable="true"

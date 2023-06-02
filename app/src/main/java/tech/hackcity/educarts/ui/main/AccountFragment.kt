@@ -10,7 +10,7 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentAccountBinding
-import tech.hackcity.educarts.ui.SettingsActivity
+import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**

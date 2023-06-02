@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -14,10 +15,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.storage.SessionManager
+import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
+import tech.hackcity.educarts.ui.payment.OrderDetailsActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
+import tech.hackcity.educarts.ui.settings.SettingsActivity
+import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.Constants
 
 /**
@@ -38,8 +44,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.banner.visibility = View.VISIBLE
         }
 
-        binding.trackOrder.setOnClickListener {
+        binding.trackOrderTV.setOnClickListener {
             startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
+        }
+
+        binding.consultationTV.setOnClickListener {
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "consultation")
+            startActivity(intent)
+        }
+
+        binding.faqsTV.setOnClickListener {
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            intent.putExtra("destination", "FAQS")
+            startActivity(intent)
         }
 
         binding.viewAllPayments.setOnClickListener {
@@ -52,8 +70,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.recentActivityRV.apply {
             adapter = allPaymentAdapter
             layoutManager = LinearLayoutManager(requireContext())
+            allPaymentAdapter.setData(Constants.dummyTransactionList.take(4))
         }
-        allPaymentAdapter.setData(Constants.dummyTransactionList.take(4))
+
+        allPaymentAdapter.setOnItemClickListener {
+            startActivity(Intent(requireContext(), OrderDetailsActivity::class.java))
+        }
 
 
         val menuHost: MenuHost = requireActivity() as MenuHost

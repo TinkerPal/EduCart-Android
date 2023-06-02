@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.auth.OTPFragment">
+    tools:context=".ui.auth.verifyOTP.OTPFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,10 +17,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/railway"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/verify_your_account"
             android:textColor="@color/text_heading_light"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:layout_width="100dp"
@@ -30,6 +30,7 @@
             android:src="@drawable/mail_icon_green" />
 
         <TextView
+            android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,24 +38,45 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="To verify your account, enter the 4 digit sent to you at wasiu@gmail.com"
+            tools:text="To verify your account, enter the 4 digit sent to you at wasiu@gmail.com"
             android:textColor="@color/text_light"
+            android:textSize="16sp"
             android:textStyle="normal" />
 
-        <com.goodiebag.pinview.Pinview
-            android:id="@+id/pinView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cursorVisible="true"
-            app:forceKeyboard="true"
-            app:hint=""
-            app:inputType="number"
-            app:password="false"
-            app:pinBackground="@drawable/otp_input_bg"
-            app:pinHeight="45dp"
-            app:pinLength="4"
-            app:pinWidth="50dp" />
+            android:layout_marginTop="20dp">
+
+            <com.goodiebag.pinview.Pinview
+                android:id="@+id/pinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cursorVisible="true"
+                app:forceKeyboard="true"
+                app:hint=""
+                app:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:password="false"
+                app:pinBackground="@drawable/otp_input_bg"
+                app:pinHeight="45dp"
+                app:pinLength="4"
+                app:pinWidth="50dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="5dp"
+                android:text="00:59sec"
+                android:textColor="@color/text_light"
+                app:layout_constraintEnd_toEndOf="@id/pinView"
+                app:layout_constraintTop_toBottomOf="@id/pinView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <LinearLayout
@@ -83,24 +105,43 @@
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:padding="5dp"
                 android:text="@string/resend_code"
-                android:textColor="@color/text_heading_light" />
+                android:textColor="@color/primary_color"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/verifyOTPBtn"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="40dp"
-            android:background="@drawable/primary_button"
-            android:fontFamily="@font/montserrat_regular"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/verify"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@null" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/verifyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/primary_button"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/verify"
+                android:textAllCaps="false"
+                app:backgroundTint="@null" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="@id/verifyBtn"
+                app:layout_constraintBottom_toBottomOf="@id/verifyBtn"
+                app:layout_constraintStart_toStartOf="@id/verifyBtn"
+                app:layout_constraintEnd_toEndOf="@id/verifyBtn"
+                android:visibility="invisible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

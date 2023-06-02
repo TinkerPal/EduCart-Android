@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context=".ui.fragment.account.EditProfileFragment">
+    tools:context=".ui.settings.profile.EditProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,69 +41,47 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:endIconMode="clear_text">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstNameET"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/text_input_bg"
-                android:inputType="textCapWords"
-                android:padding="15dp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:background="@color/white"
-                android:text="@string/first_name"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/firstNameET"
-                app:layout_constraintStart_toStartOf="@id/firstNameET"
-                app:layout_constraintTop_toTopOf="@id/firstNameET" />
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/first_name"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:endIconMode="clear_text">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastNameET"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/text_input_bg"
-                android:inputType="textCapWords"
-                android:padding="15dp"
-                android:textSize="14sp"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:background="@color/white"
-                android:text="@string/last_name"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/lastNameET"
-                app:layout_constraintStart_toStartOf="@id/lastNameET"
-                app:layout_constraintTop_toTopOf="@id/lastNameET" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/last_name"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -115,9 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/text_input_bg"
+                android:background="@drawable/edit_text_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -125,7 +103,7 @@
                     android:id="@+id/ccp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginEnd="20dp"
                     app:ccpDialog_cornerRadius="20dp"
                     app:ccpDialog_keyboardAutoPopup="false"
@@ -146,12 +124,14 @@
                 <EditText
                     android:id="@+id/phoneNumberET"
                     android:layout_width="0dp"
-                    android:layout_height="52dp"
+                    android:layout_height="56dp"
                     android:layout_marginEnd="20dp"
                     android:background="@android:color/transparent"
+                    android:fontFamily="@font/montserrat_regular"
                     android:inputType="phone"
                     android:padding="15dp"
-                    android:textSize="14sp"
+                    android:textColor="@color/text_light"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/verifyIcon"
                     app:layout_constraintStart_toEndOf="@id/ccp"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -168,14 +148,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="10dp"
                 android:background="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingHorizontal="5dp"
                 android:text="@string/phone"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toTopOf="@id/phoneLayout"
@@ -185,118 +166,83 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/country_of_residence"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
-            <RelativeLayout
-                android:id="@+id/showCountries"
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/text_input_bg"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:textColor="@color/text_light" />
 
-                <TextView
-                    android:id="@+id/countryFlag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/countryName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/countryFlag"
-                    android:text="Nigeria" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/institution_of_study"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_down" />
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:textColor="@color/text_light" />
 
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/dem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:background="@color/white"
-                android:text="@string/country_of_residence"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/showCountries"
-                app:layout_constraintStart_toStartOf="@id/showCountries"
-                app:layout_constraintTop_toTopOf="@id/showCountries" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="50dp">
 
-            <RelativeLayout
-                android:id="@+id/showInstitutions"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/doneBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/text_input_bg"
-                android:clickable="true"
-                android:focusable="true"
+                android:background="@drawable/primary_button"
+                android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:text="@string/done"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/countryFlagOfInstitution"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true" />
-
-                <TextView
-                    android:id="@+id/institutionName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/countryFlagOfInstitution"
-                    android:text="University of Toronto" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/arrow_down" />
-
-            </RelativeLayout>
-
-            <TextView
+            <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:background="@color/white"
-                android:text="@string/institution_of_study"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/showInstitutions"
-                app:layout_constraintStart_toStartOf="@id/showInstitutions"
-                app:layout_constraintTop_toTopOf="@id/showInstitutions" />
-
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/doneBtn"
+                app:layout_constraintEnd_toEndOf="@id/doneBtn"
+                app:layout_constraintStart_toStartOf="@id/doneBtn"
+                app:layout_constraintTop_toTopOf="@id/doneBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.account.CreatePinFragment">
+    tools:context=".ui.settings.pin.CreatePinFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:text="Secure your account by setting up a transaction pin and answering three (3) security questions"
+                android:text="@string/secure_your_account_by_setting_up_a_transaction_pin_and_answering_three_3_security_questions"
                 android:textColor="@color/text_light"
                 android:textSize="12sp" />
 
@@ -66,7 +66,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/primary_button"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/get_started"
                 android:textAllCaps="false"

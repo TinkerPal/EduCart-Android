@@ -2,7 +2,7 @@ package tech.hackcity.educarts.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import tech.hackcity.educarts.data.model.AddressBook
+import tech.hackcity.educarts.domain.model.AddressBook
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -11,12 +11,22 @@ class SharedViewModel : ViewModel() {
 
     private var toolBarVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
-    fun isToolbarVisible(): MutableLiveData<Boolean> {
+    fun fetchToolBarVisibility(): MutableLiveData<Boolean> {
         return toolBarVisibility
     }
 
     fun setToolbarVisibility(tv: Boolean){
         toolBarVisibility.postValue(tv)
+    }
+
+    private var toolBarColor: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    fun fetchToolbarColor(): MutableLiveData<Int> {
+        return toolBarColor
+    }
+
+    fun setToolBarColor(color: Int){
+        toolBarColor.postValue(color)
     }
 
     private var destination: MutableLiveData<String> = MutableLiveData<String>()

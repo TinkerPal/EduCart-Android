@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.payment.applicationfee.ApplicationFeeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/application_fee" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:text="@string/application_fee"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/consultationCV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/light_orange"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/educarts_is_here_for_you_n_for_your_applications"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/secondary_color"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/choose_any_of_your_intended_action_below_to_get_started"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_heading_light"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+            android:id="@+id/applyToSchool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/text_input_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="25dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circled_card_with_tick" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/apply_to_a_school"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/text_heading_light"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/select_this_if_you_want_to_apply_to_a_school_together_with_making_application_fee_payment"
+                android:textAlignment="center"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/applicationFeePaymentOnly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/text_input_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="25dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circled_card_with_tick" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/application_fee_payment_only"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/text_heading_light"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/select_this_if_you_only_need_help_with_making_payments_for_your_school_application_fee"
+                android:textAlignment="center"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/applicationReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:background="@drawable/text_input_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="25dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/circled_doc_with_tick" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/application_review"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/text_heading_light"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/select_this_if_you_need_help_to_review_your_application_so_it_has_a_better_chance_of_getting_approved"
+                android:textAlignment="center"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

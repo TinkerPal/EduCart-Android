@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/support_nav_graph"
+    app:startDestination="@id/consultationFragment1">
+
+    <fragment
+        android:id="@+id/consultationFragment1"
+        android:name="tech.hackcity.educarts.ui.support.ConsultationFragment1"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_consultation_1">
+        <action
+            android:id="@+id/action_consultationFragment1_to_consultationFragment2"
+            app:destination="@id/consultationFragment2"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/consultationFragment2"
+        android:name="tech.hackcity.educarts.ui.support.ConsultationFragment2"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_consultation_2">
+        <action
+            android:id="@+id/action_consultationFragment2_to_consultationFragment3"
+            app:destination="@id/consultationFragment3"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/consultationFragment3"
+        android:name="tech.hackcity.educarts.ui.support.ConsultationFragment3"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_consultation_3" />
+
+    <fragment
+        android:id="@+id/liveChatFragment"
+        android:name="tech.hackcity.educarts.ui.support.LiveChatFragment"
+        android:label="@string/live_chat"
+        tools:layout="@layout/fragment_live_chat" />
+
+</navigation>

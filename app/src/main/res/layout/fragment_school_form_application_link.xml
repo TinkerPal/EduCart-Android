@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.payment.applicationfee.SchoolFormApplicationLinkFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/application_fee" />
+
+        <TextView
+            android:id="@+id/service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textAlignment="center"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            tools:text="@string/application_fee" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/divider_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/application_form"
+            android:textColor="@color/secondary_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/you_are_to_fill_out_the_application_form_of_the_school_of_your_choice_you_selected_by_clicking_on_the_link_below_this_will_direct_you_to_the_school_portal_where_you_fill_out_the_required_information"
+            android:textAlignment="center"
+            android:textColor="@color/text_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/the_link"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/websiteLinkTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp"
+            tools:text="Abilene website link" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/click_below_to_proceed_to_payment_to_the_school_after_filling_out_the_application_form"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="50dp">
+
+            <Button
+                android:id="@+id/proceedBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/primary_button"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/proceed"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/proceedBtn"
+                app:layout_constraintEnd_toEndOf="@id/proceedBtn"
+                app:layout_constraintStart_toStartOf="@id/proceedBtn"
+                app:layout_constraintTop_toTopOf="@id/proceedBtn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</ScrollView>

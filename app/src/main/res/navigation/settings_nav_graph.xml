@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ProfileFragment"
+        android:name="tech.hackcity.educarts.ui.settings.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -28,13 +28,13 @@
 
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="tech.hackcity.educarts.ui.settings.EditProfileFragment"
+        android:name="tech.hackcity.educarts.ui.settings.profile.EditProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/addressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.AddressBookFragment"
+        android:name="tech.hackcity.educarts.ui.settings.addressBook.AddressBookFragment"
         android:label="Address Book"
         tools:layout="@layout/fragment_address_book">
         <action
@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/addAddressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.AddAddressBookFragment"
+        android:name="tech.hackcity.educarts.ui.settings.addressBook.AddAddressBookFragment"
         android:label="Add Address"
         tools:layout="@layout/fragment_add_address_book">
         <action
@@ -71,12 +71,12 @@
 
     <fragment
         android:id="@+id/editAddressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.EditAddressBookFragment"
+        android:name="tech.hackcity.educarts.ui.settings.addressBook.EditAddressBookFragment"
         android:label="Edit Address"
         tools:layout="@layout/fragment_edit_address_book">
         <argument
             android:name="address"
-            app:argType="tech.hackcity.educarts.data.model.AddressBook" />
+            app:argType="tech.hackcity.educarts.domain.model.AddressBook" />
         <action
             android:id="@+id/action_editAddressBookFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
@@ -91,19 +91,19 @@
 
     <fragment
         android:id="@+id/identityVerificationFragment"
-        android:name="tech.hackcity.educarts.ui.settings.IdentityVerificationFragment"
+        android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragment"
         android:label="Identity Verification"
         tools:layout="@layout/fragment_identity_verification" />
 
     <fragment
         android:id="@+id/faqsFragment"
-        android:name="tech.hackcity.educarts.ui.settings.FAQsFragment"
+        android:name="tech.hackcity.educarts.ui.settings.faqs.FAQsFragment"
         android:label="FAQs"
         tools:layout="@layout/fragment_faqs" />
 
     <fragment
         android:id="@+id/passwordAndPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.PasswordAndPinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.PasswordAndPinFragment"
         android:label="Password and PIN"
         tools:layout="@layout/fragment_password_and_pin">
         <action
@@ -131,13 +131,13 @@
 
     <fragment
         android:id="@+id/createPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.CreatePinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.CreatePinFragment"
         android:label="PIN"
         tools:layout="@layout/fragment_create_pin" />
 
     <fragment
         android:id="@+id/changePinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ChangePinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.ChangePinFragment"
         android:label="Change PIN"
         tools:layout="@layout/fragment_change_pin">
         <action
@@ -151,13 +151,13 @@
 
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ChangePasswordFragment"
+        android:name="tech.hackcity.educarts.ui.settings.changePassword.ChangePasswordFragment"
         android:label="Change password"
         tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/forgotPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.ForgotPinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.ForgotPinFragment"
         android:label="Forgot PIN"
         tools:layout="@layout/fragment_forgot_pin">
         <action
@@ -167,7 +167,7 @@
 
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="tech.hackcity.educarts.ui.auth.OTPFragment"
+        android:name="tech.hackcity.educarts.ui.auth.verifyOTP.OTPFragment"
         android:label="Verification"
         tools:layout="@layout/fragment_otp">
         <action
@@ -184,7 +184,7 @@
 
     <fragment
         android:id="@+id/createNewPinFragment"
-        android:name="tech.hackcity.educarts.ui.settings.CreateNewPinFragment"
+        android:name="tech.hackcity.educarts.ui.settings.pin.CreateNewPinFragment"
         android:label="Create new PIN"
         tools:layout="@layout/fragment_create_new_pin" />
 

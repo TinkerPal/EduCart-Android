@@ -161,7 +161,7 @@
             android:id="@+id/view1"
             android:layout_width="3dp"
             android:layout_height="50dp"
-            android:background="@color/light_green"
+            android:background="@color/light_green2"
             app:layout_constraintEnd_toEndOf="@id/step1"
             app:layout_constraintStart_toStartOf="@id/step1"
             app:layout_constraintTop_toBottomOf="@+id/step1" />
@@ -192,7 +192,7 @@
             android:id="@+id/view2"
             android:layout_width="3dp"
             android:layout_height="50dp"
-            android:background="@color/light_green"
+            android:background="@color/light_green2"
             app:layout_constraintEnd_toEndOf="@id/step2"
             app:layout_constraintStart_toStartOf="@id/step2"
             app:layout_constraintTop_toBottomOf="@+id/step2" />
@@ -222,7 +222,7 @@
             android:id="@+id/view3"
             android:layout_width="3dp"
             android:layout_height="50dp"
-            android:background="@color/light_green"
+            android:background="@color/light_green2"
             app:layout_constraintEnd_toEndOf="@id/step3"
             app:layout_constraintStart_toStartOf="@id/step3"
             app:layout_constraintTop_toBottomOf="@+id/step3" />

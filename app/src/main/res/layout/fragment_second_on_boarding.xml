@@ -66,18 +66,21 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="EduCarts delivers fast payments to schools" />
 
-        <Button
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nextBtn"
-            app:backgroundTint="@null"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@drawable/primary_button"
-            android:fontFamily="@font/railway"
+            android:fontFamily="@font/montserrat_medium"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:text="@string/next"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

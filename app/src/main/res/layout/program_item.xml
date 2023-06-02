@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="15dp"
+    app:cardBackgroundColor="@color/light_gray"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="15dp">
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="4-Year Bachelor’s Degree" />
+
+        <TextView
+            android:id="@+id/course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/montserrat_light"
+            android:textAlignment="center"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Bachelor of Applied Science" />
+
+        <TextView
+            android:id="@+id/universityAndState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/montserrat_light"
+            android:textAlignment="center"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Arizona state University, Phoenix -  USA" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/divider_light" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_heading_light"
+                    android:textSize="14sp"
+                    android:text="@string/tuition_fee" />
+
+                <TextView
+                    android:id="@+id/tuitionFeeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_light"
+                    android:textSize="14sp"
+                    tools:text="$32,760 USD" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_heading_light"
+                    android:textSize="14sp"
+                    android:text="@string/application_fee" />
+
+                <TextView
+                    android:id="@+id/applicationFeeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_light"
+                    android:textSize="14sp"
+                    tools:text="$0 USD" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
