@@ -211,6 +211,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_checkRequiredDocumentsFragment"
+            app:destination="@id/checkRequiredDocumentsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/credentialEvaluationFragment"
@@ -242,7 +249,7 @@
         android:id="@+id/credentialEvaluationEducationalBackgroundFragment"
         android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationEducationalBackgroundFragment"
         android:label="@string/credentials_evaluation"
-        tools:layout="@layout/fragment_credential_evaluation_educational_background" >
+        tools:layout="@layout/fragment_credential_evaluation_educational_background">
         <action
             android:id="@+id/action_credentialEvaluationEducationalBackgroundFragment_to_credentialEvaluationRecipientInformationFragment"
             app:destination="@id/credentialEvaluationRecipientInformationFragment" />
@@ -251,6 +258,41 @@
         android:id="@+id/credentialEvaluationRecipientInformationFragment"
         android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationRecipientInformationFragment"
         android:label="@string/credentials_evaluation"
-        tools:layout="@layout/fragment_credential_evaluation_recipient_information"/>
+        tools:layout="@layout/fragment_credential_evaluation_recipient_information" />
+    <fragment
+        android:id="@+id/checkRequiredDocumentsFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CheckRequiredDocumentsFragment"
+        android:label="@string/required_documents"
+        tools:layout="@layout/fragment_check_required_documents">
+        <action
+            android:id="@+id/action_checkRequiredDocumentsFragment_to_showRequiredDocumentsFragment"
+            app:destination="@id/showRequiredDocumentsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/showRequiredDocumentsFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.ShowRequiredDocumentsFragment"
+        android:label="@string/required_documents"
+        tools:layout="@layout/fragment_show_required_documents">
+        <action
+            android:id="@+id/action_showRequiredDocumentsFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_showRequiredDocumentsFragment_to_credentialEvaluationDashboardFragment"
+            app:destination="@id/credentialEvaluationDashboardFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/credentialEvaluationDashboardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

@@ -6,32 +6,32 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.databinding.FragmentCredentialEvaluationDashboardBinding
+import tech.hackcity.educarts.databinding.FragmentCheckRequiredDocumentsBinding
+import tech.hackcity.educarts.databinding.FragmentShowRequiredDocumentsBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**
  *Created by Victor Loveday on 5/6/23
  */
-class CredentialEvaluationDashboardFragment :
-    Fragment(R.layout.fragment_credential_evaluation_dashboard) {
+class ShowRequiredDocumentsFragment : Fragment(R.layout.fragment_show_required_documents) {
 
-    private lateinit var binding: FragmentCredentialEvaluationDashboardBinding
+    private lateinit var binding: FragmentShowRequiredDocumentsBinding
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentCredentialEvaluationDashboardBinding.bind(view)
+        binding = FragmentShowRequiredDocumentsBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.credentialsEvaluation.setOnClickListener {
+        binding.startEvaluationNowBtn.setOnClickListener {
             findNavController().navigate(
-                R.id.action_credentialEvaluationDashboardFragment_to_credentialEvaluationFragment
+                R.id.action_showRequiredDocumentsFragment_to_credentialEvaluationFragment
             )
         }
-        binding.requireDocument.setOnClickListener {
+
+        binding.evaluationDashboardBtn.setOnClickListener {
             findNavController().navigate(
-                R.id.action_credentialEvaluationDashboardFragment_to_checkRequiredDocumentsFragment
+                R.id.action_showRequiredDocumentsFragment_to_credentialEvaluationDashboardFragment
             )
         }
     }
