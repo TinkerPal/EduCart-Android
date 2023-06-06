@@ -63,13 +63,14 @@ class CheckoutActivity : AppCompatActivity() {
                 binding.serviceImage.setImageResource(R.drawable.application_fee)
             }
             "SEVIS fee" -> binding.serviceImage.setImageResource(R.drawable.sevis_fee)
+
             "Tuition fee" -> {
                 binding.serviceImage.setImageResource(R.drawable.tution_fee)
             }
             "Visa fee" -> {
                 binding.serviceImage.setImageResource(R.drawable.visa_fee)
             }
-            "Credential evaluation" -> {
+            "Credentials evaluation" -> {
                 binding.serviceImage.setImageResource(R.drawable.credential_evaluation)
             }
             "Admission docs shipment" -> {

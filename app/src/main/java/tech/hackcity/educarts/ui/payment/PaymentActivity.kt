@@ -87,7 +87,10 @@ class PaymentActivity : AppCompatActivity() {
                     navGraph.setStartDestination(R.id.sevisFeeFragment)
                 }
                 "application fee" -> {
-                    navGraph.setStartDestination(R.id.applicationFeeFragment)
+                    navGraph.setStartDestination(R.id.applicationFeeDashboardFragment)
+                }
+                "credential evaluation" -> {
+                    navGraph.setStartDestination(R.id.credentialEvaluationDashboardFragment)
                 }
             }
 

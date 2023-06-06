@@ -39,10 +39,10 @@
         tools:layout="@layout/fragment_have_sevis_payment_coupon" />
 
     <fragment
-        android:id="@+id/applicationFeeFragment"
-        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeFragment"
+        android:id="@+id/applicationFeeDashboardFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeDashboardFragment"
         android:label="@string/application_fee"
-        tools:layout="@layout/fragment_application_fee">
+        tools:layout="@layout/fragment_application_fee_dashboard">
         <action
             android:id="@+id/action_applicationFeeFragment_to_selectSchoolOrProgramFragment"
             app:destination="@id/selectSchoolOrProgramFragment"
@@ -56,14 +56,14 @@
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_applicationFeeFragment_to_applicationReviewFragment"
             app:destination="@id/applicationReviewFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -164,7 +164,7 @@
         android:id="@+id/universityPortalLoginDetailsFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.UniversityPortalLoginDetailsFragment"
         android:label=""
-        tools:layout="@layout/fragment_university_portal_login_details" >
+        tools:layout="@layout/fragment_university_portal_login_details">
         <argument
             android:name="pageTitle"
             app:argType="string" />
@@ -177,7 +177,7 @@
         android:id="@+id/applicationFeePaymentOnly"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeePaymentOnly"
         android:label="@string/application_fee_payment_only"
-        tools:layout="@layout/fragment_application_fee_payment_only" >
+        tools:layout="@layout/fragment_application_fee_payment_only">
         <action
             android:id="@+id/action_applicationFeePaymentOnly_to_universityPortalLoginDetailsFragment"
             app:destination="@id/universityPortalLoginDetailsFragment"
@@ -190,14 +190,67 @@
         android:id="@+id/applicationReviewFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationReviewFragment"
         android:label="@string/application_review"
-        tools:layout="@layout/fragment_application_review" >
+        tools:layout="@layout/fragment_application_review">
         <action
             android:id="@+id/action_applicationReviewFragment_to_universityPortalLoginDetailsFragment"
             app:destination="@id/universityPortalLoginDetailsFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationDashboardFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationDashboardFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_dashboard">
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation">
+        <action
+            android:id="@+id/action_credentialEvaluationFragment_to_credentialEvaluationPersonalInformationFragment"
+            app:destination="@id/credentialEvaluationPersonalInformationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationPersonalInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationPersonalInformationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_personal_information">
+        <action
+            android:id="@+id/action_credentialEvaluationPersonalInformationFragment_to_credentialEvaluationEducationalBackgroundFragment"
+            app:destination="@id/credentialEvaluationEducationalBackgroundFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationEducationalBackgroundFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationEducationalBackgroundFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_educational_background" >
+        <action
+            android:id="@+id/action_credentialEvaluationEducationalBackgroundFragment_to_credentialEvaluationRecipientInformationFragment"
+            app:destination="@id/credentialEvaluationRecipientInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationRecipientInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationRecipientInformationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_recipient_information"/>
 
 </navigation>

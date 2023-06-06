@@ -285,11 +285,52 @@
     <string name="school_s_website_link">School\'s website link</string>
     <string name="application_price">Application price</string>
     <string name="university_name">University name</string>
-
-
-
-
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDPBPlnQgDu5vDDCGCLOAMAegZNfmuDcPk</string>
     <string name="program_intake">Program intake</string>
     <string name="done">Done</string>
+    <string name="place_holder_n">place holder \n</string>
+    <string name="it_s_important_to_carefully_enter_and_review_the_provided_information_during_the_credential_evaluation_order_process_accuracy_and_completeness_of_the_information_are_crucial_to_ensure_the_evaluation_process_proceeds_smoothly_and_the_evaluation_report_is_delivered_to_the_correct_recipients_if_applicable_refer_to_the_guidelines_and_instructions_provided_by_educarts_to_ensure_the_necessary_information_are_provided_correctly">It\'s important to carefully enter and review the provided information during the credential evaluation order process. Accuracy and completeness of the information are crucial to ensure the evaluation process proceeds smoothly and the evaluation report is delivered to the correct recipients (if applicable). Refer to the guidelines and instructions provided by EduCarts to ensure the necessary information are provided correctly.</string>
+    <string name="evaluates_and_verifies_the_authenticity_and_equivalency_of_your_academic_credentials">Evaluates and verifies the authenticity and equivalency of your academic credentials</string>
+    <string name="required_documents">Required documents</string>
+    <string name="find_a_list_of_documents_that_are_typically_needed_for_various_evaluation_purposes">Find a list of documents that are typically needed for various Evaluation purposes</string>
+    <string name="degree_equivalency">Degree equivalency</string>
+    <string name="find_resources_and_guidelines_that_outline_the_equivalent_educational_level_and_recognition_of_your_degree_in_other_countries">Find resources and guidelines that outline the equivalent educational level, and recognition of your degree in other countries</string>
+    <string name="evaluation_purpose">Evaluation purpose</string>
+    <string name="tell_us_about_the_purpose_of_your_evaluation_this_helps_ensure_that_individuals_qualifications_meet_the_requirements_and_standards_of_the_target_institution_country_or_organization">Tell us about the purpose of your Evaluation. This helps ensure that individuals\' qualifications meet the requirements and standards of the target institution, country, or organization.</string>
+    <string name="do_you_want_us_to_send_the_result_directly_to_a_recipient_at_the_end_of_evaluation">Do you want us to send the result directly to a recipient at the end of Evaluation?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="is_there_any_specific_forms_or_reference_number_provided_by_the_recipient_requesting_institution_or_organization">Is there any specific form or reference number provided by the recipient (requesting institution or organization)?</string>
+    <string name="input_reference_number_if_any">Input Reference Number (If any)</string>
+    <string name="upload_specific_form_if_any">Upload specific form (If any)</string>
+    <string name="education_level_pursuing">Education level pursuing</string>
+    <string name="qualification_type">Qualification type</string>
+    <string name="licensing_state">Licensing state</string>
+    <string name="it_is_important_to_securely_and_confidentially_provide_personal_information_to_authorized_entities_or_institutions_involved_in_the_evaluation_process">It is important to securely and confidentially provide personal information to authorized entities or institutions involved in the evaluation process.</string>
+    <string name="personal_information">Personal information</string>
+    <string name="upload_identification_document">Upload Identification Document</string>
+    <string name="identification_document">Identification document</string>
+    <string name="upload_the_document_chosen_above">Upload the document chosen above</string>
+    <string name="first_name_given_name">First name (Given Name)</string>
+    <string name="last_name_given_name">Last name (Given Name)</string>
+    <string name="gender">Gender</string>
+    <string name="middle_name">Middle name</string>
+    <string name="educational_background">Educational background</string>
+    <string name="it_is_important_to_provide_accurate_and_comprehensive_details_about_your_educational_background_as_these_details_will_be_used_for_evaluation_purposes_such_as_determining_degree_equivalency_or_assessing_your_qualifications_for_further_education_or_employment_opportunities">It is important to provide accurate and comprehensive details about your educational background, as these details will be used for evaluation purposes, such as determining degree equivalency or assessing your qualifications for further education or employment opportunities.</string>
+    <string name="country_of_education">Country of education</string>
+    <string name="education_type">Education type</string>
+    <string name="institution_attended">Institution attended</string>
+    <string name="degrees_qualifications_earned">Degrees/Qualifications earned</string>
+    <string name="starting_date">Starting date</string>
+    <string name="end_date">End date</string>
+    <string name="upload_your_academic_transcript">Upload your academic transcript</string>
+    <string name="please_upload_your_secondary_education_credential_as_well">Please upload your secondary education credential as well</string>
+    <string name="recipient_information">Recipient information</string>
+    <string name="it_is_important_to_ensure_the_accuracy_and_completeness_of_the_recipient_information_to_ensure_the_report_reaches_the_intended_recipient_without_delays_or_errors">It is important to ensure the accuracy and completeness of the recipient information to ensure the report reaches the intended recipient without delays or errors.</string>
+    <string name="institution_company">Institution/Company</string>
+    <string name="delivery_type">Delivery type</string>
+    <string name="if_applicable_provide_reference_or_application_number_below">If applicable, provide reference or application number below</string>
+    <string name="reference_application_number">Reference/application number</string>
+    <string name="any_other_details">Any other details</string>
+    <string name="tell_us_more_here">Tell us more here</string>
 </resources>

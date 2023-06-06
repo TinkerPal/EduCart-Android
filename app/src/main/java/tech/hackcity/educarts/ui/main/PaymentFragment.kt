@@ -23,14 +23,18 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
     }
 
     private fun setupNavigation() {
+        val intent = Intent(requireContext(), PaymentActivity::class.java)
+
         binding.sevisFeeTV.setOnClickListener {
-            val intent = Intent(requireContext(), PaymentActivity::class.java)
             intent.putExtra("destination", "sevis fee")
             startActivity(intent)
         }
         binding.applicationFeeTV.setOnClickListener {
-            val intent = Intent(requireContext(), PaymentActivity::class.java)
             intent.putExtra("destination", "application fee")
+            startActivity(intent)
+        }
+        binding.credentialEvaluationTV.setOnClickListener {
+            intent.putExtra("destination", "credential evaluation")
             startActivity(intent)
         }
     }
