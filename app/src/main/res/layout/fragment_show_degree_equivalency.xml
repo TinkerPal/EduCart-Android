@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.payment.credentialEvaluation.ShowRequiredDocumentsFragment">
+    tools:context=".ui.payment.credentialEvaluation.ShowDegreeEquivalencyFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/circled_file_with_purple_bg" />
+            android:src="@drawable/circled_hat_with_blue_bg" />
 
         <TextView
             android:id="@+id/service"
@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/required_documents"
+            android:text="@string/degree_equivalency"
             android:textAlignment="center"
             android:textColor="@color/text_heading_light"
             android:textSize="16sp" />
@@ -38,6 +38,48 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="20dp"
             android:background="@color/divider_light" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/light_orange"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Your Degree Equivalency in U.S"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondary_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:lineSpacingExtra="5dp"
+                    android:text="Below is the equivalent degree in United State that you can apply for."
+                    android:textAlignment="center"
+                    android:textColor="@color/text_heading_light"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/your_education_details"
+                android:text="@string/your_credential"
                 android:textColor="@color/text_heading_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -91,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/required_documents_checklist"
+                android:text="Equivalency in United State(U.S)"
                 android:textColor="@color/text_heading_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -101,13 +143,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:lineSpacingExtra="5dp"
-                android:text="1. Academic Transcripts: This is an official document issued by your Institution, Obafemi Awolowo University, Nigeria, which shows all the courses you’ve taken and the grades you’ve earned for each of your Education years. ..."
+                android:text="Equivalency: Bachelor’s Degree "
                 android:textColor="@color/text_heading_light"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:lineSpacingExtra="5dp"
+            android:text="Important Notice: The degree equivalency provided above is provisional and solely based on the information you have provided. It cannot be used as evidence of degree completion or enrollment as it is not verified."
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:lineSpacingExtra="5dp"
+            android:text="Going Forward: Now that you know what your education is worth in the U.S, get an EduCarts credential evaluation to verify your credentials for recognition by U.S universities, employers and licensing boards. "
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -153,8 +214,6 @@
             app:backgroundTint="@null"
             android:textColor="@color/primary_color"
             app:layout_constraintTop_toTopOf="parent" />
-
-
     </LinearLayout>
 
 

@@ -343,4 +343,8 @@
     <string name="your_education_details">Your education details</string>
     <string name="required_documents_checklist">Required documents checklist</string>
     <string name="start_evaluation_now">Start evaluation now</string>
+    <string name="enter_your_credential_information_below_the_result_of_our_degree_equivalency_tool_are_for_information_purpose_only">Enter your credential information below. The result of our degree equivalency tool are for information purpose only.</string>
+    <string name="enter_your_email_address_to_get_a_copy_of_the_degree_equivalent_result">Enter your email address to get a copy of the Degree Equivalent result.</string>
+    <string name="back_to_menu">Back to menu</string>
+    <string name="your_credential">Your credential</string>
 </resources>

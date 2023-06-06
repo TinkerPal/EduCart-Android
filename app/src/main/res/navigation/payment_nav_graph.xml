@@ -218,6 +218,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_checkDegreeEquivalencyFragment"
+            app:destination="@id/checkDegreeEquivalencyFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/credentialEvaluationFragment"
@@ -293,6 +300,41 @@
             app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@id/credentialEvaluationDashboardFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkDegreeEquivalencyFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CheckDegreeEquivalencyFragment"
+        android:label="@string/degree_equivalency"
+        tools:layout="@layout/fragment_check_degree_equivalency" >
+        <action
+            android:id="@+id/action_checkDegreeEquivalencyFragment_to_showDegreeEquivalencyFragment"
+            app:destination="@id/showDegreeEquivalencyFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/showDegreeEquivalencyFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.ShowDegreeEquivalencyFragment"
+        android:label="@string/degree_equivalency"
+        tools:layout="@layout/fragment_show_degree_equivalency" >
+        <action
+            android:id="@+id/action_showDegreeEquivalencyFragment_to_credentialEvaluationDashboardFragment"
+            app:destination="@id/credentialEvaluationDashboardFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/credentialEvaluationDashboardFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_showDegreeEquivalencyFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
 </navigation>

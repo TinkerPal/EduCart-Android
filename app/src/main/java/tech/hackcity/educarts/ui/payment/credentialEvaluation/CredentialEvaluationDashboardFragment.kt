@@ -34,6 +34,11 @@ class CredentialEvaluationDashboardFragment :
                 R.id.action_credentialEvaluationDashboardFragment_to_checkRequiredDocumentsFragment
             )
         }
+        binding.degreeEquivalency.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_credentialEvaluationDashboardFragment_to_checkDegreeEquivalencyFragment
+            )
+        }
     }
 
     override fun onResume() {
