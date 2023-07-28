@@ -1,12 +1,15 @@
 package tech.hackcity.educarts.uitls
 
 import android.content.Context
+import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
 import tech.hackcity.educarts.data.network.APIInterceptor
 import java.lang.reflect.Type
+import java.net.CookieManager
+import java.net.CookiePolicy
 
 /**
  *Created by Victor Loveday on 4/27/23
@@ -29,8 +32,14 @@ object RetrofitUtils {
         }
     }
 
+
     fun okhttpClient(context: Context): OkHttpClient {
+//        val cookieManager = CookieManager()
+//        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
+
         return OkHttpClient.Builder()
+//            .cookieJar(JavaNetCookieJar(cookieManager))
+//            .addNetworkInterceptor(APIInterceptor(context))
             .addInterceptor(APIInterceptor(context))
             .build()
     }

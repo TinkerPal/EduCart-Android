@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.auth.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -62,6 +63,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()
             viewModel.countryOfResidence = binding.countryOfResidenceET.text.toString().trim()
+            viewModel.countryCode = dialCode.toInt()
             viewModel.phoneNumber = binding.phoneNumberET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
@@ -111,6 +113,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             binding.progressBar,
             resources.getString(R.string.sign_up)
         )
+        Log.d("REGISTRATION" , message)
     }
 
     override fun onRequestSuccessful(response: RegisterUserResponse) {

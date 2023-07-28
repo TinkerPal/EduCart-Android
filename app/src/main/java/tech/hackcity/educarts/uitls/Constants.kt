@@ -11,6 +11,8 @@ import tech.hackcity.educarts.domain.model.photo.Photo
  */
 object Constants {
 
+    const val EDU_CARTS_BASE_URL = "https://educartapi.herokuapp.com/api/v1/"
+
     val dummyTransactionList = listOf(
         PaymentHistory("SF12002", "SEVIS/I-20", "Order completed", "March 3, 2023"),
         PaymentHistory("SF12002", "SEVIS/I-20", "Order in process", "March 3, 2023"),

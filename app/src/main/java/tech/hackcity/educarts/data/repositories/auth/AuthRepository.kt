@@ -19,6 +19,7 @@ class AuthRepository(
     suspend fun registerPersonalAccountUser(
         email: String, firstName: String,
         lastName: String, countryOfResidence: String,
+        countryCode: Int,
         phoneNumber: String, password: String
     ): RegisterUserResponse {
 
@@ -28,6 +29,7 @@ class AuthRepository(
                 firstName,
                 lastName,
                 countryOfResidence,
+                countryCode,
                 phoneNumber,
                 password
             )

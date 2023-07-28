@@ -7,6 +7,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.errorMessageFetcher
+import tech.hackcity.educarts.uitls.removeSpacesFromString
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -21,6 +23,7 @@ class CreatePersonalAccountViewModel(
     var firstName: String? = null
     var lastName: String? = null
     var countryOfResidence: String? = null
+    var countryCode: Int? = null
     var phoneNumber: String? = null
     var password: String? = null
 
@@ -33,10 +36,13 @@ class CreatePersonalAccountViewModel(
             email.isNullOrEmpty() || firstName.isNullOrEmpty()
             || lastName.isNullOrEmpty() || password.isNullOrEmpty()
             || phoneNumber.isNullOrEmpty() || countryOfResidence.isNullOrEmpty()
+            || countryCode == null
         ) {
             createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
+
+        val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
         Coroutines.main {
             val response = try {
@@ -45,7 +51,8 @@ class CreatePersonalAccountViewModel(
                     firstName!!,
                     lastName!!,
                     countryOfResidence!!,
-                    phoneNumber!!,
+                    countryCode!!,
+                    formattedPhoneNumber,
                     password!!
                 )
 
@@ -72,8 +79,18 @@ class CreatePersonalAccountViewModel(
                 repository.saveUserId(response.data.id)
 
             } else {
-                val message = "${response.message.email}, ${response.message.phone_number}"
-                createPersonalAccountListener?.onRequestFailed(message)
+
+                var errorMessage = ""
+
+                if (response.message.email != null) {
+                    errorMessage = response.message.email.toString()
+                }else if (response.message.phone_number != null) {
+                    errorMessage = response.message.phone_number.toString()
+                }else if (response.message.password != null) {
+                    errorMessage = response.message.password.toString()
+                }
+
+                createPersonalAccountListener?.onRequestFailed(errorMessage)
             }
         }
     }

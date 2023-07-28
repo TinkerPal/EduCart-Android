@@ -7,6 +7,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.errorMessageFetcher
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -60,7 +61,8 @@ class LoginViewModel(
                 repository.saveAuthToken(response.data.access)
 
             } else {
-                loginListener?.onRequestFailed(response.message)
+                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                loginListener?.onRequestFailed(errorMessage)
             }
         }
 

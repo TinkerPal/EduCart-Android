@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/upload_your_recent_passport_here"
+                    android:text="@string/upload_your_international_passport_here"
                     android:textColor="@color/secondary_color"
                     android:textSize="16sp" />
 

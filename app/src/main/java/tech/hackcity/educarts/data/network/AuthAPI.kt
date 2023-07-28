@@ -19,6 +19,7 @@ interface AuthAPI {
         @Field("first_name") first_name: String,
         @Field("last_name") last_name: String,
         @Field("country_of_residence") country_of_residence: String,
+        @Field("country_code") country_code: Int,
         @Field("phone_number") phone_number: String,
         @Field("password") password: String,
     ): Response<RegisterUserResponse> // register user
@@ -60,7 +61,7 @@ interface AuthAPI {
 
 
     @FormUrlEncoded
-    @POST("settings/change-password")
+    @POST("settings/change-password/")
     suspend fun changePassword(
         @Field("old_password") old_password: String,
         @Field("new_password") new_password: String,

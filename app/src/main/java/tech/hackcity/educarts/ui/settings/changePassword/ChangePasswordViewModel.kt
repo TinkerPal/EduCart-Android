@@ -31,7 +31,7 @@ class ChangePasswordViewModel(
 
         Coroutines.main {
             val response = try {
-                repository.changePassword(oldPassword!!, newPassword!!)
+                repository.changePassword(oldPassword!!, newPassword!!, newPassword!!)
 
             } catch (e: IOException) {
                 changePasswordListener?.onRequestFailed(e.message!!)

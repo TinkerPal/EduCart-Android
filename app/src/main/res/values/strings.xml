@@ -131,6 +131,7 @@
     <string name="upload_i_20_or_ds_2019_form_here">Upload I-20 or DS-2019 form here</string>
     <string name="browse_and_chose_the_files_you_want_to_upload_from_your_file">Browse and chose the files you want to upload from your file</string>
     <string name="upload_your_recent_passport_here">Upload your recent Passport here</string>
+    <string name="upload_your_international_passport_here">Upload your international passport here</string>
     <string name="form_type">Form type</string>
     <string name="country_of_citizenship">Country of citizenship</string>
     <string name="country_of_birth">Country of birth</string>

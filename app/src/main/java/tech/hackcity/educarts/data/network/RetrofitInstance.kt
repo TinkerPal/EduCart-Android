@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_BASE_URL
 import tech.hackcity.educarts.uitls.RetrofitUtils
 
 /**
@@ -21,11 +22,11 @@ class RetrofitInstance(context: Context) {
             .build()
 
         Retrofit.Builder()
-            .baseUrl("https://educartapi.herokuapp.com/api/v1/")
+            .baseUrl(EDU_CARTS_BASE_URL)
             .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
-            .client(RetrofitUtils.okhttpClient(context)) // Add Okhttp client
+            .client(RetrofitUtils.okhttpClient(context))
             .build()
     }
 

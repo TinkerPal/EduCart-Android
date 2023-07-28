@@ -4,35 +4,41 @@ import android.content.Context
 import android.net.ConnectivityManager
 import tech.hackcity.educarts.data.storage.SessionManager
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 import tech.hackcity.educarts.uitls.NoInternetException
 
 /**
  *Created by Victor Loveday on 3/24/23
  */
-/**
- * Interceptor to add auth token to requests
- */
 class APIInterceptor(
-    context: Context
+    private val context: Context
 ) : Interceptor {
 
     private val applicationContext = context.applicationContext
     private val sessionManager = SessionManager(applicationContext)
 
     override fun intercept(chain: Interceptor.Chain): Response {
-
         if (!isInternetAvailable())
             throw NoInternetException("No internet connection")
 
-        val requestBuilder = chain.request().newBuilder()
+        val request = chain.request()
 
-        // If token has been saved, add it to the request
-        sessionManager.fetchAuthToken()?.let {
-            requestBuilder.addHeader("Authorization", "Bearer $it")
+        sessionManager.fetchAuthToken()?.let { token ->
+            if (requiresAuthorization(request)) {
+                val authenticatedRequest = request.newBuilder()
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
+                return chain.proceed(authenticatedRequest)
+            }
         }
 
-        return chain.proceed(requestBuilder.build())
+        return chain.proceed(request)
+    }
+
+    private fun requiresAuthorization(request: Request): Boolean {
+        val url = request.url.toString()
+        return url.contains("secured")
     }
 
     private fun isInternetAvailable(): Boolean {

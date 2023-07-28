@@ -72,7 +72,6 @@ class AuthActivity : AppCompatActivity() {
                 "create personal account" -> {
                     navGraph.setStartDestination(R.id.createPersonalAccountFragment)
                 }
-
             }
 
             navController.graph = navGraph

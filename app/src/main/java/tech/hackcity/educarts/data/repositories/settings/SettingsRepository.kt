@@ -15,9 +15,9 @@ class SettingsRepository(
     private val sharedPreferenceManager: SharePreferencesManager
 ) : SafeApiRequest() {
 
-    suspend fun changePassword(oldPassword: String, newPassword: String): ChangePasswordResponse {
+    suspend fun changePassword(oldPassword: String, newPassword: String, confirmPassword: String): ChangePasswordResponse {
         return apiRequest {
-            api.authenticationAPI.changePassword(oldPassword, newPassword, newPassword)
+            api.authenticationAPI.changePassword(oldPassword, newPassword, confirmPassword)
         }
     }
 }

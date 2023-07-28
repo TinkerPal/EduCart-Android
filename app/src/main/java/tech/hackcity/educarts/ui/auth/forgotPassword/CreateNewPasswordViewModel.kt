@@ -7,6 +7,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.errorMessageFetcher
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -56,7 +57,8 @@ class CreateNewPasswordViewModel(
                 createNewPasswordListener?.onRequestSuccessful(response)
                 repository.saveUserId(response.data.id)
             } else {
-                createNewPasswordListener?.onRequestFailed(response.message)
+                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                createNewPasswordListener?.onRequestFailed(errorMessage)
             }
         }
     }
