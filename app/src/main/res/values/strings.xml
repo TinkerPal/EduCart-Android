@@ -2,9 +2,12 @@
     <string name="app_name">EduCarts</string>
     <string name="next">Next</string>
     <string name="welcome_to_educarts">Welcome to Educarts</string>
-    <string name="educarts_delivers_fast_payment_to_schools">Educarts deliver fast payments to schools</string>
-    <string name="educarts_provide_reasonable_exchange_rates">Educarts provides reasonable exchange rate</string>
-    <string name="educarts_provide_support_to_complex_student_transaction">Educarts provide support to complex student transactions</string>
+    <string name="on_boarding_title_1">Expert advice and \nsupport</string>
+    <string name="on_boarding_title_2">Quick delivery to \ninternational schools</string>
+    <string name="on_boarding_title_3">Reasonable exchange \npayment rates </string>
+    <string name="on_boarding_description_1">Complete complex transactions with the guide of our expert.</string>
+    <string name="on_boarding_description_2">Quick and easy solution to all international school payments.</string>
+    <string name="on_boarding_description_3">Stable mechanism that offers you the cheapest  rates to pay less.</string>
     <string name="skip">Skip</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_biometric_feature_perform_on_this_device">No biometric feature perform on this device</string>

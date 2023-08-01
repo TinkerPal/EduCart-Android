@@ -22,6 +22,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import tech.hackcity.educarts.R
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.LinearInterpolator
+import com.google.android.material.button.MaterialButton
 
 /**
  *Created by Victor Loveday on 5/10/23
@@ -92,6 +99,45 @@ fun disableButtonState(button: Button) {
         isEnabled = true
         setBackgroundResource(R.drawable.disabled_button)
     }
+}
+
+fun MaterialButton.animateButtonFadeIn() {
+    val originalAlpha = alpha
+    alpha = 0.3f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", originalAlpha)
+    animator.duration = 500L
+
+    animator.interpolator = LinearInterpolator()
+    animator.start()
+}
+
+fun TextView.animateTextFadeIn() {
+    val originalAlpha = alpha
+    alpha = 0.3f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", originalAlpha)
+    animator.duration = 500L
+
+    animator.interpolator = LinearInterpolator()
+    animator.start()
+}
+
+
+fun TextView.animateTextFadeOut() {
+    val originalAlpha = alpha
+
+    alpha = 1.0f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", 0f)
+    animator.duration = 500L
+    animator.interpolator = LinearInterpolator()
+    animator.addListener(object : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            alpha = originalAlpha
+        }
+    })
+    animator.start()
 }
 
 fun hideViews(views: List<View>) {
@@ -175,7 +221,14 @@ fun compareTwoPasswordFields(
 }
 
 
-fun clickableLink(context: Context, text: String, url: String, spannableTextView: TextView, startSpan: Int, endSpan: Int) {
+fun clickableLink(
+    context: Context,
+    text: String,
+    url: String,
+    spannableTextView: TextView,
+    startSpan: Int,
+    endSpan: Int
+) {
     try {
         val spanned = SpannableString(text)
         val clickableSpan: ClickableSpan = object : ClickableSpan() {

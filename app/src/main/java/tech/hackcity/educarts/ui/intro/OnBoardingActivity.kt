@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.intro
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,6 +13,9 @@ import tech.hackcity.educarts.databinding.ActivityOnBoardingBinding
 import tech.hackcity.educarts.domain.model.OnBoarding
 import tech.hackcity.educarts.ui.adapters.OnBoardingAdapter
 import tech.hackcity.educarts.ui.auth.AuthActivity
+import tech.hackcity.educarts.uitls.animateButtonFadeIn
+import tech.hackcity.educarts.uitls.animateTextFadeIn
+import tech.hackcity.educarts.uitls.animateTextFadeOut
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -35,6 +39,13 @@ class OnBoardingActivity : AppCompatActivity() {
 
         tabLayout = binding.tabs
         next = binding.nextBtn
+        binding.skipTextView.setOnClickListener {
+            val intent = Intent(this, AuthActivity::class.java)
+            intent.putExtra("destination", "login")
+            startActivity(intent)
+            finish()
+        }
+
         setupSliders()
     }
 
@@ -42,23 +53,23 @@ class OnBoardingActivity : AppCompatActivity() {
         val onBoardingList: MutableList<OnBoarding> = ArrayList()
         onBoardingList.add(
             OnBoarding(
-                resources.getString(R.string.welcome_to_educarts),
-                resources.getString(R.string.educarts_delivers_fast_payment_to_schools),
-                R.drawable.holding_card
+                resources.getString(R.string.on_boarding_title_1),
+                resources.getString(R.string.on_boarding_description_1),
+                R.drawable.consulting
             )
         )
         onBoardingList.add(
             OnBoarding(
-                resources.getString(R.string.welcome_to_educarts),
-                resources.getString(R.string.educarts_provide_reasonable_exchange_rates),
-                R.drawable.holding_card
+                resources.getString(R.string.on_boarding_title_2),
+                resources.getString(R.string.on_boarding_description_2),
+                R.drawable.college_campus
             )
         )
         onBoardingList.add(
             OnBoarding(
-                resources.getString(R.string.welcome_to_educarts),
-                resources.getString(R.string.educarts_provide_support_to_complex_student_transaction),
-                R.drawable.holding_card
+                resources.getString(R.string.on_boarding_title_3),
+                resources.getString(R.string.on_boarding_description_3),
+                R.drawable.plain_credit_card_amico
             )
         )
 
@@ -82,8 +93,11 @@ class OnBoardingActivity : AppCompatActivity() {
                 position = tab!!.position
                 if (tab.position == onBoardingList.size - 1) {
                     next!!.text = resources.getString(R.string.get_started)
+                    binding.skipTextView.visibility = View.INVISIBLE
+                    binding.nextBtn.animateButtonFadeIn()
                 } else {
                     next!!.text = resources.getString(R.string.next)
+                    binding.skipTextView.visibility = View.VISIBLE
                 }
             }
 
@@ -95,12 +109,6 @@ class OnBoardingActivity : AppCompatActivity() {
 
         })
 
-        binding.signInText.setOnClickListener {
-            val intent = Intent(this, AuthActivity::class.java)
-            intent.putExtra("destination", "login")
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun setupIntroSliderViewPagerAdapter(introSliderData: List<OnBoarding>) {

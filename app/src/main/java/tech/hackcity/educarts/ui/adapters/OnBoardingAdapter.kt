@@ -1,12 +1,19 @@
 package tech.hackcity.educarts.ui.adapters
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.domain.model.OnBoarding
 
@@ -15,8 +22,9 @@ import tech.hackcity.educarts.domain.model.OnBoarding
  */
 class OnBoardingAdapter(
     private var context: Context,
-    private var onBoardingDataList: List<OnBoarding>
+    private var onBoardingDataList: List<OnBoarding>,
 ) : PagerAdapter() {
+
     override fun getCount(): Int {
         return onBoardingDataList.size
     }
