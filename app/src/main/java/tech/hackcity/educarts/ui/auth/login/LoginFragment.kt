@@ -49,11 +49,11 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
         }
 
 
-        binding.signUpText.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_createPersonalAccountFragment)
+        binding.signupTextView.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_getStartedFragment)
         }
 
-        binding.forgotPasswordTxt.setOnClickListener {
+        binding.forgotPasswordTextView.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
@@ -80,8 +80,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.white))
-        sharedViewModel.setToolbarVisibility(false)
+        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.updateHorizontalStepViewVisibility(false)
     }
 
 }

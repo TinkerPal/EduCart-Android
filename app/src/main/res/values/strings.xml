@@ -31,9 +31,10 @@
     <string name="verify">Verify</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="resend_code">Resend Code</string>
-    <string name="didn_t_recieve_code">Didn\'t recieve code?</string>
+    <string name="resend_code_in">Resend Code | %1$s</string>
+    <string name="didn_t_recieve_code">Didn\'t receive code?</string>
     <string name="forgot_password">Forgot Password</string>
-    <string name="enter_your_email_address_and_we_ll_send_you_instructions_to_reset_your_password">Enter your email address and we\'ll send you instructions to reset your password</string>
+    <string name="enter_your_email_address_or_phone_number_and_we_ll_send_you_instructions_to_reset_your_password">Enter your email address or phone number and we\'ll send you instructions to reset your password</string>
     <string name="send_email">Send email</string>
     <string name="send_message">Send message</string>
     <string name="send_otp">Send OTP</string>
@@ -351,4 +352,22 @@
     <string name="enter_your_email_address_to_get_a_copy_of_the_degree_equivalent_result">Enter your email address to get a copy of the Degree Equivalent result.</string>
     <string name="back_to_menu">Back to menu</string>
     <string name="your_credential">Your credential</string>
+    <string name="logo">Logo</string>
+    <string name="choose_an_account_type">Choose an account type</string>
+    <string name="pick_an_account_to_get_started">Pick an account to get started</string>
+    <string name="for_you_family_or_friends">for you, family or friends</string>
+    <string name="for_schools_and_colleges">for schools, and colleges</string>
+    <string name="create_a_free_account">Create a free account</string>
+    <string name="fill_in_the_form_below">Fill in the form below</string>
+    <string name="verification">Verification</string>
+    <string name="code_from_sms">Code from SMS</string>
+    <string name="sign_in_into_your_new_account">Sign in into your new account</string>
+    <string name="enter_your_email_and_password_to_sign_in">Enter your email and password to sign in</string>
+    <string name="forgot_password_">Forgot Password ?</string>
+    <string name="follow_these_steps_to_recover_your_password">Follow these steps to recover your password</string>
+    <string name="enter_the_4_digit_code_sent_by_email">Enter the 4-digit code sent by Email</string>
+    <string name="get_verified">Get verified</string>
+    <string name="enter_you_new_password">Enter you new password</string>
+    <string name="new_password">New password</string>
+    <string name="change">Change</string>
 </resources>

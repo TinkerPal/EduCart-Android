@@ -71,7 +71,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
 
         }
 
-        binding.signInText.setOnClickListener {
+        binding.signInTextView.setOnClickListener {
             findNavController().navigate(R.id.action_createPersonalAccountFragment_to_loginFragment)
         }
 
@@ -113,7 +113,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             binding.progressBar,
             resources.getString(R.string.sign_up)
         )
-        Log.d("REGISTRATION" , message)
+        Log.d("REGISTRATION", message)
     }
 
     override fun onRequestSuccessful(response: RegisterUserResponse) {
@@ -127,15 +127,18 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         val action =
             CreatePersonalAccountFragmentDirections.actionCreatePersonalAccountFragmentToOTPFragment(
                 "login",
-                resources.getString(R.string.to_verify_your_account_we_will_send_an_otp, email)
+                resources.getString(R.string.verification),
+                resources.getString(R.string.to_verify_your_account_we_will_send_an_otp, email),
+                3
             )
         findNavController().navigate(action)
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.white))
-        sharedViewModel.setToolbarVisibility(false)
+        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.updateHorizontalStepViewPosition(2)
+        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 
 }

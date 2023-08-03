@@ -23,7 +23,7 @@ class VerifyOTPViewModel(
 
     var verifyOTPListener: VerifyOTPListener? = null
 
-    fun onVerifyButtonClickedListener(context: Context) {
+    fun verifyPin(context: Context) {
         verifyOTPListener?.onRequestStarted()
         if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))

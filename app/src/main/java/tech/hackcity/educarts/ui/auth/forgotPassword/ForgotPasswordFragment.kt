@@ -2,7 +2,9 @@ package tech.hackcity.educarts.ui.auth.forgotPassword
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
@@ -14,6 +16,7 @@ import tech.hackcity.educarts.databinding.FragmentForgotPasswordBinding
 import tech.hackcity.educarts.domain.model.auth.ForgotPasswordResponse
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
+import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.toast
 
 /**
@@ -23,6 +26,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
 
     private lateinit var binding: FragmentForgotPasswordBinding
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private var isEmailTextInput = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,11 +80,16 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
     override fun onRequestSuccessful(response: ForgotPasswordResponse) {
         val email = response.data.email
         val action =
-            ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOTPFragment(
-                "reset password",
-                resources.getString(R.string.reset_instructions_has_been_sent_to, email)
+            ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordInstructionsFragment(
+                email
             )
         findNavController().navigate(action)
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.updateHorizontalStepViewPosition(1)
+        sharedViewModel.updateHorizontalStepViewVisibility(true)
+    }
 }

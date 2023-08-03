@@ -157,13 +157,12 @@ fun changeToolbarColor(toolbar: MaterialToolbar, color: Int) {
 }
 
 fun hideToolBar(toolbar: MaterialToolbar) {
-    toolbar.visibility = View.GONE
+    toolbar.visibility = View.INVISIBLE
 }
 
 fun showToolBar(toolbar: MaterialToolbar) {
     toolbar.visibility = View.VISIBLE
 }
-
 
 fun compareTwoPasswordFields(
     context: Context, editText1: TextInputEditText, editText2: TextInputEditText,
