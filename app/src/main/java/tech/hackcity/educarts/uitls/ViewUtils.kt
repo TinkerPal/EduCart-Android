@@ -123,6 +123,14 @@ fun TextView.animateTextFadeIn() {
     animator.start()
 }
 
+fun shortenString(input: String, length: Int): String {
+    if (input.length <= length) {
+        return input
+    }
+
+    val shortenedString = input.substring(0, length)
+    return "$shortenedString..."
+}
 
 fun TextView.animateTextFadeOut() {
     val originalAlpha = alpha

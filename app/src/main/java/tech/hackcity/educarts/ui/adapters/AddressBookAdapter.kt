@@ -65,8 +65,7 @@ class AddressBookAdapter(private val context: Context) :
     }
 
     fun setData(addresses: List<AddressBook>) {
-        this.addressList = addresses
-        notifyDataSetChanged()
+        differ.submitList(addresses)
     }
 
     private var onEditClickListener: ((AddressBook) -> Unit)? = null

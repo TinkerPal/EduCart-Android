@@ -91,7 +91,7 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:text="SF12003"
                         android:textColor="#9B5B00"
-                        app:drawableEndCompat="@drawable/ic_baseline_content_copy_20" />
+                        app:drawableEndCompat="@drawable/content_copy" />
 
                 </RelativeLayout>
 

@@ -160,6 +160,7 @@
     <string name="upload_sevis_fee_coupon_here">Upload SEVIS Fee Coupon here</string>
     <string name="modify_order">Modify order</string>
     <string name="hello_">Hello %1$s</string>
+    <string name="user_id">User ID: %1$s</string>
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
     <string name="consultation_fees">Consultation fees</string>
@@ -371,4 +372,7 @@
     <string name="enter_you_new_password">Enter you new password</string>
     <string name="new_password">New password</string>
     <string name="change">Change</string>
+    <string name="quick_actions">Quick actions</string>
+    <string name="order_history">Order history</string>
+    <string name="educational_news">Educational news</string>
 </resources>

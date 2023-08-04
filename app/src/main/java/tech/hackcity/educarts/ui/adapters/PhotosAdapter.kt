@@ -52,7 +52,6 @@ class PhotosAdapter(private val context: Context) :
     }
 
     fun setData(photos: List<Photo>) {
-        this.photoList = photos
-        notifyDataSetChanged()
+        differ.submitList(photos)
     }
 }

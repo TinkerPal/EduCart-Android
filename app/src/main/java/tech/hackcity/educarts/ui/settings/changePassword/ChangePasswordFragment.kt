@@ -9,6 +9,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentChangePasswordBinding
 import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
@@ -29,7 +30,8 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password), Chan
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
-        val repository = SettingsRepository(api, sessionManager, sharePreferencesManager)
+        val userInfoManager = UserInfoManager(requireContext())
+        val repository = SettingsRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = ChangePasswordViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[ChangePasswordViewModel::class.java]
         viewModel.changePasswordListener = this

@@ -66,8 +66,7 @@ class SchoolsAdapter(private val context: Context) :
     }
 
     fun setData(schools: List<School>) {
-        this.schoolList = schools
-        notifyDataSetChanged()
+        differ.submitList(schools)
     }
 
     private var onItemClickListener: ((School) -> Unit)? = null

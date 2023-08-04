@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.uitls
 
 import tech.hackcity.educarts.domain.model.FAQ
+import tech.hackcity.educarts.domain.model.news.News
 import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.domain.model.payment.Program
 import tech.hackcity.educarts.domain.model.payment.School
@@ -165,5 +166,11 @@ object Constants {
     val faq7 = FAQ(6, "Who designed EduCarts business model?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
     val faq8 = FAQ(7, "Who designed EduCarts?", "EduCarts app is designed completely by a total number of 3 UX Design Interns(Michael, Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  ")
     val dummyFAQ:List<FAQ> = arrayListOf(faq1, faq2, faq3, faq3, faq4, faq5, faq6, faq7)
+
+    val dummyNewsList = arrayListOf(
+        News(0, "UniLag Hot Gist", "https://media.publit.io/file/download-1-r.jpeg", shortenString("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", 120)),
+        News(0, "SEVIS Fee", "https://media.publit.io/file/dummy_pic1.png", shortenString("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", 120)),
+        News(0, "Tuition Fee", "https://media.publit.io/file/download-Ab.jpeg", shortenString("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", 120)),
+    )
 
 }

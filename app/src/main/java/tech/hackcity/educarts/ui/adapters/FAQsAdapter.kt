@@ -74,8 +74,7 @@ class FAQsAdapter(private val context: Context) :
     }
 
     fun setData(faq: List<FAQ>) {
-        this.faqList = faq
-        notifyDataSetChanged()
+        differ.submitList(faq)
     }
 
     private var onItemClickListener: ((FAQ) -> Unit)? = null

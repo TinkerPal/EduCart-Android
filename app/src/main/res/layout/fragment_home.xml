@@ -1,297 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:scrollbars="none"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/exchangeRateCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <!--        <com.google.android.material.card.MaterialCardView-->
+        <!--            android:id="@+id/exchangeRateCardView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginHorizontal="20dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:visibility="visible"-->
+        <!--            app:cardCornerRadius="8dp"-->
+        <!--            app:cardElevation="10dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="20dp">
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:paddingHorizontal="20dp"-->
+        <!--                android:paddingVertical="20dp">-->
 
-                <TextView
-                    android:id="@+id/label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/exchange_rate"
-                    android:textColor="@color/secondary_color"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <!--                <TextView-->
+        <!--                    android:id="@+id/label"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:fontFamily="@font/montserrat_medium"-->
+        <!--                    android:text="@string/exchange_rate"-->
+        <!--                    android:textColor="@color/secondary_color"-->
+        <!--                    android:textSize="20sp"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/closeExchangeRateCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/prime_times"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <!--                <de.hdodenhof.circleimageview.CircleImageView-->
+        <!--                    android:id="@+id/closeExchangeRateCardView"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:clickable="true"-->
+        <!--                    android:focusable="true"-->
+        <!--                    android:foreground="?attr/selectableItemBackgroundBorderless"-->
+        <!--                    android:src="@drawable/prime_times"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/exchange_rate_box_bg"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label">
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/linearLayout"-->
+        <!--                    android:layout_width="120dp"-->
+        <!--                    android:layout_height="80dp"-->
+        <!--                    android:layout_marginTop="15dp"-->
+        <!--                    android:background="@drawable/exchange_rate_box_bg"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@id/label">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="1dp"
-                        android:layout_marginTop="1dp"
-                        android:background="@color/light_blue"
-                        android:singleLine="true"
-                        android:text="American Dollars"
-                        android:textAlignment="center" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="10dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/flag_united_states_of_america" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/arrow_down" />
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@color/divider_light" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:background="@null"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:inputType="number" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_marginHorizontal="1dp"-->
+        <!--                        android:layout_marginTop="1dp"-->
+        <!--                        android:background="@color/light_blue"-->
+        <!--                        android:singleLine="true"-->
+        <!--                        android:text="American Dollars"-->
+        <!--                        android:textAlignment="center" />-->
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/system_uicons_reverse"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toStartOf="@id/linearLayout2"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        <!--                    <LinearLayout-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:layout_marginTop="15dp"-->
+        <!--                        android:gravity="center_vertical"-->
+        <!--                        android:orientation="horizontal"-->
+        <!--                        android:paddingHorizontal="10dp">-->
+
+        <!--                        <ImageView-->
+        <!--                            android:layout_width="20dp"-->
+        <!--                            android:layout_height="20dp"-->
+        <!--                            android:src="@drawable/flag_united_states_of_america" />-->
+
+        <!--                        <ImageView-->
+        <!--                            android:layout_width="wrap_content"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_marginStart="5dp"-->
+        <!--                            android:src="@drawable/arrow_down" />-->
+
+        <!--                        <View-->
+        <!--                            android:layout_width="1dp"-->
+        <!--                            android:layout_height="20dp"-->
+        <!--                            android:layout_marginStart="10dp"-->
+        <!--                            android:background="@color/divider_light" />-->
+
+        <!--                        <EditText-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="match_parent"-->
+        <!--                            android:layout_marginStart="5dp"-->
+        <!--                            android:background="@null"-->
+        <!--                            android:fontFamily="@font/montserrat_regular"-->
+        <!--                            android:inputType="number" />-->
+
+        <!--                    </LinearLayout>-->
+
+        <!--                </LinearLayout>-->
 
 
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/exchange_rate_box_bg"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="1dp"
-                        android:layout_marginTop="1dp"
-                        android:background="@color/light_blue"
-                        android:singleLine="true"
-                        android:text="Nigerian Naira"
-                        android:textAlignment="center" />
+        <!--                <ImageView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:src="@drawable/system_uicons_reverse"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"-->
+        <!--                    app:layout_constraintEnd_toStartOf="@id/linearLayout2"-->
+        <!--                    app:layout_constraintStart_toEndOf="@+id/linearLayout"-->
+        <!--                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />-->
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="10dp">
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/linearLayout2"-->
+        <!--                    android:layout_width="120dp"-->
+        <!--                    android:layout_height="80dp"-->
+        <!--                    android:layout_marginTop="15dp"-->
+        <!--                    android:background="@drawable/exchange_rate_box_bg"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@id/label">-->
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/flag_nigeria" />
+        <!--                    <TextView-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_marginHorizontal="1dp"-->
+        <!--                        android:layout_marginTop="1dp"-->
+        <!--                        android:background="@color/light_blue"-->
+        <!--                        android:singleLine="true"-->
+        <!--                        android:text="Nigerian Naira"-->
+        <!--                        android:textAlignment="center" />-->
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/arrow_down" />
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@color/divider_light" />
+        <!--                    <LinearLayout-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:layout_marginTop="15dp"-->
+        <!--                        android:gravity="center_vertical"-->
+        <!--                        android:orientation="horizontal"-->
+        <!--                        android:paddingHorizontal="10dp">-->
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:background="@null"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:inputType="number" />
+        <!--                        <ImageView-->
+        <!--                            android:layout_width="20dp"-->
+        <!--                            android:layout_height="20dp"-->
+        <!--                            android:src="@drawable/flag_nigeria" />-->
 
-                    </LinearLayout>
+        <!--                        <ImageView-->
+        <!--                            android:layout_width="wrap_content"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_marginStart="5dp"-->
+        <!--                            android:src="@drawable/arrow_down" />-->
 
-                </LinearLayout>
+        <!--                        <View-->
+        <!--                            android:layout_width="1dp"-->
+        <!--                            android:layout_height="20dp"-->
+        <!--                            android:layout_marginStart="10dp"-->
+        <!--                            android:background="@color/divider_light" />-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--                        <EditText-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="match_parent"-->
+        <!--                            android:layout_marginStart="5dp"-->
+        <!--                            android:background="@null"-->
+        <!--                            android:fontFamily="@font/montserrat_regular"-->
+        <!--                            android:inputType="number" />-->
 
-        </com.google.android.material.card.MaterialCardView>
+        <!--                    </LinearLayout>-->
+
+        <!--                </LinearLayout>-->
+
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        </com.google.android.material.card.MaterialCardView>-->
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/banner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
+            >
 
-            <com.google.android.material.card.MaterialCardView
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/dummy_profile"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/dummy_profile" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:contentDescription="@string/verification_badge"
-                android:src="@drawable/verification_badge"
-                app:layout_constraintBottom_toBottomOf="@id/profileImage"
-                app:layout_constraintEnd_toEndOf="@id/profileImage" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/greetingsAndNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_medium"
-                tools:text="Hello User"
                 android:textColor="@color/text_heading_light"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileImage" />
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                app:layout_constraintStart_toEndOf="@id/profileImage"
+                app:layout_constraintTop_toTopOf="@id/profileImage"
+                tools:text="Hello User" />
 
-            <RelativeLayout
-                android:id="@+id/dayInfoLayout"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/userID"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/greetingsAndNameTextView">
-
-                <TextView
-                    android:id="@+id/dateTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:paddingTop="5dp"
-                    android:text="Tue, Mar, 2023"
-                    android:textColor="@color/text_light"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/weatherTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/weatherIV"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:paddingTop="5dp"
-                    android:text="28°C"
-                    android:textColor="@color/text_heading_light"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:id="@+id/weatherIV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="4dp"
-                    android:src="@drawable/sun" />
-
-            </RelativeLayout>
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:textColor="@color/text_light"
+                android:textSize="14sp"
+                app:drawableEndCompat="@drawable/content_copy"
+                app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/profileImage"
+                tools:text="User ID: 132411e4e67" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/divider_light" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/text_light"
+            android:text="@string/quick_actions"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
             android:weightSum="3">
 
             <TextView
@@ -299,7 +256,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/light_blue_card_bg"
+                android:background="@drawable/white_bg_with_gray_borders"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -309,7 +266,7 @@
                 android:paddingVertical="15dp"
                 android:text="@string/track_order"
                 android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_track_path" />
+                app:drawableTopCompat="@drawable/icon_track_order" />
 
             <TextView
                 android:id="@+id/consultationTV"
@@ -317,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/light_orange_card_bg"
+                android:background="@drawable/white_bg_with_gray_borders"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -327,14 +284,14 @@
                 android:paddingVertical="15dp"
                 android:text="@string/consultation"
                 android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_head_phone" />
+                app:drawableTopCompat="@drawable/icon_consultation" />
 
             <TextView
                 android:id="@+id/faqsTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/light_green_card_bg"
+                android:background="@drawable/white_bg_with_gray_borders"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
@@ -344,60 +301,78 @@
                 android:paddingVertical="15dp"
                 android:text="@string/faqs"
                 android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_unkown_file" />
+                app:drawableTopCompat="@drawable/icon_faqs" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/text_light"
+            android:text="@string/educational_news"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/educationalNewsRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="false" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="@string/recent_activity"
-                android:textColor="@color/text_heading_light"
-                android:textSize="20sp" />
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/text_light"
+                android:text="@string/order_history"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/viewAllPayments"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:paddingHorizontal="15dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_light"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingHorizontal="15dp"
                 android:text="@string/view_all"
                 android:textColor="@color/primary_color"
                 android:textSize="14sp" />
 
         </RelativeLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recentActivityRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            android:nestedScrollingEnabled="false" />
 
         <LinearLayout
             android:id="@+id/noPaymentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
             android:layout_marginHorizontal="70dp"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
