@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.auth
+package tech.hackcity.educarts.ui.auth.passCode
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricPrompt
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityUnlockBinding
+import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.uitls.BiometricAuthListener
 import tech.hackcity.educarts.uitls.BiometricUtils

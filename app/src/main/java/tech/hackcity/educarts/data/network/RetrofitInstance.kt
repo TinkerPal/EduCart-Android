@@ -5,6 +5,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import tech.hackcity.educarts.data.network.apis.AuthAPI
+import tech.hackcity.educarts.data.network.apis.SEVISFeeAPI
 import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_BASE_URL
 import tech.hackcity.educarts.uitls.RetrofitUtils
 
@@ -34,5 +36,8 @@ class RetrofitInstance(context: Context) {
         eduCartsAPI.create(AuthAPI::class.java)
     }
 
+    val sevisFeeAPI: SEVISFeeAPI by lazy {
+        eduCartsAPI.create(SEVISFeeAPI::class.java)
+    }
 
 }

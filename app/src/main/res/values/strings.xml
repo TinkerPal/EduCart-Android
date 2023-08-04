@@ -159,7 +159,7 @@
     <string name="please_choose_your_form_type_and_upload_the_pdf_or_a_clear_screenshot_of_the_sevis_payment_coupon_generated">Please choose your form type and upload the pdf or a clear screenshot of the SEVIS Payment Coupon generated.</string>
     <string name="upload_sevis_fee_coupon_here">Upload SEVIS Fee Coupon here</string>
     <string name="modify_order">Modify order</string>
-    <string name="good_morning">Good Morning %1$s</string>
+    <string name="hello_">Hello %1$s</string>
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
     <string name="consultation_fees">Consultation fees</string>
@@ -212,6 +212,7 @@
     <string name="by_proceeding_to_sign_up_you_re_agreein_to_our_terms_and_conditions">By proceeding to sign up, you\'re agreeing to our terms and conditions</string>
     <string name="field_can_not_be_empty">Field can not be empty!</string>
     <string name="missing_field">Missing field</string>
+    <string name="some_files_are_missing">Some files are missing</string>
     <string name="wrongly_formatted_email">Wrongly formatted email</string>
     <string name="wrongly_formatted_phone_number">Wrongly formatted phone number</string>
     <string name="to_verify_your_account_we_will_send_an_otp">To verify your account, we’ll send an OTP to %1$s</string>

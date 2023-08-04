@@ -13,10 +13,12 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
@@ -43,6 +45,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.exchangeRateCardView.visibility = View.GONE
             binding.banner.visibility = View.VISIBLE
         }
+
+        setupUserInfo()
 
         binding.trackOrderTV.setOnClickListener {
             startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
@@ -101,5 +105,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun setupUserInfo() {
+        val userInfoManager = UserInfoManager(requireContext())
+
+        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
+            binding.greetingsAndNameTextView.text = resources.getString(R.string.hello_, user.firstName)
+        }
     }
 }

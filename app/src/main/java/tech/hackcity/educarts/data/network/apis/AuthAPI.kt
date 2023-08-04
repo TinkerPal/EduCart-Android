@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.data.network
+package tech.hackcity.educarts.data.network.apis
 
 import retrofit2.Response
 import retrofit2.http.Field

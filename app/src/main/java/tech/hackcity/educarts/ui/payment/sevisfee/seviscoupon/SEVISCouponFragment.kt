@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.payment.sevisfee
+package tech.hackcity.educarts.ui.payment.sevisfee.seviscoupon
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 /**
  *Created by Victor Loveday on 3/18/23
  */
-class HaveSEVISPaymentCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon) {
+class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon) {
 
     private lateinit var binding: FragmentHaveSevisPaymentCouponBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()

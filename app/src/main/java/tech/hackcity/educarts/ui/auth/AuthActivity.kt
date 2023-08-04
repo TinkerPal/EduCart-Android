@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,8 +15,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.RetrofitInstance
+import tech.hackcity.educarts.data.repositories.auth.AuthRepository
+import tech.hackcity.educarts.data.storage.SessionManager
+import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.ActivityAuthBinding
 import tech.hackcity.educarts.ui.canvas.CustomLineView
+import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.changeToolbarColor
 import tech.hackcity.educarts.uitls.hideToolBar
@@ -29,6 +36,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var customLineView: CustomLineView
 
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +47,19 @@ class AuthActivity : AppCompatActivity() {
         //keep app on light mode only
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        val api = RetrofitInstance(this)
+        val sessionManager = SessionManager(this)
+        val sharePreferencesManager = SharePreferencesManager(this)
+        val userInfoManager = UserInfoManager(this)
+        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val factory = AuthViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+
+        if (viewModel.fetchLoginStatus()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -74,7 +94,7 @@ class AuthActivity : AppCompatActivity() {
         sharedViewModel.fetchHorizontalStepVisibility().observe(this) { isVisible ->
             if (isVisible) {
                 binding.customLineView.visibility = View.VISIBLE
-            }else {
+            } else {
                 binding.customLineView.visibility = View.INVISIBLE
             }
         }
@@ -82,8 +102,9 @@ class AuthActivity : AppCompatActivity() {
         customLineView = binding.customLineView
         sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
             Handler(Looper.getMainLooper()).postDelayed(
-                { customLineView.setPosition(position) },
-                100
+                {
+                    customLineView.setPosition(position)
+                }, 100
             )
         }
 
@@ -92,8 +113,7 @@ class AuthActivity : AppCompatActivity() {
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.auth_nav_graph)
 
-        val destination = "get started"
-//        val destination = intent.getStringExtra("destination")
+        val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when (destination) {
                 "get started" -> {

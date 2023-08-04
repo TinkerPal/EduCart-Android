@@ -6,21 +6,23 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.repositories.intro.OnBoardingRepository
+import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.ActivityOnBoardingBinding
 import tech.hackcity.educarts.domain.model.OnBoarding
 import tech.hackcity.educarts.ui.adapters.OnBoardingAdapter
 import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.uitls.animateButtonFadeIn
-import tech.hackcity.educarts.uitls.animateTextFadeIn
-import tech.hackcity.educarts.uitls.animateTextFadeOut
 
 class OnBoardingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOnBoardingBinding
 
+    private lateinit var viewModel: OnBoardingViewModel
     var onBoardingAdapter: OnBoardingAdapter? = null
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
@@ -36,6 +38,19 @@ class OnBoardingActivity : AppCompatActivity() {
 
         //keep app on light mode only
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        val sharePreferencesManager = SharePreferencesManager(this)
+        val repository = OnBoardingRepository(sharePreferencesManager)
+        val factory = OnBoardingViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[OnBoardingViewModel::class.java]
+
+        if (viewModel.fetchIsGetStartedPressed() || viewModel.fetchLoginStatus()) {
+            val intent = Intent(this, AuthActivity::class.java)
+            intent.putExtra("destination", "login")
+            startActivity(intent)
+            finish()
+        }
+
 
         tabLayout = binding.tabs
         next = binding.nextBtn
@@ -83,7 +98,10 @@ class OnBoardingActivity : AppCompatActivity() {
                 viewPager!!.currentItem = position
             }
             if (position == onBoardingList.size) {
-                startActivity(Intent(this, GetStartedActivity::class.java))
+                viewModel.saveIsGetStartedPressed(true)
+                val intent = Intent(this, AuthActivity::class.java)
+                intent.putExtra("destination", "get started")
+                startActivity(intent)
                 finish()
             }
         }

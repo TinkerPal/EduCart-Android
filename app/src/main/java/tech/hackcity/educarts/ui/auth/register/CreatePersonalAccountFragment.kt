@@ -14,6 +14,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentCreatePersonalAccountBinding
 import tech.hackcity.educarts.domain.model.auth.RegisterUserResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
@@ -40,7 +41,8 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager)
+        val userInfoManager = UserInfoManager(requireContext())
+        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = CreatePersonalAccountViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[CreatePersonalAccountViewModel::class.java]
         viewModel.createPersonalAccountListener = this

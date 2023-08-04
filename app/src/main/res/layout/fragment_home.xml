@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -222,12 +223,12 @@
                 app:layout_constraintEnd_toEndOf="@id/profileImage" />
 
             <TextView
-                android:id="@+id/greetings"
+                android:id="@+id/greetingsAndNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/good_morning"
+                tools:text="Hello User"
                 android:textColor="@color/text_heading_light"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -239,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/greetings">
+                app:layout_constraintTop_toBottomOf="@id/greetingsAndNameTextView">
 
                 <TextView
                     android:id="@+id/dateTV"
