@@ -132,6 +132,16 @@ fun shortenString(input: String, length: Int): String {
     return "$shortenedString..."
 }
 
+fun removeSpacesFromString(input: String): String {
+    val hasSpaces = input.contains(" ")
+
+    return if (hasSpaces) {
+        input.replace(" ", "")
+    } else {
+        input
+    }
+}
+
 fun TextView.animateTextFadeOut() {
     val originalAlpha = alpha
 

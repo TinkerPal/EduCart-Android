@@ -2,6 +2,7 @@ package tech.hackcity.educarts.uitls
 
 import tech.hackcity.educarts.domain.model.FAQ
 import tech.hackcity.educarts.domain.model.news.News
+import tech.hackcity.educarts.domain.model.notification.Notification
 import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.domain.model.payment.Program
 import tech.hackcity.educarts.domain.model.payment.School
@@ -173,4 +174,12 @@ object Constants {
         News(0, "Tuition Fee", "https://media.publit.io/file/download-Ab.jpeg", shortenString("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).", 120)),
     )
 
+    val dummyNotificationLIst = arrayListOf(
+        Notification(0, "", "Free Apartments", "UniLag offering"),
+        Notification(1, "", "EduCarts Award", "UniLag offering"),
+        Notification(2, "", "Payment Tracking", "UniLag offering"),
+        Notification(3, "", "Payment to Oxford", "UniLag offering"),
+        Notification(4, "", "Free Apartments", "UniLag offering"),
+        Notification(5, "", "Free Apartments", "UniLag offering")
+    )
 }

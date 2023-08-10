@@ -375,4 +375,11 @@
     <string name="quick_actions">Quick actions</string>
     <string name="order_history">Order history</string>
     <string name="educational_news">Educational news</string>
+    <string name="book_consultation">Book consultation</string>
+    <string name="view_status">View status</string>
+    <string name="enter_the_tracking_id_to_order_status_with_educarts">Enter the tracking ID to order status with EduCarts</string>
+    <string name="order_details">Order details</string>
+    <string name="payment_time">Payment time:</string>
+    <string name="processing_order">Processing order</string>
+    <string name="notifications">Notifications</string>
 </resources>

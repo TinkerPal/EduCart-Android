@@ -4,6 +4,7 @@ import android.content.Context
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import tech.hackcity.educarts.data.network.APIInterceptor
@@ -15,6 +16,12 @@ import java.net.CookiePolicy
  *Created by Victor Loveday on 4/27/23
  */
 object RetrofitUtils {
+
+//    fun createLoggingInterceptor(): HttpLoggingInterceptor {
+//        val logging = HttpLoggingInterceptor()
+//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+//        return logging
+//    }
 
     val nullOnEmptyConverterFactory = object : Converter.Factory() {
         fun converterFactory() = this

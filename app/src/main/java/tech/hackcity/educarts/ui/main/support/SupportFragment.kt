@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.main
+package tech.hackcity.educarts.ui.main.support
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,12 +23,6 @@ class SupportFragment : Fragment(R.layout.fragment_support) {
         binding.consultationCV.setOnClickListener {
             val intent = Intent(requireContext(), SupportActivity::class.java)
             intent.putExtra("destination", "consultation")
-            startActivity(intent)
-        }
-
-        binding.liveChatCV.setOnClickListener {
-            val intent = Intent(requireContext(), SupportActivity::class.java)
-            intent.putExtra("destination", "live chat")
             startActivity(intent)
         }
 

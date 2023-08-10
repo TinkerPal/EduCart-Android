@@ -104,32 +104,10 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                 return@setOnClickListener
             }
 
-            val formFile = FileConverter.uriToFile(requireContext(), formUri!!)
-            val passportFile = FileConverter.uriToFile(requireContext(), passportUri!!)
-            val internationalPassportFile = FileConverter.uriToFile(requireContext(), internationalPassportUri!!)
 
-            val form = MultipartBody.Part.createFormData(
-                "form",
-                formFile.name,
-                RequestBody.create("image/*".toMediaTypeOrNull(), formFile)
-            )
-
-            val passport = MultipartBody.Part.createFormData(
-                "passport",
-                passportFile.name,
-                RequestBody.create("image/*".toMediaTypeOrNull(), passportFile)
-            )
-
-            val internationalPassport = MultipartBody.Part.createFormData(
-                "international_passport",
-                internationalPassportFile.name,
-                RequestBody.create("image/*".toMediaTypeOrNull(), internationalPassportFile)
-            )
-
-
-            viewModel.form = form
-            viewModel.passport = passport
-            viewModel.international_passport = internationalPassport
+            viewModel.form = formUri!!
+            viewModel.passport = passportUri!!
+            viewModel.international_passport = internationalPassportUri!!
             viewModel.submitStep1(requireContext())
 
         }

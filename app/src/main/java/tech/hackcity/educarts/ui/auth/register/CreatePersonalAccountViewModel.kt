@@ -76,6 +76,7 @@ class CreatePersonalAccountViewModel(
 
             if (!response.error) {
                 createPersonalAccountListener?.onRequestSuccessful(response)
+                repository.saveUserId(response.data.id)
 
             } else {
 

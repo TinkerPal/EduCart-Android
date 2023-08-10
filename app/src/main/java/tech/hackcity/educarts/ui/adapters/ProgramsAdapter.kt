@@ -62,7 +62,8 @@ class ProgramsAdapter(private val context: Context) :
     }
 
     fun setData(programs: List<Program>) {
-        differ.submitList(programs)
+        this.programList = programs
+        notifyDataSetChanged()
     }
 
     private var onItemClickListener: ((Program) -> Unit)? = null

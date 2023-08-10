@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.hackcity.educarts.data.network.apis.AuthAPI
+import tech.hackcity.educarts.data.network.apis.ConsultationAPI
 import tech.hackcity.educarts.data.network.apis.SEVISFeeAPI
 import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_BASE_URL
 import tech.hackcity.educarts.uitls.RetrofitUtils
@@ -15,7 +16,6 @@ import tech.hackcity.educarts.uitls.RetrofitUtils
  */
 class RetrofitInstance(context: Context) {
 
-    //PiRemit APIs
     private val eduCartsAPI by lazy {
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -32,12 +32,30 @@ class RetrofitInstance(context: Context) {
             .build()
     }
 
+
+//    private val eduCartsAPI by lazy {
+//        val client = OkHttpClient.Builder()
+//            .addInterceptor(RetrofitUtils.createLoggingInterceptor())
+//            .build()
+//
+//        Retrofit.Builder()
+//            .baseUrl(EDU_CARTS_BASE_URL)
+//            .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(client)
+//            .build()
+//    }
+
     val authenticationAPI: AuthAPI by lazy {
         eduCartsAPI.create(AuthAPI::class.java)
     }
 
     val sevisFeeAPI: SEVISFeeAPI by lazy {
         eduCartsAPI.create(SEVISFeeAPI::class.java)
+    }
+
+    val consultationAPI: ConsultationAPI by lazy {
+        eduCartsAPI.create(ConsultationAPI::class.java)
     }
 
 }

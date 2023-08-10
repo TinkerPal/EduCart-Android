@@ -18,7 +18,7 @@
         android:label="Payment" />
     <fragment
         android:id="@+id/supportFragment"
-        android:name="tech.hackcity.educarts.ui.main.SupportFragment"
+        android:name="tech.hackcity.educarts.ui.main.support.SupportFragment"
         android:label="Support" />
     <fragment
         android:id="@+id/accountFragment"

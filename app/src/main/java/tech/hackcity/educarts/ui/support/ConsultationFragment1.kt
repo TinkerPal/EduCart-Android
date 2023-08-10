@@ -26,7 +26,7 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1) {
         binding = FragmentConsultation1Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.updateStepIndicator(arrayOf(1, 2))
+        sharedViewModel.updateStepIndicator(arrayOf(1, 2, 1))
 
         setupConsultationFAQs()
 

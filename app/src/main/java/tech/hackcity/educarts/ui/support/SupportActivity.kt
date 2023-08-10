@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -64,6 +65,9 @@ class SupportActivity : AppCompatActivity() {
             if (step[0] > 0) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     binding.stepIndicator.apply {
+                        if (step[2] == 1) {
+                            setTextColor(ContextCompat.getColor(this@SupportActivity, R.color.text_light))
+                        }
                         visibility = View.VISIBLE
                         startAnimation(animate1)
                         binding.stepIndicator.text = "${step[0]}/${step[1]}"

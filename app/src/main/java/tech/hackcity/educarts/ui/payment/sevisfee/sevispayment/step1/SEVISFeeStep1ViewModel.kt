@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1
 
 import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import okhttp3.MultipartBody
 import retrofit2.HttpException
@@ -20,9 +21,8 @@ import java.net.SocketTimeoutException
 /**
  *Created by Victor Loveday on 8/3/23
  */
-class SEVISFeeStep1ViewModel(
-    private val repository: SEVISFeeRepository
-) : ViewModel() {
+
+class SEVISFeeStep1ViewModel(private val repository: SEVISFeeRepository) : ViewModel() {
 
     var listener: SEIVSFeeStep1Listener? = null
 
@@ -31,9 +31,9 @@ class SEVISFeeStep1ViewModel(
     var last_name: String? = null
     var given_name: String? = null
     var date_of_birth: String? = null
-    var form: MultipartBody.Part? = null
-    var passport: MultipartBody.Part? = null
-    var international_passport: MultipartBody.Part? = null
+    var form: Uri? = null
+    var passport: Uri? = null
+    var international_passport: Uri? = null
 
     fun submitStep1(context: Context) {
 
@@ -42,50 +42,50 @@ class SEVISFeeStep1ViewModel(
             || last_name.isNullOrEmpty() || given_name.isNullOrEmpty()
             || date_of_birth.isNullOrEmpty() || form == null
             || passport == null || international_passport == null
-        ){
+        ) {
             listener?.onRequestFailed(listOf(ErrorMessage(EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty))))
 
             return
         }
 
+        val userValue = user!!
+        val sevisIdValue = sevis_id!!
+        val lastNameValue = last_name!!
+        val givenNameValue = given_name!!
+        val dateOfBirthValue = date_of_birth!!
+
         Coroutines.main {
-            val response = try {
-                repository.sevisFeeStep1(
-                    user!!,
-                    sevis_id!!,
-                    last_name!!,
-                    given_name!!,
-                    date_of_birth!!,
+            try {
+                val response = repository.sevisFeeStep1(
+                    userValue,
+                    sevisIdValue,
+                    lastNameValue,
+                    givenNameValue,
+                    dateOfBirthValue,
                     form!!,
                     passport!!,
                     international_passport!!
                 )
 
+                if (!response.error) {
+                    listener?.onRequestSuccessful(response)
+
+                } else {
+                    listener?.onRequestFailed(response.errorMessage)
+                }
+
             } catch (e: java.io.IOException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
-                return@main
 
             } catch (e: NoInternetException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(NO_INTERNET_CONNECTION, e.message!!)))
-                return@main
 
             } catch (e: HttpException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(HTTP_EXCEPTION, e.message!!)))
-                return@main
 
             } catch (e: SocketTimeoutException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(STO_EXCEPTION, e.message!!)))
-                return@main
-            }
-
-            if (!response.error) {
-                listener?.onRequestSuccessful(response)
-
-            } else {
-                listener?.onRequestFailed(response.errorMessage)
             }
         }
-
     }
-
 }
