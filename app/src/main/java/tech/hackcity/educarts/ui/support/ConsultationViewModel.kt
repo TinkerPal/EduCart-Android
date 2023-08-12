@@ -8,8 +8,7 @@ import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
-import tech.hackcity.educarts.uitls.errorMessageFetcher
-import java.io.IOException
+import tech.hackcity.educarts.uitls.IOException
 import java.net.SocketTimeoutException
 
 /**
@@ -19,14 +18,16 @@ class ConsultationViewModel(
     private val repository: ConsultationRepository
 ): ViewModel() {
 
-    val listener: ConsultationStep1Listener? = null
+    var listener: ConsultationStep1Listener? = null
 
     fun fetchConsultationTopics() {
+        listener?.onFetchConsultationTopicsRequestStarted()
+
         Coroutines.main {
             val response = try {
                 repository.fetchConsultationTopics()
 
-            } catch (e: java.io.IOException) {
+            } catch (e: IOException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(ErrorCodes.IO_EXCEPTION, e.message!!)))
                 return@main
 

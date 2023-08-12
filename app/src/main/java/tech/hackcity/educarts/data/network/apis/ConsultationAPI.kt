@@ -11,7 +11,6 @@ import tech.hackcity.educarts.domain.model.support.ConsultationResponse
  *Created by Victor Loveday on 8/4/23
  */
 interface ConsultationAPI {
-
     @GET("support/consultation/1/")
     suspend fun fetchConsultationTopics(): Response<ConsultationResponse>
 

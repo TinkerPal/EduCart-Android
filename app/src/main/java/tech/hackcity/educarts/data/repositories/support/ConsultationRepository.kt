@@ -11,11 +11,15 @@ import tech.hackcity.educarts.domain.model.support.ConsultationResponse
  */
 class ConsultationRepository(
     private val api: RetrofitInstance,
-    private val sessionManager: SessionManager,
     private val sharedPreferenceManager: SharePreferencesManager
 ): SafeApiRequest() {
 
     suspend fun fetchConsultationTopics() : ConsultationResponse {
         return apiRequest { api.consultationAPI.fetchConsultationTopics() }
     }
+
+    fun fetchUserId(): String? {
+        return sharedPreferenceManager.fetchUserId()
+    }
+
 }

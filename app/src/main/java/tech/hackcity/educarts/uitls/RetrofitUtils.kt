@@ -17,12 +17,6 @@ import java.net.CookiePolicy
  */
 object RetrofitUtils {
 
-//    fun createLoggingInterceptor(): HttpLoggingInterceptor {
-//        val logging = HttpLoggingInterceptor()
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        return logging
-//    }
-
     val nullOnEmptyConverterFactory = object : Converter.Factory() {
         fun converterFactory() = this
         override fun responseBodyConverter(
@@ -41,12 +35,7 @@ object RetrofitUtils {
 
 
     fun okhttpClient(context: Context): OkHttpClient {
-//        val cookieManager = CookieManager()
-//        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
-
         return OkHttpClient.Builder()
-//            .cookieJar(JavaNetCookieJar(cookieManager))
-//            .addNetworkInterceptor(APIInterceptor(context))
             .addInterceptor(APIInterceptor(context))
             .build()
     }

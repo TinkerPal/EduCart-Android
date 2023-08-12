@@ -11,7 +11,6 @@ import tech.hackcity.educarts.data.repositories.support.ConsultationRepository
 class ConsultationViewModelFactory(
     private val repository: ConsultationRepository
 ): ViewModelProvider.NewInstanceFactory() {
-
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ConsultationViewModel(repository) as T
     }

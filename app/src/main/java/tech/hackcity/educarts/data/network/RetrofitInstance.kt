@@ -16,26 +16,11 @@ import tech.hackcity.educarts.uitls.RetrofitUtils
  */
 class RetrofitInstance(context: Context) {
 
-    private val eduCartsAPI by lazy {
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
-
-        Retrofit.Builder()
-            .baseUrl(EDU_CARTS_BASE_URL)
-            .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .client(RetrofitUtils.okhttpClient(context))
-            .build()
-    }
-
-
 //    private val eduCartsAPI by lazy {
+//        val logging = HttpLoggingInterceptor()
+//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 //        val client = OkHttpClient.Builder()
-//            .addInterceptor(RetrofitUtils.createLoggingInterceptor())
+//            .addInterceptor(logging)
 //            .build()
 //
 //        Retrofit.Builder()
@@ -43,8 +28,27 @@ class RetrofitInstance(context: Context) {
 //            .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
 //            .addConverterFactory(GsonConverterFactory.create())
 //            .client(client)
+//            .client(RetrofitUtils.okhttpClient(context))
 //            .build()
 //    }
+
+    private val eduCartsAPI by lazy {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .addInterceptor(APIInterceptor(context))
+            .build()
+
+        Retrofit.Builder()
+            .baseUrl(EDU_CARTS_BASE_URL)
+//            .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+    }
+
 
     val authenticationAPI: AuthAPI by lazy {
         eduCartsAPI.create(AuthAPI::class.java)

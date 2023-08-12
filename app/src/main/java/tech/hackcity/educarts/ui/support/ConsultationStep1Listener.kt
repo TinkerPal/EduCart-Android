@@ -11,5 +11,5 @@ interface ConsultationStep1Listener {
     fun onSubmitConsultationStep1RequestStarted()
     fun onRequestFailed(message: List<ErrorMessage>)
     fun onFetchConsultationTopicsRequestSuccessful(response: ConsultationResponse)
-    fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationResponse)
+    fun onSubmitConsultationStep1RequestSuccessful()
 }

@@ -12,33 +12,25 @@ import tech.hackcity.educarts.uitls.NoInternetException
  *Created by Victor Loveday on 3/24/23
  */
 class APIInterceptor(
-    private val context: Context
+    context: Context
 ) : Interceptor {
 
     private val applicationContext = context.applicationContext
     private val sessionManager = SessionManager(applicationContext)
 
     override fun intercept(chain: Interceptor.Chain): Response {
+
         if (!isInternetAvailable())
             throw NoInternetException("No internet connection")
 
-        val request = chain.request()
+        val requestBuilder = chain.request().newBuilder()
 
-        sessionManager.fetchAuthToken()?.let { token ->
-            if (requiresAuthorization(request)) {
-                val authenticatedRequest = request.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
-                    .build()
-                return chain.proceed(authenticatedRequest)
-            }
+        // If token has been saved, add it to the request
+        sessionManager.fetchAuthToken()?.let {
+            requestBuilder.addHeader("Authorization", "Bearer $it")
         }
 
-        return chain.proceed(request)
-    }
-
-    private fun requiresAuthorization(request: Request): Boolean {
-        val url = request.url.toString()
-        return url.contains("secured")
+        return chain.proceed(requestBuilder.build())
     }
 
     private fun isInternetAvailable(): Boolean {
