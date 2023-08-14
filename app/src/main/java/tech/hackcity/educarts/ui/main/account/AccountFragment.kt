@@ -20,6 +20,7 @@ import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.settings.SettingsViewModel
 import tech.hackcity.educarts.ui.settings.SettingsViewModelFactory
+import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**
@@ -63,8 +64,8 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
             startActivity(intent)
         }
         binding.faqs.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "FAQS")
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "faqs")
             startActivity(intent)
         }
         binding.createPin.setOnClickListener {

@@ -20,15 +20,15 @@ class SupportFragment : Fragment(R.layout.fragment_support) {
         binding = FragmentSupportBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.consultationCV.setOnClickListener {
+        binding.bookConsultationBtn.setOnClickListener {
             val intent = Intent(requireContext(), SupportActivity::class.java)
             intent.putExtra("destination", "consultation")
             startActivity(intent)
         }
 
-        binding.faqsTV.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "FAQS")
+        binding.faqsBtn.setOnClickListener {
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "faqs")
             startActivity(intent)
         }
     }

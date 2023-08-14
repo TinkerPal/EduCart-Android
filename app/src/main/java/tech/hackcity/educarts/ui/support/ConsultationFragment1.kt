@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
-import tech.hackcity.educarts.data.repositories.support.ConsultationRepository
+import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentConsultation1Binding
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
@@ -37,7 +37,7 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1), Consul
 
         val api = RetrofitInstance(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
-        val repository = ConsultationRepository(api, sharePreferencesManager)
+        val repository = SupportRepository(api, sharePreferencesManager)
         val factory = ConsultationViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[ConsultationViewModel::class.java]
         viewModel.step1listener = this

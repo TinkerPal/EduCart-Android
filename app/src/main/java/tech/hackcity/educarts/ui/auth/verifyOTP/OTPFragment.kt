@@ -38,8 +38,8 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.title.text = args.pageTitle
-        binding.message.text = args.information
+//        binding.title.text = args.pageTitle
+//        binding.message.text = args.information
 
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
@@ -125,7 +125,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
             )
         )
         sharedViewModel.setToolbarVisibility(true)
-        sharedViewModel.updateHorizontalStepViewPosition(args.step)
+//        sharedViewModel.updateHorizontalStepViewPosition(args.step)
     }
 
     override fun onDestroy() {

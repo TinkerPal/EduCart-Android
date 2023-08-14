@@ -61,7 +61,7 @@ fun hideLoadingScreen(view: ViewGroup) {
     view.visibility = View.GONE
 }
 
-fun showShimmerLoader(shimmerFrameLayout: ShimmerFrameLayout) {
+fun startShimmerLoader(shimmerFrameLayout: ShimmerFrameLayout) {
     shimmerFrameLayout.startShimmer()
     shimmerFrameLayout.visibility = View.VISIBLE
 }

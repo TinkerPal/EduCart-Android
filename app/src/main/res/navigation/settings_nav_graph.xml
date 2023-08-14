@@ -96,12 +96,6 @@
         tools:layout="@layout/fragment_identity_verification" />
 
     <fragment
-        android:id="@+id/faqsFragment"
-        android:name="tech.hackcity.educarts.ui.settings.faqs.FAQsFragment"
-        android:label="FAQs"
-        tools:layout="@layout/fragment_faqs" />
-
-    <fragment
         android:id="@+id/passwordAndPinFragment"
         android:name="tech.hackcity.educarts.ui.settings.pin.PasswordAndPinFragment"
         android:label="Password and PIN"

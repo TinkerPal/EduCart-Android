@@ -2,39 +2,56 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:id="@+id/questionCard"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_height="wrap_content"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/white_bg_with_gray_borders"
         app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/fixed_layout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:paddingVertical="12dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginHorizontal="16dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                tools:text="About Sevis Fee"
+                android:textColor="@color/text_light"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/text_light"
+                android:layout_below="@+id/category"
+                android:layout_marginTop="5dp"
                 android:layout_marginHorizontal="16dp"
                 android:drawablePadding="5dp"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
-                android:text="@string/faqs"
+                android:text="How do I start my payment"
+                android:textColor="@color/text_light"
                 android:textSize="16sp" />
 
             <ImageView
@@ -46,6 +63,7 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/arrow_forward" />
 
+
         </RelativeLayout>
 
 
@@ -53,25 +71,32 @@
             android:id="@+id/hidden_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FBF2E6"
             android:orientation="vertical"
-            android:visibility="gone"
             android:paddingVertical="10dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/divider_light" />
 
             <TextView
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="20dp"
                 android:drawablePadding="5dp"
-                android:text="Some dummy stuff."
-                android:textSize="16sp" />
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="5dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="14sp"
+                android:textColor="@color/text_light"
+                tools:text="EduCarts app is designed completely by a total number of 2 UX Design Interns(Maleek and Edidiong) ,which are now senior Product Designers, lead by a senior product designer, Mr. David Adewale at HackCity Tech Inc. in the year 2023 and developed by mobile developers.  " />
 
         </LinearLayout>
 

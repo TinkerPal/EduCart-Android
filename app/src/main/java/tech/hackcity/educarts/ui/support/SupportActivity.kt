@@ -80,7 +80,7 @@ class SupportActivity : AppCompatActivity() {
             } else {
                 binding.stepIndicator.apply {
                     visibility = View.INVISIBLE
-                    startAnimation(animate2)
+//                    startAnimation(animate2)
                 }
 
             }
@@ -98,6 +98,9 @@ class SupportActivity : AppCompatActivity() {
                 }
                 "live chat" -> {
                     navGraph.setStartDestination(R.id.liveChatFragment)
+                }
+                "faqs" -> {
+                    navGraph.setStartDestination(R.id.FAQsCategoryFragment)
                 }
             }
 

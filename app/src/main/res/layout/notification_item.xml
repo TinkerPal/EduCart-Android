@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/text_heading_light"
-            android:textSize="14sp"
+            android:textSize="16sp"
             tools:text="Free Apartments" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/text_heading_light"
-            android:textSize="12sp"
+            android:textSize="14sp"
             tools:text="UniLag is offering" />
 
     </LinearLayout>

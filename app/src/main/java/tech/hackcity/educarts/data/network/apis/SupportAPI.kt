@@ -8,11 +8,12 @@ import retrofit2.http.POST
 import tech.hackcity.educarts.domain.model.support.ConsultationResponse
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 import tech.hackcity.educarts.domain.model.support.ConsultationStep2Response
+import tech.hackcity.educarts.domain.model.support.FaqsResponse
 
 /**
  *Created by Victor Loveday on 8/4/23
  */
-interface ConsultationAPI {
+interface SupportAPI {
     @GET("support/consultation/1/")
     suspend fun fetchConsultationTopics(): Response<ConsultationResponse>
 
@@ -33,4 +34,7 @@ interface ConsultationAPI {
         @Field("date") date: String,
         @Field("time") time: String
     ): Response<ConsultationStep2Response>
+
+    @GET("support/faqs/")
+    suspend fun fetchFAQs(): Response<FaqsResponse>
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.network.ErrorCodes
-import tech.hackcity.educarts.data.repositories.support.ConsultationRepository
+import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
 
@@ -13,7 +13,7 @@ import tech.hackcity.educarts.uitls.Coroutines
  *Created by Victor Loveday on 8/4/23
  */
 class ConsultationViewModel(
-    private val repository: ConsultationRepository
+    private val repository: SupportRepository
 ) : ViewModel() {
 
     var step1listener: ConsultationStep1Listener? = null

@@ -60,8 +60,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.faqsTV.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "FAQS")
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "faqs")
             startActivity(intent)
         }
 

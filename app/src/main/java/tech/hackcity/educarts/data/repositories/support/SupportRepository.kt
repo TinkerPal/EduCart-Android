@@ -6,17 +6,18 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.support.ConsultationResponse
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 import tech.hackcity.educarts.domain.model.support.ConsultationStep2Response
+import tech.hackcity.educarts.domain.model.support.FaqsResponse
 
 /**
  *Created by Victor Loveday on 8/4/23
  */
-class ConsultationRepository(
+class SupportRepository(
     private val api: RetrofitInstance,
     private val sharedPreferenceManager: SharePreferencesManager
 ) : SafeApiRequest() {
 
     suspend fun fetchConsultationTopics(): ConsultationResponse {
-        return apiRequest { api.consultationAPI.fetchConsultationTopics() }
+        return apiRequest { api.supportAPI.fetchConsultationTopics() }
     }
 
     suspend fun submitConsultationStep1(
@@ -25,7 +26,7 @@ class ConsultationRepository(
         details: String
     ): ConsultationStep1Response {
         return apiRequest {
-            api.consultationAPI.submitConsultationStep1(
+            api.supportAPI.submitConsultationStep1(
                 user,
                 consultation,
                 details
@@ -41,7 +42,7 @@ class ConsultationRepository(
         time: String
     ): ConsultationStep2Response {
         return apiRequest {
-            api.consultationAPI.submitConsultationStep2(
+            api.supportAPI.submitConsultationStep2(
                 consultationWay,
                 phoneNumber,
                 timeOfConsultation,
@@ -49,6 +50,10 @@ class ConsultationRepository(
                 time
             )
         }
+    }
+
+    suspend fun fetchFAQs(): FaqsResponse {
+        return apiRequest { api.supportAPI.fetchFAQs() }
     }
 
     fun fetchUserId(): String? {

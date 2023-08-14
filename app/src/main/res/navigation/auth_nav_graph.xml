@@ -57,6 +57,18 @@
         <argument
             android:name="step"
             app:argType="integer" />
+        <!--        <argument-->
+<!--            android:name="destination"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="pageTitle"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="information"-->
+<!--            app:argType="string" />-->
+<!--        <argument-->
+<!--            android:name="step"-->
+<!--            app:argType="integer" />-->
     </fragment>
 
     <fragment

@@ -6,10 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.hackcity.educarts.data.network.apis.AuthAPI
-import tech.hackcity.educarts.data.network.apis.ConsultationAPI
+import tech.hackcity.educarts.data.network.apis.SupportAPI
 import tech.hackcity.educarts.data.network.apis.SEVISFeeAPI
 import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_BASE_URL
-import tech.hackcity.educarts.uitls.RetrofitUtils
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -58,8 +57,8 @@ class RetrofitInstance(context: Context) {
         eduCartsAPI.create(SEVISFeeAPI::class.java)
     }
 
-    val consultationAPI: ConsultationAPI by lazy {
-        eduCartsAPI.create(ConsultationAPI::class.java)
+    val supportAPI: SupportAPI by lazy {
+        eduCartsAPI.create(SupportAPI::class.java)
     }
 
 }
