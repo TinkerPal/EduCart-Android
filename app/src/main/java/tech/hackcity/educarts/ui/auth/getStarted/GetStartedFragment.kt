@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.enableButtonState
+import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 
 /**
  *Created by Victor Loveday on 8/1/23
@@ -26,13 +26,13 @@ class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
 
         binding.personalAccountBtn.setOnClickListener {
             binding.personalRadioButton.isChecked = true
-            enableButtonState(binding.nextBtn)
+            enablePrimaryButtonState(binding.nextBtn)
         }
 
         binding.personalRadioButton.setOnClickListener {
             if (!binding.personalRadioButton.isChecked) {
                 binding.personalRadioButton.isChecked = true
-                enableButtonState(binding.nextBtn)
+                enablePrimaryButtonState(binding.nextBtn)
             }
         }
 

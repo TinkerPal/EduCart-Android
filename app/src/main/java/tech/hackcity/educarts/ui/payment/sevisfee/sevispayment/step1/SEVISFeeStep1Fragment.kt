@@ -19,18 +19,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.ui.payment.sevisfee.SEIVSFeeStep1Listener
-import tech.hackcity.educarts.uitls.FileConverter
-import tech.hackcity.educarts.uitls.disableButtonState
-import tech.hackcity.educarts.uitls.enableButtonState
+import tech.hackcity.educarts.uitls.disablePrimaryButtonState
+import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
@@ -221,18 +217,18 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
 
     override fun onRequestStarted() {
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
-        disableButtonState(binding.nextBtn)
+        disablePrimaryButtonState(binding.nextBtn)
     }
 
     override fun onRequestFailed(message: List<ErrorMessage>) {
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
         hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
-        enableButtonState(binding.nextBtn)
+        enablePrimaryButtonState(binding.nextBtn)
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep1Response) {
         hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
-        enableButtonState(binding.nextBtn)
+        enablePrimaryButtonState(binding.nextBtn)
 
         findNavController().navigate(R.id.action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment)
     }

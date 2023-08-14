@@ -17,6 +17,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivitySupportBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.hideViews
+import tech.hackcity.educarts.uitls.showViews
 
 class SupportActivity : AppCompatActivity() {
 
@@ -52,8 +54,9 @@ class SupportActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setupDestination()
         showStepIndicatorIfRequired()
+        setupDestination()
+        setupScreenLoader()
 
     }
 
@@ -84,7 +87,6 @@ class SupportActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.support_nav_graph)
 
@@ -100,6 +102,16 @@ class SupportActivity : AppCompatActivity() {
             }
 
             navController.graph = navGraph
+        }
+    }
+
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
         }
     }
 

@@ -25,8 +25,6 @@ import tech.hackcity.educarts.R
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import com.google.android.material.button.MaterialButton
 
@@ -87,16 +85,30 @@ fun hideButtonLoadingState(button: Button, progressBar: ProgressBar, buttonText:
     button.text = buttonText
 }
 
-fun enableButtonState(button: Button) {
+//fun enablePrimaryButtonState(button: MaterialButton) {
+//    button.apply {
+//        isEnabled = true
+//        setBackgroundResource(R.drawable.primary_button)
+//    }
+//}
+//
+//fun disablePrimaryButtonState(button: MaterialButton) {
+//    button.apply {
+//        isEnabled = false
+//        setBackgroundResource(R.drawable.disabled_button)
+//    }
+//}
+
+fun enablePrimaryButtonState(button: Button) {
     button.apply {
         isEnabled = true
         setBackgroundResource(R.drawable.primary_button)
     }
 }
 
-fun disableButtonState(button: Button) {
+fun disablePrimaryButtonState(button: Button) {
     button.apply {
-        isEnabled = true
+        isEnabled = false
         setBackgroundResource(R.drawable.disabled_button)
     }
 }
@@ -160,7 +172,7 @@ fun TextView.animateTextFadeOut() {
 
 fun hideViews(views: List<View>) {
     for (view in views) {
-        view.visibility = View.INVISIBLE
+        view.visibility = View.GONE
     }
 }
 
@@ -184,7 +196,7 @@ fun showToolBar(toolbar: MaterialToolbar) {
 
 fun compareTwoPasswordFields(
     context: Context, editText1: TextInputEditText, editText2: TextInputEditText,
-    editText1Layout: TextInputLayout, editText2Layout: TextInputLayout, actionButton: Button
+    editText1Layout: TextInputLayout, editText2Layout: TextInputLayout, actionButton: MaterialButton
 ) {
     editText1.doOnTextChanged { text, start, before, count ->
         val newPassword = editText1.text.toString().trim()
@@ -192,19 +204,19 @@ fun compareTwoPasswordFields(
 
         if (newPassword != confirmPassword) {
             editText2Layout.error = context.resources.getString(R.string.password_does_not_match)
-            disableButtonState(actionButton)
+            disablePrimaryButtonState(actionButton)
 
             if (newPassword.length < 8 || confirmPassword.length < 8) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
             }
 
         } else {
 
             if (newPassword.length < 8 || newPassword.length > 20) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
 
             } else {
-                enableButtonState(actionButton)
+                enablePrimaryButtonState(actionButton)
             }
 
             editText2Layout.error = null
@@ -217,19 +229,19 @@ fun compareTwoPasswordFields(
 
         if (newPassword != confirmPassword) {
             editText2Layout.error = context.resources.getString(R.string.password_does_not_match)
-            disableButtonState(actionButton)
+            disablePrimaryButtonState(actionButton)
 
             if (newPassword.length < 8 || confirmPassword.length < 8) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
             }
 
         } else {
 
             if (newPassword.length < 8 || newPassword.length > 20) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
 
             } else {
-                enableButtonState(actionButton)
+                enablePrimaryButtonState(actionButton)
             }
 
             editText2Layout.error = null

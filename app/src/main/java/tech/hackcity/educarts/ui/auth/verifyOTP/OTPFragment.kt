@@ -20,7 +20,7 @@ import tech.hackcity.educarts.databinding.FragmentOtpBinding
 import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.CountdownTimer
-import tech.hackcity.educarts.uitls.enableButtonState
+import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.toast
 
 /**
@@ -92,7 +92,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
                 }
 
                 override fun onFinish() {
-                    enableButtonState(binding.resendCodeBtn)
+                    enablePrimaryButtonState(binding.resendCodeBtn)
                 }
             })
 

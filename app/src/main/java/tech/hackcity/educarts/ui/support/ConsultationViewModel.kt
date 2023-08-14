@@ -1,54 +1,125 @@
 package tech.hackcity.educarts.ui.support
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.network.ErrorCodes
 import tech.hackcity.educarts.data.repositories.support.ConsultationRepository
-import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
-import tech.hackcity.educarts.uitls.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 8/4/23
  */
 class ConsultationViewModel(
     private val repository: ConsultationRepository
-): ViewModel() {
+) : ViewModel() {
 
-    var listener: ConsultationStep1Listener? = null
+    var step1listener: ConsultationStep1Listener? = null
+    var step2listener: ConsultationStep2Listener? = null
+
+    var consultation: String? = null
+    var detail: String? = null
+    var consultationWay: String? = null
+    var phoneNumber: String? = null
+    var timeOfConsultation: String? = null
+    var date: String? = null
+    var time: String? = null
 
     fun fetchConsultationTopics() {
-        listener?.onFetchConsultationTopicsRequestStarted()
+        step1listener?.onFetchConsultationTopicsRequestStarted()
 
         Coroutines.main {
-            val response = try {
-                repository.fetchConsultationTopics()
+            try {
+                val response = repository.fetchConsultationTopics()
 
-            } catch (e: IOException) {
-                listener?.onRequestFailed(listOf(ErrorMessage(ErrorCodes.IO_EXCEPTION, e.message!!)))
-                return@main
+                if (!response.error) {
+                    step1listener?.onFetchConsultationTopicsRequestSuccessful(response)
+                } else {
+                    step1listener?.onRequestFailed(response.errorMessage)
+                }
 
-            } catch (e: NoInternetException) {
-                listener?.onRequestFailed(listOf(ErrorMessage(ErrorCodes.NO_INTERNET_CONNECTION, e.message!!)))
-                return@main
-
-            } catch (e: HttpException) {
-                listener?.onRequestFailed(listOf(ErrorMessage(ErrorCodes.HTTP_EXCEPTION, e.message!!)))
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                listener?.onRequestFailed(listOf(ErrorMessage(ErrorCodes.STO_EXCEPTION, e.message!!)))
-                return@main
+            } catch (e: ApiException) {
+                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
             }
+        }
+    }
 
-            if (!response.error) {
-                listener?.onFetchConsultationTopicsRequestSuccessful(response)
+    fun submitConsultationStep1(context: Context) {
+        step1listener?.onSubmitConsultationStep1RequestStarted()
 
-            } else {
-                listener?.onRequestFailed(response.errorMessage)
+        if (consultation.isNullOrEmpty() || detail.isNullOrEmpty()) {
+            step1listener?.onRequestFailed(
+                listOf(
+                    ErrorMessage(
+                        ErrorCodes.EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty)
+                    )
+                )
+            )
+            return
+        }
+
+        Coroutines.main {
+            try {
+                val response = repository.submitConsultationStep1(
+                    repository.fetchUserId()!!,
+                    consultation!!,
+                    detail!!
+                )
+
+                if (!response.error) {
+                    step1listener?.onSubmitConsultationStep1RequestSuccessful(response)
+                } else {
+                    step1listener?.onRequestFailed(response.errorMessage)
+                }
+
+            } catch (e: ApiException) {
+                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+            }
+        }
+
+    }
+
+    fun submitConsultationStep2(context: Context) {
+        step2listener?.onSubmitConsultationStep2RequestStarted()
+
+        if (
+            consultationWay.isNullOrEmpty() ||
+            phoneNumber.isNullOrEmpty() ||
+            timeOfConsultation.isNullOrEmpty() ||
+            date.isNullOrEmpty() ||
+            time.isNullOrEmpty()
+        ) {
+
+            step2listener?.onRequestFailed(
+                listOf(
+                    ErrorMessage(
+                        ErrorCodes.EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty)
+                    )
+                )
+            )
+            return
+        }
+
+        Coroutines.main {
+            try {
+                val response = repository.submitConsultationStep2(
+                    consultationWay!!,
+                    phoneNumber!!,
+                    timeOfConsultation!!,
+                    date!!,
+                    time!!
+                )
+
+                if (!response.error) {
+                    step2listener?.onSubmitConsultationStep2RequestSuccessful(response)
+                } else {
+                    step2listener?.onRequestFailed(response.errorMessage)
+                }
+
+            } catch (e: ApiException) {
+                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
             }
         }
 

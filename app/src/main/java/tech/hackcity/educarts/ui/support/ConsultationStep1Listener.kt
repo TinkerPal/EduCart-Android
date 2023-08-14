@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.support
 
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.support.ConsultationResponse
+import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 
 /**
  *Created by Victor Loveday on 8/4/23
@@ -11,5 +12,5 @@ interface ConsultationStep1Listener {
     fun onSubmitConsultationStep1RequestStarted()
     fun onRequestFailed(message: List<ErrorMessage>)
     fun onFetchConsultationTopicsRequestSuccessful(response: ConsultationResponse)
-    fun onSubmitConsultationStep1RequestSuccessful()
+    fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationStep1Response)
 }

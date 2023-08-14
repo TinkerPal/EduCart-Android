@@ -52,11 +52,11 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         binding.checkboxTC.setOnClickListener {
             if (isTermsAndConditionAgreed) {
                 isTermsAndConditionAgreed = false
-                disableButtonState(binding.signupBtn)
+                disablePrimaryButtonState(binding.signupBtn)
 
             } else {
                 isTermsAndConditionAgreed = true
-                enableButtonState(binding.signupBtn)
+                enablePrimaryButtonState(binding.signupBtn)
             }
         }
 

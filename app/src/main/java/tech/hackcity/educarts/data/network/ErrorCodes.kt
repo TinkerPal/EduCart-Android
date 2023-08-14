@@ -10,6 +10,7 @@ object ErrorCodes {
     const val STO_EXCEPTION = "socket_time_out_exception"
     const val INVALID_CREDENTIALS = "invalid_credentials"
     const val EMPTY_FORM_FIELD = "empty_form_field"
+    const val EMPTY_USER_FIELD = "empty_user_field"
     const val EMPTY_PASSPORT_FIELD = "empty_passport_field"
     const val EMPTY_INTERNATIONAL_PASSPORT_FIELD = "empty_international_passport_field"
 }

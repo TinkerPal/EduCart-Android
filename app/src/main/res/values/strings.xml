@@ -307,6 +307,7 @@
     <string name="do_you_want_us_to_send_the_result_directly_to_a_recipient_at_the_end_of_evaluation">Do you want us to send the result directly to a recipient at the end of Evaluation?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="no_internet_connection">No internet connection</string>
     <string name="is_there_any_specific_forms_or_reference_number_provided_by_the_recipient_requesting_institution_or_organization">Is there any specific form or reference number provided by the recipient (requesting institution or organization)?</string>
     <string name="input_reference_number_if_any">Input Reference Number (If any)</string>
     <string name="upload_specific_form_if_any">Upload specific form (If any)</string>
@@ -382,4 +383,6 @@
     <string name="payment_time">Payment time:</string>
     <string name="processing_order">Processing order</string>
     <string name="notifications">Notifications</string>
+    <string name="please_fill_the_form_below">Please fill the form below</string>
+    <string name="schedule_meeting">Schedule meeting</string>
 </resources>
