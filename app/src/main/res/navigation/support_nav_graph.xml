@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/consultationFragment1"
         android:name="tech.hackcity.educarts.ui.support.ConsultationFragment1"
-        android:label="@string/consultation"
+        android:label=""
         tools:layout="@layout/fragment_consultation_1">
         <action
             android:id="@+id/action_consultationFragment1_to_consultationFragment2"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/consultationFragment2"
         android:name="tech.hackcity.educarts.ui.support.ConsultationFragment2"
-        android:label="@string/consultation"
+        android:label=""
         tools:layout="@layout/fragment_consultation_2">
         <action
             android:id="@+id/action_consultationFragment2_to_consultationFragment3"
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/consultationFragment3"
         android:name="tech.hackcity.educarts.ui.support.ConsultationFragment3"
-        android:label="@string/consultation"
+        android:label=""
         tools:layout="@layout/fragment_consultation_3" />
 
     <fragment
@@ -44,5 +44,36 @@
         android:name="tech.hackcity.educarts.ui.support.LiveChatFragment"
         android:label="@string/live_chat"
         tools:layout="@layout/fragment_live_chat" />
+
+    <fragment
+        android:id="@+id/FAQsCategoryFragment"
+        android:name="tech.hackcity.educarts.ui.support.faqs.FAQsCategoryFragment"
+        android:label=""
+        tools:layout="@layout/fragment_faq_category">
+        <action
+            android:id="@+id/action_FAQsCategoryFragment_to_FAQsFragment"
+            app:destination="@id/FAQsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/FAQsFragment"
+        android:name="tech.hackcity.educarts.ui.support.faqs.FAQsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_faqs">
+        <action
+            android:id="@+id/action_FAQsFragment_to_consultationFragment1"
+            app:destination="@id/consultationFragment1"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="faqs"
+            app:argType="tech.hackcity.educarts.domain.model.support.FaqCategory" />
+    </fragment>
 
 </navigation>

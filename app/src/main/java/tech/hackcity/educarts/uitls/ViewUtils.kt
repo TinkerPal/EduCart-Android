@@ -22,6 +22,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import tech.hackcity.educarts.R
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.view.animation.LinearInterpolator
+import com.google.android.material.button.MaterialButton
 
 /**
  *Created by Victor Loveday on 5/10/23
@@ -56,7 +61,7 @@ fun hideLoadingScreen(view: ViewGroup) {
     view.visibility = View.GONE
 }
 
-fun showShimmerLoader(shimmerFrameLayout: ShimmerFrameLayout) {
+fun startShimmerLoader(shimmerFrameLayout: ShimmerFrameLayout) {
     shimmerFrameLayout.startShimmer()
     shimmerFrameLayout.visibility = View.VISIBLE
 }
@@ -80,23 +85,94 @@ fun hideButtonLoadingState(button: Button, progressBar: ProgressBar, buttonText:
     button.text = buttonText
 }
 
-fun enableButtonState(button: Button) {
+//fun enablePrimaryButtonState(button: MaterialButton) {
+//    button.apply {
+//        isEnabled = true
+//        setBackgroundResource(R.drawable.primary_button)
+//    }
+//}
+//
+//fun disablePrimaryButtonState(button: MaterialButton) {
+//    button.apply {
+//        isEnabled = false
+//        setBackgroundResource(R.drawable.disabled_button)
+//    }
+//}
+
+fun enablePrimaryButtonState(button: Button) {
     button.apply {
         isEnabled = true
         setBackgroundResource(R.drawable.primary_button)
     }
 }
 
-fun disableButtonState(button: Button) {
+fun disablePrimaryButtonState(button: Button) {
     button.apply {
-        isEnabled = true
+        isEnabled = false
         setBackgroundResource(R.drawable.disabled_button)
     }
 }
 
+fun MaterialButton.animateButtonFadeIn() {
+    val originalAlpha = alpha
+    alpha = 0.3f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", originalAlpha)
+    animator.duration = 500L
+
+    animator.interpolator = LinearInterpolator()
+    animator.start()
+}
+
+fun TextView.animateTextFadeIn() {
+    val originalAlpha = alpha
+    alpha = 0.3f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", originalAlpha)
+    animator.duration = 500L
+
+    animator.interpolator = LinearInterpolator()
+    animator.start()
+}
+
+fun shortenString(input: String, length: Int): String {
+    if (input.length <= length) {
+        return input
+    }
+
+    val shortenedString = input.substring(0, length)
+    return "$shortenedString..."
+}
+
+fun removeSpacesFromString(input: String): String {
+    val hasSpaces = input.contains(" ")
+
+    return if (hasSpaces) {
+        input.replace(" ", "")
+    } else {
+        input
+    }
+}
+
+fun TextView.animateTextFadeOut() {
+    val originalAlpha = alpha
+
+    alpha = 1.0f
+
+    val animator = ObjectAnimator.ofFloat(this, "alpha", 0f)
+    animator.duration = 500L
+    animator.interpolator = LinearInterpolator()
+    animator.addListener(object : AnimatorListenerAdapter() {
+        override fun onAnimationEnd(animation: Animator) {
+            alpha = originalAlpha
+        }
+    })
+    animator.start()
+}
+
 fun hideViews(views: List<View>) {
     for (view in views) {
-        view.visibility = View.INVISIBLE
+        view.visibility = View.GONE
     }
 }
 
@@ -111,17 +187,16 @@ fun changeToolbarColor(toolbar: MaterialToolbar, color: Int) {
 }
 
 fun hideToolBar(toolbar: MaterialToolbar) {
-    toolbar.visibility = View.GONE
+    toolbar.visibility = View.INVISIBLE
 }
 
 fun showToolBar(toolbar: MaterialToolbar) {
     toolbar.visibility = View.VISIBLE
 }
 
-
 fun compareTwoPasswordFields(
     context: Context, editText1: TextInputEditText, editText2: TextInputEditText,
-    editText1Layout: TextInputLayout, editText2Layout: TextInputLayout, actionButton: Button
+    editText1Layout: TextInputLayout, editText2Layout: TextInputLayout, actionButton: MaterialButton
 ) {
     editText1.doOnTextChanged { text, start, before, count ->
         val newPassword = editText1.text.toString().trim()
@@ -129,19 +204,19 @@ fun compareTwoPasswordFields(
 
         if (newPassword != confirmPassword) {
             editText2Layout.error = context.resources.getString(R.string.password_does_not_match)
-            disableButtonState(actionButton)
+            disablePrimaryButtonState(actionButton)
 
             if (newPassword.length < 8 || confirmPassword.length < 8) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
             }
 
         } else {
 
             if (newPassword.length < 8 || newPassword.length > 20) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
 
             } else {
-                enableButtonState(actionButton)
+                enablePrimaryButtonState(actionButton)
             }
 
             editText2Layout.error = null
@@ -154,19 +229,19 @@ fun compareTwoPasswordFields(
 
         if (newPassword != confirmPassword) {
             editText2Layout.error = context.resources.getString(R.string.password_does_not_match)
-            disableButtonState(actionButton)
+            disablePrimaryButtonState(actionButton)
 
             if (newPassword.length < 8 || confirmPassword.length < 8) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
             }
 
         } else {
 
             if (newPassword.length < 8 || newPassword.length > 20) {
-                disableButtonState(actionButton)
+                disablePrimaryButtonState(actionButton)
 
             } else {
-                enableButtonState(actionButton)
+                enablePrimaryButtonState(actionButton)
             }
 
             editText2Layout.error = null
@@ -175,7 +250,14 @@ fun compareTwoPasswordFields(
 }
 
 
-fun clickableLink(context: Context, text: String, url: String, spannableTextView: TextView, startSpan: Int, endSpan: Int) {
+fun clickableLink(
+    context: Context,
+    text: String,
+    url: String,
+    spannableTextView: TextView,
+    startSpan: Int,
+    endSpan: Int
+) {
     try {
         val spanned = SpannableString(text)
         val clickableSpan: ClickableSpan = object : ClickableSpan() {

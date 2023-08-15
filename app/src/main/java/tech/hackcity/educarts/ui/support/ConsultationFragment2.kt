@@ -23,7 +23,7 @@ class ConsultationFragment2 : Fragment(R.layout.fragment_consultation_2) {
         binding = FragmentConsultation2Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.updateStepIndicator(arrayOf(2, 2))
+        sharedViewModel.updateStepIndicator(arrayOf(2, 2, 1))
 
         binding.nextBtn.setOnClickListener {
             val intent = Intent(requireContext(), OrderSummaryActivity::class.java)

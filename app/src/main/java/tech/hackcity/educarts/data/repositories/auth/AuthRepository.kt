@@ -4,6 +4,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.domain.model.auth.*
 import tech.hackcity.educarts.uitls.Coroutines
 
@@ -13,12 +14,14 @@ import tech.hackcity.educarts.uitls.Coroutines
 class AuthRepository(
     private val api: RetrofitInstance,
     private val sessionManager: SessionManager,
-    private val sharedPreferenceManager: SharePreferencesManager
+    private val sharedPreferenceManager: SharePreferencesManager,
+    private val userInfoManager: UserInfoManager
 ) : SafeApiRequest() {
 
     suspend fun registerPersonalAccountUser(
         email: String, firstName: String,
         lastName: String, countryOfResidence: String,
+        countryCode: Int,
         phoneNumber: String, password: String
     ): RegisterUserResponse {
 
@@ -28,6 +31,7 @@ class AuthRepository(
                 firstName,
                 lastName,
                 countryOfResidence,
+                countryCode,
                 phoneNumber,
                 password
             )
@@ -64,6 +68,12 @@ class AuthRepository(
         }
     }
 
+    fun saveUser(user: User) {
+        Coroutines.main {
+            userInfoManager.saveUser(user)
+        }
+    }
+
     fun saveUserId(id: String) {
         Coroutines.main {
             sharedPreferenceManager.saveUserId(id)
@@ -77,4 +87,11 @@ class AuthRepository(
         }
     }
 
+    fun saveLoginStatus(isLoggedIn: Boolean) {
+        sharedPreferenceManager.saveLoginStatus(isLoggedIn)
+    }
+
+    fun fetchLoginStatus(): Boolean {
+        return sharedPreferenceManager.fetchLoginStatus()
+    }
 }

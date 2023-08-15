@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.domain.model.FAQ
 import tech.hackcity.educarts.databinding.FaqsItemBinding
+import tech.hackcity.educarts.domain.model.support.Faq
 
 class FAQsAdapter(private val context: Context) :
     RecyclerView.Adapter<FAQsAdapter.FAQsViewHolder>() {
@@ -21,18 +21,18 @@ class FAQsAdapter(private val context: Context) :
     inner class FAQsViewHolder(val binding: FaqsItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<FAQ>() {
-        override fun areItemsTheSame(oldItem: FAQ, newItem: FAQ): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<Faq>() {
+        override fun areItemsTheSame(oldItem: Faq, newItem: Faq): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: FAQ, newItem: FAQ): Boolean {
+        override fun areContentsTheSame(oldItem: Faq, newItem: Faq): Boolean {
             return oldItem == newItem
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
-    var faqList = emptyList<FAQ>()
+    var faqList = emptyList<Faq>()
 
     override fun getItemCount() = faqList.size
 
@@ -50,6 +50,7 @@ class FAQsAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: FAQsViewHolder, position: Int) {
         holder.binding.apply {
             val faq = faqList[position]
+            category.text = "${context.resources.getString(R.string.about)} ${faq.category}"
             question.text = faq.question
             answer.text = faq.answer
 
@@ -73,14 +74,14 @@ class FAQsAdapter(private val context: Context) :
 
     }
 
-    fun setData(faq: List<FAQ>) {
+    fun setData(faq: List<Faq>) {
         this.faqList = faq
         notifyDataSetChanged()
     }
 
-    private var onItemClickListener: ((FAQ) -> Unit)? = null
+    private var onItemClickListener: ((Faq) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (FAQ) -> Unit) {
+    fun setOnItemClickListener(listener: (Faq) -> Unit) {
         onItemClickListener = listener
     }
 }

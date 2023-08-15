@@ -4,6 +4,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 
 /**
@@ -12,12 +13,25 @@ import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 class SettingsRepository(
     private val api: RetrofitInstance,
     private val sessionManager: SessionManager,
-    private val sharedPreferenceManager: SharePreferencesManager
+    private val sharedPreferenceManager: SharePreferencesManager,
+    private val userInfoManager: UserInfoManager
 ) : SafeApiRequest() {
 
-    suspend fun changePassword(oldPassword: String, newPassword: String): ChangePasswordResponse {
+    suspend fun changePassword(oldPassword: String, newPassword: String, confirmPassword: String): ChangePasswordResponse {
         return apiRequest {
-            api.authenticationAPI.changePassword(oldPassword, newPassword, newPassword)
+            api.authenticationAPI.changePassword(oldPassword, newPassword, confirmPassword)
         }
+    }
+
+    fun clearAllTokens() {
+        sessionManager.clearAllTokens()
+    }
+
+    fun clearSharedPreferences() {
+        sharedPreferenceManager.clearSharedPreference()
+    }
+
+    suspend fun clearUser() {
+        userInfoManager.clearUser()
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.AccountFragment">
+    tools:context=".ui.main.account.AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -145,6 +145,7 @@
                 android:id="@+id/securitySettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/background_001"
                 app:cardElevation="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -414,6 +415,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
             <LinearLayout
+                android:id="@+id/signOutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:clickable="true"

@@ -7,6 +7,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.errorMessageFetcher
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -22,7 +23,7 @@ class VerifyOTPViewModel(
 
     var verifyOTPListener: VerifyOTPListener? = null
 
-    fun onVerifyButtonClickedListener(context: Context) {
+    fun verifyPin(context: Context) {
         verifyOTPListener?.onRequestStarted()
         if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
@@ -55,7 +56,8 @@ class VerifyOTPViewModel(
                 verifyOTPListener?.onRequestSuccessful(response)
 
             } else {
-                verifyOTPListener?.onRequestFailed(response.message)
+                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                verifyOTPListener?.onRequestFailed(errorMessage)
             }
         }
     }

@@ -57,9 +57,6 @@ class SettingsActivity : AppCompatActivity() {
                 "IDV" -> {
                     navGraph.setStartDestination(R.id.identityVerificationFragment)
                 }
-                "FAQS" -> {
-                    navGraph.setStartDestination(R.id.faqsFragment)
-                }
                 "Password and PIN" -> {
                     navGraph.setStartDestination(R.id.passwordAndPinFragment)
                 }

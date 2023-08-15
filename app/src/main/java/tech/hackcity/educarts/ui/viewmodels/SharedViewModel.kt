@@ -29,6 +29,26 @@ class SharedViewModel : ViewModel() {
         toolBarColor.postValue(color)
     }
 
+    private var horizontalStepViewPosition: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    fun fetchHorizontalStepViewPosition(): MutableLiveData<Int> {
+        return horizontalStepViewPosition
+    }
+
+    fun updateHorizontalStepViewPosition(position: Int) {
+        horizontalStepViewPosition.postValue(position)
+    }
+
+    private var horizontalStepViewVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
+    fun fetchHorizontalStepVisibility(): MutableLiveData<Boolean> {
+        return horizontalStepViewVisibility
+    }
+
+    fun updateHorizontalStepViewVisibility(isVisible: Boolean) {
+        horizontalStepViewVisibility.postValue(isVisible)
+    }
+
     private var destination: MutableLiveData<String> = MutableLiveData<String>()
 
     fun getDestination(): MutableLiveData<String> {
@@ -61,5 +81,15 @@ class SharedViewModel : ViewModel() {
 
     fun updateStepIndicator(step: Array<Int>) {
         stepIndicator.postValue(step)
+    }
+
+    private var loadingScreen: MutableLiveData<Boolean> = MutableLiveData()
+
+    fun isScreenLoading(): MutableLiveData<Boolean> {
+        return loadingScreen
+    }
+
+    fun updateLoadingScreen(isScreenLoading: Boolean) {
+        loadingScreen.postValue(isScreenLoading)
     }
 }

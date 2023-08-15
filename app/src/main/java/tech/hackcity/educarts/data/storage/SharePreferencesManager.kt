@@ -13,7 +13,7 @@ class SharePreferencesManager(context: Context) {
     companion object {
         const val USER_ID = "user_id"
         const val USER_LOGGED_IN = "user_logged_in"
-        const val APP_FIRST_TIME_LAUNCHED_STATUS = "app_first_time_launched_status"
+        const val GET_STARTED = "get_started"
         const val TRANSACTION_PIN_CREATED = "transaction_pin_created"
     }
 
@@ -30,7 +30,7 @@ class SharePreferencesManager(context: Context) {
     }
 
     fun fetchUserId(): String? {
-        return prefs.getString(USER_ID, null)
+        return prefs.getString(USER_ID, "")
     }
 
     fun saveLoginStatus(isLoggedIn: Boolean) {
@@ -43,14 +43,14 @@ class SharePreferencesManager(context: Context) {
         return prefs.getBoolean(USER_LOGGED_IN, false)
     }
 
-    fun saveAppFirstTimeLaunchStatus(isAppLaunchedFirstTime: Boolean) {
+    fun saveIsGetStartedPressed(isGetStartedPressed: Boolean) {
         val editor = prefs.edit()
-        editor.putBoolean(APP_FIRST_TIME_LAUNCHED_STATUS, isAppLaunchedFirstTime)
+        editor.putBoolean(GET_STARTED, isGetStartedPressed)
         editor.apply()
     }
 
-    fun fetchAppFirstTimeLaunchStatus(): Boolean{
-        return prefs.getBoolean(APP_FIRST_TIME_LAUNCHED_STATUS, false)
+    fun fetchIsGetStartedPressed(): Boolean{
+        return prefs.getBoolean(GET_STARTED, false)
     }
 
     fun savePinCreationStatus(isCreated: Boolean) {

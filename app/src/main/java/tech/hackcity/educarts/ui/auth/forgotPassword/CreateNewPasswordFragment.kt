@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.auth.forgotPassword
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentCreateNewPasswordBinding
 import tech.hackcity.educarts.domain.model.auth.CreateNewPasswordResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
@@ -27,6 +29,8 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
 
     private lateinit var binding: FragmentCreateNewPasswordBinding
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentCreateNewPasswordBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +38,8 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager)
+        val userInfoManager = UserInfoManager(requireContext())
+        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = CreateNewPasswordViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[CreateNewPasswordViewModel::class.java]
         viewModel.createNewPasswordListener = this
@@ -42,10 +47,10 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
 
         compareTwoPasswordFields(
             requireContext(), binding.passwordET, binding.confirmPasswordET,
-            binding.passwordLayout, binding.confirmPasswordLayout, binding.resetPasswordBtn
+            binding.passwordLayout, binding.confirmPasswordLayout, binding.changePasswordBtn
         )
 
-        binding.resetPasswordBtn.setOnClickListener {
+        binding.changePasswordBtn.setOnClickListener {
             viewModel.id = sharePreferencesManager.fetchUserId().toString()
             viewModel.password = binding.confirmPasswordET.text.toString().trim()
 
@@ -54,13 +59,13 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
     }
 
     override fun onRequestStarted() {
-        showButtonLoadingState(binding.resetPasswordBtn, binding.progressBar, "")
+        showButtonLoadingState(binding.changePasswordBtn, binding.progressBar, "")
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(message)
         hideButtonLoadingState(
-            binding.resetPasswordBtn,
+            binding.changePasswordBtn,
             binding.progressBar,
             resources.getString(R.string.reset_password)
         )
@@ -68,7 +73,7 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
 
     override fun onRequestSuccessful(response: CreateNewPasswordResponse) {
         hideButtonLoadingState(
-            binding.resetPasswordBtn,
+            binding.changePasswordBtn,
             binding.progressBar,
             resources.getString(R.string.reset_password)
         )
@@ -76,5 +81,10 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
         findNavController().navigate(R.id.action_createNewPasswordFragment_to_loginFragment)
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.updateHorizontalStepViewPosition(3)
+        sharedViewModel.updateHorizontalStepViewVisibility(true)
+    }
 }

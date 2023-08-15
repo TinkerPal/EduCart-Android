@@ -10,20 +10,38 @@
         android:orientation="vertical"
         android:paddingHorizontal="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/consultation"
+            android:textColor="@color/text_heading_light"
+            android:textSize="20sp" />
+
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/app_icon_foreground" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
             android:text="@string/educonsult"
+            android:textColor="@color/text_heading_light"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="@string/please_fill_the_form_below"
             android:textColor="@color/text_heading_light"
             android:textSize="16sp" />
 
@@ -58,8 +76,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:inputType="none"
-                android:text="@string/consultation_faqs"
-                />
+                android:text="@string/consultation_faqs" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,47 +94,51 @@
 
 
         <EditText
+            android:id="@+id/detailsET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:lines="10"
-            android:minLines="8"
+            android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/montserrat_regular"
-            android:maxLines="20"
             android:gravity="top|start"
-            android:scrollbars="vertical"
-            android:background="@drawable/card_border1"
             android:inputType="textMultiLine"
+            android:lines="10"
+            android:maxLines="20"
+            android:minLines="8"
             android:paddingHorizontal="15dp"
-            android:paddingVertical="8dp"/>
+            android:paddingVertical="8dp"
+            android:scrollbars="vertical" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="50dp">
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:layout_marginVertical="30dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nextBtn"
+            <Button
+                android:id="@+id/scheduleMeetingBtn"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/primary_button"
+                android:layout_height="match_parent"
+                android:background="@drawable/disabled_button"
+                android:enabled="false"
                 android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/next"
+                android:text="@string/schedule_meeting"
                 android:textAllCaps="false"
                 app:backgroundTint="@null"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@id/nextBtn"
-                app:layout_constraintEnd_toEndOf="@id/nextBtn"
-                app:layout_constraintStart_toStartOf="@id/nextBtn"
-                app:layout_constraintTop_toTopOf="@id/nextBtn" />
+                app:layout_constraintBottom_toBottomOf="@id/scheduleMeetingBtn"
+                app:layout_constraintEnd_toEndOf="@id/scheduleMeetingBtn"
+                app:layout_constraintStart_toStartOf="@id/scheduleMeetingBtn"
+                app:layout_constraintTop_toTopOf="@id/scheduleMeetingBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

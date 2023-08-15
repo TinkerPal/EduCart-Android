@@ -56,7 +56,7 @@ class OrderSummaryActivity : AppCompatActivity() {
             "SEVIS fee" -> binding.serviceImage.setImageResource(R.drawable.sevis_fee)
             "Tuition fee" -> {binding.serviceImage.setImageResource(R.drawable.tution_fee)}
             "Visa fee" -> {binding.serviceImage.setImageResource(R.drawable.visa_fee)}
-            "Credential evaluation" -> {binding.serviceImage.setImageResource(R.drawable.credential_evaluation)}
+            "Credentials evaluation" -> {binding.serviceImage.setImageResource(R.drawable.credential_evaluation)}
             "Admission docs shipment" -> {binding.serviceImage.setImageResource(R.drawable.admission_docs_shipment)}
             "Consultation fees" -> {binding.serviceImage.setImageResource(R.drawable.app_icon_foreground)}
             else -> {binding.serviceImage.setImageResource(R.drawable.others)}

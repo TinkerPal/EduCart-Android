@@ -69,7 +69,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Wallet ID: 132411e4e67"
+                    android:text="User ID: 132411e4e67"
                     android:textColor="@color/text_night"
                     android:textSize="14sp" />
 

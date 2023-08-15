@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/exchangeRate"
-        android:title="@string/exchange_rate"
-        android:icon="@drawable/fluent_tooltip_quote"
+    <item android:id="@+id/notification"
+        android:title="@string/notification"
+        android:icon="@drawable/notification_bell"
         app:showAsAction="always"/>
 </menu>

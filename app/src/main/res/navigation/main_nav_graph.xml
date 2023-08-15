@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="tech.hackcity.educarts.ui.main.HomeFragment"
+        android:name="tech.hackcity.educarts.ui.main.home.HomeFragment"
         android:label="Home" />
     <fragment
         android:id="@+id/myOrderFragment"
@@ -18,10 +18,10 @@
         android:label="Payment" />
     <fragment
         android:id="@+id/supportFragment"
-        android:name="tech.hackcity.educarts.ui.main.SupportFragment"
+        android:name="tech.hackcity.educarts.ui.main.support.SupportFragment"
         android:label="Support" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="tech.hackcity.educarts.ui.main.AccountFragment"
+        android:name="tech.hackcity.educarts.ui.main.account.AccountFragment"
         android:label="Account" />
 </navigation>

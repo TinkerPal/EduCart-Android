@@ -152,7 +152,6 @@
                 android:id="@+id/othersTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/card_border1"
                 android:clickable="true"
@@ -167,6 +166,42 @@
                 android:textColor="@color/text_light"
                 app:drawableTopCompat="@drawable/icon_others_fee" />
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_border1"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:visibility="invisible"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:text="@string/place_holder_n"
+                android:textColor="@color/text_light"
+                app:drawableTopCompat="@drawable/icon_credential_evaluation_fee" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/card_border1"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:text="@string/place_holder_n"
+                android:textColor="@color/text_light"
+                android:visibility="invisible"
+                app:drawableTopCompat="@drawable/icon_admission_docs_shipment_fee" />
 
         </LinearLayout>
 

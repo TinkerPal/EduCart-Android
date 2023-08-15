@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +17,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivitySupportBinding
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.hideViews
+import tech.hackcity.educarts.uitls.showViews
 
 class SupportActivity : AppCompatActivity() {
 
@@ -51,8 +54,9 @@ class SupportActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setupDestination()
         showStepIndicatorIfRequired()
+        setupDestination()
+        setupScreenLoader()
 
     }
 
@@ -64,6 +68,9 @@ class SupportActivity : AppCompatActivity() {
             if (step[0] > 0) {
                 Handler(Looper.getMainLooper()).postDelayed({
                     binding.stepIndicator.apply {
+                        if (step[2] == 1) {
+                            setTextColor(ContextCompat.getColor(this@SupportActivity, R.color.text_light))
+                        }
                         visibility = View.VISIBLE
                         startAnimation(animate1)
                         binding.stepIndicator.text = "${step[0]}/${step[1]}"
@@ -73,13 +80,12 @@ class SupportActivity : AppCompatActivity() {
             } else {
                 binding.stepIndicator.apply {
                     visibility = View.INVISIBLE
-                    startAnimation(animate2)
+//                    startAnimation(animate2)
                 }
 
             }
         }
     }
-
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.support_nav_graph)
@@ -93,9 +99,22 @@ class SupportActivity : AppCompatActivity() {
                 "live chat" -> {
                     navGraph.setStartDestination(R.id.liveChatFragment)
                 }
+                "faqs" -> {
+                    navGraph.setStartDestination(R.id.FAQsCategoryFragment)
+                }
             }
 
             navController.graph = navGraph
+        }
+    }
+
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
         }
     }
 

@@ -11,15 +11,15 @@
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_sevis_fee">
         <action
-            android:id="@+id/action_sevisFeeFragment_to_makeAllSEVISFeePaymentForMeFragment"
-            app:destination="@id/makeAllSEVISFeePaymentForMeFragment"
+            android:id="@+id/action_sevisFeeFragment_to_sevisPayment1Fragment"
+            app:destination="@id/sevisFeeStep1Fragment"
             app:enterAnim="@anim/slide_in_bottom_slow"
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_sevisFeeFragment_to_haveSEVISPaymentCouponFragment"
-            app:destination="@id/haveSEVISPaymentCouponFragment"
+            android:id="@+id/action_sevisFeeFragment_to_sevisCouponFragment"
+            app:destination="@id/sevisCouponFragment"
             app:enterAnim="@anim/slide_in_bottom_slow"
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_left_slow"
@@ -27,22 +27,50 @@
     </fragment>
 
     <fragment
-        android:id="@+id/makeAllSEVISFeePaymentForMeFragment"
-        android:name="tech.hackcity.educarts.ui.payment.sevisfee.MakeAllSEVISFeePaymentForMeFragment"
+        android:id="@+id/sevisFeeStep1Fragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1.SEVISFeeStep1Fragment"
         android:label="@string/sevis_fee"
-        tools:layout="@layout/fragment_make_all_sevis_fee_payment_for_me" />
+        tools:layout="@layout/fragment_sevis_fee_step_1">
+        <action
+            android:id="@+id/action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment"
+            app:destination="@id/sevisFeeStep2Fragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
     <fragment
-        android:id="@+id/haveSEVISPaymentCouponFragment"
-        android:name="tech.hackcity.educarts.ui.payment.sevisfee.HaveSEVISPaymentCouponFragment"
+        android:id="@+id/sevisFeeStep2Fragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep2Fragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_sevis_fee_step_2">
+        <action
+            android:id="@+id/action_sevisFeeStep2Fragment_to_sevisFeeStep3Fragment"
+            app:destination="@id/sevisFeeStep3Fragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sevisFeeStep3Fragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep3Fragment"
+        android:label="@string/sevis_fee"
+        tools:layout="@layout/fragment_sevis_fee_step_3" />
+
+    <fragment
+        android:id="@+id/sevisCouponFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.seviscoupon.SEVISCouponFragment"
         android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_have_sevis_payment_coupon" />
 
     <fragment
-        android:id="@+id/applicationFeeFragment"
-        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeFragment"
+        android:id="@+id/applicationFeeDashboardFragment"
+        android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeeDashboardFragment"
         android:label="@string/application_fee"
-        tools:layout="@layout/fragment_application_fee">
+        tools:layout="@layout/fragment_application_fee_dashboard">
         <action
             android:id="@+id/action_applicationFeeFragment_to_selectSchoolOrProgramFragment"
             app:destination="@id/selectSchoolOrProgramFragment"
@@ -56,14 +84,14 @@
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_applicationFeeFragment_to_applicationReviewFragment"
             app:destination="@id/applicationReviewFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -164,7 +192,7 @@
         android:id="@+id/universityPortalLoginDetailsFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.UniversityPortalLoginDetailsFragment"
         android:label=""
-        tools:layout="@layout/fragment_university_portal_login_details" >
+        tools:layout="@layout/fragment_university_portal_login_details">
         <argument
             android:name="pageTitle"
             app:argType="string" />
@@ -177,7 +205,7 @@
         android:id="@+id/applicationFeePaymentOnly"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationFeePaymentOnly"
         android:label="@string/application_fee_payment_only"
-        tools:layout="@layout/fragment_application_fee_payment_only" >
+        tools:layout="@layout/fragment_application_fee_payment_only">
         <action
             android:id="@+id/action_applicationFeePaymentOnly_to_universityPortalLoginDetailsFragment"
             app:destination="@id/universityPortalLoginDetailsFragment"
@@ -190,14 +218,151 @@
         android:id="@+id/applicationReviewFragment"
         android:name="tech.hackcity.educarts.ui.payment.applicationfee.ApplicationReviewFragment"
         android:label="@string/application_review"
-        tools:layout="@layout/fragment_application_review" >
+        tools:layout="@layout/fragment_application_review">
         <action
             android:id="@+id/action_applicationReviewFragment_to_universityPortalLoginDetailsFragment"
             app:destination="@id/universityPortalLoginDetailsFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationDashboardFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationDashboardFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_dashboard">
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_checkRequiredDocumentsFragment"
+            app:destination="@id/checkRequiredDocumentsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_credentialEvaluationDashboardFragment_to_checkDegreeEquivalencyFragment"
+            app:destination="@id/checkDegreeEquivalencyFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation">
+        <action
+            android:id="@+id/action_credentialEvaluationFragment_to_credentialEvaluationPersonalInformationFragment"
+            app:destination="@id/credentialEvaluationPersonalInformationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationPersonalInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationPersonalInformationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_personal_information">
+        <action
+            android:id="@+id/action_credentialEvaluationPersonalInformationFragment_to_credentialEvaluationEducationalBackgroundFragment"
+            app:destination="@id/credentialEvaluationEducationalBackgroundFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationEducationalBackgroundFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationEducationalBackgroundFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_educational_background">
+        <action
+            android:id="@+id/action_credentialEvaluationEducationalBackgroundFragment_to_credentialEvaluationRecipientInformationFragment"
+            app:destination="@id/credentialEvaluationRecipientInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/credentialEvaluationRecipientInformationFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CredentialEvaluationRecipientInformationFragment"
+        android:label="@string/credentials_evaluation"
+        tools:layout="@layout/fragment_credential_evaluation_recipient_information" />
+    <fragment
+        android:id="@+id/checkRequiredDocumentsFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CheckRequiredDocumentsFragment"
+        android:label="@string/required_documents"
+        tools:layout="@layout/fragment_check_required_documents">
+        <action
+            android:id="@+id/action_checkRequiredDocumentsFragment_to_showRequiredDocumentsFragment"
+            app:destination="@id/showRequiredDocumentsFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/showRequiredDocumentsFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.ShowRequiredDocumentsFragment"
+        android:label="@string/required_documents"
+        tools:layout="@layout/fragment_show_required_documents">
+        <action
+            android:id="@+id/action_showRequiredDocumentsFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_showRequiredDocumentsFragment_to_credentialEvaluationDashboardFragment"
+            app:destination="@id/credentialEvaluationDashboardFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/credentialEvaluationDashboardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkDegreeEquivalencyFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.CheckDegreeEquivalencyFragment"
+        android:label="@string/degree_equivalency"
+        tools:layout="@layout/fragment_check_degree_equivalency">
+        <action
+            android:id="@+id/action_checkDegreeEquivalencyFragment_to_showDegreeEquivalencyFragment"
+            app:destination="@id/showDegreeEquivalencyFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/showDegreeEquivalencyFragment"
+        android:name="tech.hackcity.educarts.ui.payment.credentialEvaluation.ShowDegreeEquivalencyFragment"
+        android:label="@string/degree_equivalency"
+        tools:layout="@layout/fragment_show_degree_equivalency">
+        <action
+            android:id="@+id/action_showDegreeEquivalencyFragment_to_credentialEvaluationDashboardFragment"
+            app:destination="@id/credentialEvaluationDashboardFragment"
+            app:enterAnim="@anim/slide_in_left_slow"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right_slow"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/credentialEvaluationDashboardFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_showDegreeEquivalencyFragment_to_credentialEvaluationFragment"
+            app:destination="@id/credentialEvaluationFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
 </navigation>

@@ -39,11 +39,11 @@ class SEVISFeeFragment : Fragment(R.layout.fragment_sevis_fee) {
             when (destination) {
                 1 -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    findNavController().navigate(R.id.action_sevisFeeFragment_to_makeAllSEVISFeePaymentForMeFragment)
+                    findNavController().navigate(R.id.action_sevisFeeFragment_to_sevisPayment1Fragment)
                 }
                 2 -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    findNavController().navigate(R.id.action_sevisFeeFragment_to_haveSEVISPaymentCouponFragment)
+                    findNavController().navigate(R.id.action_sevisFeeFragment_to_sevisCouponFragment)
                 }
                 else -> context?.toast(resources.getString(R.string.select_a_service))
 
