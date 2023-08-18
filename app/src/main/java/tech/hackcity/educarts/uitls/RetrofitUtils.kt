@@ -34,10 +34,14 @@ object RetrofitUtils {
     }
 
 
-    fun okhttpClient(context: Context): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(APIInterceptor(context))
-            .build()
-    }
+//    fun okhttpClient(context: Context): OkHttpClient {
+//        val authorizationNotRequiredEndpoints = listOf(
+//            Regex("${Constants.EDU_CARTS_BASE_URL}auth/register/")
+//        )
+//
+//        return OkHttpClient.Builder()
+//            .addInterceptor(APIInterceptor(context, authorizationNotRequiredEndpoints))
+//            .build()
+//    }
 
 }

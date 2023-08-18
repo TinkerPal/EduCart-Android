@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import retrofit2.HttpException
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
@@ -45,8 +46,8 @@ class CreatePersonalAccountViewModel(
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
         Coroutines.main {
-            val response = try {
-                repository.registerPersonalAccountUser(
+            try {
+                val response = repository.registerPersonalAccountUser(
                     email!!,
                     firstName!!,
                     lastName!!,
@@ -56,41 +57,27 @@ class CreatePersonalAccountViewModel(
                     password!!
                 )
 
-            } catch (e: IOException) {
-                createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@main
+                if (!response.error) {
+                    createPersonalAccountListener?.onRequestSuccessful(response)
+                    repository.saveUserId(response.data.id)
 
-            } catch (e: NoInternetException) {
-                createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@main
+                } else {
 
-            } catch (e: HttpException) {
-                createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@main
+                    val messages = mutableListOf(
+                        response.message.email?.get(0) ?: "",
+                        response.message.phone_number?.get(0) ?: "",
+                        response.message.password?.get(0) ?: "",
+                    )
 
-            } catch (e: SocketTimeoutException) {
-                createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@main
+                    for (message in messages) {
+                        createPersonalAccountListener?.onRequestFailed(message)
+                    }
 
-            }
-
-            if (!response.error) {
-                createPersonalAccountListener?.onRequestSuccessful(response)
-                repository.saveUserId(response.data.id)
-
-            } else {
-
-                var errorMessage = ""
-
-                if (response.message.email != null) {
-                    errorMessage = response.message.email.toString()
-                }else if (response.message.phone_number != null) {
-                    errorMessage = response.message.phone_number.toString()
-                }else if (response.message.password != null) {
-                    errorMessage = response.message.password.toString()
                 }
 
-                createPersonalAccountListener?.onRequestFailed(errorMessage)
+            } catch (e: ApiException) {
+                createPersonalAccountListener?.onRequestFailed(e.message!!)
+                return@main
             }
         }
     }

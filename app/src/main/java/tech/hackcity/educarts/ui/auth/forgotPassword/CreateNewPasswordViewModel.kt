@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import retrofit2.HttpException
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
@@ -32,34 +33,22 @@ class CreateNewPasswordViewModel(
         }
 
         Coroutines.main {
-            val response = try {
-                repository.createNewPassword(id!!, password!!)
+            try {
+                val response =   repository.createNewPassword(id!!, password!!)
 
-            } catch (e: IOException) {
+                if (!response.error) {
+                    createNewPasswordListener?.onRequestSuccessful(response)
+                    repository.saveUserId(response.data.id)
+                } else {
+                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                    createNewPasswordListener?.onRequestFailed(errorMessage)
+                }
+
+            } catch (e: ApiException) {
                 createNewPasswordListener?.onRequestFailed(e.message!!)
                 return@main
-
-            } catch (e: NoInternetException) {
-                createNewPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: HttpException) {
-                createNewPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                createNewPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
             }
 
-            if (!response.error) {
-                createNewPasswordListener?.onRequestSuccessful(response)
-                repository.saveUserId(response.data.id)
-            } else {
-                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                createNewPasswordListener?.onRequestFailed(errorMessage)
-            }
         }
     }
 }

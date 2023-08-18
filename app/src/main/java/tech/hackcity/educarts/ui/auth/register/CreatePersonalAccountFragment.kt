@@ -115,7 +115,6 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             binding.progressBar,
             resources.getString(R.string.sign_up)
         )
-        Log.d("REGISTRATION", message)
     }
 
     override fun onRequestSuccessful(response: RegisterUserResponse) {

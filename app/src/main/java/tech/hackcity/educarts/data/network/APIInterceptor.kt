@@ -13,6 +13,44 @@ import tech.hackcity.educarts.uitls.NoInternetException
  *Created by Victor Loveday on 3/24/23
  */
 
+class APIInterceptor(
+    private val context: Context,
+    private val authorizationNotRequiredEndpoints: List<Regex>
+) : Interceptor {
+
+    private val applicationContext = context.applicationContext
+    private val sessionManager = SessionManager(applicationContext)
+
+    override fun intercept(chain: Interceptor.Chain): Response {
+
+        if (!isInternetAvailable())
+            throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
+
+        val requestBuilder = chain.request().newBuilder()
+
+        val requestUrl = chain.request().url.toString()
+
+        // Check if the current request URL matches any pattern that doesn't require authorization
+        if (authorizationNotRequiredEndpoints.none { it.matches(requestUrl) }) {
+            sessionManager.fetchAuthToken()?.let {
+                requestBuilder.addHeader("Authorization", "Bearer $it")
+            }
+        }
+
+        return chain.proceed(requestBuilder.build())
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val connectivityManager =
+            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        connectivityManager.activeNetworkInfo.also {
+            return it != null && it.isConnected
+        }
+    }
+}
+
+
 //class APIInterceptor(
 //    context: Context
 //) : Interceptor {
@@ -53,33 +91,33 @@ import tech.hackcity.educarts.uitls.NoInternetException
 //    }
 //}
 
-class APIInterceptor(
-    private val context: Context
-) : Interceptor {
-
-    private val applicationContext = context.applicationContext
-    private val sessionManager = SessionManager(applicationContext)
-
-    override fun intercept(chain: Interceptor.Chain): Response {
-
-        if (!isInternetAvailable())
-            throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
-
-        val requestBuilder = chain.request().newBuilder()
-
-        sessionManager.fetchAuthToken()?.let {
-            requestBuilder.addHeader("Authorization", "Bearer $it")
-        }
-
-        return chain.proceed(requestBuilder.build())
-    }
-
-    private fun isInternetAvailable(): Boolean {
-        val connectivityManager =
-            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        connectivityManager.activeNetworkInfo.also {
-            return it != null && it.isConnected
-        }
-    }
-}
+//class APIInterceptor(
+//    private val context: Context
+//) : Interceptor {
+//
+//    private val applicationContext = context.applicationContext
+//    private val sessionManager = SessionManager(applicationContext)
+//
+//    override fun intercept(chain: Interceptor.Chain): Response {
+//
+//        if (!isInternetAvailable())
+//            throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
+//
+//        val requestBuilder = chain.request().newBuilder()
+//
+//        sessionManager.fetchAuthToken()?.let {
+//            requestBuilder.addHeader("Authorization", "Bearer $it")
+//        }
+//
+//        return chain.proceed(requestBuilder.build())
+//    }
+//
+//    private fun isInternetAvailable(): Boolean {
+//        val connectivityManager =
+//            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//
+//        connectivityManager.activeNetworkInfo.also {
+//            return it != null && it.isConnected
+//        }
+//    }
+//}

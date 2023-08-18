@@ -19,7 +19,7 @@ class SettingsRepository(
 
     suspend fun changePassword(oldPassword: String, newPassword: String, confirmPassword: String): ChangePasswordResponse {
         return apiRequest {
-            api.authenticationAPI.changePassword(oldPassword, newPassword, confirmPassword)
+            api.settingsAPI.changePassword(oldPassword, newPassword, confirmPassword)
         }
     }
 

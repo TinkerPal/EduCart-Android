@@ -9,7 +9,6 @@ import tech.hackcity.educarts.domain.model.AddressBook
  */
 @Dao
 interface AddressBookDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAddress(address: AddressBook)
 

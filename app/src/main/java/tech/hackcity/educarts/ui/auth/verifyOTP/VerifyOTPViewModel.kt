@@ -23,7 +23,7 @@ class VerifyOTPViewModel(
 
     var verifyOTPListener: VerifyOTPListener? = null
 
-    fun verifyPin(context: Context) {
+    fun verifyOTPForNewAccount(context: Context) {
         verifyOTPListener?.onRequestStarted()
         if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
@@ -33,6 +33,44 @@ class VerifyOTPViewModel(
         Coroutines.main {
             val response = try {
                 repository.verifyOTPForNewAccount(id!!, otp!!)
+
+            } catch (e: IOException) {
+                verifyOTPListener?.onRequestFailed(e.message!!)
+                return@main
+
+            } catch (e: NoInternetException) {
+                verifyOTPListener?.onRequestFailed(e.message!!)
+                return@main
+
+            } catch (e: HttpException) {
+                verifyOTPListener?.onRequestFailed(e.message!!)
+                return@main
+
+            } catch (e: SocketTimeoutException) {
+                verifyOTPListener?.onRequestFailed(e.message!!)
+                return@main
+
+            }
+
+            if (!response.error) {
+                verifyOTPListener?.onRequestSuccessful(response)
+
+            } else {
+                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                verifyOTPListener?.onRequestFailed(errorMessage)
+            }
+        }
+    }
+    fun verifyOTPForPasswordReset(context: Context) {
+        verifyOTPListener?.onRequestStarted()
+        if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
+            verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
+            return
+        }
+
+        Coroutines.main {
+            val response = try {
+                repository.verifyOTPForPasswordReset(id!!, otp!!)
 
             } catch (e: IOException) {
                 verifyOTPListener?.onRequestFailed(e.message!!)

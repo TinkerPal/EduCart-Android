@@ -23,6 +23,7 @@ import tech.hackcity.educarts.uitls.CountdownTimer
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.toast
 
+
 /**
  *Created by Victor Loveday on 2/20/23
  */
@@ -30,16 +31,16 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
 
     private lateinit var binding: FragmentOtpBinding
 
-    private val args: OTPFragmentArgs by navArgs()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var countdownTimer: CountdownTimer
+    private val args: OTPFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.title.text = args.pageTitle
-//        binding.message.text = args.information
+        binding.title.text = args.pageTitle
+        binding.message.text = args.information
 
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
@@ -55,7 +56,11 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
                 viewModel.id = sharePreferencesManager.fetchUserId().toString()
                 viewModel.otp = pinview?.value
 
-                viewModel.verifyPin(requireContext())
+                when(args.destination) {
+                    "login" -> viewModel.verifyOTPForNewAccount(requireContext())
+                    "reset password" -> viewModel.verifyOTPForPasswordReset(requireContext())
+                }
+
             }
         })
 
@@ -125,7 +130,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
             )
         )
         sharedViewModel.setToolbarVisibility(true)
-//        sharedViewModel.updateHorizontalStepViewPosition(args.step)
+        sharedViewModel.updateHorizontalStepViewPosition(args.step)
     }
 
     override fun onDestroy() {

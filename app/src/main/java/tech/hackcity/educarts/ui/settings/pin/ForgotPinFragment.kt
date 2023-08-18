@@ -31,7 +31,10 @@ class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
         binding.submitBtn.setOnClickListener {
             val action =
                 ForgotPinFragmentDirections.actionForgotPinFragmentToOTPFragment(
-                    "Create Personal Account"
+                    "create personal account",
+                    resources.getString(R.string.verification),
+                    "",
+                    0
                 )
             findNavController().navigate(action)
         }
