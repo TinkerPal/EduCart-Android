@@ -3,11 +3,9 @@ package tech.hackcity.educarts.data.network.apis
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import tech.hackcity.educarts.domain.model.auth.*
-import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -55,7 +53,7 @@ interface AuthAPI {
 
     @FormUrlEncoded
     @PUT("auth/reset-password/")
-    suspend fun createNewPassword(
+    suspend fun resetPassword(
         @Field("id") id: String,
         @Field("password") password: String,
         @Field("confirm_password") confirm_password: String

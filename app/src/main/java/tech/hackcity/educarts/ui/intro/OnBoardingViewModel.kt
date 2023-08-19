@@ -12,7 +12,7 @@ class OnBoardingViewModel(
 ): ViewModel() {
 
     fun saveIsGetStartedPressed(isGetStartedPressed: Boolean) {
-        Coroutines.main {
+        Coroutines.onMain {
             repository.saveIsGetStartedPressed(isGetStartedPressed)
         }
     }

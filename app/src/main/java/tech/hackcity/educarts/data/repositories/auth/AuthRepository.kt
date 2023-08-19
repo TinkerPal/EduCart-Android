@@ -62,27 +62,27 @@ class AuthRepository(
         }
     }
 
-    suspend fun createNewPassword(id: String, password: String): CreateNewPasswordResponse {
+    suspend fun resetPassword(id: String, password: String): CreateNewPasswordResponse {
         return apiRequest {
-            api.authenticationAPI.createNewPassword(id, password, password)
+            api.authenticationAPI.resetPassword(id, password, password)
         }
     }
 
     fun saveUser(user: User) {
-        Coroutines.main {
+        Coroutines.onMain {
             userInfoManager.saveUser(user)
         }
     }
 
     fun saveUserId(id: String) {
-        Coroutines.main {
+        Coroutines.onMain {
             sharedPreferenceManager.saveUserId(id)
         }
 
     }
 
     fun saveTokens(access: String, refresh: String) {
-        Coroutines.main {
+        Coroutines.onMain {
             sessionManager.saveTokens(access,refresh)
         }
     }

@@ -2,16 +2,12 @@ package tech.hackcity.educarts.ui.auth.register
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
-import tech.hackcity.educarts.uitls.errorMessageFetcher
 import tech.hackcity.educarts.uitls.removeSpacesFromString
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/24/23
@@ -30,7 +26,7 @@ class CreatePersonalAccountViewModel(
 
     var createPersonalAccountListener: CreatePersonalAccountListener? = null
 
-    fun onSignUpButtonClicked(context: Context) {
+    fun registerPersonalAccountUser(context: Context) {
         createPersonalAccountListener?.onRequestStarted()
 
         if (
@@ -45,7 +41,7 @@ class CreatePersonalAccountViewModel(
 
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
-        Coroutines.main {
+        Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.registerPersonalAccountUser(
                     email!!,
@@ -77,7 +73,7 @@ class CreatePersonalAccountViewModel(
 
             } catch (e: ApiException) {
                 createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@main
+                return@onMainWithScope
             }
         }
     }

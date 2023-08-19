@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.auth.login
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
@@ -21,7 +22,7 @@ class LoginViewModel(
 
     var loginListener: LoginListener? = null
 
-    fun onLoginButtonClicked(context: Context) {
+    fun loginUser(context: Context) {
         loginListener?.onRequestStarted()
 
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
@@ -29,9 +30,9 @@ class LoginViewModel(
             return
         }
 
-        Coroutines.main {
+        Coroutines.onMainWithScope(viewModelScope) {
             try {
-                val response =  repository.loginUser(
+                val response = repository.loginUser(
                     email!!,
                     password!!
                 )
@@ -58,8 +59,7 @@ class LoginViewModel(
 
             } catch (e: ApiException) {
                 loginListener?.onRequestFailed(e.message!!)
-                return@main
-
+                return@onMainWithScope
             }
 
         }

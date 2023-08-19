@@ -1,12 +1,12 @@
 package tech.hackcity.educarts.ui.auth.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.hbb20.CountryCodePicker
 import tech.hackcity.educarts.R
@@ -19,6 +19,7 @@ import tech.hackcity.educarts.databinding.FragmentCreatePersonalAccountBinding
 import tech.hackcity.educarts.domain.model.auth.RegisterUserResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.*
+import java.lang.IllegalArgumentException
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -69,8 +70,9 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             viewModel.phoneNumber = binding.phoneNumberET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
-            viewModel.onSignUpButtonClicked(requireContext())
-
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.registerPersonalAccountUser(requireContext())
+            }
         }
 
         binding.signInTextView.setOnClickListener {
@@ -125,14 +127,19 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             resources.getString(R.string.sign_up)
         )
 
-        val action =
-            CreatePersonalAccountFragmentDirections.actionCreatePersonalAccountFragmentToOTPFragment(
-                "login",
-                resources.getString(R.string.verification),
-                resources.getString(R.string.to_verify_your_account_we_will_send_an_otp, email),
-                3
-            )
-        findNavController().navigate(action)
+        try {
+            val action =
+                CreatePersonalAccountFragmentDirections.actionCreatePersonalAccountFragmentToOTPFragment(
+                    "login",
+                    resources.getString(R.string.verification),
+                    resources.getString(R.string.to_verify_your_account_we_will_send_an_otp, email),
+                    3
+                )
+            findNavController().navigate(action)
+
+        }catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onResume() {

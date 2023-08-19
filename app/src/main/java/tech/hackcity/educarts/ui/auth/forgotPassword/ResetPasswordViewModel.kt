@@ -2,51 +2,48 @@ package tech.hackcity.educarts.ui.auth.forgotPassword
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.errorMessageFetcher
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/30/23
  */
-class CreateNewPasswordViewModel(
+class ResetPasswordViewModel(
     private val repository: AuthRepository
-): ViewModel() {
+) : ViewModel() {
 
     var id: String? = null
     var password: String? = null
 
-    var createNewPasswordListener: CreateNewPasswordListener? = null
+    var resetPasswordListener: ResetPasswordListener? = null
 
-    fun onResetPasswordButtonClicked(context: Context) {
-        createNewPasswordListener?.onRequestStarted()
+    fun resetPassword(context: Context) {
+        resetPasswordListener?.onRequestStarted()
 
         if (id.isNullOrEmpty() || password.isNullOrEmpty()) {
-            createNewPasswordListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
+            resetPasswordListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
-        Coroutines.main {
+        Coroutines.onMainWithScope(viewModelScope) {
             try {
-                val response =   repository.createNewPassword(id!!, password!!)
+                val response = repository.resetPassword(id!!, password!!)
 
                 if (!response.error) {
-                    createNewPasswordListener?.onRequestSuccessful(response)
+                    resetPasswordListener?.onRequestSuccessful(response)
                     repository.saveUserId(response.data.id)
                 } else {
                     val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                    createNewPasswordListener?.onRequestFailed(errorMessage)
+                    resetPasswordListener?.onRequestFailed(errorMessage)
                 }
 
             } catch (e: ApiException) {
-                createNewPasswordListener?.onRequestFailed(e.message!!)
-                return@main
+                resetPasswordListener?.onRequestFailed(e.message!!)
+                return@onMainWithScope
             }
 
         }

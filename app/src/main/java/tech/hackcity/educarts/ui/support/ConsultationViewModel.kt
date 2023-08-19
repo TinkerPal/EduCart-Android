@@ -30,7 +30,7 @@ class ConsultationViewModel(
     fun fetchConsultationTopics() {
         step1listener?.onFetchConsultationTopicsRequestStarted()
 
-        Coroutines.main {
+        Coroutines.onMain {
             try {
                 val response = repository.fetchConsultationTopics()
 
@@ -60,7 +60,7 @@ class ConsultationViewModel(
             return
         }
 
-        Coroutines.main {
+        Coroutines.onMain {
             try {
                 val response = repository.submitConsultationStep1(
                     repository.fetchUserId()!!,
@@ -102,7 +102,7 @@ class ConsultationViewModel(
             return
         }
 
-        Coroutines.main {
+        Coroutines.onMain {
             try {
                 val response = repository.submitConsultationStep2(
                     consultationWay!!,

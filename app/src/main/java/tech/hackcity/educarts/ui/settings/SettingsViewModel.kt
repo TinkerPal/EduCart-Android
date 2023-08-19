@@ -12,19 +12,19 @@ class SettingsViewModel(
 ) : ViewModel() {
 
     fun clearAllTokens() {
-        Coroutines.main {
+        Coroutines.onMain {
             repository.clearAllTokens()
         }
     }
 
     fun clearSharedPreferences() {
-        Coroutines.main {
+        Coroutines.onMain {
             repository.clearSharedPreferences()
         }
     }
 
     fun clearUser() {
-        Coroutines.main {
+        Coroutines.onMain {
             repository.clearUser()
         }
     }

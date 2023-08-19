@@ -4,6 +4,7 @@ import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 
 /**
@@ -12,7 +13,7 @@ import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 interface SettingsAPI {
 
     @FormUrlEncoded
-    @POST("settings/change-password/")
+    @PUT("settings/change-password/")
     suspend fun changePassword(
         @Field("old_password") old_password: String,
         @Field("new_password") new_password: String,

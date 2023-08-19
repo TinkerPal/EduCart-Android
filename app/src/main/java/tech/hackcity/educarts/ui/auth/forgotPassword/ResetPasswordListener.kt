@@ -5,7 +5,7 @@ import tech.hackcity.educarts.domain.model.auth.CreateNewPasswordResponse
 /**
  *Created by Victor Loveday on 5/30/23
  */
-interface CreateNewPasswordListener {
+interface ResetPasswordListener {
     fun onRequestStarted()
     fun onRequestFailed(message: String)
     fun onRequestSuccessful(response: CreateNewPasswordResponse)

@@ -2,8 +2,10 @@ package tech.hackcity.educarts.ui.auth.verifyOTP
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import retrofit2.HttpException
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
@@ -25,78 +27,57 @@ class VerifyOTPViewModel(
 
     fun verifyOTPForNewAccount(context: Context) {
         verifyOTPListener?.onRequestStarted()
+
         if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
-        Coroutines.main {
-            val response = try {
-                repository.verifyOTPForNewAccount(id!!, otp!!)
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.verifyOTPForNewAccount(id!!, otp!!)
 
-            } catch (e: IOException) {
+                if (!response.error) {
+                    verifyOTPListener?.onRequestSuccessful(response)
+
+                } else {
+                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                    verifyOTPListener?.onRequestFailed(errorMessage)
+                }
+
+            } catch (e: ApiException) {
                 verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: NoInternetException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: HttpException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
-
-            }
-
-            if (!response.error) {
-                verifyOTPListener?.onRequestSuccessful(response)
-
-            } else {
-                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                verifyOTPListener?.onRequestFailed(errorMessage)
+                return@onMainWithScope
             }
         }
     }
+
     fun verifyOTPForPasswordReset(context: Context) {
         verifyOTPListener?.onRequestStarted()
+
         if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
-        Coroutines.main {
-            val response = try {
-                repository.verifyOTPForPasswordReset(id!!, otp!!)
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.verifyOTPForPasswordReset(id!!, otp!!)
 
-            } catch (e: IOException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
+                if (!response.error) {
+                    verifyOTPListener?.onRequestSuccessful(response)
 
-            } catch (e: NoInternetException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
+                } else {
+                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                    verifyOTPListener?.onRequestFailed(errorMessage)
+                }
 
-            } catch (e: HttpException) {
+            } catch (e: ApiException) {
                 verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
-                return@main
+                return@onMainWithScope
 
             }
 
-            if (!response.error) {
-                verifyOTPListener?.onRequestSuccessful(response)
-
-            } else {
-                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                verifyOTPListener?.onRequestFailed(errorMessage)
-            }
         }
     }
 }

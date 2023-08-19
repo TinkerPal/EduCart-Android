@@ -3,7 +3,6 @@ package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.ViewModel
-import okhttp3.MultipartBody
 import retrofit2.HttpException
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ErrorCodes.EMPTY_FORM_FIELD
@@ -54,7 +53,7 @@ class SEVISFeeStep1ViewModel(private val repository: SEVISFeeRepository) : ViewM
         val givenNameValue = given_name!!
         val dateOfBirthValue = date_of_birth!!
 
-        Coroutines.main {
+        Coroutines.onMain {
             try {
                 val response = repository.sevisFeeStep1(
                     userValue,

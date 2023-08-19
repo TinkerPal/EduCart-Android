@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -19,6 +20,7 @@ import tech.hackcity.educarts.domain.model.support.FaqCategory
 import tech.hackcity.educarts.domain.model.support.FaqsResponse
 import tech.hackcity.educarts.ui.adapters.FAQsCategoryAdapter
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.showViews
 import tech.hackcity.educarts.uitls.startShimmerLoader
 import tech.hackcity.educarts.uitls.stopShimmerLoader
@@ -43,7 +45,10 @@ class FAQsCategoryFragment : Fragment(R.layout.fragment_faq_category), FaqListen
         val viewModel = ViewModelProvider(this, factory)[FaqViewModel::class.java]
         viewModel.listener = this
 
-        viewModel.fetchFAQs()
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchFAQs()
+        }
+
     }
 
     private fun setupRecyclerView(faqs: List<FaqCategory>) {

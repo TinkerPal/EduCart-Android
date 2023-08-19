@@ -8,10 +8,10 @@ import tech.hackcity.educarts.data.repositories.auth.AuthRepository
  *Created by Victor Loveday on 5/30/23
  */
 @Suppress("UNCHECKED_CAST")
-class CreateNewPasswordViewModelFactory(
+class ResetPasswordViewModelFactory(
     private val repository: AuthRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CreateNewPasswordViewModel(repository) as T
+        return ResetPasswordViewModel(repository) as T
     }
 }
