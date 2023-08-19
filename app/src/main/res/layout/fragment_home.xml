@@ -399,6 +399,7 @@
                 android:layout_centerVertical="true"
                 android:clickable="true"
                 android:focusable="true"
+                android:visibility="gone"
                 android:fontFamily="@font/montserrat_light"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:paddingHorizontal="15dp"
@@ -411,13 +412,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recentActivityRV"
             android:layout_width="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="30dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:nestedScrollingEnabled="false"
             android:visibility="visible" />
 
         <LinearLayout
-            android:id="@+id/noPaymentLayout"
+            android:id="@+id/emptyHistoryLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

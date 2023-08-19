@@ -5,7 +5,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import tech.hackcity.educarts.data.network.apis.AuthAPI
+import tech.hackcity.educarts.data.network.apis.DashboardAPI
 import tech.hackcity.educarts.data.network.apis.SupportAPI
 import tech.hackcity.educarts.data.network.apis.SEVISFeeAPI
 import tech.hackcity.educarts.data.network.apis.SettingsAPI
@@ -60,6 +62,10 @@ class RetrofitInstance(context: Context) {
 
     val settingsAPI: SettingsAPI by lazy {
         eduCartsAPI.create(SettingsAPI::class.java)
+    }
+
+    val dashboardAPI: DashboardAPI by lazy {
+        eduCartsAPI.create(DashboardAPI::class.java)
     }
 
 }

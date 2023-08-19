@@ -10,14 +10,20 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import android.webkit.WebChromeClient
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityBrowserBinding
+import tech.hackcity.educarts.ui.viewmodels.InternetConnectivityViewModel
 
 class BrowserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBrowserBinding
 
     private lateinit var webView: WebView
+    private lateinit var internetViewModel: InternetConnectivityViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,19 @@ class BrowserActivity : AppCompatActivity() {
         toolbar.title = resources.getString(R.string.consultation)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        internetViewModel = ViewModelProvider(this).get(InternetConnectivityViewModel::class.java)
+
+        internetViewModel.isInternetConnected.observe(this, Observer { isConnected ->
+            if (!isConnected) {
+                binding.noInternetLayout.visibility = View.VISIBLE
+                Glide.with(this).asGif().load(R.drawable.no_internet_).into(binding.imageView)
+            }else {
+                binding.noInternetLayout.visibility = View.GONE
+            }
+        })
+
+        internetViewModel.checkInternetConnectivity()
 
         setupWebView()
     }

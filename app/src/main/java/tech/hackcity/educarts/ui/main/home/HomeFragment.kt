@@ -6,18 +6,22 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.data.storage.SessionManager
-import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.network.RetrofitInstance
+import tech.hackcity.educarts.data.repositories.DashboardRepository
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
+import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
+import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.adapters.NewsAdapter
 import tech.hackcity.educarts.ui.browser.BrowserActivity
@@ -25,15 +29,17 @@ import tech.hackcity.educarts.ui.notifications.NotificationActivity
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
 import tech.hackcity.educarts.ui.payment.OrderDetailsActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
-import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.Constants
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.shortenString
+import tech.hackcity.educarts.uitls.toast
+import java.io.Serializable
 
 /**
  *Created by Victor Loveday on 2/22/23
  */
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -48,6 +54,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //            binding.banner.visibility = View.VISIBLE
 //        }
 
+        val api = RetrofitInstance(requireContext())
+        val repository = DashboardRepository(api)
+        val factory = HomeViewModelFactory(repository)
+        val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        viewModel.listener = this
+
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchOrderHistory()
+        }
+
         setupUserInfo()
 
         binding.trackTV.setOnClickListener {
@@ -55,9 +71,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.consultTV.setOnClickListener {
-//            val intent = Intent(requireContext(), SupportActivity::class.java)
-//            intent.putExtra("destination", "consultation")
-//            startActivity(intent)
+
             startActivity(Intent(requireContext(), BrowserActivity::class.java))
         }
 
@@ -67,14 +81,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             startActivity(intent)
         }
 
-        binding.viewAllPayments.setOnClickListener {
-            startActivity(Intent(requireContext(), AllPaymentActivity::class.java))
-        }
-
         //This is only for presentation purpose.
         //Approach will change once real data from an endpoint is consumed
         setupNews()
-        setupOrderHistory()
 
         val menuHost: MenuHost = requireActivity() as MenuHost
         menuHost.addMenuProvider(object : MenuProvider {
@@ -113,16 +122,44 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         newsAdapter.setData(Constants.dummyNewsList)
     }
 
-    private fun setupOrderHistory(){
-        val allPaymentAdapter = AllPaymentAdapter(requireContext())
-        binding.recentActivityRV.apply {
-            adapter = allPaymentAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            allPaymentAdapter.setData(Constants.dummyTransactionList.take(4))
-        }
+    private fun setupOrderHistory(data: List<OrderHistoryResponseData>) {
+        if (data.isEmpty()) {
+            binding.emptyHistoryLayout.visibility = View.VISIBLE
+            binding.recentActivityRV.visibility = View.GONE
 
-        allPaymentAdapter.setOnItemClickListener {
-            startActivity(Intent(requireContext(), OrderDetailsActivity::class.java))
+        }else {
+            binding.recentActivityRV.visibility = View.VISIBLE
+            val allPaymentAdapter = AllPaymentAdapter(requireContext())
+            binding.recentActivityRV.apply {
+                adapter = allPaymentAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+                allPaymentAdapter.setData(data.take(4))
+            }
+
+            allPaymentAdapter.setOnItemClickListener { history ->
+                val intent = Intent(requireContext(), OrderDetailsActivity::class.java)
+                intent.putExtra("history", history)
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onFetchOrderHistoryStarted() {
+
+    }
+
+    override fun onFetchOrderHistoryFailed(message: List<ErrorMessage>) {
+        context?.toast("$message")
+    }
+
+    override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
+        setupOrderHistory(response.date)
+
+        binding.viewAllPayments.visibility = View.VISIBLE
+        binding.viewAllPayments.setOnClickListener {
+            val intent = Intent(requireContext(), AllPaymentActivity::class.java)
+            intent.putExtra("allHistory", response)
+            startActivity(intent)
         }
     }
 }
