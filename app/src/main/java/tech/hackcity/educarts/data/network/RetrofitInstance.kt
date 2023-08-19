@@ -17,22 +17,6 @@ import tech.hackcity.educarts.uitls.RetrofitUtils
  */
 class RetrofitInstance(context: Context) {
 
-//    private val eduCartsAPI by lazy {
-//        val logging = HttpLoggingInterceptor()
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        val client = OkHttpClient.Builder()
-//            .addInterceptor(logging)
-//            .build()
-//
-//        Retrofit.Builder()
-//            .baseUrl(EDU_CARTS_BASE_URL)
-//            .addConverterFactory(RetrofitUtils.nullOnEmptyConverterFactory)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(client)
-//            .client(RetrofitUtils.okhttpClient(context))
-//            .build()
-//    }
-
     private val eduCartsAPI by lazy {
         val authorizationNotRequiredEndpoints = listOf(
             Regex("${EDU_CARTS_BASE_URL}auth/register/"),
@@ -41,14 +25,16 @@ class RetrofitInstance(context: Context) {
             Regex("${EDU_CARTS_BASE_URL}auth/verify-otp/"),
             Regex("${EDU_CARTS_BASE_URL}auth/forgot-password/verify-otp/"),
             Regex("${EDU_CARTS_BASE_URL}auth/reset-password/"),
+            Regex("${EDU_CARTS_BASE_URL}token/refresh/")
         )
 
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
+        val apiInterceptor = APIInterceptor(context, authorizationNotRequiredEndpoints, this)
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
-            .addInterceptor(APIInterceptor(context, authorizationNotRequiredEndpoints))
+            .addInterceptor(apiInterceptor)
             .build()
 
         Retrofit.Builder()

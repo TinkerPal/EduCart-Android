@@ -3,6 +3,7 @@ package tech.hackcity.educarts.data.network.apis
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import tech.hackcity.educarts.domain.model.auth.*
@@ -60,4 +61,9 @@ interface AuthAPI {
         @Field("confirm_password") confirm_password: String
     ): Response<CreateNewPasswordResponse> // create new password
 
+    @FormUrlEncoded
+    @POST("token/refresh/")
+    suspend fun refreshAccessToken(
+        @Field("refresh") refresh : String
+    ): Response<TokenResponse> // refresh access token
 }

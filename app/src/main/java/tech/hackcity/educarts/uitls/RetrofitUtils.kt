@@ -7,7 +7,6 @@ import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
-import tech.hackcity.educarts.data.network.APIInterceptor
 import java.lang.reflect.Type
 import java.net.CookieManager
 import java.net.CookiePolicy

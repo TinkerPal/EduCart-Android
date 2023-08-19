@@ -2,16 +2,12 @@ package tech.hackcity.educarts.ui.auth.login
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.errorMessageFetcher
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -42,7 +38,7 @@ class LoginViewModel(
 
                 if (!response.error) {
                     loginListener?.onRequestSuccessful(response)
-                    repository.saveAuthToken(response.data.access)
+                    repository.saveTokens(response.data.access, response.data.refresh)
                     repository.saveLoginStatus(true)
                     repository.saveUserId(response.data.id)
                     val user = User(

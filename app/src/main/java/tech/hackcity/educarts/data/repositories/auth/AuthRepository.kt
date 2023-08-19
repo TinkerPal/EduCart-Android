@@ -81,9 +81,9 @@ class AuthRepository(
 
     }
 
-    fun saveAuthToken(token: String) {
+    fun saveTokens(access: String, refresh: String) {
         Coroutines.main {
-            sessionManager.saveAuthToken(token)
+            sessionManager.saveTokens(access,refresh)
         }
     }
 
