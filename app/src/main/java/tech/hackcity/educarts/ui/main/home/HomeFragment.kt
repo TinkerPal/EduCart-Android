@@ -49,11 +49,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         setupUserInfo()
 
-        binding.trackOrderTV.setOnClickListener {
+        binding.trackTV.setOnClickListener {
             startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
         }
 
-        binding.consultationTV.setOnClickListener {
+        binding.consultTV.setOnClickListener {
             val intent = Intent(requireContext(), SupportActivity::class.java)
             intent.putExtra("destination", "consultation")
             startActivity(intent)
@@ -102,6 +102,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
+    private fun setupNews() {
+        val newsAdapter = NewsAdapter(requireContext())
+        binding.educationalNewsRV.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+        newsAdapter.setData(Constants.dummyNewsList)
+    }
+
     private fun setupOrderHistory(){
         val allPaymentAdapter = AllPaymentAdapter(requireContext())
         binding.recentActivityRV.apply {
@@ -113,13 +122,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         allPaymentAdapter.setOnItemClickListener {
             startActivity(Intent(requireContext(), OrderDetailsActivity::class.java))
         }
-    }
-    private fun setupNews() {
-        val newsAdapter = NewsAdapter(requireContext())
-        binding.educationalNewsRV.apply {
-            adapter = newsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
-        newsAdapter.setData(Constants.dummyNewsList)
     }
 }

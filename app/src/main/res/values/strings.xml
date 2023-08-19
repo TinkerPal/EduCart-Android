@@ -390,4 +390,10 @@
     <string name="we_are_always_here_fo_you_choose_one_of_the_options_below_to_get_started">We are always here fo you. Choose one of the options below to get started.</string>
     <string name="submit_a_consultation_form_and_get_contacted">Submit a consultation form and get contacted</string>
     <string name="check_what_has_been_answered_">Check what has been answered \n</string>
+    <string name="incomplete_profile">Incomplete profile</string>
+    <string name="completing_your_profile_makes_payment_easier">Completing your profile makes payment easier</string>
+    <string name="complete_profile">Complete profile</string>
+    <string name="payments">Payments</string>
+    <string name="track">Track</string>
+    <string name="consult">Consult</string>
 </resources>

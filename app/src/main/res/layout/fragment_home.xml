@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:scrollbars="none"
     android:layout_height="match_parent"
-    >
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -188,10 +187,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="16dp"
             android:layout_height="wrap_content"
-            >
-
+            android:layout_marginHorizontal="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage"
@@ -233,86 +230,142 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/in_complete_profile_banner"
+                android:paddingHorizontal="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/incomplete_profile"
+                    android:textColor="@color/text_heading_light"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/completing_your_profile_makes_payment_easier"
+                    android:textColor="@color/text_light"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null"
+                    android:layout_marginVertical="20dp"
+                    android:textColor="@color/text_light"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:background="@drawable/white_button"
+                    android:text="@string/complete_profile"/>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="16dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/text_light"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/quick_actions"
+            android:textColor="@color/text_light"
             android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp"
-            android:weightSum="3">
+            android:weightSum="4">
 
             <TextView
-                android:id="@+id/trackOrderTV"
+                android:id="@+id/consultTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/white_bg_with_gray_borders"
                 android:clickable="true"
-                android:drawablePadding="5dp"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:paddingVertical="15dp"
-                android:text="@string/track_order"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_track_order" />
-
-            <TextView
-                android:id="@+id/consultationTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_bg_with_gray_borders"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingVertical="15dp"
-                android:text="@string/consultation"
-                android:textColor="@color/text_light"
+                android:text="@string/consult"
+                android:textColor="@color/error_600"
                 app:drawableTopCompat="@drawable/icon_consultation" />
+
+            <TextView
+                android:id="@+id/paymentTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:text="@string/payments"
+                android:textColor="@color/primary_color"
+                app:drawableTopCompat="@drawable/icon_payment" />
+
+            <TextView
+                android:id="@+id/trackTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:text="@string/track"
+                android:textColor="@color/secondary_color"
+                app:drawableTopCompat="@drawable/icon_track_order" />
 
             <TextView
                 android:id="@+id/faqsTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/white_bg_with_gray_borders"
                 android:clickable="true"
-                android:drawablePadding="5dp"
                 android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
+                android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:paddingVertical="15dp"
                 android:text="@string/faqs"
-                android:textColor="@color/text_light"
+                android:textColor="@color/text_heading_light"
                 app:drawableTopCompat="@drawable/icon_faqs" />
+
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="16dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/text_light"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat_medium"
             android:text="@string/educational_news"
+            android:textColor="@color/text_light"
             android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -333,9 +386,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColor="@color/text_light"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/order_history"
+                android:textColor="@color/text_light"
                 android:textSize="18sp" />
 
             <TextView
@@ -360,8 +413,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:visibility="visible"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/noPaymentLayout"
@@ -377,7 +430,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/smily_emoji" />
+                android:src="@drawable/empty_box" />
 
             <TextView
                 android:layout_width="wrap_content"
