@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.support
+package tech.hackcity.educarts.ui.support.consultation
 
 import android.os.Bundle
 import android.view.View
@@ -25,7 +25,8 @@ import tech.hackcity.educarts.uitls.showButtonLoadingState
 /**
  *Created by Victor Loveday on 5/17/23
  */
-class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1), ConsultationStep1Listener {
+class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
+    ConsultationStep1Listener {
 
     private lateinit var binding: FragmentConsultation1Binding
 

@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.support
+package tech.hackcity.educarts.ui.support.consultation
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

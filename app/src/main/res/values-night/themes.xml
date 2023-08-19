@@ -31,4 +31,8 @@
         <item name="colorOnSecondary">@color/black</item>
     </style>
 
+    <style name="ProgressBar.Horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/primary_color</item>
+    </style>
+
 </resources>

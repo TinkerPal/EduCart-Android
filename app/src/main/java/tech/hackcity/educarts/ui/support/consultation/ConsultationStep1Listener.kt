@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.support
+package tech.hackcity.educarts.ui.support.consultation
 
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.support.ConsultationResponse

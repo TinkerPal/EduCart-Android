@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.browser.BrowserActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.notifications.NotificationActivity"
             android:exported="false" />
 

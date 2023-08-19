@@ -20,6 +20,7 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.adapters.NewsAdapter
+import tech.hackcity.educarts.ui.browser.BrowserActivity
 import tech.hackcity.educarts.ui.notifications.NotificationActivity
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
 import tech.hackcity.educarts.ui.payment.OrderDetailsActivity
@@ -54,9 +55,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.consultTV.setOnClickListener {
-            val intent = Intent(requireContext(), SupportActivity::class.java)
-            intent.putExtra("destination", "consultation")
-            startActivity(intent)
+//            val intent = Intent(requireContext(), SupportActivity::class.java)
+//            intent.putExtra("destination", "consultation")
+//            startActivity(intent)
+            startActivity(Intent(requireContext(), BrowserActivity::class.java))
         }
 
         binding.faqsTV.setOnClickListener {

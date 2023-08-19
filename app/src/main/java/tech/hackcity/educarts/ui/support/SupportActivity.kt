@@ -96,9 +96,6 @@ class SupportActivity : AppCompatActivity() {
                 "consultation" -> {
                     navGraph.setStartDestination(R.id.consultationFragment1)
                 }
-                "live chat" -> {
-                    navGraph.setStartDestination(R.id.liveChatFragment)
-                }
                 "faqs" -> {
                     navGraph.setStartDestination(R.id.FAQsCategoryFragment)
                 }
