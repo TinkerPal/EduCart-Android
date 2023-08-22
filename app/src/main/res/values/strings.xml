@@ -397,4 +397,7 @@
     <string name="track">Track</string>
     <string name="consult">Consult</string>
     <string name="loading">Loading...</string>
+    <string name="select_a_service_below">Select a service below</string>
+    <string name="wes_evaluation">WES evaluation</string>
+    <string name="can_t_find_a_payment_you_want_to_make_t_contact_support">Can\'t find a payment you want to make? \t Contact support</string>
 </resources>

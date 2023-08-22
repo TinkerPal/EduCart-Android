@@ -25,6 +25,8 @@ import tech.hackcity.educarts.R
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.text.Spannable
+import android.text.style.ForegroundColorSpan
 import android.view.animation.LinearInterpolator
 import com.google.android.material.button.MaterialButton
 
@@ -85,20 +87,6 @@ fun hideButtonLoadingState(button: Button, progressBar: ProgressBar, buttonText:
     button.text = buttonText
 }
 
-//fun enablePrimaryButtonState(button: MaterialButton) {
-//    button.apply {
-//        isEnabled = true
-//        setBackgroundResource(R.drawable.primary_button)
-//    }
-//}
-//
-//fun disablePrimaryButtonState(button: MaterialButton) {
-//    button.apply {
-//        isEnabled = false
-//        setBackgroundResource(R.drawable.disabled_button)
-//    }
-//}
-
 fun enablePrimaryButtonState(button: Button) {
     button.apply {
         isEnabled = true
@@ -135,6 +123,19 @@ fun TextView.animateTextFadeIn() {
     animator.start()
 }
 
+fun spannableTextWithForegroundColour(
+    text: String,
+    start: Int,
+    end: Int,
+    fColour: Int,
+    textView: TextView
+) {
+    val spannableString = SpannableString(text)
+    val fColor = ForegroundColorSpan(fColour)
+    spannableString.setSpan(fColor, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+
+    textView.text = spannableString
+}
 fun shortenString(input: String, length: Int): String {
     if (input.length <= length) {
         return input
