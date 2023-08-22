@@ -47,13 +47,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         binding = FragmentHomeBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.closeExchangeRateCardView.setOnClickListener {
-//            val slideOutTop = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_out_top)
-//            binding.exchangeRateCardView.startAnimation(slideOutTop)
-//            binding.exchangeRateCardView.visibility = View.GONE
-//            binding.banner.visibility = View.VISIBLE
-//        }
-
         val api = RetrofitInstance(requireContext())
         val repository = DashboardRepository(api)
         val factory = HomeViewModelFactory(repository)
@@ -108,7 +101,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         val userInfoManager = UserInfoManager(requireContext())
 
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-            binding.greetingsAndNameTextView.text = resources.getString(R.string.hello_, user.firstName)
+            binding.greetingsAndNameTextView.text =
+                resources.getString(R.string.hello_, user.firstName)
             binding.userID.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
         }
     }
@@ -117,7 +111,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         val newsAdapter = NewsAdapter(requireContext())
         binding.educationalNewsRV.apply {
             adapter = newsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
         newsAdapter.setData(Constants.dummyNewsList)
     }
@@ -126,8 +121,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         if (data.isEmpty()) {
             binding.emptyHistoryLayout.visibility = View.VISIBLE
             binding.recentActivityRV.visibility = View.GONE
+            binding.viewAllPayments.visibility = View.GONE
 
-        }else {
+        } else {
+            binding.viewAllPayments.visibility = View.VISIBLE
             binding.recentActivityRV.visibility = View.VISIBLE
             val allPaymentAdapter = AllPaymentAdapter(requireContext())
             binding.recentActivityRV.apply {
@@ -145,17 +142,19 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     }
 
     override fun onFetchOrderHistoryStarted() {
-
+        binding.orderHistoryProgressBar.visibility = View.VISIBLE
     }
 
     override fun onFetchOrderHistoryFailed(message: List<ErrorMessage>) {
         context?.toast("$message")
+        binding.orderHistoryProgressBar.visibility = View.GONE
     }
 
     override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
+        binding.orderHistoryProgressBar.visibility = View.GONE
+
         setupOrderHistory(response.date)
 
-        binding.viewAllPayments.visibility = View.VISIBLE
         binding.viewAllPayments.setOnClickListener {
             val intent = Intent(requireContext(), AllPaymentActivity::class.java)
             intent.putExtra("allHistory", response)

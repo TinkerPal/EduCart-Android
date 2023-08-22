@@ -11,180 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--        <com.google.android.material.card.MaterialCardView-->
-        <!--            android:id="@+id/exchangeRateCardView"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginHorizontal="20dp"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:visibility="visible"-->
-        <!--            app:cardCornerRadius="8dp"-->
-        <!--            app:cardElevation="10dp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:paddingHorizontal="20dp"-->
-        <!--                android:paddingVertical="20dp">-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/label"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:fontFamily="@font/montserrat_medium"-->
-        <!--                    android:text="@string/exchange_rate"-->
-        <!--                    android:textColor="@color/secondary_color"-->
-        <!--                    android:textSize="20sp"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <de.hdodenhof.circleimageview.CircleImageView-->
-        <!--                    android:id="@+id/closeExchangeRateCardView"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:clickable="true"-->
-        <!--                    android:focusable="true"-->
-        <!--                    android:foreground="?attr/selectableItemBackgroundBorderless"-->
-        <!--                    android:src="@drawable/prime_times"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <LinearLayout-->
-        <!--                    android:id="@+id/linearLayout"-->
-        <!--                    android:layout_width="120dp"-->
-        <!--                    android:layout_height="80dp"-->
-        <!--                    android:layout_marginTop="15dp"-->
-        <!--                    android:background="@drawable/exchange_rate_box_bg"-->
-        <!--                    android:orientation="vertical"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/label">-->
-
-        <!--                    <TextView-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginHorizontal="1dp"-->
-        <!--                        android:layout_marginTop="1dp"-->
-        <!--                        android:background="@color/light_blue"-->
-        <!--                        android:singleLine="true"-->
-        <!--                        android:text="American Dollars"-->
-        <!--                        android:textAlignment="center" />-->
-
-
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="match_parent"-->
-        <!--                        android:layout_marginTop="15dp"-->
-        <!--                        android:gravity="center_vertical"-->
-        <!--                        android:orientation="horizontal"-->
-        <!--                        android:paddingHorizontal="10dp">-->
-
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="20dp"-->
-        <!--                            android:layout_height="20dp"-->
-        <!--                            android:src="@drawable/flag_united_states_of_america" />-->
-
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="wrap_content"-->
-        <!--                            android:layout_height="wrap_content"-->
-        <!--                            android:layout_marginStart="5dp"-->
-        <!--                            android:src="@drawable/arrow_down" />-->
-
-        <!--                        <View-->
-        <!--                            android:layout_width="1dp"-->
-        <!--                            android:layout_height="20dp"-->
-        <!--                            android:layout_marginStart="10dp"-->
-        <!--                            android:background="@color/divider_light" />-->
-
-        <!--                        <EditText-->
-        <!--                            android:layout_width="match_parent"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:layout_marginStart="5dp"-->
-        <!--                            android:background="@null"-->
-        <!--                            android:fontFamily="@font/montserrat_regular"-->
-        <!--                            android:inputType="number" />-->
-
-        <!--                    </LinearLayout>-->
-
-        <!--                </LinearLayout>-->
-
-
-        <!--                <ImageView-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:src="@drawable/system_uicons_reverse"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@id/linearLayout2"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/linearLayout"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />-->
-
-
-        <!--                <LinearLayout-->
-        <!--                    android:id="@+id/linearLayout2"-->
-        <!--                    android:layout_width="120dp"-->
-        <!--                    android:layout_height="80dp"-->
-        <!--                    android:layout_marginTop="15dp"-->
-        <!--                    android:background="@drawable/exchange_rate_box_bg"-->
-        <!--                    android:orientation="vertical"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/label">-->
-
-        <!--                    <TextView-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginHorizontal="1dp"-->
-        <!--                        android:layout_marginTop="1dp"-->
-        <!--                        android:background="@color/light_blue"-->
-        <!--                        android:singleLine="true"-->
-        <!--                        android:text="Nigerian Naira"-->
-        <!--                        android:textAlignment="center" />-->
-
-
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="match_parent"-->
-        <!--                        android:layout_marginTop="15dp"-->
-        <!--                        android:gravity="center_vertical"-->
-        <!--                        android:orientation="horizontal"-->
-        <!--                        android:paddingHorizontal="10dp">-->
-
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="20dp"-->
-        <!--                            android:layout_height="20dp"-->
-        <!--                            android:src="@drawable/flag_nigeria" />-->
-
-        <!--                        <ImageView-->
-        <!--                            android:layout_width="wrap_content"-->
-        <!--                            android:layout_height="wrap_content"-->
-        <!--                            android:layout_marginStart="5dp"-->
-        <!--                            android:src="@drawable/arrow_down" />-->
-
-        <!--                        <View-->
-        <!--                            android:layout_width="1dp"-->
-        <!--                            android:layout_height="20dp"-->
-        <!--                            android:layout_marginStart="10dp"-->
-        <!--                            android:background="@color/divider_light" />-->
-
-        <!--                        <EditText-->
-        <!--                            android:layout_width="match_parent"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:layout_marginStart="5dp"-->
-        <!--                            android:background="@null"-->
-        <!--                            android:fontFamily="@font/montserrat_regular"-->
-        <!--                            android:inputType="number" />-->
-
-        <!--                    </LinearLayout>-->
-
-        <!--                </LinearLayout>-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--        </com.google.android.material.card.MaterialCardView>-->
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -272,7 +98,7 @@
                     android:textColor="@color/text_light"
                     android:fontFamily="@font/montserrat_medium"
                     android:background="@drawable/white_button"
-                    android:text="@string/complete_profile"/>
+                    android:text="@string/complete_profile" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -373,8 +199,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:visibility="visible"
             android:nestedScrollingEnabled="false" />
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -409,6 +235,33 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/orderHistoryProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="50dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/loading"
+                android:textAlignment="center"
+                android:textColor="@color/text_heading_light"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recentActivityRV"
             android:layout_width="match_parent"
@@ -425,7 +278,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="70dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginVertical="50dp"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone">

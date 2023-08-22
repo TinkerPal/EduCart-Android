@@ -37,7 +37,6 @@ class FAQsCategoryFragment : Fragment(R.layout.fragment_faq_category), FaqListen
         binding = FragmentFaqCategoryBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-
         val api = RetrofitInstance(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val repository = SupportRepository(api, sharePreferencesManager)
@@ -67,16 +66,19 @@ class FAQsCategoryFragment : Fragment(R.layout.fragment_faq_category), FaqListen
     }
 
     override fun onRequestStarted() {
-        startShimmerLoader(binding.shimmerLayout)
+//        startShimmerLoader(binding.shimmerLayout)
+        binding.faqsProgressBar.visibility = View.VISIBLE
     }
 
     override fun onRequestFailed(message: List<ErrorMessage>) {
-        stopShimmerLoader(binding.shimmerLayout)
+//        stopShimmerLoader(binding.shimmerLayout)
+        binding.faqsProgressBar.visibility = View.GONE
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
     }
 
     override fun onRequestSuccessful(response: FaqsResponse) {
-        stopShimmerLoader(binding.shimmerLayout)
+//        stopShimmerLoader(binding.shimmerLayout)
+        binding.faqsProgressBar.visibility = View.GONE
         showViews(listOf(binding.faqsRV))
         setupRecyclerView(response.data)
     }
