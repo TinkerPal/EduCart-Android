@@ -21,13 +21,12 @@ class OrderSummaryActivity : AppCompatActivity() {
         setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
 
-        val toolBarTitle = intent.getStringExtra("title")
         service = intent.getStringExtra("service").toString()
         amount = intent.getStringExtra("amount").toString()
         currency = intent.getStringExtra("currency").toString()
 
         val toolbar = binding.toolbar
-        toolbar.title = toolBarTitle
+        toolbar.title = ""
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -49,7 +48,8 @@ class OrderSummaryActivity : AppCompatActivity() {
     }
 
     private fun displayService() {
-        binding.service.text = service
+        binding.serviceTV1.text = service
+        binding.serviceTV2.text = service
         when(service) {
             "Application fee" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}
             "Application review" -> {binding.serviceImage.setImageResource(R.drawable.application_fee)}

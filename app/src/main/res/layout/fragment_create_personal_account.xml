@@ -90,34 +90,42 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView3"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/create_a_free_account"
-                    android:textColor="@color/text_heading_light"
-                    android:textSize="20sp"
+                    android:orientation="vertical"
                     app:layout_constraintStart_toEndOf="@id/randomImageView3"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/fill_in_the_form_below"
-                    android:textColor="@color/text_light"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/randomImageView3" />
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/create_a_free_account"
+                        android:textColor="@color/text_heading_light"
+                        android:textSize="20sp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/fill_in_the_form_below"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -131,16 +139,16 @@
                     android:id="@+id/emailET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/primary_edit_text_bg"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/email"
+                    android:background="@drawable/edit_text_bg"
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="15dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -154,14 +162,14 @@
                     android:id="@+id/firstNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/primary_edit_text_bg"
+                    android:background="@drawable/edit_text_bg"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/first_name"
                     android:inputType="textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -182,7 +190,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -196,7 +204,7 @@
                     android:id="@+id/countryOfResidenceET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/primary_edit_text_bg"
+                    android:background="@drawable/edit_text_bg"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/country_of_residence"
                     android:inputType="textCapWords" />
@@ -263,7 +271,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -279,7 +287,7 @@
                     android:id="@+id/passwordET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/primary_edit_text_bg"
+                    android:background="@drawable/edit_text_bg"
                     android:fontFamily="@font/montserrat_regular"
                     android:hint="@string/password"
                     android:inputType="textPassword" />

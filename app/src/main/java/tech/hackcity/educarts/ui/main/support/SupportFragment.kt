@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentSupportBinding
+import tech.hackcity.educarts.ui.browser.BrowserActivity
 import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 
@@ -21,9 +22,11 @@ class SupportFragment : Fragment(R.layout.fragment_support) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.bookConsultationBtn.setOnClickListener {
-            val intent = Intent(requireContext(), SupportActivity::class.java)
-            intent.putExtra("destination", "consultation")
-            startActivity(intent)
+            startActivity(Intent(requireContext(), BrowserActivity::class.java))
+
+//            val intent = Intent(requireContext(), SupportActivity::class.java)
+//            intent.putExtra("destination", "consultation")
+//            startActivity(intent)
         }
 
         binding.faqsBtn.setOnClickListener {

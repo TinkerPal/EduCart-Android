@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentPaymentBinding
+import tech.hackcity.educarts.ui.browser.BrowserActivity
 import tech.hackcity.educarts.ui.payment.PaymentActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
 import tech.hackcity.educarts.uitls.shortenString
@@ -54,6 +55,10 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         binding.wesEvaluationCardView.setOnClickListener {
             intent.putExtra("destination", "credential evaluation")
             startActivity(intent)
+        }
+
+        binding.contactSupportTV.setOnClickListener {
+            startActivity(Intent(requireContext(), BrowserActivity::class.java))
         }
     }
 }

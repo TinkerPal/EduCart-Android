@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
@@ -40,10 +41,11 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var viewModel: SEVISFeeStep1ViewModel
+    private val args: SEVISFeeStep1FragmentArgs by navArgs()
 
-    private  var formUri: Uri? = null
-    private  var passportUri: Uri? = null
-    private  var internationalPassportUri: Uri? = null
+    private var formUri: Uri? = null
+    private var passportUri: Uri? = null
+    private var internationalPassportUri: Uri? = null
 
     private val pickFormResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -79,6 +81,20 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         binding = FragmentSevisFeeStep1Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        binding.textGuide1.text = resources.getString(
+            R.string.please_fill_the_following_form_as_it_is_in_your,
+            args.formType
+        )
+
+        when (args.formType) {
+            resources.getString(R.string.form_i_20) -> binding.textGuide2.text =
+                resources.getString(R.string.upload_i_20_form_here)
+
+            resources.getString(R.string.ds_2019) -> binding.textGuide2.text =
+                resources.getString(R.string.upload_ds_2019_form_here)
+        }
+
+
         val api = RetrofitInstance(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val repository = SEVISFeeRepository(api, sharePreferencesManager)
@@ -89,22 +105,25 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         setupFilePickers()
 
         binding.nextBtn.setOnClickListener {
-            viewModel.user = sharePreferencesManager.fetchUserId()
-            viewModel.sevis_id = binding.sevisIDET.text.toString().trim()
-            viewModel.last_name = binding.lastNameET.text.toString().trim()
-            viewModel.given_name = binding.firstNameET.text.toString().trim()
-            viewModel.date_of_birth = "2023-08-03"
+//            viewModel.user = sharePreferencesManager.fetchUserId()
+//            viewModel.sevis_id = binding.sevisIDET.text.toString().trim()
+//            viewModel.last_name = binding.lastNameET.text.toString().trim()
+//            viewModel.given_name = binding.firstNameET.text.toString().trim()
+//            viewModel.date_of_birth = "2023-08-03"
+//
+//            if (formUri == null || passportUri == null || internationalPassportUri == null) {
+//                context?.toast(resources.getString(R.string.some_files_are_missing))
+//                return@setOnClickListener
+//            }
+//
+//
+//            viewModel.form = formUri!!
+//            viewModel.passport = passportUri!!
+//            viewModel.international_passport = internationalPassportUri!!
+//            viewModel.submitStep1(requireContext())
 
-            if (formUri == null || passportUri == null || internationalPassportUri == null) {
-                context?.toast(resources.getString(R.string.some_files_are_missing))
-                return@setOnClickListener
-            }
-
-
-            viewModel.form = formUri!!
-            viewModel.passport = passportUri!!
-            viewModel.international_passport = internationalPassportUri!!
-            viewModel.submitStep1(requireContext())
+            val action = SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(args.formType)
+            findNavController().navigate(action)
 
         }
     }
@@ -210,11 +229,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         private const val PERMISSION_REQUEST_CODE = 123
     }
 
-    override fun onResume() {
-        super.onResume()
-        sharedViewModel.updateStepIndicator(arrayOf(1, 3))
-    }
-
     override fun onRequestStarted() {
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
         disablePrimaryButtonState(binding.nextBtn)
@@ -222,15 +236,28 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
 
     override fun onRequestFailed(message: List<ErrorMessage>) {
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
-        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
+        hideButtonLoadingState(
+            binding.nextBtn,
+            binding.progressBar,
+            resources.getString(R.string.next)
+        )
         enablePrimaryButtonState(binding.nextBtn)
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep1Response) {
-        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
+        hideButtonLoadingState(
+            binding.nextBtn,
+            binding.progressBar,
+            resources.getString(R.string.next)
+        )
         enablePrimaryButtonState(binding.nextBtn)
 
         findNavController().navigate(R.id.action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment)
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.updateHorizontalStepViewPosition(1)
+        sharedViewModel.updateHorizontalStepViewVisibility(true)
+    }
 }

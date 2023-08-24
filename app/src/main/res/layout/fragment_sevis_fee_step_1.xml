@@ -1,331 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.payment.sevisfee.sevispayment.step1.SEVISFeeStep1Fragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/validation_information"
+        android:textColor="@color/text_heading_light"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/sevis_fee" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:text="@string/sevis_fee"
-            android:textColor="@color/text_heading_light"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:text="@string/please_fill_the_following_form_as_it_is_in_your_form_i_20_or_ds_2019"
-            android:textColor="@color/text_light" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nextBtnLayout"
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            >
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:endIconMode="clear_text">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/round_bg_white"
+                android:src="@drawable/sevis_fee" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/sevisIDET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:hint="@string/sevis_id"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/lastNameET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:hint="@string/last_name"
-                    android:inputType="textCapWords" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/firstNameET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:hint="@string/given_name_first_amp_middle_name"
-                    android:inputType="textCapWords" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/date_of_birth"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <AutoCompleteTextView
-                    android:id="@+id/dateOfBirth"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:inputType="none"
-                    android:textColor="@color/text_light" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/pickFormButton"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/primary_edit_text_bg"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:fontFamily="@font/montserrat_medium"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/sevis_fee"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/formTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/upload_i_20_or_ds_2019_form_here"
-                    android:textColor="@color/secondary_color"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/text_input_bg_dash"
-                    android:orientation="vertical"
-                    android:visibility="visible"
-                    app:layout_constraintTop_toBottomOf="@id/formTitle">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="@string/browse_and_chose_the_files_you_want_to_upload_from_your_file"
-                        android:textColor="@color/text_light"
-                        android:textSize="16sp"
-                        android:visibility="visible"
-                        app:drawableTopCompat="@drawable/cloud" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/add_square" />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textGuide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="3dp"
+                tools:text="@string/please_fill_the_following_form_as_it_is_in_your_form_i_20_or_ds_2019"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
 
             <LinearLayout
-                android:id="@+id/pickRecentPassportButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/primary_edit_text_bg"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/upload_your_recent_passport_here"
-                    android:textColor="@color/secondary_color"
-                    android:textSize="16sp" />
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:endIconMode="clear_text">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sevisIDET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_bg"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:hint="@string/sevis_id"
+                        android:textColor="@color/text_light"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastNameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:hint="@string/last_name"
+                        android:background="@drawable/edit_text_bg"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/firstNameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_bg"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:hint="@string/given_name_first_amp_middle_name"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/date_of_birth"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/dateOfBirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_bg"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:inputType="none"
+                        android:textColor="@color/text_light" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
+                    android:id="@+id/pickFormButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/text_input_bg_dash"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="@string/browse_and_chose_the_files_you_want_to_upload_from_your_file"
-                        android:textColor="@color/text_light"
-                        android:textSize="16sp"
-                        app:drawableTopCompat="@drawable/cloud" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/add_square" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/pickInternationalPassportButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/primary_edit_text_bg"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/upload_your_international_passport_here"
-                    android:textColor="@color/secondary_color"
-                    android:textSize="16sp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/text_input_bg_dash"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="@string/browse_and_chose_the_files_you_want_to_upload_from_your_file"
-                        android:textColor="@color/text_light"
-                        android:textSize="16sp"
-                        app:drawableTopCompat="@drawable/cloud" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/add_square" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/signInBtnLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginVertical="40dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/nextBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/primary_button"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/primary_edit_text_bg"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:text="@string/next"
-                    android:textAllCaps="false"
-                    app:backgroundTint="@null"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@id/nextBtn"
-                    app:layout_constraintEnd_toEndOf="@id/nextBtn"
-                    app:layout_constraintStart_toStartOf="@id/nextBtn"
-                    app:layout_constraintTop_toTopOf="@id/nextBtn" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textGuide2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/upload_i_20_or_ds_2019_form_here"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pickRecentPassportButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/primary_edit_text_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/upload_your_recent_passport_here"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pickInternationalPassportButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/primary_edit_text_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/upload_your_international_passport_here"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nextBtnLayout"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_medium"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/nextBtn"
+            app:layout_constraintEnd_toEndOf="@id/nextBtn"
+            app:layout_constraintStart_toStartOf="@id/nextBtn"
+            app:layout_constraintTop_toTopOf="@id/nextBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
