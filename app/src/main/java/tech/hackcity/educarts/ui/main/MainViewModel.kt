@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.data.network.ApiException
@@ -7,6 +8,7 @@ import tech.hackcity.educarts.data.repositories.MainRepository
 import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.clearExtraCharacters
 
 /**
  *Created by Victor Loveday on 8/29/23
@@ -40,18 +42,20 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     private fun saveUser(data: ProfileResponseData) {
         val user = User(
-            data.id,
+            clearExtraCharacters(data.id),
             data.profile_picture,
-            data.first_name,
-            data.last_name,
+            clearExtraCharacters(data.first_name),
+            clearExtraCharacters(data.last_name),
             data.country_code,
             data.phone_number,
-            data.country_of_residence,
-            data.email,
+            clearExtraCharacters(data.country_of_residence),
+            clearExtraCharacters(data.email),
             data.profile_completed,
             data.is_restricted,
-            data.institution_of_study,
+            clearExtraCharacters(data.institution_of_study),
         )
+
+        Log.d("UserInfo", "saved data : $user")
 
         Coroutines.onMain {
             repository.saveUser(user)

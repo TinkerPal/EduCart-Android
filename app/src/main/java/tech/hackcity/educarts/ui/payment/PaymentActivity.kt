@@ -18,6 +18,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityPaymentBinding
 import tech.hackcity.educarts.ui.canvas.CustomLineView
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.hideViews
+import tech.hackcity.educarts.uitls.showViews
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -54,6 +56,17 @@ class PaymentActivity : AppCompatActivity() {
 
         setupDestination()
         showStepIndicatorIfRequired()
+        setupScreenLoader()
+    }
+
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
+        }
     }
 
     private fun showStepIndicatorIfRequired() {

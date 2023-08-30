@@ -73,11 +73,6 @@ class ProfileViewModel(
 
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
-        if (profilePicture == null) {
-            editListener?.onRequestFailed(context.resources.getString(R.string.no_photo_selected))
-            return
-        }
-
         Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.editProfile(

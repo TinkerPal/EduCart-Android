@@ -119,6 +119,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_bg"
@@ -139,6 +140,7 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneNumberET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_text_bg"
@@ -161,6 +163,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <AutoCompleteTextView
+                        android:id="@+id/countryOfCitizenshipET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edit_text_bg"
@@ -185,6 +188,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <AutoCompleteTextView
+                        android:id="@+id/countryOfBirthET"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

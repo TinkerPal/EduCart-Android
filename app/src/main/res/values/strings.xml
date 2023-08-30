@@ -426,4 +426,6 @@
     <string name="you_re_paying_for">You\'re paying for</string>
     <string name="use_a_valid_credit_debit_card_to_ensure_prompt_processing_of_your_order">Use a valid credit/debit card to ensure prompt processing of your order</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="permission_granted_you_can_now_pick_files">Permission granted. You can now pick files.</string>
+    <string name="permission_denied_you_can_not_access_files">Permission denied. Cannot access files.</string>
 </resources>

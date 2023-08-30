@@ -1,7 +1,8 @@
-package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1
+package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
@@ -26,11 +28,15 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.ui.payment.sevisfee.SEIVSFeeStep1Listener
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 /**
  *Created by Victor Loveday on 3/13/23
@@ -40,7 +46,8 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
     private lateinit var binding: FragmentSevisFeeStep1Binding
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
-    private lateinit var viewModel: SEVISFeeStep1ViewModel
+    private lateinit var viewModel: SEVISFeeViewModel
+
     private val args: SEVISFeeStep1FragmentArgs by navArgs()
 
     private var formUri: Uri? = null
@@ -81,6 +88,13 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         binding = FragmentSevisFeeStep1Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        val api = RetrofitInstance(requireContext())
+        val sharePreferencesManager = SharePreferencesManager(requireContext())
+        val repository = SEVISFeeRepository(api, sharePreferencesManager)
+        val factory = SEVISFeeViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[SEVISFeeViewModel::class.java]
+        viewModel.listener1 = this
+
         binding.textGuide1.text = resources.getString(
             R.string.please_fill_the_following_form_as_it_is_in_your,
             args.formType
@@ -94,38 +108,36 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                 resources.getString(R.string.upload_ds_2019_form_here)
         }
 
-
-        val api = RetrofitInstance(requireContext())
-        val sharePreferencesManager = SharePreferencesManager(requireContext())
-        val repository = SEVISFeeRepository(api, sharePreferencesManager)
-        val factory = SEVISFeeStep1ViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory)[SEVISFeeStep1ViewModel::class.java]
-        viewModel.listener = this
-
+        setupDatePicker()
         setupFilePickers()
 
         binding.nextBtn.setOnClickListener {
-//            viewModel.user = sharePreferencesManager.fetchUserId()
 //            viewModel.sevis_id = binding.sevisIDET.text.toString().trim()
 //            viewModel.last_name = binding.lastNameET.text.toString().trim()
 //            viewModel.given_name = binding.firstNameET.text.toString().trim()
-//            viewModel.date_of_birth = "2023-08-03"
+//            viewModel.date_of_birth = binding.dateOfBirth.text.toString().trim()
 //
-//            if (formUri == null || passportUri == null || internationalPassportUri == null) {
-//                context?.toast(resources.getString(R.string.some_files_are_missing))
-//                return@setOnClickListener
+//            viewModel.form = createFilePart(requireContext(), "form", formUri)
+//            viewModel.passport = createFilePart(requireContext(), "passport", passportUri)
+//            viewModel.international_passport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
+
+//            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+//                viewModel.submitSevisFeeStep1(requireContext())
 //            }
-//
-//
-//            viewModel.form = formUri!!
-//            viewModel.passport = passportUri!!
-//            viewModel.international_passport = internationalPassportUri!!
-//            viewModel.submitStep1(requireContext())
 
-            val action = SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(args.formType)
+            val action =
+                SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                    args.formType
+                )
             findNavController().navigate(action)
-
         }
+    }
+
+    private fun formatDate(year: Int, month: Int, day: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, day) // Note: month is 0-based
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        return dateFormat.format(calendar.time)
     }
 
     private fun checkPermission(): Boolean {
@@ -144,6 +156,28 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         return true
     }
 
+    private fun setupDatePicker() {
+        binding.dateOfBirth.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                { _, year, monthOfYear, dayOfMonth ->
+                    val formattedDate = formatDate(year, monthOfYear + 1, dayOfMonth)
+                    binding.dateOfBirth.setText(formattedDate)
+                },
+                year,
+                month,
+                day
+            )
+
+            // Show the date picker dialog
+            datePickerDialog.show()
+        }
+    }
     private fun setupFilePickers() {
         binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
         binding.pickRecentPassportButton.setOnClickListener { openFilePickerForPhoto() }
@@ -158,9 +192,9 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showToast("Permission granted. You can now pick files.")
+                context?.toast(resources.getString(R.string.permission_granted_you_can_now_pick_files))
             } else {
-                showToast("Permission denied. Cannot access files.")
+                context?.toast(resources.getString(R.string.permission_denied_you_can_not_access_files))
             }
         }
     }
@@ -194,14 +228,13 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         if (checkPermission()) {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.type =
-                "application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document|image/*"
+                "application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             intent.addCategory(Intent.CATEGORY_OPENABLE)
 
             val mimeTypes = arrayOf(
                 "application/pdf",
                 "application/msword",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                "image/*"
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             )
             intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
 
@@ -221,15 +254,12 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         internationalPassportUri = uri
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-    }
-
     companion object {
         private const val PERMISSION_REQUEST_CODE = 123
     }
 
     override fun onRequestStarted() {
+        sharedViewModel.updateLoadingScreen(true)
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
         disablePrimaryButtonState(binding.nextBtn)
     }
@@ -242,6 +272,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
+        sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep1Response) {
@@ -251,8 +282,13 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
+        sharedViewModel.updateLoadingScreen(false)
 
-        findNavController().navigate(R.id.action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment)
+        val action =
+            SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                args.formType
+            )
+        findNavController().navigate(action)
     }
 
     override fun onResume() {

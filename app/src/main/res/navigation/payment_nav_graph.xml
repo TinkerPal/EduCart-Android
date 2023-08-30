@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/sevisFeeStep1Fragment"
-        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1.SEVISFeeStep1Fragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep1Fragment"
         android:label=""
         tools:layout="@layout/fragment_sevis_fee_step_1">
         <action

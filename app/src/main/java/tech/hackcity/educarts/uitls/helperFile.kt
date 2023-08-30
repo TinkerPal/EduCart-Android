@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -15,31 +16,25 @@ import java.io.InputStream
  *Created by Victor Loveday on 7/7/23
  */
 
-fun createPartFromString(string: String): RequestBody {
-    return string.toRequestBody("multipart/form-data".toMediaType())
+fun createFilePart(context: Context, name: String, fileUri: Uri?): MultipartBody.Part? {
+    if (fileUri != null) {
+        val profilePictureFile = fileUri.toImageFile(context)
+        val profilePictureRequestBody = profilePictureFile?.let {
+            RequestBody.create(
+                "image/*".toMediaTypeOrNull(),
+                it
+            )
+        }
+        return profilePictureRequestBody?.let {
+            MultipartBody.Part.createFormData(
+                name,
+                profilePictureFile.name,
+                it
+            )
+        }
+    }
+    return null
 }
-
-fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
-    val file = File(fileUri.path)
-    val requestFile = file.asRequestBody("multipart/form-data".toMediaType())
-    return MultipartBody.Part.createFormData(partName, file.name, requestFile)
-}
-
-//fun Uri.toImageFile(context: Context): File? {
-//    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-//    val cursor = context.contentResolver.query(this, filePathColumn, null, null, null)
-//    if (cursor != null) {
-//        if (cursor.moveToFirst()) {
-//            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
-//            val filePath = cursor.getString(columnIndex)
-//            cursor.close()
-//            return File(filePath)
-//        }
-//        cursor.close()
-//    }
-//    return null
-//}
-
 
 fun Uri?.toImageFile(context: Context): File? {
     if (this == null) {

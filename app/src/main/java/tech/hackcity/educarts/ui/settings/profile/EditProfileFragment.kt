@@ -35,6 +35,7 @@ import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_IMAGE_URL
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.observeOnce
 import tech.hackcity.educarts.uitls.toImageFile
 import tech.hackcity.educarts.uitls.toast
@@ -94,7 +95,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
         validatePhoneNumber()
 
         binding.doneBtn.setOnClickListener {
-            viewModel.profilePicture = createProfilePicturePart()
+            viewModel.profilePicture = createFilePart(requireContext(),"profile_picture", profileUri)
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()
             viewModel.countryOfResidence = "Nigeria"
@@ -143,26 +144,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             }
 
         }
-    }
-
-    private fun createProfilePicturePart(): MultipartBody.Part? {
-        if (profileUri != null) {
-            val profilePictureFile = profileUri?.toImageFile(requireContext())
-            val profilePictureRequestBody = profilePictureFile?.let {
-                RequestBody.create(
-                    "image/*".toMediaTypeOrNull(),
-                    it
-                )
-            }
-            return profilePictureRequestBody?.let {
-                MultipartBody.Part.createFormData(
-                    "profile_picture",
-                    profilePictureFile.name,
-                    it
-                )
-            }
-        }
-        return null
     }
 
     private fun validatePhoneNumber() {
