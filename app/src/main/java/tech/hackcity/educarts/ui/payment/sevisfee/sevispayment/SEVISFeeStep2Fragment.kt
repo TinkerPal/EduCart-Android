@@ -22,6 +22,7 @@ import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
+import tech.hackcity.educarts.uitls.toast
 
 /**
  *Created by Victor Loveday on 8/3/23
@@ -78,7 +79,7 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
     }
 
     override fun onRequestFailed(message: List<ErrorMessage>) {
-        Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+        context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,

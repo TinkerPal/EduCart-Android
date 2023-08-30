@@ -20,15 +20,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
-import tech.hackcity.educarts.ui.payment.sevisfee.SEIVSFeeStep1Listener
-import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
@@ -265,7 +262,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
     }
 
     override fun onRequestFailed(message: List<ErrorMessage>) {
-        Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+        context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,

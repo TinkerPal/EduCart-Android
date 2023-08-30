@@ -94,6 +94,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/streetAddress1ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_bg"
@@ -114,6 +115,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/streetAddress2ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_bg"
@@ -136,6 +138,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <AutoCompleteTextView
+                    android:id="@+id/country"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/edit_text_bg"
@@ -159,6 +162,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <AutoCompleteTextView
+                    android:id="@+id/state"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -184,6 +188,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <AutoCompleteTextView
+                    android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

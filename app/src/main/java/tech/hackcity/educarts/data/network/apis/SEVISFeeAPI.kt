@@ -13,6 +13,7 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 
 /**
@@ -43,4 +44,14 @@ interface SEVISFeeAPI {
         @Field("country_of_citizenship") country_of_citizenship: String,
         @Field("country_of_birth") country_of_birth: String
     ): Response<SEVISFeeStep2Response>
+
+    @FormUrlEncoded
+    @POST("sevis/information/3/")
+    suspend fun sevisFeeStep3(
+        @Field("street_address_1") street_address_1: String,
+        @Field("street_address_2") street_address_2: String,
+        @Field("country") country: String,
+        @Field("state") state: String,
+        @Field("city") city: String
+    ): Response<SEVISFeeStep3Response>
 }

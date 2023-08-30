@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.payment.sevisfee
+package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response

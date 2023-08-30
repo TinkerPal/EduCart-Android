@@ -11,7 +11,6 @@ import tech.hackcity.educarts.data.network.ErrorCodes.EMPTY_FORM_FIELD
 import tech.hackcity.educarts.data.network.ErrorCodes.IO_EXCEPTION
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
-import tech.hackcity.educarts.ui.payment.sevisfee.SEIVSFeeStep1Listener
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 
@@ -23,6 +22,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
     var listener1: SEIVSFeeStep1Listener? = null
     var listener2: SEIVSFeeStep2Listener? = null
+    var listener3: SEIVSFeeStep3Listener? = null
 
     var sevisId: String? = null
     var lastName: String? = null
@@ -38,6 +38,14 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
     var phoneNumber: String? = null
     var countryOfCitizenship: String? = null
     var countryOfBirth: String? = null
+
+    var streetAddress1: String? = null
+    var streetAddress2: String? = null
+    var country: String? = null
+    var state: String? = null
+    var city: String? = null
+
+
 
     fun submitSevisFeeStep1(context: Context) {
         listener1?.onRequestStarted()
@@ -64,8 +72,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                     passport!!,
                     internationalPassport!!
                 )
-
-                Log.d("SEVISError", "${repository.fetchUserId()} $sevisId $lastName $givenName, $dateOfBirth")
 
                 if (!response.error) {
                     listener1?.onRequestSuccessful(response)
@@ -103,8 +109,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                     countryOfBirth!!
                 )
 
-                Log.d("SEVISError", "${repository.fetchUserId()} $sevisId $lastName $givenName, $dateOfBirth")
-
                 if (!response.error) {
                     listener2?.onRequestSuccessful(response)
 
@@ -114,6 +118,41 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener2?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
+                return@onMainWithScope
+            }
+        }
+    }
+
+    fun submitSevisFeeStep3(context: Context) {
+        listener3?.onRequestStarted()
+
+        if (
+            streetAddress1.isNullOrEmpty() || streetAddress2.isNullOrEmpty()
+            || country.isNullOrEmpty() || state.isNullOrEmpty()
+            || city == null
+        ) {
+            listener3?.onRequestFailed(listOf(ErrorMessage(EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty))))
+            return
+        }
+
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.sevisFeeStep3(
+                    streetAddress1!!,
+                    streetAddress2!!,
+                    country!!, state!!,
+                    city!!,
+                )
+
+                if (!response.error) {
+                    listener3?.onRequestSuccessful(response)
+
+                } else {
+                    listener3?.onRequestFailed(response.errorMessage)
+                }
+
+            } catch (e: ApiException) {
+                listener3?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
                 return@onMainWithScope
             }
         }
