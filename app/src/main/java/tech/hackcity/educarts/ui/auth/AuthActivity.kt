@@ -78,6 +78,7 @@ class AuthActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         setupDestination()
+        showStepIndicatorIfRequired()
 
         sharedViewModel.fetchToolBarVisibility().observe(this) { isVisible ->
             if (isVisible) {
@@ -91,6 +92,9 @@ class AuthActivity : AppCompatActivity() {
             changeToolbarColor(binding.toolbar, color)
         }
 
+    }
+
+    private fun showStepIndicatorIfRequired() {
         sharedViewModel.fetchHorizontalStepVisibility().observe(this) { isVisible ->
             if (isVisible) {
                 binding.customLineView.visibility = View.VISIBLE
@@ -107,8 +111,8 @@ class AuthActivity : AppCompatActivity() {
                 }, 100
             )
         }
-
     }
+
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.auth_nav_graph)

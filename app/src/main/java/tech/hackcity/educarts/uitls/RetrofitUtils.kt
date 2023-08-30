@@ -7,7 +7,6 @@ import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
-import tech.hackcity.educarts.data.network.APIInterceptor
 import java.lang.reflect.Type
 import java.net.CookieManager
 import java.net.CookiePolicy
@@ -34,10 +33,14 @@ object RetrofitUtils {
     }
 
 
-    fun okhttpClient(context: Context): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(APIInterceptor(context))
-            .build()
-    }
+//    fun okhttpClient(context: Context): OkHttpClient {
+//        val authorizationNotRequiredEndpoints = listOf(
+//            Regex("${Constants.EDU_CARTS_BASE_URL}auth/register/")
+//        )
+//
+//        return OkHttpClient.Builder()
+//            .addInterceptor(APIInterceptor(context, authorizationNotRequiredEndpoints))
+//            .build()
+//    }
 
 }

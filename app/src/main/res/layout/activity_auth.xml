@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_marginTop="80dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:lineCount="3"
         app:lineSpacing="60dp" />

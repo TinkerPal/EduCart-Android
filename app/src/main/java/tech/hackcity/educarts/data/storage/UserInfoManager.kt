@@ -21,14 +21,22 @@ class UserInfoManager(context: Context) {
         val USER_STATUS_KEY = preferencesKey<Int>("USER_STATUS")
         val USER_EMAIL_KEY = preferencesKey<String>("USER_EMAIL")
         val USER_PHONE_KEY = preferencesKey<String>("USER_PHONE")
+        val USER_INSTITUTION_OF_STUDY_KEY = preferencesKey<String>("USER_INSTITUTION_OF_STUDY")
+        val USER_COUNTRY_OF_BIRTH_KEY = preferencesKey<String>("USER_COUNTRY_OF_BIRTH")
+        val USER_STATE_KEY = preferencesKey<String>("USER_STATE")
+        val USER_CITY_KEY = preferencesKey<String>("USER_CITY")
+        val USER_ADDRESS_BOOK_KEY = preferencesKey<String>("USER_ADDRESS_BOOK")
         val IS_USER_PHONE_VERIFIED_KEY = preferencesKey<Boolean>("IS_USER_PHONE_VERIFIED")
-        val USER_COUNTRY_CODE_KEY = preferencesKey<String>("USER_DIAL_CODE")
+        val USER_COUNTRY_CODE_KEY = preferencesKey<Int>("USER_COUNTRY_CODE")
         val USER_COUNTRY_OF_RESIDENCE_KEY = preferencesKey<String>("USER_COUNTRY_OF_RESIDENCE")
         val IS_USER_BALANCE_VISIBLE_KEY = preferencesKey<Boolean>("IS_USER_BALANCE_VISIBLE")
         val USER_TOTAL_ASSET_KEY = preferencesKey<String>("USER_TOTAL_ASSET")
         val USER_PROFILE_IMAGE_KEY = preferencesKey<String>("USER_PROFILE_IMAGE")
         val IS_TRANSACTION_PIN_CREATED_KEY = preferencesKey<Boolean>("IS_TRANSACTION_PIN_CREATED")
         val IS_TOKEN_EXPIRE_KEY = preferencesKey<Boolean>("IS_TOKEN_EXPIRE")
+        val IS_PROFILE_COMPLETED_KEY = preferencesKey<Boolean>("IS_PROFILE_COMPLETED")
+        val USER_PROFILE_PHOTO_KEY = preferencesKey<String>("USER_PROFILE_PHOTO")
+        val IS_USER_RESTRICTED_KEY = preferencesKey<Boolean>("IS_USER_RESTRICTED")
 
     }
 
@@ -42,11 +50,20 @@ class UserInfoManager(context: Context) {
     suspend fun saveUser(user: User) {
         dataStore.edit {
             it[USER_ID_KEY] = user.id
+            it[USER_PROFILE_PHOTO_KEY] = user.profilePhoto.toString()
             it[USER_FIRST_NAME_KEY] = user.firstName
             it[USER_LAST_NAME_KEY] = user.lastName
+            it[USER_COUNTRY_CODE_KEY] = user.countryCode
             it[USER_PHONE_KEY] = user.phoneNumber
             it[USER_COUNTRY_OF_RESIDENCE_KEY] = user.countryOfResidence
             it[USER_EMAIL_KEY] = user.email
+            it[IS_PROFILE_COMPLETED_KEY] = user.isProfileCompleted
+            it[IS_USER_RESTRICTED_KEY] = user.is_restricted
+            it[USER_INSTITUTION_OF_STUDY_KEY] = user.institutionOfStudy.toString()
+            it[USER_COUNTRY_OF_BIRTH_KEY] = user.countryOfBirth.toString()
+            it[USER_STATE_KEY] = user.state.toString()
+            it[USER_CITY_KEY] = user.city.toString()
+            it[USER_ADDRESS_BOOK_KEY] = user.addressBook.toString()
         }
     }
 
@@ -54,11 +71,20 @@ class UserInfoManager(context: Context) {
         .map {
             User(
                 it[USER_ID_KEY] ?: "",
+                it[USER_PROFILE_PHOTO_KEY] ?: "",
                 it[USER_FIRST_NAME_KEY] ?: "",
                 it[USER_LAST_NAME_KEY] ?: "",
+                it[USER_COUNTRY_CODE_KEY] ?: 0,
                 it[USER_PHONE_KEY] ?: "",
                 it[USER_COUNTRY_OF_RESIDENCE_KEY] ?: "",
                 it[USER_EMAIL_KEY] ?: "",
+                it[IS_PROFILE_COMPLETED_KEY] ?: false,
+                it[IS_USER_RESTRICTED_KEY] ?: false,
+                it[USER_INSTITUTION_OF_STUDY_KEY] ?: "",
+                it[USER_COUNTRY_OF_BIRTH_KEY] ?: "",
+                it[USER_STATE_KEY] ?: "",
+                it[USER_CITY_KEY] ?: "",
+                it[USER_ADDRESS_BOOK_KEY] ?: ""
             )
         }
 

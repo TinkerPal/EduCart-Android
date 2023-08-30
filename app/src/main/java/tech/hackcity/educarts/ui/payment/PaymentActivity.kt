@@ -16,7 +16,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityPaymentBinding
+import tech.hackcity.educarts.ui.canvas.CustomLineView
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.hideViews
+import tech.hackcity.educarts.uitls.showViews
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -25,6 +28,7 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var customLineView: CustomLineView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,39 +56,43 @@ class PaymentActivity : AppCompatActivity() {
 
         setupDestination()
         showStepIndicatorIfRequired()
+        setupScreenLoader()
+    }
+
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
+        }
     }
 
     private fun showStepIndicatorIfRequired() {
-        val animate1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom_slow)
-        val animate2 = AnimationUtils.loadAnimation(this, R.anim.slide_out_right)
-
-        sharedViewModel.getStepIndicator().observe(this) { step ->
-            if (step[0] > 0) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.stepIndicator.apply {
-                        if (step.size == 3 && step[2] == 1) {
-                            setTextColor(ContextCompat.getColor(this@PaymentActivity, R.color.text_light))
-                        }
-                        visibility = View.VISIBLE
-                        startAnimation(animate1)
-                        binding.stepIndicator.text = "${step[0]}/${step[1]}"
-                    }
-                }, 100)
-
-            }else {
-                binding.stepIndicator.apply {
-                    visibility = View.INVISIBLE
-                    startAnimation(animate2)
-                }
-
+        sharedViewModel.fetchHorizontalStepVisibility().observe(this) { isVisible ->
+            if (isVisible) {
+                binding.customLineView.visibility = View.VISIBLE
+            } else {
+                binding.customLineView.visibility = View.INVISIBLE
             }
+        }
+
+        customLineView = binding.customLineView
+        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    customLineView.setPosition(position)
+                }, 100
+            )
         }
     }
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.payment_nav_graph)
 
-        val destination = intent.getStringExtra("destination")
+        val destination = "sevis fee"
+//        val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when(destination) {
                 "sevis fee" -> {

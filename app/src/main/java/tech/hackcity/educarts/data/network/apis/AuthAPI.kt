@@ -4,8 +4,8 @@ import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import tech.hackcity.educarts.domain.model.auth.*
-import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -52,20 +52,16 @@ interface AuthAPI {
     ): Response<VerifyOTPResponse> // verify otp for password reset
 
     @FormUrlEncoded
-    @POST("auth/reset-password/")
-    suspend fun createNewPassword(
+    @PUT("auth/reset-password/")
+    suspend fun resetPassword(
         @Field("id") id: String,
         @Field("password") password: String,
         @Field("confirm_password") confirm_password: String
     ): Response<CreateNewPasswordResponse> // create new password
 
-
     @FormUrlEncoded
-    @POST("settings/change-password/")
-    suspend fun changePassword(
-        @Field("old_password") old_password: String,
-        @Field("new_password") new_password: String,
-        @Field("confirm_password") confirm_password: String
-    ): Response<ChangePasswordResponse> // change password
-
+    @POST("token/refresh/")
+    suspend fun refreshAccessToken(
+        @Field("refresh") refresh : String
+    ): Response<TokenResponse> // refresh access token
 }

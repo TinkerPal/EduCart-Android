@@ -8,63 +8,76 @@
     <fragment
         android:id="@+id/sevisFeeFragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFeeFragment"
-        android:label="@string/sevis_fee"
+        android:label=""
         tools:layout="@layout/fragment_sevis_fee">
         <action
-            android:id="@+id/action_sevisFeeFragment_to_sevisPayment1Fragment"
-            app:destination="@id/sevisFeeStep1Fragment"
-            app:enterAnim="@anim/slide_in_bottom_slow"
-            app:exitAnim="@anim/slide_out_top"
+            android:id="@+id/action_sevisFeeFragment_to_SEVISFormTypeFragment"
+            app:destination="@id/SEVISFormTypeFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_sevisFeeFragment_to_sevisCouponFragment"
-            app:destination="@id/sevisCouponFragment"
-            app:enterAnim="@anim/slide_in_bottom_slow"
-            app:exitAnim="@anim/slide_out_top"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
         android:id="@+id/sevisFeeStep1Fragment"
-        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.step1.SEVISFeeStep1Fragment"
-        android:label="@string/sevis_fee"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep1Fragment"
+        android:label=""
         tools:layout="@layout/fragment_sevis_fee_step_1">
         <action
             android:id="@+id/action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment"
             app:destination="@id/sevisFeeStep2Fragment"
-            app:enterAnim="@anim/slide_in_bottom_slow"
-            app:exitAnim="@anim/slide_out_top"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right"/>
+
+        <argument
+            android:name="formType"
+            app:argType="string" />
+
     </fragment>
 
     <fragment
         android:id="@+id/sevisFeeStep2Fragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep2Fragment"
-        android:label="@string/sevis_fee"
+        android:label=""
         tools:layout="@layout/fragment_sevis_fee_step_2">
         <action
             android:id="@+id/action_sevisFeeStep2Fragment_to_sevisFeeStep3Fragment"
             app:destination="@id/sevisFeeStep3Fragment"
-            app:enterAnim="@anim/slide_in_bottom_slow"
-            app:exitAnim="@anim/slide_out_top"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right"/>
+
+        <argument
+            android:name="formType"
+            app:argType="string" />
+
     </fragment>
 
     <fragment
         android:id="@+id/sevisFeeStep3Fragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep3Fragment"
-        android:label="@string/sevis_fee"
-        tools:layout="@layout/fragment_sevis_fee_step_3" />
+        android:label=""
+        tools:layout="@layout/fragment_sevis_fee_step_3" >
+        <argument
+            android:name="formType"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/sevisCouponFragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.seviscoupon.SEVISCouponFragment"
-        android:label="@string/sevis_fee"
-        tools:layout="@layout/fragment_have_sevis_payment_coupon" />
+        android:label=""
+        tools:layout="@layout/fragment_have_sevis_payment_coupon" >
+
+        <argument
+            android:name="formType"
+            app:argType="string" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/applicationFeeDashboardFragment"
@@ -363,6 +376,30 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SEVISFormTypeFragment"
+        android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFormTypeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_sevis_form_type" >
+        <action
+            android:id="@+id/action_SEVISFormTypeFragment_to_sevisFeeStep1Fragment"
+            app:destination="@id/sevisFeeStep1Fragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_SEVISFormTypeFragment_to_sevisCouponFragment"
+            app:destination="@id/sevisCouponFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="destination"
+            app:argType="string" />
     </fragment>
 
 </navigation>

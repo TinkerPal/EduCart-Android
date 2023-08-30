@@ -1,210 +1,571 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.PaymentFragment">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="16dp">
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/select_a_service_below"
+        android:textColor="@color/text_light"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sevisFeeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/sevis_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/sevis_fee" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow1"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/sevis_fee"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow1"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/trackOrderCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/track_order_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/track_path" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow4"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/track_order"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow4"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/applicationFeeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/application_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/application_fee" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow3"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/application_fee"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow3"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tuitionFeeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/tuition_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/tuition_fee" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow2"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/tuition_fee"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow2"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/wesEvaluationCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/wes_eval_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/wes_eval" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow5"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/wes_evaluation"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow5"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/othersView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/others_card_bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginVertical="10dp"
+                                android:background="@drawable/round_bg_white"
+                                android:padding="10dp"
+                                android:src="@drawable/others" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="-30dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/elipes_bars" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_toStartOf="@+id/arrow6"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:text="@string/others"
+                                android:textColor="@color/text_light" />
+
+                            <ImageView
+                                android:id="@+id/arrow6"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/round_bg_white"
+                                android:src="@drawable/arrow_forward_with_blue_bg" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/applicationFeeTV"
-                android:layout_width="0dp"
+                android:id="@+id/contactSupportTV"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="20dp"
+                android:paddingVertical="3dp"
                 android:clickable="true"
-                android:drawablePadding="5dp"
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/application_fee"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_application_fee" />
-
-            <TextView
-                android:id="@+id/sevisFeeTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/sevis_fee_n"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_sevis_fee" />
-
-            <TextView
-                android:id="@+id/tuitionFeeTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/tuition_fee_n"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_tuition_fee" />
+                android:text="@string/can_t_find_a_payment_you_want_to_make_t_contact_support"
+                android:textColor="@color/gray_006" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+    </ScrollView>
 
-            <TextView
-                android:id="@+id/visaFeeTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/visa_fee_n"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_visa_fee" />
-
-            <TextView
-                android:id="@+id/credentialEvaluationTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/credentials_evaluation"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_credential_evaluation_fee" />
-
-            <TextView
-                android:id="@+id/admissionDocsShipment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/docs_shipment"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_admission_docs_shipment_fee" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:id="@+id/othersTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/others_n"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_others_fee" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:visibility="invisible"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/place_holder_n"
-                android:textColor="@color/text_light"
-                app:drawableTopCompat="@drawable/icon_credential_evaluation_fee" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/card_border1"
-                android:clickable="true"
-                android:drawablePadding="5dp"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:text="@string/place_holder_n"
-                android:textColor="@color/text_light"
-                android:visibility="invisible"
-                app:drawableTopCompat="@drawable/icon_admission_docs_shipment_fee" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

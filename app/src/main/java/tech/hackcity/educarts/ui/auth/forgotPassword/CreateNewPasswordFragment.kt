@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
@@ -16,6 +17,7 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentCreateNewPasswordBinding
 import tech.hackcity.educarts.domain.model.auth.CreateNewPasswordResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.compareTwoPasswordFields
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
@@ -25,7 +27,7 @@ import tech.hackcity.educarts.uitls.toast
  *Created by Victor Loveday on 2/20/23
  */
 class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password),
-    CreateNewPasswordListener {
+    ResetPasswordListener {
 
     private lateinit var binding: FragmentCreateNewPasswordBinding
 
@@ -39,10 +41,11 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val userInfoManager = UserInfoManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
-        val factory = CreateNewPasswordViewModelFactory(repository)
-        val viewModel = ViewModelProvider(this, factory)[CreateNewPasswordViewModel::class.java]
-        viewModel.createNewPasswordListener = this
+        val repository =
+            AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val factory = ResetPasswordViewModelFactory(repository)
+        val viewModel = ViewModelProvider(this, factory)[ResetPasswordViewModel::class.java]
+        viewModel.resetPasswordListener = this
 
 
         compareTwoPasswordFields(
@@ -54,7 +57,9 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
             viewModel.id = sharePreferencesManager.fetchUserId().toString()
             viewModel.password = binding.confirmPasswordET.text.toString().trim()
 
-            viewModel.onResetPasswordButtonClicked(requireContext())
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.resetPassword(requireContext())
+            }
         }
     }
 
@@ -83,7 +88,12 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.setToolBarColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.background_001
+            )
+        )
         sharedViewModel.updateHorizontalStepViewPosition(3)
         sharedViewModel.updateHorizontalStepViewVisibility(true)
     }

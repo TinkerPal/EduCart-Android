@@ -2,13 +2,11 @@ package tech.hackcity.educarts.ui.settings.changePassword
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/30/23
@@ -22,40 +20,32 @@ class ChangePasswordViewModel(
 
     var changePasswordListener: ChangePasswordListener? = null
 
-    fun onUpdateButtonClicked(context: Context) {
+    fun changePassword(context: Context) {
         changePasswordListener?.onRequestStarted()
+
         if (oldPassword.isNullOrEmpty() || newPassword.isNullOrEmpty()) {
             changePasswordListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
-        Coroutines.main {
-            val response = try {
-                repository.changePassword(oldPassword!!, newPassword!!, newPassword!!)
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.changePassword(
+                    oldPassword!!,
+                    newPassword!!,
+                    newPassword!!
+                )
 
-            } catch (e: IOException) {
+                if (!response.error) {
+                    changePasswordListener?.onRequestSuccessful(response)
+
+                } else {
+                    changePasswordListener?.onRequestFailed(response.message)
+                }
+
+            } catch (e: ApiException) {
                 changePasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: NoInternetException) {
-                changePasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: HttpException) {
-                changePasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                changePasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            }
-
-            if (!response.error) {
-                changePasswordListener?.onRequestSuccessful(response)
-
-            } else {
-                changePasswordListener?.onRequestFailed(response.message)
+                return@onMainWithScope
             }
         }
 

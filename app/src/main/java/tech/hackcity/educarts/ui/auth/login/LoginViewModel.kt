@@ -1,16 +1,19 @@
 package tech.hackcity.educarts.ui.auth.login
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
+import tech.hackcity.educarts.domain.model.auth.LoginResponseData
 import tech.hackcity.educarts.domain.model.auth.User
+import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.clearExtraCharacters
 import tech.hackcity.educarts.uitls.errorMessageFetcher
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -24,7 +27,7 @@ class LoginViewModel(
 
     var loginListener: LoginListener? = null
 
-    fun onLoginButtonClicked(context: Context) {
+    fun loginUser(context: Context) {
         loginListener?.onRequestStarted()
 
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
@@ -32,51 +35,54 @@ class LoginViewModel(
             return
         }
 
-        Coroutines.main {
-            val response = try {
-                repository.loginUser(
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.loginUser(
                     email!!,
                     password!!
                 )
 
-            } catch (e: IOException) {
-                loginListener?.onRequestFailed(e.message!!)
-                return@main
+                if (!response.error) {
+                    loginListener?.onRequestSuccessful(response)
+                    repository.saveTokens(response.data.access, response.data.refresh)
+                    repository.saveLoginStatus(true)
+                    repository.saveUserId(response.data.id)
 
-            } catch (e: NoInternetException) {
-                loginListener?.onRequestFailed(e.message!!)
-                return@main
+                    saveUser(response.data)
 
-            } catch (e: HttpException) {
-                loginListener?.onRequestFailed(e.message!!)
-                return@main
+                } else {
+                    Log.d("LoginError", "${response.errorMessage}")
+                    loginListener?.onRequestFailed(response.errorMessage.toString())
+                }
 
-            } catch (e: SocketTimeoutException) {
+            } catch (e: ApiException) {
                 loginListener?.onRequestFailed(e.message!!)
-                return@main
-
+                return@onMainWithScope
             }
 
-            if (!response.error) {
-                loginListener?.onRequestSuccessful(response)
-                repository.saveAuthToken(response.data.access)
-                repository.saveLoginStatus(true)
-                repository.saveUserId(response.data.id)
-                val user = User(
-                    response.data.id,
-                    response.data.first_name,
-                    response.data.last_name,
-                    response.data.phone_number,
-                    response.data.country_of_residence,
-                    response.data.email,
-                )
-                repository.saveUser(user)
-
-            } else {
-                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                loginListener?.onRequestFailed(errorMessage)
-            }
         }
 
     }
+
+    private fun saveUser(data: LoginResponseData) {
+        val user = User(
+            clearExtraCharacters(data.id),
+            data.profile_picture,
+            clearExtraCharacters(data.first_name),
+            clearExtraCharacters(data.last_name),
+            data.country_code,
+            data.phone_number,
+            clearExtraCharacters(data.country_of_residence),
+            clearExtraCharacters(data.email),
+            data.profile_completed,
+            data.is_restricted,
+        )
+
+        Log.d("UserInfo", "saved data : $user")
+
+        Coroutines.onMain {
+            repository.saveUser(user)
+        }
+    }
+
 }

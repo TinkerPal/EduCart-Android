@@ -2,14 +2,12 @@ package tech.hackcity.educarts.ui.auth.forgotPassword
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import retrofit2.HttpException
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.errorMessageFetcher
-import java.io.IOException
-import java.net.SocketTimeoutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -22,7 +20,7 @@ class ForgotPasswordViewModel(
 
     var forgotPasswordListener: ForgotPasswordListener? = null
 
-    fun onSendOTPButtonClicked(context: Context) {
+    fun forgotPassword(context: Context) {
         forgotPasswordListener?.onRequestStarted()
 
         if (email.isNullOrEmpty()) {
@@ -30,34 +28,22 @@ class ForgotPasswordViewModel(
             return
         }
 
-        Coroutines.main {
-            val response = try {
-                repository.forgotPassword(email!!)
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.forgotPassword(email!!)
 
-            } catch (e: IOException) {
+                if (!response.error) {
+                    forgotPasswordListener?.onRequestSuccessful(response)
+                    repository.saveUserId(response.data.id)
+                } else {
+                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
+                    forgotPasswordListener?.onRequestFailed(errorMessage)
+                }
+
+            } catch (e: ApiException) {
                 forgotPasswordListener?.onRequestFailed(e.message!!)
-                return@main
+                return@onMainWithScope
 
-            } catch (e: NoInternetException) {
-                forgotPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: HttpException) {
-                forgotPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            } catch (e: SocketTimeoutException) {
-                forgotPasswordListener?.onRequestFailed(e.message!!)
-                return@main
-
-            }
-
-            if (!response.error) {
-                forgotPasswordListener?.onRequestSuccessful(response)
-                repository.saveUserId(response.data.id)
-            } else {
-                val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                forgotPasswordListener?.onRequestFailed(errorMessage)
             }
         }
 

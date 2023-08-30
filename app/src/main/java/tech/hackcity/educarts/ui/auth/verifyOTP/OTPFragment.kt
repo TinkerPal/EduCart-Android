@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.goodiebag.pinview.Pinview
@@ -19,9 +20,12 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentOtpBinding
 import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.CountdownTimer
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.toast
+import java.lang.IllegalArgumentException
+
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -30,22 +34,23 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
 
     private lateinit var binding: FragmentOtpBinding
 
-    private val args: OTPFragmentArgs by navArgs()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var countdownTimer: CountdownTimer
+    private val args: OTPFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.title.text = args.pageTitle
-//        binding.message.text = args.information
+        binding.title.text = args.pageTitle
+        binding.message.text = args.information
 
         val api = RetrofitInstance(requireContext())
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val userInfoManager = UserInfoManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val repository =
+            AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = VerifyOTPViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[VerifyOTPViewModel::class.java]
         viewModel.verifyOTPListener = this
@@ -55,7 +60,12 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
                 viewModel.id = sharePreferencesManager.fetchUserId().toString()
                 viewModel.otp = pinview?.value
 
-                viewModel.verifyPin(requireContext())
+                Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                    when (args.destination) {
+                        "login" -> viewModel.verifyOTPForNewAccount(requireContext())
+                        "reset password" -> viewModel.verifyOTPForPasswordReset(requireContext())
+                    }
+                }
             }
         })
 
@@ -113,7 +123,12 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     override fun onRequestSuccessful(response: VerifyOTPResponse) {
         binding.astericksImageView.clearAnimation()
         context?.toast(response.message)
-        navigateToDestination()
+
+        try {
+            navigateToDestination()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onResume() {
@@ -125,7 +140,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
             )
         )
         sharedViewModel.setToolbarVisibility(true)
-//        sharedViewModel.updateHorizontalStepViewPosition(args.step)
+        sharedViewModel.updateHorizontalStepViewPosition(args.step)
     }
 
     override fun onDestroy() {

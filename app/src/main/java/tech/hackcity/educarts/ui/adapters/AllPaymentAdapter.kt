@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import tech.hackcity.educarts.R
 import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.databinding.ItemPaymentBinding
+import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
+import java.util.Locale
 
 class AllPaymentAdapter(private val context: Context) :
     RecyclerView.Adapter<AllPaymentAdapter.AllPaymentViewHolder>() {
@@ -16,18 +20,18 @@ class AllPaymentAdapter(private val context: Context) :
     inner class AllPaymentViewHolder(val binding: ItemPaymentBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<PaymentHistory>() {
-        override fun areItemsTheSame(oldItem: PaymentHistory, newItem: PaymentHistory): Boolean {
-            return oldItem.transactionId == newItem.transactionId
+    private val diffCallback = object : DiffUtil.ItemCallback<OrderHistoryResponseData>() {
+        override fun areItemsTheSame(oldItem: OrderHistoryResponseData, newItem: OrderHistoryResponseData): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: PaymentHistory, newItem: PaymentHistory): Boolean {
+        override fun areContentsTheSame(oldItem: OrderHistoryResponseData, newItem: OrderHistoryResponseData): Boolean {
             return oldItem == newItem
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
-    var paymentHistoryList = emptyList<PaymentHistory>()
+    var paymentHistoryList = emptyList<OrderHistoryResponseData>()
 
     override fun getItemCount() = paymentHistoryList.size
 
@@ -44,30 +48,58 @@ class AllPaymentAdapter(private val context: Context) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AllPaymentViewHolder, position: Int) {
         holder.binding.apply {
+
             val paymentHistory = paymentHistoryList[position]
-            transactionId.text = paymentHistory.transactionId
-            service.text = paymentHistory.service
+            transactionId.text = paymentHistory.order_id
+            service.text = paymentHistory.order_type
             date.text = paymentHistory.date
             transactionStatus.text = paymentHistory.status
+
+            val paymentStatus = when (paymentHistory.status) {
+                "Order completed" -> PaymentStatus.ORDER_COMPLETED
+                "Order in process" -> PaymentStatus.ORDER_IN_PROCESS
+                "Payment Pending" -> PaymentStatus.PAYMENT_PENDING
+                "Payment confirmed" -> PaymentStatus.PAYMENT_CONFIRMED
+                else -> PaymentStatus.ORDER_COMPLETED
+            }
+
+            transactionStatus.setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    paymentStatus.textColourRes
+                )
+            )
+            icon.setColorFilter(ContextCompat.getColor(context, paymentStatus.iconColourRes))
 
             holder.itemView.apply {
                 setOnClickListener {
                     onItemClickListener?.let { it(paymentHistory) }
-
                 }
             }
         }
 
     }
 
-    fun setData(paymentHistories: List<PaymentHistory>) {
+    fun setData(paymentHistories: List<OrderHistoryResponseData>) {
         this.paymentHistoryList = paymentHistories
         notifyDataSetChanged()
     }
 
-    private var onItemClickListener: ((PaymentHistory) -> Unit)? = null
+    private var onItemClickListener: ((OrderHistoryResponseData) -> Unit)? = null
+    private var onViewAllClickListener: ((List<OrderHistoryResponseData>) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (PaymentHistory) -> Unit) {
+    fun setOnItemClickListener(listener: (OrderHistoryResponseData) -> Unit) {
         onItemClickListener = listener
     }
+    fun setOnViewAllClickListener(listener: (List<OrderHistoryResponseData>) -> Unit) {
+        onViewAllClickListener = listener
+    }
+
+}
+
+enum class PaymentStatus(val textColourRes: Int, val iconColourRes: Int) {
+    ORDER_COMPLETED(R.color.success_green, R.color.success_green),
+    ORDER_IN_PROCESS(R.color.primary_color, R.color.primary_color),
+    PAYMENT_PENDING(R.color.text_light, R.color.text_light),
+    PAYMENT_CONFIRMED(R.color.secondary_color, R.color.secondary_color)
 }

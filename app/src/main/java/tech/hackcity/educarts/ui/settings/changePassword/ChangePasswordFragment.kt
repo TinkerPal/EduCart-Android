@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
@@ -12,6 +13,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentChangePasswordBinding
 import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
@@ -40,7 +42,9 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password), Chan
             viewModel.oldPassword = binding.oldPasswordET.text.toString().trim()
             viewModel.newPassword = binding.confirmNewPasswordET.text.toString().trim()
 
-            viewModel.onUpdateButtonClicked(requireContext())
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.changePassword(requireContext())
+            }
         }
 
     }

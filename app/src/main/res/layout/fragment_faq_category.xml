@@ -43,23 +43,51 @@
         app:layout_constraintBottom_toTopOf="@+id/bookConsultationBtn"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerLayout"
+    <LinearLayout
+        android:id="@+id/faqsProgressBar"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="6dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginVertical="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp" />
 
-            <include layout="@layout/faqs_category_shimmer_layout"/>
-            <include layout="@layout/faqs_category_shimmer_layout"/>
-            <include layout="@layout/faqs_category_shimmer_layout"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/loading"
+            android:textAlignment="center"
+            android:textColor="@color/text_heading_light"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+
+<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--        android:id="@+id/shimmerLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginHorizontal="6dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <include layout="@layout/faqs_category_shimmer_layout"/>-->
+<!--            <include layout="@layout/faqs_category_shimmer_layout"/>-->
+<!--            <include layout="@layout/faqs_category_shimmer_layout"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
 </LinearLayout>

@@ -13,4 +13,6 @@ object ErrorCodes {
     const val EMPTY_USER_FIELD = "empty_user_field"
     const val EMPTY_PASSPORT_FIELD = "empty_passport_field"
     const val EMPTY_INTERNATIONAL_PASSPORT_FIELD = "empty_international_passport_field"
+    const val WEAK_PASSWORD = "weak_password"
+    const val MAX_RETRIES_EXCEEDED = "max_retries_exceeded"
 }

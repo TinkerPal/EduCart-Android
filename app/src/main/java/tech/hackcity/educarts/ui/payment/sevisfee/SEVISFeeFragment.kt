@@ -28,32 +28,36 @@ class SEVISFeeFragment : Fragment(R.layout.fragment_sevis_fee) {
     }
 
     private fun setDestination() {
-        binding.carryAllSevisFeeForMe.setOnClickListener {
+        binding.sevisPaymentBtn.setOnClickListener {
             destination = 1
+            binding.sevisPaymentRadioBtn.isChecked = true
+            binding.sevisCouponRadioBtn.isChecked = false
         }
-        binding.iHaveSevisPaymentCoupon.setOnClickListener {
+        binding.sevisCouponBtn.setOnClickListener {
             destination = 2
+            binding.sevisPaymentRadioBtn.isChecked = false
+            binding.sevisCouponRadioBtn.isChecked = true
         }
 
-        binding.getStartedBtn.setOnClickListener {
+        binding.nextBtn.setOnClickListener {
             when (destination) {
                 1 -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    findNavController().navigate(R.id.action_sevisFeeFragment_to_sevisPayment1Fragment)
+                    val action = SEVISFeeFragmentDirections.actionSevisFeeFragmentToSEVISFormTypeFragment("sevisFeePayment")
+                    findNavController().navigate(action)
                 }
                 2 -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    findNavController().navigate(R.id.action_sevisFeeFragment_to_sevisCouponFragment)
+                    val action = SEVISFeeFragmentDirections.actionSevisFeeFragmentToSEVISFormTypeFragment("sevisCoupon")
+                    findNavController().navigate(action)
                 }
                 else -> context?.toast(resources.getString(R.string.select_a_service))
-
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.updateStepIndicator(arrayOf(0, 3))
+        sharedViewModel.updateHorizontalStepViewVisibility(false)
     }
+
 
 }

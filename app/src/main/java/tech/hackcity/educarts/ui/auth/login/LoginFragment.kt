@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
@@ -18,9 +19,11 @@ import tech.hackcity.educarts.databinding.FragmentLoginBinding
 import tech.hackcity.educarts.domain.model.auth.LoginResponse
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
+import java.lang.IllegalArgumentException
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -38,7 +41,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val userInfoManager = UserInfoManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val repository =
+            AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = LoginViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
         viewModel.loginListener = this
@@ -47,9 +51,10 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
-            viewModel.onLoginButtonClicked(requireContext())
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.loginUser(requireContext())
+            }
         }
-
 
         binding.signupTextView.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_getStartedFragment)
@@ -58,7 +63,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
         binding.forgotPasswordTextView.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
-
 
     }
 
@@ -76,13 +80,22 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
     }
 
     override fun onRequestSuccessful(response: LoginResponse) {
-        startActivity(Intent(requireContext(), MainActivity::class.java))
-        activity?.finish()
+        try {
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            activity?.finish()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.setToolBarColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.background_001
+            )
+        )
         sharedViewModel.updateHorizontalStepViewVisibility(false)
     }
 

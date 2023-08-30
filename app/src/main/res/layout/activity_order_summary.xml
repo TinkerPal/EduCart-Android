@@ -1,65 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_001"
     tools:context=".ui.payment.OrderSummaryActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/background_001"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary_color"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/order_summary"
+        android:textColor="@color/text_heading_light"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/serviceImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
                 android:src="@drawable/sevis_fee" />
 
             <TextView
-                android:id="@+id/service"
+                android:id="@+id/serviceTV1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
-                android:text="@string/sevis_fee"
-                android:textColor="@color/text_light"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
-                android:text="@string/order_summary"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/sevis_fee"
                 android:textColor="@color/text_light"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textGuide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/use_a_valid_credit_debit_card_to_ensure_prompt_processing_of_your_order"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/card_border2"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/white_bg_with_gray_borders"
                 android:orientation="vertical"
                 android:paddingHorizontal="1dp"
                 android:paddingTop="1dp">
@@ -67,7 +82,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="#FBF2E6"
+                    android:background="@color/gray_004"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -79,8 +94,8 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Order ID"
-                        android:textColor="@color/text_light" />
+                        android:text="@string/order_id"
+                        android:textColor="@color/primary_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -88,9 +103,11 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="8dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="SF12003"
-                        android:textColor="#9B5B00"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary_color"
                         app:drawableEndCompat="@drawable/content_copy" />
 
                 </RelativeLayout>
@@ -105,16 +122,19 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toStartOf="@+id/orderTypeTV"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Order Type"
+                        android:text="@string/you_re_paying_for"
                         android:textColor="@color/text_light" />
 
                     <TextView
+                        android:id="@+id/orderTypeTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="SEVIS Fee/I-20"
                         android:textColor="@color/text_light" />
 
@@ -126,15 +146,19 @@
                     android:paddingHorizontal="20dp">
 
                     <TextView
+                        android:id="@+id/serviceTV2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toStartOf="@+id/servicePriceTV"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="SEVIS Fee"
+                        tools:text="SEVIS Fee"
                         android:textColor="@color/text_light" />
 
                     <TextView
+                        android:id="@+id/servicePriceTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -156,11 +180,14 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toStartOf="@+id/chargesTV"
                         android:fontFamily="@font/montserrat_regular"
                         android:text="Charges"
                         android:textColor="@color/text_light" />
 
                     <TextView
+                        android:id="@+id/chargesTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -182,11 +209,14 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_toStartOf="@+id/totalPriceTV"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Total"
+                        android:text="@string/total"
                         android:textColor="@color/text_light" />
 
                     <TextView
+                        android:id="@+id/totalPriceTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -208,11 +238,14 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Total in local currency"
-                        android:textColor="@color/text_heading_light" />
+                        android:layout_marginEnd="20dp"
+                        android:layout_toStartOf="@+id/totalLocalPriceTV"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/total_in_local_currency"
+                        android:textColor="@color/text_light" />
 
                     <TextView
+                        android:id="@+id/totalLocalPriceTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -226,66 +259,88 @@
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:gravity="center"
-                android:text="@string/exchange_rate"
-                android:textColor="@color/text_light" />
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:gravity="center"
-                android:text="$1 = #700"
-                android:textColor="@color/text_heading_light" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:text="@string/exchange_rate"
+                    android:textColor="@color/secondary_color" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/proceedToPaymentBtn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/primary_button"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/proceed_to_payment"
-                android:textAllCaps="false"
-                app:backgroundTint="@null" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:text="$1 = #700"
+                    android:textColor="@color/text_heading_light" />
 
-            <TextView
-                android:id="@+id/modifyOrder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="10dp"
-                android:text="@string/modify_order"
-                android:textColor="@color/text_light" />
+            </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="invisible" />
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+    <TextView
+        android:id="@+id/modifyOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/montserrat_regular"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="5dp"
+        android:text="@string/modify_order"
+        android:textColor="@color/text_light"
+        app:layout_constraintBottom_toBottomOf="@+id/nextBtnLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextBtnLayout" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nextBtnLayout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceedToPaymentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_medium"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/proceed_to_payment"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/proceedToPaymentBtn"
+            app:layout_constraintEnd_toEndOf="@id/proceedToPaymentBtn"
+            app:layout_constraintStart_toStartOf="@id/proceedToPaymentBtn"
+            app:layout_constraintTop_toTopOf="@id/proceedToPaymentBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

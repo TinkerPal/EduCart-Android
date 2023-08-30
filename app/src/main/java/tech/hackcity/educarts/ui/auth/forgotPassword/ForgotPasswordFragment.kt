@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
@@ -18,6 +19,7 @@ import tech.hackcity.educarts.domain.model.auth.ForgotPasswordResponse
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.toast
 
 /**
@@ -45,7 +47,10 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
 
         binding.sendEmailBtn.setOnClickListener {
             viewModel.email = binding.emailET.text.toString().trim()
-            viewModel.onSendOTPButtonClicked(requireContext())
+
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.forgotPassword(requireContext())
+            }
         }
 
         binding.swapTextInputTxt.setOnClickListener {
@@ -81,11 +86,15 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
 
     override fun onRequestSuccessful(response: ForgotPasswordResponse) {
         val email = response.data.email
-        val action =
-            ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordInstructionsFragment(
-                email
-            )
-        findNavController().navigate(action)
+       try {
+           val action =
+               ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToForgotPasswordInstructionsFragment(
+                   email
+               )
+           findNavController().navigate(action)
+       }catch (e: IllegalArgumentException) {
+           e.printStackTrace()
+       }
     }
 
     override fun onResume() {

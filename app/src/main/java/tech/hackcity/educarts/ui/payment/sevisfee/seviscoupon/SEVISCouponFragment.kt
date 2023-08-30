@@ -26,10 +26,14 @@ class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon
 
         binding.nextBtn.setOnClickListener {
             val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
-            intent.putExtra("title", resources.getString(R.string.sevis_fee))
             intent.putExtra("service", resources.getString(R.string.sevis_fee))
             startActivity(intent)
-            sharedViewModel.updateStepIndicator(arrayOf(0, 3))
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.updateHorizontalStepViewVisibility(false)
+    }
+
 }

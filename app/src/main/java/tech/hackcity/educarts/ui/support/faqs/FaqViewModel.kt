@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.support.faqs
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
@@ -18,7 +19,7 @@ class FaqViewModel(
     fun fetchFAQs() {
         listener?.onRequestStarted()
 
-        Coroutines.main {
+        Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.fetchFAQs()
 
@@ -30,6 +31,7 @@ class FaqViewModel(
 
             } catch (e: ApiException) {
                 listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+                return@onMainWithScope
             }
         }
     }
