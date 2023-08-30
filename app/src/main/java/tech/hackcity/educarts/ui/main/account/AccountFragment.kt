@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.main.account
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import tech.hackcity.educarts.R
@@ -22,6 +24,7 @@ import tech.hackcity.educarts.ui.settings.SettingsViewModel
 import tech.hackcity.educarts.ui.settings.SettingsViewModelFactory
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.shortenString
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -43,7 +46,7 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         val factory = SettingsViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[SettingsViewModel::class.java]
 
-
+        setupUserInfo()
         setupNavigation()
         securitySettings()
 
@@ -51,6 +54,26 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
             logOutCurrentUser()
         }
     }
+
+    private fun securitySettings() {
+        binding.securitySettings.setOnClickListener {
+            if (binding.hiddenView.visibility == View.VISIBLE) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
+                }
+                binding.hiddenView.visibility = View.GONE
+                binding.arrowButton.setImageResource(R.drawable.arrow_forward)
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
+                }
+                binding.hiddenView.visibility = View.VISIBLE
+                binding.arrowButton.setImageResource(R.drawable.arrow_down)
+            }
+        }
+
+    }
+
 
     private fun setupNavigation() {
         binding.viewProfile.setOnClickListener {
@@ -75,23 +98,14 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         }
     }
 
-    private fun securitySettings() {
-        binding.securitySettings.setOnClickListener {
-            if (binding.hiddenView.visibility == View.VISIBLE) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
-                }
-                binding.hiddenView.visibility = View.GONE
-                binding.arrowButton.setImageResource(R.drawable.arrow_forward)
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
-                }
-                binding.hiddenView.visibility = View.VISIBLE
-                binding.arrowButton.setImageResource(R.drawable.arrow_down)
-            }
-        }
+    @SuppressLint("SetTextI18n")
+    private fun setupUserInfo() {
+        val userInfoManager = UserInfoManager(requireContext())
 
+        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
+            binding.fullNameTV.text = "${user.firstName} ${user.lastName}"
+            binding.userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+        }
     }
 
     private fun logOutCurrentUser() {

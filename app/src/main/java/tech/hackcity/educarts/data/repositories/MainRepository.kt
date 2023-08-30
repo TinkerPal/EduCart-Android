@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.data.repositories.settings
+package tech.hackcity.educarts.data.repositories
 
 import okhttp3.MultipartBody
 import tech.hackcity.educarts.data.network.RetrofitInstance
@@ -14,44 +14,13 @@ import tech.hackcity.educarts.uitls.Coroutines
 /**
  *Created by Victor Loveday on 5/30/23
  */
-class SettingsRepository(
+class MainRepository(
     private val api: RetrofitInstance,
     private val sessionManager: SessionManager,
     private val sharedPreferenceManager: SharePreferencesManager,
     private val userInfoManager: UserInfoManager
 ) : SafeApiRequest() {
 
-    suspend fun changePassword(
-        oldPassword: String,
-        newPassword: String,
-        confirmPassword: String
-    ): ChangePasswordResponse {
-        return apiRequest {
-            api.settingsAPI.changePassword(oldPassword, newPassword, confirmPassword)
-        }
-    }
-
-    suspend fun editProfile(
-        first_name: String,
-        last_name: String,
-        country_code: Int,
-        phone_number: String,
-        country_of_residence: String,
-        institution_of_study: String,
-        profilePicture: MultipartBody.Part
-    ): ProfileResponse {
-        return apiRequest {
-            api.settingsAPI.editProfile(
-                first_name,
-                last_name,
-                country_code,
-                phone_number,
-                country_of_residence,
-                institution_of_study,
-                profilePicture
-            )
-        }
-    }
 
     suspend fun fetchProfile(): ProfileResponse {
         return apiRequest { api.settingsAPI.fetchProfile() }

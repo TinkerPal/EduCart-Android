@@ -165,6 +165,7 @@
     <string name="upload_sevis_fee_coupon_here">Upload SEVIS Fee Coupon here</string>
     <string name="modify_order">Modify order</string>
     <string name="hello_">Hello %1$s</string>
+    <string name="hello__">Hello, %1$s</string>
     <string name="user_id">User ID: %1$s</string>
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
@@ -217,6 +218,7 @@
     <string name="later">Later</string>
     <string name="by_proceeding_to_sign_up_you_re_agreein_to_our_terms_and_conditions">By proceeding to sign up, you\'re agreeing to our terms and conditions</string>
     <string name="field_can_not_be_empty">Field can not be empty!</string>
+    <string name="no_photo_selected">No photo selected</string>
     <string name="missing_field">Missing field</string>
     <string name="some_files_are_missing">Some files are missing</string>
     <string name="wrongly_formatted_email">Wrongly formatted email</string>
@@ -312,6 +314,7 @@
     <string name="do_you_want_us_to_send_the_result_directly_to_a_recipient_at_the_end_of_evaluation">Do you want us to send the result directly to a recipient at the end of Evaluation?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="nil">Nil</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="is_there_any_specific_forms_or_reference_number_provided_by_the_recipient_requesting_institution_or_organization">Is there any specific form or reference number provided by the recipient (requesting institution or organization)?</string>
     <string name="input_reference_number_if_any">Input Reference Number (If any)</string>
@@ -422,4 +425,5 @@
     <string name="total">Total</string>
     <string name="you_re_paying_for">You\'re paying for</string>
     <string name="use_a_valid_credit_debit_card_to_ensure_prompt_processing_of_your_order">Use a valid credit/debit card to ensure prompt processing of your order</string>
+    <string name="edit_profile">Edit profile</string>
 </resources>

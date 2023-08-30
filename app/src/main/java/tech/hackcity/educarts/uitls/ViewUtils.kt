@@ -155,6 +155,10 @@ fun removeSpacesFromString(input: String): String {
     }
 }
 
+fun clearExtraCharacters(input: String): String {
+    return input.replace("\"", "").trim()
+}
+
 fun TextView.animateTextFadeOut() {
     val originalAlpha = alpha
 

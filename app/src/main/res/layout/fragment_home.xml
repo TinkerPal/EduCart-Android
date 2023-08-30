@@ -20,12 +20,12 @@
                 android:id="@+id/profileImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/dummy_profile"
+                android:src="@drawable/default_profile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/greetingsAndNameTextView"
+                android:id="@+id/greetingsAndNameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -38,17 +38,20 @@
                 tools:text="Hello User" />
 
             <TextView
-                android:id="@+id/userID"
+                android:id="@+id/userIDTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:drawablePadding="5dp"
                 android:focusable="true"
+                android:paddingVertical="3dp"
+                android:paddingHorizontal="8dp"
+                android:background="@drawable/white_bg_with_gray_borders"
                 android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:textColor="@color/text_light"
                 android:textSize="14sp"
-                app:drawableEndCompat="@drawable/content_copy"
+                app:drawableEndCompat="@drawable/content_copy_16"
                 app:layout_constraintBottom_toBottomOf="@id/profileImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/profileImage"
@@ -57,8 +60,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/incompleteProfileCardView"
             android:layout_width="match_parent"
             android:layout_height="170dp"
+            android:visibility="gone"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="15dp">
@@ -107,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/quick_actions"
             android:textColor="@color/text_light"
@@ -188,7 +193,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/educational_news"
             android:textColor="@color/text_light"
@@ -236,7 +241,7 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/orderHistoryProgressBar"
+            android:id="@+id/orderHistoryLoader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

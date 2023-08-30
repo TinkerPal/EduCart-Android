@@ -1,12 +1,15 @@
 package tech.hackcity.educarts.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -16,14 +19,26 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarItemView
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.RetrofitInstance
+import tech.hackcity.educarts.data.repositories.MainRepository
+import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
+import tech.hackcity.educarts.data.storage.SessionManager
+import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.ActivityMainBinding
+import tech.hackcity.educarts.domain.model.settings.ProfileResponse
+import tech.hackcity.educarts.ui.settings.profile.ProfileViewModel
+import tech.hackcity.educarts.ui.settings.profile.ProfileViewModelFactory
+import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainListener {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,5 +72,38 @@ class MainActivity : AppCompatActivity() {
             return@setOnItemReselectedListener
         }
         binding.bottomNav.itemIconTintList = null
+
+        val api = RetrofitInstance(this)
+        val sessionManager = SessionManager(this)
+        val sharePreferencesManager = SharePreferencesManager(this)
+        val userInfoManager = UserInfoManager(this)
+        val repository = MainRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val factory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+        viewModel.listener = this
+
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchProfile()
+        }
+    }
+
+    override fun onFetchProfileRequestStarted() {
+
+    }
+
+    override fun onRequestFailed(message: String) {
+        this.toast(message)
+        Log.d("MainActivity", message)
+    }
+
+    override fun onFetchProfileRequestSuccessful(response: ProfileResponse) {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchProfile()
+        }
     }
 }

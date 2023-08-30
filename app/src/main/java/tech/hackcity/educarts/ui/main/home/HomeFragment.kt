@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.DashboardRepository
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
+import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
@@ -104,10 +106,22 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         val userInfoManager = UserInfoManager(requireContext())
 
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-            binding.greetingsAndNameTextView.text =
-                resources.getString(R.string.hello_, user.firstName)
-            binding.userID.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+            binding.greetingsAndNameTV.text = resources.getString(R.string.hello_, user.firstName)
+            binding.userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+
+            setupProfileCompletionBanner(user)
         }
+    }
+
+    private fun setupProfileCompletionBanner(user: User) {
+        binding.incompleteProfileCardView.visibility =
+            if (user.isProfileCompleted) {
+                View.GONE
+            } else {
+                val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+                binding.incompleteProfileCardView.startAnimation(fadeIn)
+                View.VISIBLE
+            }
     }
 
     private fun setupNews() {
@@ -145,18 +159,19 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     }
 
     override fun onFetchOrderHistoryStarted() {
-        binding.orderHistoryProgressBar.visibility = View.VISIBLE
+        binding.orderHistoryLoader.visibility = View.VISIBLE
     }
 
     override fun onFetchOrderHistoryFailed(message: List<ErrorMessage>) {
         context?.toast("$message")
-        binding.orderHistoryProgressBar.visibility = View.GONE
+        binding.orderHistoryLoader.visibility = View.GONE
     }
 
     override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
-        binding.orderHistoryProgressBar.visibility = View.GONE
+        binding.orderHistoryLoader.visibility = View.GONE
 
-        setupOrderHistory(response.date)
+        val orderHistoryData = response.date ?: emptyList()
+        setupOrderHistory(orderHistoryData)
 
         binding.viewAllPayments.setOnClickListener {
             val intent = Intent(requireContext(), AllPaymentActivity::class.java)

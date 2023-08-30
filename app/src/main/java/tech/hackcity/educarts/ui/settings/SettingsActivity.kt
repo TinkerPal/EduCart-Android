@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.settings
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -10,6 +11,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivitySettingsBinding
+import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.hideViews
+import tech.hackcity.educarts.uitls.showViews
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -18,6 +22,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +32,8 @@ class SettingsActivity : AppCompatActivity() {
 
         //keep app on light mode only
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.accountFragment)
@@ -38,12 +45,25 @@ class SettingsActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
 
         val toolbar = binding.toolbar
+        toolbar.title = ""
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupDestination()
+        setupScreenLoader()
     }
+
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
+        }
+    }
+
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.settings_nav_graph)
