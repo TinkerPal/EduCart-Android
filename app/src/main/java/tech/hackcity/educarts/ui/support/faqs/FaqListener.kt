@@ -8,6 +8,6 @@ import tech.hackcity.educarts.domain.model.support.FaqsResponse
  */
 interface FaqListener {
     fun onRequestStarted()
-    fun onRequestFailed(message: List<ErrorMessage>)
+    fun onRequestFailed(message: String)
     fun onRequestSuccessful(response: FaqsResponse)
 }

@@ -9,7 +9,6 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.domain.model.auth.User
-import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.clearExtraCharacters
@@ -108,12 +107,15 @@ class ProfileViewModel(
             clearExtraCharacters(data.first_name),
             clearExtraCharacters(data.last_name),
             data.country_code,
-            data.phone_number,
+            clearExtraCharacters(data.phone_number),
             clearExtraCharacters(data.country_of_residence),
             clearExtraCharacters(data.email),
             data.profile_completed,
             data.is_restricted,
-            clearExtraCharacters(data.institution_of_study),
+            data.institution_of_study?.let { clearExtraCharacters(it) },
+            data.country_of_birth?.let { clearExtraCharacters(it) },
+            data.state?.let { clearExtraCharacters(it) },
+            data.city?.let { clearExtraCharacters(it) },
         )
 
         Log.d("UserInfo", "saved data : $user")

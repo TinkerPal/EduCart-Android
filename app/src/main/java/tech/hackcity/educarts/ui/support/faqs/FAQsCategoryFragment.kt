@@ -70,7 +70,7 @@ class FAQsCategoryFragment : Fragment(R.layout.fragment_faq_category), FaqListen
         binding.faqsProgressBar.visibility = View.VISIBLE
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onRequestFailed(message: String) {
 //        stopShimmerLoader(binding.shimmerLayout)
         binding.faqsProgressBar.visibility = View.GONE
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()

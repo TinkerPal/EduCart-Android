@@ -261,7 +261,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         disablePrimaryButtonState(binding.nextBtn)
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onRequestFailed(message: String) {
         context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,

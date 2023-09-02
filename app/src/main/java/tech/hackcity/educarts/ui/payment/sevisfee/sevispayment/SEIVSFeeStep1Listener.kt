@@ -8,6 +8,6 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
  */
 interface SEIVSFeeStep1Listener {
     fun onRequestStarted()
-    fun onRequestFailed(message: List<ErrorMessage>)
+    fun onRequestFailed(message: String)
     fun onRequestSuccessful(response: SEVISFeeStep1Response)
 }

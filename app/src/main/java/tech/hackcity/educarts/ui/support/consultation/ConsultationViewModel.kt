@@ -37,11 +37,11 @@ class ConsultationViewModel(
                 if (!response.error) {
                     step1listener?.onFetchConsultationTopicsRequestSuccessful(response)
                 } else {
-                    step1listener?.onRequestFailed(response.errorMessage)
+                    step1listener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+                step1listener?.onRequestFailed(e.errorMessage)
             }
         }
     }
@@ -50,13 +50,7 @@ class ConsultationViewModel(
         step1listener?.onSubmitConsultationStep1RequestStarted()
 
         if (consultation.isNullOrEmpty() || detail.isNullOrEmpty()) {
-            step1listener?.onRequestFailed(
-                listOf(
-                    ErrorMessage(
-                        ErrorCodes.EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty)
-                    )
-                )
-            )
+            step1listener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -71,11 +65,11 @@ class ConsultationViewModel(
                 if (!response.error) {
                     step1listener?.onSubmitConsultationStep1RequestSuccessful(response)
                 } else {
-                    step1listener?.onRequestFailed(response.errorMessage)
+                    step1listener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+                step1listener?.onRequestFailed(e.errorMessage)
             }
         }
 
@@ -91,14 +85,7 @@ class ConsultationViewModel(
             date.isNullOrEmpty() ||
             time.isNullOrEmpty()
         ) {
-
-            step2listener?.onRequestFailed(
-                listOf(
-                    ErrorMessage(
-                        ErrorCodes.EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty)
-                    )
-                )
-            )
+            step2listener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -115,11 +102,11 @@ class ConsultationViewModel(
                 if (!response.error) {
                     step2listener?.onSubmitConsultationStep2RequestSuccessful(response)
                 } else {
-                    step2listener?.onRequestFailed(response.errorMessage)
+                    step2listener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+                step1listener?.onRequestFailed(e.errorMessage)
             }
         }
 

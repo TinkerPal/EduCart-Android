@@ -56,7 +56,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             || form == null || passport == null
             || internationalPassport == null
         ) {
-            listener1?.onRequestFailed(listOf(ErrorMessage(EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty))))
+            listener1?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -77,11 +77,11 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                     listener1?.onRequestSuccessful(response)
 
                 } else {
-                    listener1?.onRequestFailed(response.errorMessage)
+                    listener1?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                listener1?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
+                listener1?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
             }
         }
@@ -95,7 +95,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             || email.isNullOrEmpty() || phoneNumber.isNullOrEmpty()
             || countryOfCitizenship == null || countryOfBirth == null
         ) {
-            listener2?.onRequestFailed(listOf(ErrorMessage(EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty))))
+            listener2?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -113,11 +113,11 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                     listener2?.onRequestSuccessful(response)
 
                 } else {
-                    listener2?.onRequestFailed(response.errorMessage)
+                    listener2?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                listener2?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
+                listener2?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
             }
         }
@@ -131,7 +131,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             || country.isNullOrEmpty() || state.isNullOrEmpty()
             || city == null
         ) {
-            listener3?.onRequestFailed(listOf(ErrorMessage(EMPTY_FORM_FIELD, context.resources.getString(R.string.field_can_not_be_empty))))
+            listener3?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -148,11 +148,11 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                     listener3?.onRequestSuccessful(response)
 
                 } else {
-                    listener3?.onRequestFailed(response.errorMessage)
+                    listener3?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                listener3?.onRequestFailed(listOf(ErrorMessage(IO_EXCEPTION, e.message!!)))
+                listener3?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
             }
         }

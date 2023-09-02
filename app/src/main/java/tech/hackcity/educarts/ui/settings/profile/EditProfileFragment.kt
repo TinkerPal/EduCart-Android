@@ -20,10 +20,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.hbb20.CountryCodePicker
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
@@ -33,13 +32,10 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentEditProfileBinding
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_IMAGE_URL
+import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_MEDIA_URL
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
-import tech.hackcity.educarts.uitls.observeOnce
-import tech.hackcity.educarts.uitls.toImageFile
 import tech.hackcity.educarts.uitls.toast
-import java.net.URLEncoder
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -112,7 +108,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
 
     @SuppressLint("SetTextI18n")
     private fun setupUserInfo() {
-        userInfoManager.fetchUserInfo().asLiveData().observeOnce(viewLifecycleOwner) { user ->
+        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
             firstName = user.firstName
             lastName = user.lastName
             dialCode = user.countryCode
@@ -123,14 +119,20 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             state = user.state.toString()
             city = user.city.toString()
 
-            val profileUrl = "${EDU_CARTS_IMAGE_URL}${user.profilePhoto}"
-
             with(binding) {
+                val profileUrl = "${EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
+                val requestOptions = RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+
                 if (user.profilePhoto.isNullOrEmpty()) {
                     profilePhoto.setImageResource(R.drawable.default_profile)
                 }else {
                     Log.d("ProfilePhoto", profileUrl)
-                    Glide.with(requireContext()).load(profileUrl).into(profilePhoto)
+                    Glide.with(requireContext())
+                        .load(profileUrl)
+                        .apply(requestOptions)
+                        .into(profilePhoto)
                 }
 
                 firstNameET.setText(firstName)

@@ -10,7 +10,7 @@ import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 interface ConsultationStep1Listener {
     fun onFetchConsultationTopicsRequestStarted()
     fun onSubmitConsultationStep1RequestStarted()
-    fun onRequestFailed(message: List<ErrorMessage>)
+    fun onRequestFailed(message: String)
     fun onFetchConsultationTopicsRequestSuccessful(response: ConsultationResponse)
     fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationStep1Response)
 }

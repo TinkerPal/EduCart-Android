@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_001"
     android:orientation="vertical"
     android:scrollbars="none"
-    android:background="@color/background_001"
     tools:context=".ui.settings.profile.ProfileFragment">
 
     <TextView
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImage"
+                    android:id="@+id/profilePhoto"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="centerCrop"
@@ -52,8 +52,8 @@
                     android:layout_height="24dp"
                     android:contentDescription="@string/verification_badge"
                     android:src="@drawable/verification_badge"
-                    app:layout_constraintBottom_toBottomOf="@id/profileImage"
-                    app:layout_constraintEnd_toEndOf="@id/profileImage" />
+                    app:layout_constraintBottom_toBottomOf="@id/profilePhoto"
+                    app:layout_constraintEnd_toEndOf="@id/profilePhoto" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,8 +81,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
@@ -113,9 +113,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="Maleek"
+                            android:textColor="@color/text_heading_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_heading_light" />
+                            tools:text="Maleek" />
 
                         <View
                             android:layout_width="match_parent"
@@ -139,9 +139,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="Wasiu"
+                            android:textColor="@color/text_heading_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_heading_light" />
+                            tools:text="Wasiu" />
 
                         <View
                             android:layout_width="match_parent"
@@ -165,9 +165,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="malian@gmail.com"
+                            android:textColor="@color/text_heading_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_heading_light" />
+                            tools:text="malian@gmail.com" />
 
 
                     </LinearLayout>
@@ -202,9 +202,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="+234838298323"
+                            android:textColor="@color/text_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_light" />
+                            tools:text="+234838298323" />
 
                         <View
                             android:layout_width="match_parent"
@@ -228,9 +228,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="Nigeria"
+                            android:textColor="@color/text_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_light" />
+                            tools:text="Nigeria" />
 
                         <View
                             android:layout_width="match_parent"
@@ -254,9 +254,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:fontFamily="@font/montserrat_medium"
-                            tools:text="Bayero University, Kano"
+                            android:textColor="@color/text_heading_light"
                             android:textSize="16sp"
-                            android:textColor="@color/text_heading_light" />
+                            tools:text="Bayero University, Kano" />
 
                     </LinearLayout>
 
@@ -274,48 +274,26 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:paddingHorizontal="20dp"
-                        android:paddingBottom="10dp">
+                        android:paddingVertical="10dp">
 
-                        <RelativeLayout
-                            android:id="@+id/addressBook"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackgroundBorderless"
-                            android:paddingTop="10dp">
+                        <TextView
+                            android:id="@+id/label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/address"
+                            android:textColor="@color/text_light"
+                            android:textSize="14sp" />
 
-                            <TextView
-                                android:id="@+id/label"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentTop="true"
-                                android:fontFamily="@font/montserrat_regular"
-                                android:text="@string/address_book"
-                                android:textColor="@color/text_light"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/addressBookTV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/label"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginTop="3dp"
-                                android:fontFamily="@font/montserrat_medium"
-                                tools:text="Nil"
-                                android:textSize="16sp"
-                                android:textColor="@color/text_heading_light" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/arrow_forward" />
-
-                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/addressTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:textColor="@color/text_heading_light"
+                            android:textSize="16sp"
+                            tools:text="Nil" />
 
                     </LinearLayout>
 
@@ -331,12 +309,12 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="14sp"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="5dp"
                     android:text="@string/delete_account"
-                    android:textColor="@color/faded_red" />
+                    android:textColor="@color/faded_red"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

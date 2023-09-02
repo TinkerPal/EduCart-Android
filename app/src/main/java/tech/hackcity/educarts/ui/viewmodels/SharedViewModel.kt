@@ -2,7 +2,6 @@ package tech.hackcity.educarts.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import tech.hackcity.educarts.domain.model.AddressBook
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -58,17 +57,6 @@ class SharedViewModel : ViewModel() {
     fun updateDestination(d: String) {
         destination.postValue(d)
     }
-
-    private var address: MutableLiveData<AddressBook> = MutableLiveData<AddressBook>()
-
-    fun getAddress(): MutableLiveData<AddressBook> {
-        return address
-    }
-
-    fun updateAddress(ad: AddressBook) {
-        address.postValue(ad)
-    }
-
 
     //This array will only have two element
     // The first index is the current step

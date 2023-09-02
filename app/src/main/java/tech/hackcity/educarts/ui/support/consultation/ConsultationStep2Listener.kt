@@ -8,6 +8,6 @@ import tech.hackcity.educarts.domain.model.support.ConsultationStep2Response
  */
 interface ConsultationStep2Listener {
     fun onSubmitConsultationStep2RequestStarted()
-    fun onRequestFailed(message: List<ErrorMessage>)
+    fun onRequestFailed(message: String)
     fun onSubmitConsultationStep2RequestSuccessful(response: ConsultationStep2Response)
 }

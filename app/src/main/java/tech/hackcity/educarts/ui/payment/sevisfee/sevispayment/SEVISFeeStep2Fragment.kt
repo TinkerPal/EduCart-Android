@@ -59,8 +59,8 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
             viewModel.formType = args.formType
             viewModel.category = "au pair ($35)"
             viewModel.email = binding.emailET.text.toString().trim()
-//            viewModel.phoneNumber = binding.phoneNumberET.toString().trim()
-            viewModel.phoneNumber = "09066965746"
+            viewModel.phoneNumber = binding.phoneNumberET.toString().trim()
+//            viewModel.phoneNumber = "09066965746"
             viewModel.countryOfCitizenship = "Nigeria"
             viewModel.countryOfBirth = "Nigeria"
 
@@ -78,7 +78,7 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
         disablePrimaryButtonState(binding.nextBtn)
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onRequestFailed(message: String) {
         context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,

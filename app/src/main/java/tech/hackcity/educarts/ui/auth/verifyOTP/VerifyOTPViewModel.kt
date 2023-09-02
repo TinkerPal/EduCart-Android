@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.auth.verifyOTP
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import retrofit2.HttpException
@@ -9,7 +10,6 @@ import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
-import tech.hackcity.educarts.uitls.errorMessageFetcher
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -20,7 +20,6 @@ class VerifyOTPViewModel(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    var id: String? = null
     var otp: String? = null
 
     var verifyOTPListener: VerifyOTPListener? = null
@@ -28,25 +27,25 @@ class VerifyOTPViewModel(
     fun verifyOTPForNewAccount(context: Context) {
         verifyOTPListener?.onRequestStarted()
 
-        if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
+        if (otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
+        Log.d("OTPError", "${repository.fetchUserId()} $otp")
         Coroutines.onMainWithScope(viewModelScope) {
             try {
-                val response = repository.verifyOTPForNewAccount(id!!, otp!!)
+                val response = repository.verifyOTPForNewAccount(repository.fetchUserId()!!, otp!!)
 
                 if (!response.error) {
                     verifyOTPListener?.onRequestSuccessful(response)
 
                 } else {
-                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                    verifyOTPListener?.onRequestFailed(errorMessage)
+                    verifyOTPListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                verifyOTPListener?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
             }
         }
@@ -55,25 +54,24 @@ class VerifyOTPViewModel(
     fun verifyOTPForPasswordReset(context: Context) {
         verifyOTPListener?.onRequestStarted()
 
-        if (id.isNullOrEmpty() || otp.isNullOrEmpty()) {
+        if (otp.isNullOrEmpty()) {
             verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
         Coroutines.onMainWithScope(viewModelScope) {
             try {
-                val response = repository.verifyOTPForPasswordReset(id!!, otp!!)
+                val response = repository.verifyOTPForPasswordReset(repository.fetchUserId()!!, otp!!)
 
                 if (!response.error) {
                     verifyOTPListener?.onRequestSuccessful(response)
 
                 } else {
-                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                    verifyOTPListener?.onRequestFailed(errorMessage)
+                    verifyOTPListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                verifyOTPListener?.onRequestFailed(e.message!!)
+                verifyOTPListener?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
 
             }

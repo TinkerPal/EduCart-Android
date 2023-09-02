@@ -76,7 +76,7 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
         showButtonLoadingState(binding.scheduleMeetingBtn, binding.progressBar, "")
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onRequestFailed(message: String) {
         sharedViewModel.updateLoadingScreen(false)
         hideButtonLoadingState(binding.scheduleMeetingBtn, binding.progressBar, resources.getString(R.string.schedule_meeting))
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()

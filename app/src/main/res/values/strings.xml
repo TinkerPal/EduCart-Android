@@ -428,4 +428,5 @@
     <string name="edit_profile">Edit profile</string>
     <string name="permission_granted_you_can_now_pick_files">Permission granted. You can now pick files.</string>
     <string name="permission_denied_you_can_not_access_files">Permission denied. Cannot access files.</string>
+    <string name="failed_to_refresh_token_after">Failed to refresh token after %1$s attempts</string>
 </resources>

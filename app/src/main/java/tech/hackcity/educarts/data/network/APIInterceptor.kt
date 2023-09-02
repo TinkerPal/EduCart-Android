@@ -11,6 +11,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.HttpException
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.NoInternetException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -112,8 +113,7 @@ class APIInterceptor(
         }
 
         throw ApiException(
-            "Failed to refresh token after $maxRetries attempts",
-            ErrorCodes.MAX_RETRIES_EXCEEDED
+            context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"), ""
         )
     }
 
@@ -128,73 +128,3 @@ class APIInterceptor(
 }
 
 
-//class APIInterceptor(
-//    context: Context
-//) : Interceptor {
-//
-//    private val applicationContext = context.applicationContext
-//    private val sessionManager = SessionManager(applicationContext)
-//
-//    override fun intercept(chain: Interceptor.Chain): Response {
-//        if (!isInternetAvailable())
-//            throw NoInternetException("No internet connection")
-//
-//        val request = chain.request()
-//
-//        sessionManager.fetchAuthToken()?.let { token ->
-//            if (requiresAuthorization(request)) {
-//                val authenticatedRequest = request.newBuilder()
-//                    .addHeader("Authorization", "Bearer $token")
-//                    .build()
-//                return chain.proceed(authenticatedRequest)
-//            }
-//        }
-//
-//        return chain.proceed(request)
-//    }
-//
-//    private fun requiresAuthorization(request: Request): Boolean {
-//        val url = request.url.toString()
-//        return url.contains("secured")
-//    }
-//
-//    private fun isInternetAvailable(): Boolean {
-//        val connectivityManager =
-//            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//
-//        connectivityManager.activeNetworkInfo.also {
-//            return it != null && it.isConnected
-//        }
-//    }
-//}
-
-//class APIInterceptor(
-//    private val context: Context
-//) : Interceptor {
-//
-//    private val applicationContext = context.applicationContext
-//    private val sessionManager = SessionManager(applicationContext)
-//
-//    override fun intercept(chain: Interceptor.Chain): Response {
-//
-//        if (!isInternetAvailable())
-//            throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
-//
-//        val requestBuilder = chain.request().newBuilder()
-//
-//        sessionManager.fetchAuthToken()?.let {
-//            requestBuilder.addHeader("Authorization", "Bearer $it")
-//        }
-//
-//        return chain.proceed(requestBuilder.build())
-//    }
-//
-//    private fun isInternetAvailable(): Boolean {
-//        val connectivityManager =
-//            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//
-//        connectivityManager.activeNetworkInfo.also {
-//            return it != null && it.isConnected
-//        }
-//    }
-//}

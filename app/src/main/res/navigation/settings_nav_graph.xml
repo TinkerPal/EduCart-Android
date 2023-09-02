@@ -17,13 +17,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_addressBookFragment"
-            app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -31,63 +24,6 @@
         android:name="tech.hackcity.educarts.ui.settings.profile.EditProfileFragment"
         android:label=""
         tools:layout="@layout/fragment_edit_profile" />
-
-    <fragment
-        android:id="@+id/addressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.addressBook.AddressBookFragment"
-        android:label=""
-        tools:layout="@layout/fragment_address_book">
-        <action
-            android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
-            app:destination="@id/addAddressBookFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_addressBookFragment_to_editAddressBookFragment"
-            app:destination="@id/editAddressBookFragment"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addAddressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.addressBook.AddAddressBookFragment"
-        android:label=""
-        tools:layout="@layout/fragment_add_address_book">
-        <action
-            android:id="@+id/action_addAddressBookFragment_to_addressBookFragment"
-            app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_left_slow"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right_slow"
-            app:popExitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/addressBookFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/editAddressBookFragment"
-        android:name="tech.hackcity.educarts.ui.settings.addressBook.EditAddressBookFragment"
-        android:label=""
-        tools:layout="@layout/fragment_edit_address_book">
-        <argument
-            android:name="address"
-            app:argType="tech.hackcity.educarts.domain.model.AddressBook" />
-        <action
-            android:id="@+id/action_editAddressBookFragment_to_addressBookFragment"
-            app:destination="@id/addressBookFragment"
-            app:enterAnim="@anim/slide_in_left_slow"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right_slow"
-            app:popExitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/addressBookFragment"
-            app:popUpToInclusive="true" />
-
-    </fragment>
 
     <fragment
         android:id="@+id/identityVerificationFragment"

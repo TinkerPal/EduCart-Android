@@ -7,7 +7,6 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.errorMessageFetcher
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -36,12 +35,11 @@ class ForgotPasswordViewModel(
                     forgotPasswordListener?.onRequestSuccessful(response)
                     repository.saveUserId(response.data.id)
                 } else {
-                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                    forgotPasswordListener?.onRequestFailed(errorMessage)
+                    forgotPasswordListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                forgotPasswordListener?.onRequestFailed(e.message!!)
+                forgotPasswordListener?.onRequestFailed(e.errorMessage!!)
                 return@onMainWithScope
 
             }
