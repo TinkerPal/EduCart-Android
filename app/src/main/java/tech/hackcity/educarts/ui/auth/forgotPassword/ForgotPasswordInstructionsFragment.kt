@@ -42,7 +42,6 @@ class ForgotPasswordInstructionsFragment :
         super.onResume()
         sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
         sharedViewModel.updateHorizontalStepViewPosition(1)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 
 }

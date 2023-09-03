@@ -4,6 +4,7 @@ import okhttp3.MultipartBody
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
@@ -29,14 +30,14 @@ class SEVISFeeRepository(
     ): SEVISFeeStep1Response {
         return apiRequest {
             api.sevisFeeAPI.sevisFeeStep1(
+                form,
+                passport,
+                internationalPassport,
                 user,
                 sevis_id,
                 last_name,
                 given_name,
-                date_of_birth,
-                form,
-                passport,
-                internationalPassport
+                date_of_birth
             )
         }
     }
@@ -78,6 +79,12 @@ class SEVISFeeRepository(
                 state,
                 city
             )
+        }
+    }
+
+    suspend fun fetchSevisCategory(): SEVISCategoryResponse {
+        return apiRequest {
+            api.sevisFeeAPI.fetchSevisCategory()
         }
     }
 

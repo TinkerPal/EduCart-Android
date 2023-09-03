@@ -125,7 +125,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
                 R.color.background_001
             )
         )
-        sharedViewModel.updateHorizontalStepViewVisibility(false)
+        sharedViewModel.updateHorizontalStepViewPosition(0)
+
     }
 
 }

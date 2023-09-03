@@ -33,7 +33,6 @@ class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.updateHorizontalStepViewVisibility(false)
     }
 
 }

@@ -16,6 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
+    <tech.hackcity.educarts.ui.canvas.CustomLineView
+        android:id="@+id/customLineView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:lineCount="3"
+        app:lineSpacing="60dp" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/accountNavHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

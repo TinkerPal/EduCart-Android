@@ -4,9 +4,11 @@ import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
@@ -19,14 +21,14 @@ interface SEVISFeeAPI {
     @Multipart
     @POST("sevis/information/1/")
     suspend fun sevisFeeStep1(
+        @Part form: MultipartBody.Part,
+        @Part passport: MultipartBody.Part,
+        @Part international_passport: MultipartBody.Part,
         @Part("user") user: String,
         @Part("sevis_id") sevis_id: String,
         @Part("last_name") last_name: String,
         @Part("given_name") given_name: String,
-        @Part("date_of_birth") date_of_birth: String,
-        @Part form: MultipartBody.Part,
-        @Part passport: MultipartBody.Part,
-        @Part international_passport: MultipartBody.Part
+        @Part("date_of_birth") date_of_birth: String
     ): Response<SEVISFeeStep1Response>
 
     @FormUrlEncoded
@@ -49,4 +51,7 @@ interface SEVISFeeAPI {
         @Field("state") state: String,
         @Field("city") city: String
     ): Response<SEVISFeeStep3Response>
+
+    @GET("sevis/information/2/")
+    suspend fun fetchSevisCategory(): Response<SEVISCategoryResponse>
 }

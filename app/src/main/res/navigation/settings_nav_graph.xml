@@ -26,10 +26,18 @@
         tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
-        android:id="@+id/identityVerificationFragment"
-        android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragment"
-        android:label="Identity Verification"
-        tools:layout="@layout/fragment_identity_verification" />
+        android:id="@+id/identityVerificationFragmentStep1"
+        android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragmentStep1"
+        android:label=""
+        tools:layout="@layout/fragment_identity_verification">
+        <action
+            android:id="@+id/action_identityVerificationFragmentStep1_to_identityVerificationFragmentStep2"
+            app:destination="@id/identityVerificationFragmentStep2"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/passwordAndPinFragment"
@@ -118,7 +126,7 @@
             app:argType="string" />
         <argument
             android:name="step"
-            app:argType="integer"/>
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -126,5 +134,33 @@
         android:name="tech.hackcity.educarts.ui.settings.pin.CreateNewPinFragment"
         android:label="Create new PIN"
         tools:layout="@layout/fragment_create_new_pin" />
+
+    <fragment
+        android:id="@+id/identityVerificationFragmentStep2"
+        android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragmentStep2"
+        android:label=""
+        tools:layout="@layout/fragment_identity_verification_step2">
+        <action
+            android:id="@+id/action_identityVerificationFragmentStep2_to_identityVerificationFragmentStep3"
+            app:destination="@id/identityVerificationFragmentStep3"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <argument
+            android:name="pageTitle"
+            app:argType="string" />
+        <argument
+            android:name="guide"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/identityVerificationFragmentStep3"
+        android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragmentStep3"
+        android:label=""
+        tools:layout="@layout/fragment_identity_verification_step3" />
 
 </navigation>

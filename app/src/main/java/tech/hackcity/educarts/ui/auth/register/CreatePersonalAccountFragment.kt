@@ -146,7 +146,6 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         super.onResume()
         sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
         sharedViewModel.updateHorizontalStepViewPosition(2)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 
 }

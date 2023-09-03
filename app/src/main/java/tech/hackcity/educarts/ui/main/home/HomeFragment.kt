@@ -124,12 +124,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
 
                 if (user.profilePhoto.isNullOrEmpty()) {
                     profilePhoto.setImageResource(R.drawable.default_profile)
-                    Log.d("UserInfo", "profile : ${user.profilePhoto}")
+                    Log.d("UserInfo", "Empty profile : ${user.profilePhoto}")
 
                 } else {
+                    Log.d("UserInfo", "profile : $profileUrl")
                     Glide.with(requireContext())
                         .load(profileUrl)
-//                        .apply(requestOptions)
+                        .apply(requestOptions)
                         .into(profilePhoto)
                 }
 

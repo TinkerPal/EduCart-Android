@@ -46,7 +46,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
     var city: String? = null
 
 
-
     fun submitSevisFeeStep1(context: Context) {
         listener1?.onRequestStarted()
 
@@ -59,6 +58,8 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             listener1?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
+
+        Log.d("SEVISError", "${repository.fetchUserId()},$sevisId,$lastName,$givenName,$dateOfBirth")
 
         Coroutines.onMainWithScope(viewModelScope) {
             try {
@@ -75,9 +76,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
                 if (!response.error) {
                     listener1?.onRequestSuccessful(response)
-
-                } else {
-                    listener1?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
@@ -156,5 +154,27 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                 return@onMainWithScope
             }
         }
+    }
+
+    fun fetchSevisCategory() {
+        listener2?.onFetchSevisCategoryStarted()
+
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.fetchSevisCategory()
+
+                if (!response.error) {
+                    listener2?.onFetchSevisCategorySuccessful(response)
+
+                } else {
+//                    listener2?.onRequestFailed(response.errorMessage.toString())
+                }
+
+            } catch (e: ApiException) {
+                listener2?.onRequestFailed(e.errorMessage)
+                return@onMainWithScope
+            }
+        }
+
     }
 }

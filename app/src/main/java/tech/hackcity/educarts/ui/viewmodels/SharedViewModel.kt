@@ -38,16 +38,6 @@ class SharedViewModel : ViewModel() {
         horizontalStepViewPosition.postValue(position)
     }
 
-    private var horizontalStepViewVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-
-    fun fetchHorizontalStepVisibility(): MutableLiveData<Boolean> {
-        return horizontalStepViewVisibility
-    }
-
-    fun updateHorizontalStepViewVisibility(isVisible: Boolean) {
-        horizontalStepViewVisibility.postValue(isVisible)
-    }
-
     private var destination: MutableLiveData<String> = MutableLiveData<String>()
 
     fun getDestination(): MutableLiveData<String> {

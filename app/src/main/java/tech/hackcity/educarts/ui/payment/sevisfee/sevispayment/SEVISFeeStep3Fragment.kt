@@ -100,7 +100,6 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
     override fun onResume() {
         super.onResume()
         sharedViewModel.updateHorizontalStepViewPosition(3)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 
 
