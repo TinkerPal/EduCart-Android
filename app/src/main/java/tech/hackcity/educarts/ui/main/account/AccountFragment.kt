@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
@@ -24,12 +27,13 @@ import tech.hackcity.educarts.ui.settings.SettingsViewModel
 import tech.hackcity.educarts.ui.settings.SettingsViewModelFactory
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Constants
 import tech.hackcity.educarts.uitls.shortenString
 
 /**
  *Created by Victor Loveday on 2/22/23
  */
-class AccountFragment: Fragment(R.layout.fragment_account) {
+class AccountFragment : Fragment(R.layout.fragment_account) {
 
     private lateinit var binding: FragmentAccountBinding
 
@@ -42,7 +46,8 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         val userInfoManager = UserInfoManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val sessionManager = SessionManager(requireContext())
-        val repository = SettingsRepository(api,sessionManager , sharePreferencesManager, userInfoManager)
+        val repository =
+            SettingsRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = SettingsViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[SettingsViewModel::class.java]
 
@@ -59,13 +64,19 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
         binding.securitySettings.setOnClickListener {
             if (binding.hiddenView.visibility == View.VISIBLE) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
+                    TransitionManager.beginDelayedTransition(
+                        binding.securitySettings,
+                        AutoTransition()
+                    )
                 }
                 binding.hiddenView.visibility = View.GONE
                 binding.arrowButton.setImageResource(R.drawable.arrow_forward)
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    TransitionManager.beginDelayedTransition(binding.securitySettings, AutoTransition())
+                    TransitionManager.beginDelayedTransition(
+                        binding.securitySettings,
+                        AutoTransition()
+                    )
                 }
                 binding.hiddenView.visibility = View.VISIBLE
                 binding.arrowButton.setImageResource(R.drawable.arrow_down)
@@ -101,10 +112,27 @@ class AccountFragment: Fragment(R.layout.fragment_account) {
     @SuppressLint("SetTextI18n")
     private fun setupUserInfo() {
         val userInfoManager = UserInfoManager(requireContext())
-
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-            binding.fullNameTV.text = "${user.firstName} ${user.lastName}"
-            binding.userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+
+            with(binding) {
+                val profileUrl = "${Constants.EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
+                val requestOptions = RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+
+                if (user.profilePhoto.isNullOrEmpty()) {
+                    profilePhoto.setImageResource(R.drawable.default_profile)
+                } else {
+                    Glide.with(requireContext())
+                        .load(profileUrl)
+                        .apply(requestOptions)
+                        .into(profilePhoto)
+                }
+
+                fullNameTV.text = "${user.firstName} ${user.lastName}"
+                userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+            }
+
         }
     }
 

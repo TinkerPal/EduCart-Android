@@ -2,12 +2,9 @@ package tech.hackcity.educarts.uitls
 
 import tech.hackcity.educarts.domain.model.news.News
 import tech.hackcity.educarts.domain.model.notification.Notification
-import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.domain.model.payment.Program
 import tech.hackcity.educarts.domain.model.payment.School
 import tech.hackcity.educarts.domain.model.photo.Photo
-import tech.hackcity.educarts.domain.model.support.FaqCategory
-import tech.hackcity.educarts.domain.model.support.Faq
 
 /**
  *Created by Victor Loveday on 5/11/23
@@ -15,7 +12,7 @@ import tech.hackcity.educarts.domain.model.support.Faq
 object Constants {
 
     const val EDU_CARTS_BASE_URL = "https://educartapi.herokuapp.com/api/v1/"
-    const val EDU_CARTS_IMAGE_URL = "https://educartapi.herokuapp.com"
+    const val EDU_CARTS_MEDIA_URL = "https://educartapi.herokuapp.com"
 
     val dummySchoolList = listOf(
         School(

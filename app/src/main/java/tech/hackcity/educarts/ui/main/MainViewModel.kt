@@ -47,12 +47,15 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
             clearExtraCharacters(data.first_name),
             clearExtraCharacters(data.last_name),
             data.country_code,
-            data.phone_number,
+            clearExtraCharacters(data.phone_number),
             clearExtraCharacters(data.country_of_residence),
             clearExtraCharacters(data.email),
             data.profile_completed,
             data.is_restricted,
-            clearExtraCharacters(data.institution_of_study),
+            data.institution_of_study?.let { clearExtraCharacters(it) },
+            data.country_of_birth?.let { clearExtraCharacters(it) },
+            data.state?.let { clearExtraCharacters(it) },
+            data.city?.let { clearExtraCharacters(it) },
         )
 
         Log.d("UserInfo", "saved data : $user")

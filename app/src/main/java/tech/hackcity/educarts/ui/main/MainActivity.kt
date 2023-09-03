@@ -2,34 +2,23 @@ package tech.hackcity.educarts.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarItemView
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.MainRepository
-import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.ActivityMainBinding
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
-import tech.hackcity.educarts.ui.settings.profile.ProfileViewModel
-import tech.hackcity.educarts.ui.settings.profile.ProfileViewModelFactory
-import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.toast
 
 class MainActivity : AppCompatActivity(), MainListener {
@@ -82,9 +71,9 @@ class MainActivity : AppCompatActivity(), MainListener {
         viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
         viewModel.listener = this
 
-        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-            viewModel.fetchProfile()
-        }
+//        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+//            viewModel.fetchProfile()
+//        }
     }
 
     override fun onFetchProfileRequestStarted() {
@@ -102,8 +91,8 @@ class MainActivity : AppCompatActivity(), MainListener {
 
     override fun onResume() {
         super.onResume()
-        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-            viewModel.fetchProfile()
-        }
+//        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+//            viewModel.fetchProfile()
+//        }
     }
 }

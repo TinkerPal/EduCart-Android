@@ -45,7 +45,8 @@ class PaymentActivity : AppCompatActivity() {
             setOf(R.id.paymentFragment)
         )
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.paymentNavHostFragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.paymentNavHostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()
 
         //Toolbar
@@ -60,47 +61,47 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun setupScreenLoader() {
-        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+        sharedViewModel.isScreenLoading().observe(this) { isScreenLoading ->
             if (isScreenLoading) {
                 showViews(listOf(binding.loadingScreen))
-            }else {
+            } else {
                 hideViews(listOf(binding.loadingScreen))
             }
         }
     }
 
     private fun showStepIndicatorIfRequired() {
-        sharedViewModel.fetchHorizontalStepVisibility().observe(this) { isVisible ->
-            if (isVisible) {
+        customLineView = binding.customLineView
+        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
+            if (position > 0) {
                 binding.customLineView.visibility = View.VISIBLE
+                Handler(Looper.getMainLooper()).postDelayed(
+                    {
+                        customLineView.setPosition(position)
+                    }, 100
+                )
+
             } else {
                 binding.customLineView.visibility = View.INVISIBLE
             }
-        }
-
-        customLineView = binding.customLineView
-        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    customLineView.setPosition(position)
-                }, 100
-            )
         }
     }
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.payment_nav_graph)
 
-        val destination = "sevis fee"
-//        val destination = intent.getStringExtra("destination")
+//        val destination = "sevis fee"
+        val destination = intent.getStringExtra("destination")
         if (destination != null) {
-            when(destination) {
+            when (destination) {
                 "sevis fee" -> {
                     navGraph.setStartDestination(R.id.sevisFeeFragment)
                 }
+
                 "application fee" -> {
                     navGraph.setStartDestination(R.id.applicationFeeDashboardFragment)
                 }
+
                 "credential evaluation" -> {
                     navGraph.setStartDestination(R.id.credentialEvaluationDashboardFragment)
                 }

@@ -1,5 +1,8 @@
 package tech.hackcity.educarts.uitls
 
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.HttpException
 import retrofit2.Response
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
@@ -15,15 +18,56 @@ class HTTPException(response: Response<*>) : HttpException(response)
 class SocketTimeOutException(message: String) : SocketTimeoutException(message)
 class NoInternetException(message: String) : IOException(message)
 
-fun errorMessageFetcher(errorMessages: MutableList<ErrorMessage>): String {
+fun extractErrorMessagesFromErrorBody(errorJson: String): List<Pair<String, String>> {
+    val errorList = mutableListOf<Pair<String, String>>()
 
-    val messages = mutableListOf<String>()
-
-    for (i in errorMessages) {
-        messages.add(i.message)
+    try {
+        val jsonArray = JSONArray(errorJson)
+        for (i in 0 until jsonArray.length()) {
+            val errorObject = jsonArray.getJSONObject(i)
+            val errorCode = errorObject.getString("code")
+            val errorMessage = errorObject.getString("message")
+            errorList.add(Pair(errorCode, errorMessage))
+        }
+    } catch (e: JSONException) {
+        e.printStackTrace()
     }
 
-    return messages.joinToString(",")
-        .split(",")
-        .joinToString("\n\n")
+    return errorList
 }
+
+fun extractDataFields(dataJson: String): Pair<String?, String?> {
+    var id: String? = null
+    var email: String? = null
+
+    try {
+        val jsonObject = JSONObject(dataJson)
+
+        id = jsonObject.getString("id")
+        email = jsonObject.getString("email")
+
+    }catch (e: JSONException) {
+        e.printStackTrace()
+    }
+
+    return Pair(id, email)
+}
+
+fun extractDataFieldsFromErrorBody(dataJson: String): Pair<String?, String?> {
+    var id: String? = null
+    var email: String? = null
+
+    try {
+        val jsonArray = JSONArray(dataJson)
+        val jsonObject = jsonArray.getJSONObject(jsonArray.length() - 1)
+
+        id = jsonObject.optString("id")
+        email = jsonObject.optString("email")
+    } catch (e: JSONException) {
+        e.printStackTrace()
+    }
+
+    return Pair(id, email)
+}
+
+

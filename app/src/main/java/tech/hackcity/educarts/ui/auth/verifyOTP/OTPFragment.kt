@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.auth.verifyOTP
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -57,7 +58,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
 
         binding.pinView.setPinViewEventListener(object : Pinview.PinViewEventListener {
             override fun onDataEntered(pinview: Pinview?, fromUser: Boolean) {
-                viewModel.id = sharePreferencesManager.fetchUserId().toString()
+//                viewModel.id = sharePreferencesManager.fetchUserId().toString()
                 viewModel.otp = pinview?.value
 
                 Coroutines.onMainWithScope(viewModel.viewModelScope) {

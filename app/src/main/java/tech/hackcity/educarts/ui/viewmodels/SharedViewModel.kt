@@ -2,7 +2,6 @@ package tech.hackcity.educarts.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import tech.hackcity.educarts.domain.model.AddressBook
 
 /**
  *Created by Victor Loveday on 2/20/23
@@ -39,16 +38,6 @@ class SharedViewModel : ViewModel() {
         horizontalStepViewPosition.postValue(position)
     }
 
-    private var horizontalStepViewVisibility: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-
-    fun fetchHorizontalStepVisibility(): MutableLiveData<Boolean> {
-        return horizontalStepViewVisibility
-    }
-
-    fun updateHorizontalStepViewVisibility(isVisible: Boolean) {
-        horizontalStepViewVisibility.postValue(isVisible)
-    }
-
     private var destination: MutableLiveData<String> = MutableLiveData<String>()
 
     fun getDestination(): MutableLiveData<String> {
@@ -58,17 +47,6 @@ class SharedViewModel : ViewModel() {
     fun updateDestination(d: String) {
         destination.postValue(d)
     }
-
-    private var address: MutableLiveData<AddressBook> = MutableLiveData<AddressBook>()
-
-    fun getAddress(): MutableLiveData<AddressBook> {
-        return address
-    }
-
-    fun updateAddress(ad: AddressBook) {
-        address.postValue(ad)
-    }
-
 
     //This array will only have two element
     // The first index is the current step

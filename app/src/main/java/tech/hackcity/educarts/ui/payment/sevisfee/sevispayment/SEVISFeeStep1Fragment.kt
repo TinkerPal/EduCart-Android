@@ -20,12 +20,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
+import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
@@ -109,32 +112,20 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         setupFilePickers()
 
         binding.nextBtn.setOnClickListener {
-//            viewModel.sevis_id = binding.sevisIDET.text.toString().trim()
-//            viewModel.last_name = binding.lastNameET.text.toString().trim()
-//            viewModel.given_name = binding.firstNameET.text.toString().trim()
-//            viewModel.date_of_birth = binding.dateOfBirth.text.toString().trim()
-//
-//            viewModel.form = createFilePart(requireContext(), "form", formUri)
-//            viewModel.passport = createFilePart(requireContext(), "passport", passportUri)
-//            viewModel.international_passport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
+            viewModel.sevisId = binding.sevisIDET.text.toString().trim()
+            viewModel.lastName = binding.lastNameET.text.toString().trim()
+            viewModel.givenName = binding.firstNameET.text.toString().trim()
+            viewModel.dateOfBirth = binding.dateOfBirth.text.toString().trim()
 
-//            Coroutines.onMainWithScope(viewModel.viewModelScope) {
-//                viewModel.submitSevisFeeStep1(requireContext())
-//            }
+            viewModel.form = createFilePart(requireContext(), "form", formUri)
+            viewModel.passport = createFilePart(requireContext(), "passport", passportUri)
+            viewModel.internationalPassport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
 
-            val action =
-                SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
-                    args.formType
-                )
-            findNavController().navigate(action)
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.submitSevisFeeStep1(requireContext())
+            }
+
         }
-    }
-
-    private fun formatDate(year: Int, month: Int, day: Int): String {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month - 1, day) // Note: month is 0-based
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        return dateFormat.format(calendar.time)
     }
 
     private fun checkPermission(): Boolean {
@@ -175,6 +166,14 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             datePickerDialog.show()
         }
     }
+
+    private fun formatDate(year: Int, month: Int, day: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, day) // Note: month is 0-based
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        return dateFormat.format(calendar.time)
+    }
+
     private fun setupFilePickers() {
         binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
         binding.pickRecentPassportButton.setOnClickListener { openFilePickerForPhoto() }
@@ -261,7 +260,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         disablePrimaryButtonState(binding.nextBtn)
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onRequestFailed(message: String) {
         context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,
@@ -291,6 +290,5 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
     override fun onResume() {
         super.onResume()
         sharedViewModel.updateHorizontalStepViewPosition(1)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 }

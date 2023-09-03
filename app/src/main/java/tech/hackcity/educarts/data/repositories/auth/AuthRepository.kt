@@ -81,6 +81,10 @@ class AuthRepository(
 
     }
 
+    fun fetchUserId(): String? {
+        return sharedPreferenceManager.fetchUserId()
+    }
+
     fun saveTokens(access: String, refresh: String) {
         Coroutines.onMain {
             sessionManager.saveTokens(access,refresh)

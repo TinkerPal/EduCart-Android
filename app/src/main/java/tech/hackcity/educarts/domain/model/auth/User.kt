@@ -18,5 +18,4 @@ data class User(
     val countryOfBirth: String? = null,
     val state: String? = null,
     val city: String? = null,
-    val addressBook: String? = null,
 )

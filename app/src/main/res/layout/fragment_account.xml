@@ -11,9 +11,9 @@
         android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:id="@+id/profilePhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginHorizontal="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/default_profile"
@@ -25,18 +25,18 @@
             android:layout_height="20dp"
             android:contentDescription="@string/verification_badge"
             android:src="@drawable/verification_badge"
-            app:layout_constraintBottom_toBottomOf="@id/profileImage"
-            app:layout_constraintEnd_toEndOf="@id/profileImage" />
+            app:layout_constraintBottom_toBottomOf="@id/profilePhoto"
+            app:layout_constraintEnd_toEndOf="@id/profilePhoto" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/profileImage"
+            app:layout_constraintBottom_toBottomOf="@id/profilePhoto"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/profileImage"
-            app:layout_constraintTop_toTopOf="@id/profileImage">
+            app:layout_constraintStart_toEndOf="@id/profilePhoto"
+            app:layout_constraintTop_toTopOf="@id/profilePhoto">
 
             <TextView
                 android:id="@+id/fullNameTV"
@@ -74,7 +74,7 @@
             android:layout_height="0.5dp"
             android:layout_marginTop="15dp"
             android:background="#E2E2E2"
-            app:layout_constraintTop_toBottomOf="@id/profileImage" />
+            app:layout_constraintTop_toBottomOf="@id/profilePhoto" />
 
 
         <LinearLayout

@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 
 /**
@@ -8,6 +9,8 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
  */
 interface SEIVSFeeStep2Listener {
     fun onRequestStarted()
-    fun onRequestFailed(message: List<ErrorMessage>)
+    fun onFetchSevisCategoryStarted()
+    fun onRequestFailed(message: String)
+    fun onFetchSevisCategorySuccessful(response: SEVISCategoryResponse)
     fun onRequestSuccessful(response: SEVISFeeStep2Response)
 }

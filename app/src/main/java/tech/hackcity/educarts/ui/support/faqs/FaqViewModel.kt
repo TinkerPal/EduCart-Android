@@ -26,11 +26,11 @@ class FaqViewModel(
                 if (!response.error) {
                     listener?.onRequestSuccessful(response)
                 } else {
-                    listener?.onRequestFailed(response.errorMessage)
+                    listener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                listener?.onRequestFailed(listOf(ErrorMessage(e.errorCode, e.message!!)))
+                listener?.onRequestFailed(e.errorMessage)
                 return@onMainWithScope
             }
         }

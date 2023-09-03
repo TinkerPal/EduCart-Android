@@ -7,7 +7,6 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.errorMessageFetcher
 
 /**
  *Created by Victor Loveday on 5/30/23
@@ -37,12 +36,11 @@ class ResetPasswordViewModel(
                     resetPasswordListener?.onRequestSuccessful(response)
                     repository.saveUserId(response.data.id)
                 } else {
-                    val errorMessage = errorMessageFetcher(response.errorMessage.toMutableList())
-                    resetPasswordListener?.onRequestFailed(errorMessage)
+                    resetPasswordListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                resetPasswordListener?.onRequestFailed(e.message!!)
+                resetPasswordListener?.onRequestFailed(e.errorMessage!!)
                 return@onMainWithScope
             }
 

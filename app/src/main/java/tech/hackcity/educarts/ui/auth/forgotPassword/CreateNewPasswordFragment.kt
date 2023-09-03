@@ -95,6 +95,5 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
             )
         )
         sharedViewModel.updateHorizontalStepViewPosition(3)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 }

@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -15,7 +16,10 @@ import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentSevisFeeStep2Binding
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.domain.model.payment.sevis.Category
+import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
+import tech.hackcity.educarts.domain.model.support.ConsultationResponseData
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -46,6 +50,8 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
         viewModel = ViewModelProvider(this, factory)[SEVISFeeViewModel::class.java]
         viewModel.listener2 = this
 
+        viewModel.fetchSevisCategory()
+
         binding.textGuide1.text = resources.getString(
             R.string.please_fill_the_following_form_as_it_is_in_your,
             args.formType
@@ -59,8 +65,8 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
             viewModel.formType = args.formType
             viewModel.category = "au pair ($35)"
             viewModel.email = binding.emailET.text.toString().trim()
-//            viewModel.phoneNumber = binding.phoneNumberET.toString().trim()
-            viewModel.phoneNumber = "09066965746"
+            viewModel.phoneNumber = binding.phoneNumberET.toString().trim()
+//            viewModel.phoneNumber = "09066965746"
             viewModel.countryOfCitizenship = "Nigeria"
             viewModel.countryOfBirth = "Nigeria"
 
@@ -72,13 +78,34 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
 
     }
 
+//    private fun setupSevisCategories(data: List<Category>) {
+//        val options = mutableListOf<String>()
+//
+//        for (i in data) {
+//            options.add(i.option)
+//        }
+//
+//        val arrayAdapter1 =
+//            ArrayAdapter(
+//                requireContext(),
+//                R.layout.security_questions_item,
+//                options
+//            )
+//        binding.question.setAdapter(arrayAdapter1)
+//    }
+
+
     override fun onRequestStarted() {
         sharedViewModel.updateLoadingScreen(true)
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
         disablePrimaryButtonState(binding.nextBtn)
     }
 
-    override fun onRequestFailed(message: List<ErrorMessage>) {
+    override fun onFetchSevisCategoryStarted() {
+
+    }
+
+    override fun onRequestFailed(message: String) {
         context?.toast("$message")
         hideButtonLoadingState(
             binding.nextBtn,
@@ -87,6 +114,10 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
         )
         enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateLoadingScreen(false)
+    }
+
+    override fun onFetchSevisCategorySuccessful(response: SEVISCategoryResponse) {
+
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep2Response) {
@@ -106,6 +137,5 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
     override fun onResume() {
         super.onResume()
         sharedViewModel.updateHorizontalStepViewPosition(2)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 }

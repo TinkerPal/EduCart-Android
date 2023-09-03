@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.main.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,15 +16,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.DashboardRepository
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
-import tech.hackcity.educarts.domain.model.auth.User
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
+import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.adapters.NewsAdapter
 import tech.hackcity.educarts.ui.browser.BrowserActivity
@@ -36,7 +39,6 @@ import tech.hackcity.educarts.uitls.Constants
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.shortenString
 import tech.hackcity.educarts.uitls.toast
-import java.io.Serializable
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -45,21 +47,28 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
 
     private lateinit var binding: FragmentHomeBinding
 
+    private lateinit var userInfoManager: UserInfoManager
+    private lateinit var viewModel:HomeViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHomeBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
         val api = RetrofitInstance(requireContext())
-        val repository = DashboardRepository(api)
+        userInfoManager = UserInfoManager(requireContext())
+        val repository = DashboardRepository(api, userInfoManager)
         val factory = HomeViewModelFactory(repository)
-        val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         viewModel.listener = this
 
         Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchProfile()
             viewModel.fetchOrderHistory()
         }
 
         setupUserInfo()
+        setupProfileCompletionBanner()
+
 
         binding.trackTV.setOnClickListener {
             startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
@@ -103,25 +112,48 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     }
 
     private fun setupUserInfo() {
-        val userInfoManager = UserInfoManager(requireContext())
-
+        userInfoManager = UserInfoManager(requireContext())
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-            binding.greetingsAndNameTV.text = resources.getString(R.string.hello_, user.firstName)
-            binding.userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
 
-            setupProfileCompletionBanner(user)
+            with(binding) {
+                val profileUrl = "${Constants.EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
+                val requestOptions = RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+
+
+                if (user.profilePhoto.isNullOrEmpty()) {
+                    profilePhoto.setImageResource(R.drawable.default_profile)
+                    Log.d("UserInfo", "Empty profile : ${user.profilePhoto}")
+
+                } else {
+                    Log.d("UserInfo", "profile : $profileUrl")
+                    Glide.with(requireContext())
+                        .load(profileUrl)
+                        .apply(requestOptions)
+                        .into(profilePhoto)
+                }
+
+                greetingsAndNameTV.text = resources.getString(R.string.hello_, user.firstName)
+                userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+            }
         }
     }
 
-    private fun setupProfileCompletionBanner(user: User) {
-        binding.incompleteProfileCardView.visibility =
-            if (user.isProfileCompleted) {
-                View.GONE
-            } else {
-                val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-                binding.incompleteProfileCardView.startAnimation(fadeIn)
-                View.VISIBLE
+    private fun setupProfileCompletionBanner() {
+        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
+            with(binding) {
+
+                incompleteProfileCardView.visibility =
+                    if (user.isProfileCompleted) {
+                        View.GONE
+                    } else {
+                        val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+                        incompleteProfileCardView.startAnimation(fadeIn)
+                        View.VISIBLE
+                    }
             }
+        }
     }
 
     private fun setupNews() {
@@ -162,9 +194,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         binding.orderHistoryLoader.visibility = View.VISIBLE
     }
 
-    override fun onFetchOrderHistoryFailed(message: List<ErrorMessage>) {
+    override fun onFetchProfileRequestStarted() {
+
+    }
+
+    override fun onFetchOrderHistoryFailed(message: String) {
         context?.toast("$message")
         binding.orderHistoryLoader.visibility = View.GONE
+    }
+
+    override fun onFetchProfileFailed(message: String) {
+        context?.toast(message)
+    }
+
+    override fun onFetchProfileRequestSuccessful(response: ProfileResponse) {
+
     }
 
     override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
@@ -177,6 +221,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
             val intent = Intent(requireContext(), AllPaymentActivity::class.java)
             intent.putExtra("allHistory", response)
             startActivity(intent)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchProfile()
+            viewModel.fetchOrderHistory()
         }
     }
 }

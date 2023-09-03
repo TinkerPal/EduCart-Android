@@ -79,7 +79,7 @@
     <string name="country">Country</string>
     <string name="apartment_number">Apartment number</string>
     <string name="add">Add</string>
-    <string name="choose_any_of_the_following_document_to_get_started">Choose any of the following document to get started</string>
+    <string name="choose_any_of_the_following_document_to_get_verified">Choose any of the following document \nto get verified</string>
     <string name="international_passport">International passport</string>
     <string name="national_id_nin">National ID/NIN</string>
     <string name="kindly_provide_an_original_with_colour">Kindly provide an original with colour</string>
@@ -428,4 +428,13 @@
     <string name="edit_profile">Edit profile</string>
     <string name="permission_granted_you_can_now_pick_files">Permission granted. You can now pick files.</string>
     <string name="permission_denied_you_can_not_access_files">Permission denied. Cannot access files.</string>
+    <string name="failed_to_refresh_token_after">Failed to refresh token after %1$s attempts</string>
+    <string name="this_will_be_used_to_verify_you">This will be used to verify you</string>
+    <string name="upload_the_front_side_of_the_document_selected">Upload the front side of the document selected</string>
+    <string name="upload_the_front_side_of_nin">Upload the front side of your National ID card</string>
+    <string name="upload_the_front_side_of_voter_card">Upload the front side of your voter\'s card</string>
+    <string name="upload_the_front_side_of_international_passport">Upload the front side of your international passport</string>
+    <string name="upload_a_photo_of_your_document">Upload a photo of your document</string>
+    <string name="take_a_selfie">Take a selfie</string>
+    <string name="take_a_clear_photo_of_yourself_with_your_face_fully_inside_the_frame">Take a clear photo of yourself with your face fully inside the frame</string>
 </resources>

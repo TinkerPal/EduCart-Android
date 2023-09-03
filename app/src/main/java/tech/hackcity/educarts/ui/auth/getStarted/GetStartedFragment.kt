@@ -48,7 +48,6 @@ class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
         super.onResume()
         sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
         sharedViewModel.updateHorizontalStepViewPosition(1)
-        sharedViewModel.updateHorizontalStepViewVisibility(true)
     }
 
 }

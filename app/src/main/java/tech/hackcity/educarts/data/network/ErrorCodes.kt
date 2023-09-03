@@ -15,4 +15,6 @@ object ErrorCodes {
     const val EMPTY_INTERNATIONAL_PASSPORT_FIELD = "empty_international_passport_field"
     const val WEAK_PASSWORD = "weak_password"
     const val MAX_RETRIES_EXCEEDED = "max_retries_exceeded"
+    const val USER_NOT_VERIFIED = "user_not_verified"
+    const val NON_FIELD_ERRORS = "non_field_errors"
 }

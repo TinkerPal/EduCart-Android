@@ -95,21 +95,19 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showStepIndicatorIfRequired() {
-        sharedViewModel.fetchHorizontalStepVisibility().observe(this) { isVisible ->
-            if (isVisible) {
+        customLineView = binding.customLineView
+        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
+            if (position > 0) {
                 binding.customLineView.visibility = View.VISIBLE
+                Handler(Looper.getMainLooper()).postDelayed(
+                    {
+                        customLineView.setPosition(position)
+                    }, 100
+                )
+
             } else {
                 binding.customLineView.visibility = View.INVISIBLE
             }
-        }
-
-        customLineView = binding.customLineView
-        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    customLineView.setPosition(position)
-                }, 100
-            )
         }
     }
 

@@ -7,9 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.ErrorCodes.USER_NOT_VERIFIED
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.data.storage.SessionManager
@@ -20,6 +23,7 @@ import tech.hackcity.educarts.domain.model.auth.LoginResponse
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.extractErrorMessagesFromErrorBody
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
@@ -51,9 +55,10 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
-            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            lifecycleScope.launch {
                 viewModel.loginUser(requireContext())
             }
+
         }
 
         binding.signupTextView.setOnClickListener {
@@ -70,8 +75,32 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
         showButtonLoadingState(binding.signInBtn, binding.progressBar, "")
     }
 
-    override fun onRequestFailed(message: String) {
-        context?.toast(message)
+    override fun onRequestFailed(errorMessage: String) {
+
+        context?.toast(errorMessage)
+
+        val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
+        if (errorMessages.isNotEmpty()) {
+            for ((code, message) in errorMessages) {
+                if (code == USER_NOT_VERIFIED) {
+
+                    try {
+                        val action =
+                            LoginFragmentDirections.actionLoginFragmentToOTPFragment(
+                                "login",
+                                resources.getString(R.string.verification),
+                                message,
+                                3
+                            )
+                        findNavController().navigate(action)
+
+                    } catch (e: IllegalArgumentException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+
         hideButtonLoadingState(
             binding.signInBtn,
             binding.progressBar,
@@ -96,7 +125,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
                 R.color.background_001
             )
         )
-        sharedViewModel.updateHorizontalStepViewVisibility(false)
+        sharedViewModel.updateHorizontalStepViewPosition(0)
+
     }
 
 }

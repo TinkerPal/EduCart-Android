@@ -1,153 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.fragment.account.IdentityVerificationFragment">
+    tools:context=".ui.settings.idv.IdentityVerificationFragmentStep1">
 
-    <!--    <com.anton46.stepsview.StepsView-->
-    <!--        android:id="@+id/stepsView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginHorizontal="30dp" />-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/identity_verification"
+        android:textColor="@color/text_heading_light"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nextBtnLayout"
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/round_bg_white"
+                android:src="@drawable/idv_white_bg" />
+
+            <TextView
+                android:id="@+id/textGuide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/text_light"
+                android:textSize="16sp"
+                android:text="@string/choose_any_of_the_following_document_to_get_verified" />
 
             <LinearLayout
-                android:id="@+id/getStartedLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/woman_with_paper" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="50dp"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"
-                    android:text="@string/choose_any_of_the_following_document_to_get_started" />
-
-
-                <RadioGroup
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/internationalPassportButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp">
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/international_passport" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/voter_s_card" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/national_id_nin" />
-
-                </RadioGroup>
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="40dp"
-                    android:background="@drawable/disabled_button"
-                    android:enabled="false"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/white_bg_with_gray_borders"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:text="@string/next"
-                    android:textAllCaps="false"
-                    app:backgroundTint="@null" />
+                    android:paddingHorizontal="20dp">
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/randomImageView1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/flight_book_white_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/international_passport"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@id/randomImageView1"
+                        app:layout_constraintTop_toTopOf="@id/randomImageView1" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/this_will_be_used_to_verify_you"
+                        android:textColor="@color/text_light"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/randomImageView1"
+                        app:layout_constraintStart_toEndOf="@id/randomImageView1" />
 
-            <LinearLayout
-                android:id="@+id/uploadDocLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent">
+                    <RadioButton
+                        android:id="@+id/intPassportRadioBtn"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@null"
+                        android:clickable="false"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/woman_with_paper" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="50dp"
-                    android:layout_marginVertical="20dp"
-                    android:gravity="center"
-                    android:text="@string/choose_any_of_the_following_document_to_get_started" />
-
-
-                <RadioGroup
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/voterCardButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp">
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/international_passport" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/voter_s_card" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/national_id_nin" />
-
-                </RadioGroup>
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="40dp"
-                    android:background="@drawable/disabled_button"
-                    android:enabled="false"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/white_bg_with_gray_borders"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:text="@string/next"
-                    android:textAllCaps="false"
-                    app:backgroundTint="@null" />
+                    android:paddingHorizontal="20dp">
 
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/idv2_white_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/voter_s_card"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@id/imageView2"
+                        app:layout_constraintTop_toTopOf="@id/imageView2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/this_will_be_used_to_verify_you"
+                        android:textColor="@color/text_light"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/imageView2"
+                        app:layout_constraintStart_toEndOf="@id/imageView2" />
+
+                    <RadioButton
+                        android:id="@+id/voterCardRadioBtn"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@null"
+                        android:clickable="false"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ninButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/white_bg_with_gray_borders"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:paddingHorizontal="20dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/passport_white_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/national_id_nin"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@id/imageView3"
+                        app:layout_constraintTop_toTopOf="@id/imageView3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/this_will_be_used_to_verify_you"
+                        android:textColor="@color/text_light"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/imageView3"
+                        app:layout_constraintStart_toEndOf="@id/imageView3" />
+
+                    <RadioButton
+                        android:id="@+id/ninRadioBtn"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/custom_radio_button"
+                        android:button="@null"
+                        android:clickable="false"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -155,4 +231,38 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nextBtnLayout"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_medium"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/nextBtn"
+            app:layout_constraintEnd_toEndOf="@id/nextBtn"
+            app:layout_constraintStart_toStartOf="@id/nextBtn"
+            app:layout_constraintTop_toTopOf="@id/nextBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

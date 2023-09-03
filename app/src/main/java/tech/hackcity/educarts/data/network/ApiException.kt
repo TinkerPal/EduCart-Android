@@ -1,6 +1,9 @@
 package tech.hackcity.educarts.data.network
 
+import java.io.IOException
+import java.lang.Exception
+
 /**
  *Created by Victor Loveday on 8/12/23
  */
-class ApiException(message: String, val errorCode: String) : Exception(message)
+class ApiException(val errorMessage: String, val  errorData: String? = null) : Exception(errorMessage)
