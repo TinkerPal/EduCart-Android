@@ -214,7 +214,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
         binding.orderHistoryLoader.visibility = View.GONE
 
-        val orderHistoryData = response.date ?: emptyList()
+        val orderHistoryData = response.data ?: emptyList()
         setupOrderHistory(orderHistoryData)
 
         binding.viewAllPayments.setOnClickListener {
@@ -228,7 +228,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         super.onResume()
         Coroutines.onMainWithScope(viewModel.viewModelScope) {
             viewModel.fetchProfile()
-            viewModel.fetchOrderHistory()
         }
     }
 }

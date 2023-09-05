@@ -12,7 +12,7 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 
-object BiometricUtils {
+object Biometrics {
     /*
      * Check whether the Device is Capable of the Biometric
      */

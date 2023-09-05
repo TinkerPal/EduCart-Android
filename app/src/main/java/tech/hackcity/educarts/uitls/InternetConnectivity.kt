@@ -2,15 +2,13 @@ package tech.hackcity.educarts.uitls
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 
 /**
  *Created by Victor Loveday on 8/19/23
  */
 
 
-object InternetConnectivityUtil {
+object InternetConnectivity {
 
     fun isInternetConnected(context: Context): Boolean {
         val connectivityManager =

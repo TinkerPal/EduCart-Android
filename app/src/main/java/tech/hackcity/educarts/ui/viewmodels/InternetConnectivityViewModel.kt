@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import tech.hackcity.educarts.uitls.InternetConnectivityUtil
+import tech.hackcity.educarts.uitls.InternetConnectivity
 
 /**
  *Created by Victor Loveday on 8/19/23
@@ -19,7 +19,7 @@ class InternetConnectivityViewModel(application: Application) : AndroidViewModel
 
     fun checkInternetConnectivity() {
         val context = getApplication<Application>().applicationContext
-        val isConnected = InternetConnectivityUtil.isInternetConnected(context)
+        val isConnected = InternetConnectivity.isInternetConnected(context)
         _isInternetConnected.value = isConnected
     }
 }

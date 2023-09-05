@@ -51,6 +51,7 @@ class HomeViewModel(
 
                 if (!response.error) {
                     listener?.onFetchOrderHistorySuccessful(response)
+                    Log.d("OrderHistory", "$response")
 
                 }else {
                     listener?.onFetchOrderHistoryFailed(response.errorMessage.toString())

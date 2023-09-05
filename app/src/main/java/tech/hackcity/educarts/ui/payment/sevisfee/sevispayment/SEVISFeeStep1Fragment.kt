@@ -30,13 +30,13 @@ import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.FileConverter
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
+import tech.hackcity.educarts.uitls.uriToFile
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -117,12 +117,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.submitSevisFeeStep1(requireContext())
             }
-
-            val action =
-                SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
-                    args.formType
-                )
-            findNavController().navigate(action)
         }
 
         binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
@@ -145,7 +139,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         if (requestCode == SELECTED_IMAGE_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 passportUri = data?.data
-                val file = passportUri?.let { FileConverter.uriToFile(requireContext(), it) }
+                val file = passportUri?.let { uriToFile(requireContext(), it) }
 
                 val picture = file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
                     MultipartBody.Part.createFormData(
