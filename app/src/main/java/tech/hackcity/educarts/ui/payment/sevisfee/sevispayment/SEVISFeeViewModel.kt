@@ -59,16 +59,14 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             return
         }
 
-        Log.d("SEVISError", "${repository.fetchUserId()},$sevisId,$lastName,$givenName,$dateOfBirth")
-
         Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.sevisFeeStep1(
-                    clearExtraCharacters(repository.fetchUserId()!!),
-                    clearExtraCharacters(sevisId!!),
-                    clearExtraCharacters(lastName!!),
-                    clearExtraCharacters(givenName!!),
-                    clearExtraCharacters(dateOfBirth!!),
+                    repository.fetchUserId()!!,
+                    sevisId!!,
+                    lastName!!,
+                    givenName!!,
+                    dateOfBirth!!,
                     form!!,
                     passport!!,
                     internationalPassport!!
@@ -89,7 +87,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
         listener2?.onRequestStarted()
 
         if (
-            formType.isNullOrEmpty() || category.isNullOrEmpty()
+            formType.isNullOrEmpty()
             || email.isNullOrEmpty() || phoneNumber.isNullOrEmpty()
             || countryOfCitizenship == null || countryOfBirth == null
         ) {
@@ -102,7 +100,8 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                 val response = repository.sevisFeeStep2(
                     formType!!,
                     category!!,
-                    email!!, phoneNumber!!,
+                    email!!,
+                    phoneNumber!!,
                     countryOfCitizenship!!,
                     countryOfBirth!!
                 )

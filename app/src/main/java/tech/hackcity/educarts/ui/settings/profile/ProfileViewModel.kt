@@ -73,6 +73,8 @@ class ProfileViewModel(
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
         Coroutines.onMainWithScope(viewModelScope) {
+            Log.d("UserInfo", "$firstName $lastName $countryCode $formattedPhoneNumber $countryOfResidence $institutionOfStudy ")
+
             try {
                 val response = repository.editProfile(
                     firstName!!,
@@ -83,8 +85,6 @@ class ProfileViewModel(
                     institutionOfStudy!!,
                     profilePicture ?: MultipartBody.Part.createFormData("", "")
                 )
-
-                Log.d("UserInfo", "$firstName $lastName $countryCode $formattedPhoneNumber $countryOfResidence $institutionOfStudy ")
 
                 if (!response.error) {
                     editListener?.onEditProfileRequestSuccessful(response)

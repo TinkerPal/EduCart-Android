@@ -1,6 +1,8 @@
 package tech.hackcity.educarts.data.repositories.payment
 
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
@@ -18,7 +20,7 @@ class SEVISFeeRepository(
 ) : SafeApiRequest() {
 
     suspend fun sevisFeeStep1(
-        user: String,
+        user_id: String,
         sevis_id: String,
         last_name: String,
         given_name: String,
@@ -28,16 +30,23 @@ class SEVISFeeRepository(
         internationalPassport: MultipartBody.Part
 
     ): SEVISFeeStep1Response {
+
+        val userIdRB = RequestBody.create("text/plain".toMediaTypeOrNull(), user_id)
+        val sevisIdRB = RequestBody.create("text/plain".toMediaTypeOrNull(), sevis_id)
+        val lastNameRB = RequestBody.create("text/plain".toMediaTypeOrNull(), last_name)
+        val givenNameRB = RequestBody.create("text/plain".toMediaTypeOrNull(), given_name)
+        val dateOfBirthRB = RequestBody.create("text/plain".toMediaTypeOrNull(), date_of_birth)
+
         return apiRequest {
             api.sevisFeeAPI.sevisFeeStep1(
                 form,
                 passport,
                 internationalPassport,
-                user,
-                sevis_id,
-                last_name,
-                given_name,
-                date_of_birth
+                userIdRB,
+                sevisIdRB,
+                lastNameRB,
+                givenNameRB,
+                dateOfBirthRB
             )
         }
     }

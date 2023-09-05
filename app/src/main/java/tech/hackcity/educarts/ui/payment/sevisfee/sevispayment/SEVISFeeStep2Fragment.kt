@@ -63,10 +63,9 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
 
         binding.nextBtn.setOnClickListener {
             viewModel.formType = args.formType
-            viewModel.category = "au pair ($35)"
+            viewModel.category = ""
             viewModel.email = binding.emailET.text.toString().trim()
-            viewModel.phoneNumber = binding.phoneNumberET.toString().trim()
-//            viewModel.phoneNumber = "09066965746"
+            viewModel.phoneNumber = binding.phoneNumberET.text.toString().trim()
             viewModel.countryOfCitizenship = "Nigeria"
             viewModel.countryOfBirth = "Nigeria"
 

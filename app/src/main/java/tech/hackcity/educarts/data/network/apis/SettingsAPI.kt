@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.data.network.apis
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -28,15 +29,28 @@ interface SettingsAPI {
     @GET("account-setup/profile/")
     suspend fun fetchProfile():Response<ProfileResponse>
 
+//    @Multipart
+//    @PATCH("account-setup/profile/")
+//    suspend fun editProfile(
+//        @Part("first_name") first_name: String,
+//        @Part("last_name") last_name: String,
+//        @Part("country_code") country_code: Int,
+//        @Part("phone_number") phone_number: String,
+//        @Part("country_of_residence") country_of_residence: String,
+//        @Part("institution_of_study") institution_of_study: String,
+//        @Part profile_picture: MultipartBody.Part?
+//    ): Response<ProfileResponse>
+
+
     @Multipart
     @PATCH("account-setup/profile/")
     suspend fun editProfile(
-        @Part("first_name") first_name: String,
-        @Part("last_name") last_name: String,
-        @Part("country_code") country_code: Int,
-        @Part("phone_number") phone_number: String,
-        @Part("country_of_residence") country_of_residence: String,
-        @Part("institution_of_study") institution_of_study: String,
+        @Part("first_name") first_name: RequestBody,
+        @Part("last_name") last_name: RequestBody,
+        @Part("country_code") country_code: RequestBody,
+        @Part("phone_number") phone_number: RequestBody,
+        @Part("country_of_residence") country_of_residence: RequestBody,
+        @Part("institution_of_study") institution_of_study: RequestBody,
         @Part profile_picture: MultipartBody.Part?
     ): Response<ProfileResponse>
 

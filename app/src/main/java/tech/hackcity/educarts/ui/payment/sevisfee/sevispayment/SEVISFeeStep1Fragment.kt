@@ -1,3 +1,5 @@
+
+
 package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import android.Manifest
@@ -14,20 +16,21 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.provider.MediaStore
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.FileConverter
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
@@ -47,12 +50,13 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var viewModel: SEVISFeeViewModel
-
     private val args: SEVISFeeStep1FragmentArgs by navArgs()
 
     private var formUri: Uri? = null
-    private var passportUri: Uri? = null
     private var internationalPassportUri: Uri? = null
+
+    private val SELECTED_IMAGE_CODE = 1234
+    private var passportUri: Uri? = null
 
     private val pickFormResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -64,15 +68,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             }
         }
 
-    private val pickPhotoResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                data?.data?.let { uri ->
-                    handleSelectedPhotoFile(uri)
-                }
-            }
-        }
 
     private val pickPassportResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -109,7 +104,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         }
 
         setupDatePicker()
-        setupFilePickers()
 
         binding.nextBtn.setOnClickListener {
             viewModel.sevisId = binding.sevisIDET.text.toString().trim()
@@ -118,15 +112,54 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             viewModel.dateOfBirth = binding.dateOfBirth.text.toString().trim()
 
             viewModel.form = createFilePart(requireContext(), "form", formUri)
-            viewModel.passport = createFilePart(requireContext(), "passport", passportUri)
             viewModel.internationalPassport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.submitSevisFeeStep1(requireContext())
             }
 
+            val action =
+                SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                    args.formType
+                )
+            findNavController().navigate(action)
+        }
+
+        binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
+        binding.pickRecentPassportButton.setOnClickListener {
+            pickImageFromGallery()
+        }
+        binding.pickInternationalPassportButton.setOnClickListener { openFilePickerForPassport() }
+    }
+
+    private fun pickImageFromGallery() {
+        val imagePicketIntent = Intent(Intent.ACTION_GET_CONTENT)
+        imagePicketIntent.type = "image/*"
+        if (imagePicketIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivityForResult(imagePicketIntent, SELECTED_IMAGE_CODE)
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SELECTED_IMAGE_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                passportUri = data?.data
+                val file = passportUri?.let { FileConverter.uriToFile(requireContext(), it) }
+
+                val picture = file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
+                    MultipartBody.Part.createFormData(
+                        "passport",
+                        file.name,
+                        it
+                    )
+                }
+
+                viewModel.passport = picture
+            }
+        }
+    }
+
 
     private fun checkPermission(): Boolean {
         if (ContextCompat.checkSelfPermission(
@@ -162,7 +195,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                 day
             )
 
-            // Show the date picker dialog
             datePickerDialog.show()
         }
     }
@@ -172,12 +204,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         calendar.set(year, month - 1, day) // Note: month is 0-based
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         return dateFormat.format(calendar.time)
-    }
-
-    private fun setupFilePickers() {
-        binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
-        binding.pickRecentPassportButton.setOnClickListener { openFilePickerForPhoto() }
-        binding.pickInternationalPassportButton.setOnClickListener { openFilePickerForPassport() }
     }
 
     override fun onRequestPermissionsResult(
@@ -213,13 +239,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         }
     }
 
-    private fun openFilePickerForPhoto() {
-        if (checkPermission()) {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            pickPhotoResultLauncher.launch(intent)
-        }
-    }
-
     private fun openFilePickerForPassport() {
         if (checkPermission()) {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -242,9 +261,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         formUri = uri
     }
 
-    private fun handleSelectedPhotoFile(uri: Uri) {
-        passportUri = uri
-    }
 
     private fun handleSelectedPassportFile(uri: Uri) {
         internationalPassportUri = uri
