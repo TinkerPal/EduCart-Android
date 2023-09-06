@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.data.network.apis
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -24,11 +25,11 @@ interface SEVISFeeAPI {
         @Part form: MultipartBody.Part,
         @Part passport: MultipartBody.Part,
         @Part international_passport: MultipartBody.Part,
-        @Part("user") user: String,
-        @Part("sevis_id") sevis_id: String,
-        @Part("last_name") last_name: String,
-        @Part("given_name") given_name: String,
-        @Part("date_of_birth") date_of_birth: String
+        @Part("user") user: RequestBody,
+        @Part("sevis_id") sevis_id: RequestBody,
+        @Part("last_name") last_name: RequestBody,
+        @Part("given_name") given_name: RequestBody,
+        @Part("date_of_birth") date_of_birth: RequestBody
     ): Response<SEVISFeeStep1Response>
 
     @FormUrlEncoded
