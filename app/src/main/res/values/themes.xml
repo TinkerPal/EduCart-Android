@@ -19,6 +19,10 @@
         <item name="boxStrokeWidth">2dp</item>
     </style>
 
+    <style name="CustomTabLayout" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image_light</item>
         <item name="android:statusBarColor">@color/white</item>

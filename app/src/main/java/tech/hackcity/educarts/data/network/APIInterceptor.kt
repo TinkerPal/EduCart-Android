@@ -32,6 +32,7 @@ class APIInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable()) {
             throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
+//            throw ApiException(context.resources.getString(R.string.no_internet_connection))
         }
 
         val requestBuilder = chain.request().newBuilder()

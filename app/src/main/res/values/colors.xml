@@ -21,7 +21,8 @@
     <color name="gray_010">#7E7E80</color>
     <color name="faded_red">#F18E89</color>
     <color name="error_600">#93130C</color>
-    <color name="light_blue">#D5E9FD</color>
+    <color name="light_blue_001">#D5E9FD</color>
+    <color name="light_blue_002">#E3F0FF</color>
     <color name="light_orange">#FBF2E6</color>
     <color name="light_green1">#D3FFEB</color>
     <color name="dark_green1">#168250</color>

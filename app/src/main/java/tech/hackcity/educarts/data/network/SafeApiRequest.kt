@@ -4,6 +4,7 @@ import retrofit2.Response
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
+import tech.hackcity.educarts.uitls.NoInternetException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -34,6 +35,8 @@ abstract class SafeApiRequest {
             } catch (e: JSONException) {
                 errorMessage.append(e.message)
             } catch (e: IOException) {
+                throw ApiException("IOException: ${e.message}")
+            } catch (e: NoInternetException) {
                 throw ApiException("IOException: ${e.message}")
             } catch (e: HttpException) {
                 throw ApiException("HTTP Exception: ${e.message}")

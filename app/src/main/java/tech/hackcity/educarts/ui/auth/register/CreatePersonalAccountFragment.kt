@@ -2,12 +2,14 @@ package tech.hackcity.educarts.ui.auth.register
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayout
 import com.hbb20.CountryCodePicker
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
@@ -34,6 +36,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
     private lateinit var ccpGetNumber: CountryCodePicker
     private var dialCode = ""
     private var isNumberValid = false
+    private var userType = "user"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentCreatePersonalAccountBinding.bind(view)
@@ -50,6 +53,26 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
 
         validatePhoneNumber()
 
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position) {
+                    0 -> userType = "user"
+                    1 -> userType = "consultant"
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                when(tab?.position) {
+                    0 -> userType = "user"
+                    1 -> userType = "consultant"
+                }
+            }
+
+        })
+
         binding.checkboxTC.setOnClickListener {
             if (isTermsAndConditionAgreed) {
                 isTermsAndConditionAgreed = false
@@ -62,6 +85,7 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         }
 
         binding.signupBtn.setOnClickListener {
+            viewModel.userType = userType
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()

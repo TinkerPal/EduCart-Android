@@ -87,7 +87,6 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.settings_nav_graph)
 

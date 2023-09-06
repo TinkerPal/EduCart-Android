@@ -218,6 +218,7 @@
     <string name="later">Later</string>
     <string name="by_proceeding_to_sign_up_you_re_agreein_to_our_terms_and_conditions">By proceeding to sign up, you\'re agreeing to our terms and conditions</string>
     <string name="field_can_not_be_empty">Field can not be empty!</string>
+    <string name="no_user_type_selected">No user type selected</string>
     <string name="no_photo_selected">No photo selected</string>
     <string name="missing_field">Missing field</string>
     <string name="some_files_are_missing">Some files are missing</string>
@@ -377,6 +378,7 @@
     <string name="forgot_password_">Forgot Password ?</string>
     <string name="follow_these_steps_to_recover_your_password">Follow these steps to recover your password</string>
     <string name="enter_the_4_digit_code_sent_by_email">Enter the 4-digit code sent by Email</string>
+    <string name="enter_the_4_digit_code_resent_to_your_email">Enter the 4-digit code re-sent to your email</string>
     <string name="get_verified">Get verified</string>
     <string name="enter_you_new_password">Enter you new password</string>
     <string name="new_password">New password</string>
@@ -437,4 +439,6 @@
     <string name="upload_a_photo_of_your_document">Upload a photo of your document</string>
     <string name="take_a_selfie">Take a selfie</string>
     <string name="take_a_clear_photo_of_yourself_with_your_face_fully_inside_the_frame">Take a clear photo of yourself with your face fully inside the frame</string>
+    <string name="i_am_a_student">I am a student</string>
+    <string name="i_am_a_consultant">I am a consultant</string>
 </resources>

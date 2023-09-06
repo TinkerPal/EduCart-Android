@@ -15,6 +15,7 @@ interface AuthAPI {
     @FormUrlEncoded
     @POST("auth/register/")
     suspend fun registerPersonalUserAccount(
+        @Field("user_type") user_type: String,
         @Field("email") email: String,
         @Field("first_name") first_name: String,
         @Field("last_name") last_name: String,
@@ -50,6 +51,12 @@ interface AuthAPI {
         @Field("id") id: String,
         @Field("otp") otp: String
     ): Response<VerifyOTPResponse> // verify otp for password reset
+
+    @FormUrlEncoded
+    @POST("auth/regenerate-otp/")
+    suspend fun regenerateOTP(
+        @Field("id") id: String
+    ): Response<RegenerateOTPResponse>
 
     @FormUrlEncoded
     @PUT("auth/reset-password/")

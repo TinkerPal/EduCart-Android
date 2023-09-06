@@ -16,6 +16,7 @@ class CreatePersonalAccountViewModel(
     private val repository: AuthRepository
 ) : ViewModel() {
 
+    var userType: String? = null
     var email: String? = null
     var firstName: String? = null
     var lastName: String? = null
@@ -35,6 +36,12 @@ class CreatePersonalAccountViewModel(
             || phoneNumber.isNullOrEmpty() || countryOfResidence.isNullOrEmpty()
             || countryCode == null
         ) {
+
+            if (userType.isNullOrEmpty()) {
+                createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.no_user_type_selected))
+                return
+            }
+
             createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
@@ -44,6 +51,7 @@ class CreatePersonalAccountViewModel(
         Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.registerPersonalAccountUser(
+                    userType!!,
                     email!!,
                     firstName!!,
                     lastName!!,
