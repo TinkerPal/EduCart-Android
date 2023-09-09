@@ -32,7 +32,6 @@ class APIInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable()) {
             throw NoInternetException(context.resources.getString(R.string.no_internet_connection))
-//            throw ApiException(context.resources.getString(R.string.no_internet_connection))
         }
 
         val requestBuilder = chain.request().newBuilder()
@@ -113,9 +112,7 @@ class APIInterceptor(
             }
         }
 
-        throw ApiException(
-            context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"), ""
-        )
+        throw ApiException(context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"))
     }
 
     private fun isInternetAvailable(): Boolean {

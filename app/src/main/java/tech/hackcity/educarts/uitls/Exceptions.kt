@@ -1,12 +1,18 @@
 package tech.hackcity.educarts.uitls
 
+import android.content.Context
+import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
 import retrofit2.Response
+import tech.hackcity.educarts.R
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import java.io.IOException
+import java.lang.StringBuilder
 import java.net.SocketTimeoutException
 
 /**
@@ -17,6 +23,25 @@ class IOException(message: String) : IOException(message)
 class HTTPException(response: Response<*>) : HttpException(response)
 class SocketTimeOutException(message: String) : SocketTimeoutException(message)
 class NoInternetException(message: String) : IOException(message)
+
+fun errorMessageTextViewPresenter(context: Context, errorMessage: String, textView: TextView) {
+    val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
+    val text = StringBuilder()
+
+    if (errorMessages.isNotEmpty()) {
+        for ((code, message) in errorMessages) {
+            text.append("$message \n")
+        }
+
+        val animate = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        textView.startAnimation(animate)
+        textView.visibility = View.VISIBLE
+        textView.text = text.toString()
+
+    } else {
+        textView.visibility = View.GONE
+    }
+}
 
 fun extractErrorMessagesFromErrorBody(errorJson: String): List<Pair<String, String>> {
     val errorList = mutableListOf<Pair<String, String>>()
@@ -46,7 +71,7 @@ fun extractDataFields(dataJson: String): Pair<String?, String?> {
         id = jsonObject.getString("id")
         email = jsonObject.getString("email")
 
-    }catch (e: JSONException) {
+    } catch (e: JSONException) {
         e.printStackTrace()
     }
 

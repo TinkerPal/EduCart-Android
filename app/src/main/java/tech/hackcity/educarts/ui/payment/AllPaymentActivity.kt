@@ -25,7 +25,7 @@ class AllPaymentActivity : AppCompatActivity() {
 
 
         val toolbar = binding.toolbar
-        toolbar.title = ""
+        toolbar.title = resources.getString(R.string.payment_activities)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

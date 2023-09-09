@@ -21,6 +21,7 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentOtpBinding
 import tech.hackcity.educarts.domain.model.auth.RegenerateOTPResponse
 import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
+import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.CountdownTimer
@@ -47,7 +48,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
         binding = FragmentOtpBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.title.text = args.pageTitle
+        (activity as AuthActivity).supportActionBar?.title = args.pageTitle
         binding.message.text = args.information
 
         val api = RetrofitInstance(requireContext())

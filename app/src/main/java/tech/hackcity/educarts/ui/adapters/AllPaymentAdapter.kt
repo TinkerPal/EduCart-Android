@@ -102,6 +102,6 @@ class AllPaymentAdapter(private val context: Context) :
 enum class PaymentStatus(val textColourRes: Int, val iconColourRes: Int) {
     ORDER_COMPLETED(R.color.success_green, R.color.success_green),
     ORDER_IN_PROCESS(R.color.primary_color, R.color.primary_color),
-    PAYMENT_PENDING(R.color.text_light, R.color.text_light),
+    PAYMENT_PENDING(R.color.error_600, R.color.error_600),
     PAYMENT_CONFIRMED(R.color.secondary_color, R.color.secondary_color)
 }

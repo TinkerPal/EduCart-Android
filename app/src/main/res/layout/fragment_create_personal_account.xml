@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingHorizontal="16dp"
     tools:context=".ui.auth.register.CreatePersonalAccountFragment">
 
@@ -11,7 +12,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/logo"
@@ -43,11 +44,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +54,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/randomImageView1"
@@ -127,11 +126,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:tabTextAppearance="@style/CustomTabLayout"
+                android:background="@drawable/tab_layout_bg"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="@color/primary_color"
                 app:tabMode="fixed"
-                android:background="@drawable/tab_layout_bg">
+                app:tabTextAppearance="@style/CustomTabLayout">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -336,10 +335,11 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="end"
-                android:layout_marginVertical="20dp">
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:id="@+id/signupBtn"
@@ -371,5 +371,4 @@
 
     </ScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -7,6 +7,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -39,9 +41,12 @@ class ForgotPasswordViewModel(
                 }
 
             } catch (e: ApiException) {
-                forgotPasswordListener?.onRequestFailed(e.errorMessage!!)
-                return@onMainWithScope
+                forgotPasswordListener?.onRequestFailed(e.errorMessage)
 
+            }catch (e: NoInternetException) {
+                forgotPasswordListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                forgotPasswordListener?.onRequestFailed("${e.message}")
             }
         }
 

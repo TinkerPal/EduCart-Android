@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingHorizontal="16dp"
     tools:context=".ui.auth.login.LoginFragment">
 
@@ -41,16 +42,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="60dp"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@+id/signInBtnLayout"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,6 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/sign_in_into_your_new_account"
                 android:textColor="@color/text_heading_light"
@@ -74,6 +70,18 @@
                 android:text="@string/enter_your_email_and_password_to_sign_in"
                 android:textColor="@color/text_light"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/errorMessageTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/error_600"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Error message goes here" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -122,58 +130,57 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/signInBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/primary_button"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="@string/sign_in"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/signInBtn"
+                    app:layout_constraintEnd_toEndOf="@id/signInBtn"
+                    app:layout_constraintStart_toStartOf="@id/signInBtn"
+                    app:layout_constraintTop_toTopOf="@id/signInBtn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/forgotPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="5dp"
+                android:text="@string/forgot_password_"
+                android:textColor="@color/text_light"
+                android:textStyle="normal" />
+
         </LinearLayout>
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/forgotPasswordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/signInBtnLayout"
-        app:layout_constraintTop_toTopOf="@+id/signInBtnLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true"
-        android:fontFamily="@font/montserrat_regular"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:padding="5dp"
-        android:text="@string/forgot_password_"
-        android:textColor="@color/text_light"
-        android:textStyle="normal" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/signInBtnLayout"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginVertical="20dp">
-
-        <Button
-            android:id="@+id/signInBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/primary_button"
-            android:fontFamily="@font/montserrat_medium"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/sign_in"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/signInBtn"
-            app:layout_constraintEnd_toEndOf="@id/signInBtn"
-            app:layout_constraintStart_toStartOf="@id/signInBtn"
-            app:layout_constraintTop_toTopOf="@id/signInBtn" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -7,6 +7,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -37,7 +39,10 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
         }
     }
@@ -60,8 +65,10 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
-                return@onMainWithScope
-
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
 
         }
@@ -80,8 +87,10 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onRegenerateOTPRequestFailed(e.errorMessage)
-                return@onMainWithScope
-
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
             }
 
         }

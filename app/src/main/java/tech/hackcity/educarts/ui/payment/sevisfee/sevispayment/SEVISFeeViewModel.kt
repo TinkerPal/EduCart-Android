@@ -12,6 +12,8 @@ import tech.hackcity.educarts.data.network.ErrorCodes.IO_EXCEPTION
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 
 /**
@@ -78,7 +80,10 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener1?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener1?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                listener1?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -87,7 +92,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
         listener2?.onRequestStarted()
 
         if (
-            formType.isNullOrEmpty()
+            formType.isNullOrEmpty() || category.isNullOrEmpty()
             || email.isNullOrEmpty() || phoneNumber.isNullOrEmpty()
             || countryOfCitizenship == null || countryOfBirth == null
         ) {
@@ -115,7 +120,10 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener2?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener2?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                listener2?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -150,7 +158,10 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener3?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener3?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                listener3?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -164,14 +175,14 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
                 if (!response.error) {
                     listener2?.onFetchSevisCategorySuccessful(response)
-
-                } else {
-//                    listener2?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
                 listener2?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener2?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                listener2?.onRequestFailed("${e.message}")
             }
         }
 

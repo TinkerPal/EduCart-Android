@@ -6,6 +6,8 @@ import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 8/14/23
@@ -31,7 +33,10 @@ class FaqViewModel(
 
             } catch (e: ApiException) {
                 listener?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                listener?.onRequestFailed("${e.message}")
             }
         }
     }

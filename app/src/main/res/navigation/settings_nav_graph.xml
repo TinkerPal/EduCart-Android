@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="tech.hackcity.educarts.ui.settings.profile.ProfileFragment"
-        android:label=""
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
@@ -22,13 +22,13 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="tech.hackcity.educarts.ui.settings.profile.EditProfileFragment"
-        android:label=""
+        android:label="@string/edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/identityVerificationFragmentStep1"
         android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragmentStep1"
-        android:label=""
+        android:label="@string/identity_verification"
         tools:layout="@layout/fragment_identity_verification">
         <action
             android:id="@+id/action_identityVerificationFragmentStep1_to_identityVerificationFragmentStep2"
@@ -160,7 +160,7 @@
     <fragment
         android:id="@+id/identityVerificationFragmentStep3"
         android:name="tech.hackcity.educarts.ui.settings.idv.IdentityVerificationFragmentStep3"
-        android:label=""
+        android:label="@string/take_a_selfie"
         tools:layout="@layout/fragment_identity_verification_step3" />
 
 </navigation>

@@ -11,6 +11,8 @@ import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 import tech.hackcity.educarts.uitls.removeSpacesFromString
 
@@ -49,7 +51,10 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                editListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                editListener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -95,27 +100,30 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                editListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                editListener?.onRequestFailed("${e.message}")
             }
         }
     }
 
     private fun saveUser(data: ProfileResponseData) {
         val user = User(
-            clearExtraCharacters(data.id),
+            data.id,
             data.profile_picture,
-            clearExtraCharacters(data.first_name),
-            clearExtraCharacters(data.last_name),
+            data.first_name,
+            data.last_name,
             data.country_code,
-            clearExtraCharacters(data.phone_number),
-            clearExtraCharacters(data.country_of_residence),
-            clearExtraCharacters(data.email),
+            data.phone_number,
+            data.country_of_residence,
+            data.email,
             data.profile_completed,
             data.is_restricted,
-            data.institution_of_study?.let { clearExtraCharacters(it) },
-            data.country_of_birth?.let { clearExtraCharacters(it) },
-            data.state?.let { clearExtraCharacters(it) },
-            data.city?.let { clearExtraCharacters(it) },
+            data.institution_of_study,
+            data.country_of_birth,
+            data.state,
+            data.city,
         )
 
         Log.d("UserInfo", "saved data : $user")

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/consultationFragment1"
         android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment1"
-        android:label=""
+        android:label="@string/consultation"
         tools:layout="@layout/fragment_consultation_1">
         <action
             android:id="@+id/action_consultationFragment1_to_consultationFragment2"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/consultationFragment2"
         android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment2"
-        android:label=""
+        android:label="@string/consultation"
         tools:layout="@layout/fragment_consultation_2">
         <action
             android:id="@+id/action_consultationFragment2_to_consultationFragment3"
@@ -36,13 +36,13 @@
     <fragment
         android:id="@+id/consultationFragment3"
         android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment3"
-        android:label=""
+        android:label="@string/consultation"
         tools:layout="@layout/fragment_consultation_3" />
 
     <fragment
         android:id="@+id/FAQsCategoryFragment"
         android:name="tech.hackcity.educarts.ui.support.faqs.FAQsCategoryFragment"
-        android:label=""
+        android:label="@string/faqs"
         tools:layout="@layout/fragment_faq_category">
         <action
             android:id="@+id/action_FAQsCategoryFragment_to_FAQsFragment"
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/FAQsFragment"
         android:name="tech.hackcity.educarts.ui.support.faqs.FAQsFragment"
-        android:label=""
+        android:label="@string/faqs"
         tools:layout="@layout/fragment_faqs">
         <action
             android:id="@+id/action_FAQsFragment_to_consultationFragment1"

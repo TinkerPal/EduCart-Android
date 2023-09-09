@@ -441,4 +441,5 @@
     <string name="take_a_clear_photo_of_yourself_with_your_face_fully_inside_the_frame">Take a clear photo of yourself with your face fully inside the frame</string>
     <string name="i_am_a_student">I am a student</string>
     <string name="i_am_a_consultant">I am a consultant</string>
+    <string name="profile">Profile</string>
 </resources>

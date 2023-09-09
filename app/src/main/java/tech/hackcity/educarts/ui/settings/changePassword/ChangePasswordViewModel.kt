@@ -7,6 +7,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.settings.SettingsRepository
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 5/30/23
@@ -45,7 +47,10 @@ class ChangePasswordViewModel(
 
             } catch (e: ApiException) {
                 changePasswordListener?.onRequestFailed(e.message!!)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                changePasswordListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                changePasswordListener?.onRequestFailed("${e.message}")
             }
         }
 

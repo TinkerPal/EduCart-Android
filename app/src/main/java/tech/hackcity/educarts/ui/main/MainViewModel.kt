@@ -8,6 +8,7 @@ import tech.hackcity.educarts.data.repositories.MainRepository
 import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 
 /**
@@ -34,7 +35,8 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
             } catch (e: ApiException) {
                 listener?.onRequestFailed(e.message!!)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                listener?.onRequestFailed("${e.message}")
             }
         }
 

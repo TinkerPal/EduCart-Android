@@ -75,11 +75,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         }
 
         binding.consultTV.setOnClickListener {
-            startActivity(Intent(requireContext(), BrowserActivity::class.java))
+//            startActivity(Intent(requireContext(), BrowserActivity::class.java))
 
-//            val intent = Intent(requireContext(), SupportActivity::class.java)
-//            intent.putExtra("destination", "consultation")
-//            startActivity(intent)
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "consultation")
+            startActivity(intent)
         }
 
         binding.faqsTV.setOnClickListener {

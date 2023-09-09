@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentIdentityVerificationBinding
 import tech.hackcity.educarts.databinding.FragmentIdentityVerificationStep2Binding
+import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**
@@ -24,7 +25,7 @@ class IdentityVerificationFragmentStep2: Fragment(R.layout.fragment_identity_ver
         binding = FragmentIdentityVerificationStep2Binding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
-        binding.title.text = args.pageTitle
+        (activity as SettingsActivity).supportActionBar?.title = args.pageTitle
         binding.textGuide2.text = args.guide
 
         binding.imageView.apply {

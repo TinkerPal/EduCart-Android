@@ -1,5 +1,3 @@
-
-
 package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import android.Manifest
@@ -112,7 +110,8 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             viewModel.dateOfBirth = binding.dateOfBirth.text.toString().trim()
 
             viewModel.form = createFilePart(requireContext(), "form", formUri)
-            viewModel.internationalPassport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
+            viewModel.internationalPassport =
+                createFilePart(requireContext(), "international_passport", internationalPassportUri)
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.submitSevisFeeStep1(requireContext())
@@ -141,13 +140,14 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                 passportUri = data?.data
                 val file = passportUri?.let { uriToFile(requireContext(), it) }
 
-                val picture = file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
-                    MultipartBody.Part.createFormData(
-                        "passport",
-                        file.name,
-                        it
-                    )
-                }
+                val picture =
+                    file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
+                        MultipartBody.Part.createFormData(
+                            "passport",
+                            file.name,
+                            it
+                        )
+                    }
 
                 viewModel.passport = picture
             }

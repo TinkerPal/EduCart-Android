@@ -8,6 +8,8 @@ import tech.hackcity.educarts.data.network.ErrorCodes
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 8/4/23
@@ -42,6 +44,10 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 step1listener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                step1listener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                step1listener?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -70,6 +76,10 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 step1listener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                step1listener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                step1listener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -106,7 +116,11 @@ class ConsultationViewModel(
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(e.errorMessage)
+                step2listener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                step2listener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                step2listener?.onRequestFailed("${e.message}")
             }
         }
 

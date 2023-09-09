@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/sevisFeeFragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFeeFragment"
-        android:label=""
+        android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_sevis_fee">
         <action
             android:id="@+id/action_sevisFeeFragment_to_SEVISFormTypeFragment"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/sevisFeeStep1Fragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep1Fragment"
-        android:label=""
+        android:label="@string/validation_information"
         tools:layout="@layout/fragment_sevis_fee_step_1">
         <action
             android:id="@+id/action_sevisFeeStep1Fragment_to_sevisFeeStep2Fragment"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/sevisFeeStep2Fragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep2Fragment"
-        android:label=""
+        android:label="@string/applicant_information"
         tools:layout="@layout/fragment_sevis_fee_step_2">
         <action
             android:id="@+id/action_sevisFeeStep2Fragment_to_sevisFeeStep3Fragment"
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/sevisFeeStep3Fragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.sevispayment.SEVISFeeStep3Fragment"
-        android:label=""
+        android:label="@string/applicant_address"
         tools:layout="@layout/fragment_sevis_fee_step_3" >
         <argument
             android:name="formType"
@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/sevisCouponFragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.seviscoupon.SEVISCouponFragment"
-        android:label=""
+        android:label="@string/sevis_fee"
         tools:layout="@layout/fragment_have_sevis_payment_coupon" >
 
         <argument
@@ -381,7 +381,7 @@
     <fragment
         android:id="@+id/SEVISFormTypeFragment"
         android:name="tech.hackcity.educarts.ui.payment.sevisfee.SEVISFormTypeFragment"
-        android:label=""
+        android:label="@string/form_type"
         tools:layout="@layout/fragment_sevis_form_type" >
         <action
             android:id="@+id/action_SEVISFormTypeFragment_to_sevisFeeStep1Fragment"

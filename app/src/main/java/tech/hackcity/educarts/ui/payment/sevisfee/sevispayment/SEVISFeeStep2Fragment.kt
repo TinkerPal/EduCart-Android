@@ -3,7 +3,6 @@ package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,11 +14,10 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentSevisFeeStep2Binding
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
-import tech.hackcity.educarts.domain.model.payment.sevis.Category
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
-import tech.hackcity.educarts.domain.model.support.ConsultationResponseData
+import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
+import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponseData
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -50,20 +48,19 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
         viewModel = ViewModelProvider(this, factory)[SEVISFeeViewModel::class.java]
         viewModel.listener2 = this
 
-        viewModel.fetchSevisCategory()
-
         binding.textGuide1.text = resources.getString(
             R.string.please_fill_the_following_form_as_it_is_in_your,
             args.formType
         )
 
         if (args.formType == resources.getString(R.string.ds_2019)) {
+            viewModel.fetchSevisCategory()
             binding.categoryTextInputLayout.visibility = View.VISIBLE
         }
 
         binding.nextBtn.setOnClickListener {
             viewModel.formType = args.formType
-            viewModel.category = ""
+            viewModel.category = binding.category.text.toString()
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.phoneNumber = binding.phoneNumberET.text.toString().trim()
             viewModel.countryOfCitizenship = "Nigeria"
@@ -77,21 +74,22 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
 
     }
 
-//    private fun setupSevisCategories(data: List<Category>) {
-//        val options = mutableListOf<String>()
-//
-//        for (i in data) {
-//            options.add(i.option)
-//        }
-//
-//        val arrayAdapter1 =
-//            ArrayAdapter(
-//                requireContext(),
-//                R.layout.security_questions_item,
-//                options
-//            )
-//        binding.question.setAdapter(arrayAdapter1)
-//    }
+    private fun setupSevisCategory(data: List<MultipleChoiceResponseData>) {
+        val options = mutableListOf<String>()
+
+        for (i in data) {
+            options.add(i.choice)
+        }
+
+        val arrayAdapter1 =
+            ArrayAdapter(
+                requireContext(),
+                R.layout.security_questions_item,
+                options
+            )
+        binding.category.setAdapter(arrayAdapter1)
+    }
+
 
 
     override fun onRequestStarted() {
@@ -101,7 +99,7 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
     }
 
     override fun onFetchSevisCategoryStarted() {
-
+        sharedViewModel.updateLoadingScreen(true)
     }
 
     override fun onRequestFailed(message: String) {
@@ -115,8 +113,9 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
         sharedViewModel.updateLoadingScreen(false)
     }
 
-    override fun onFetchSevisCategorySuccessful(response: SEVISCategoryResponse) {
-
+    override fun onFetchSevisCategorySuccessful(response: MultipleChoiceResponse) {
+        setupSevisCategory(response.data)
+        sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep2Response) {

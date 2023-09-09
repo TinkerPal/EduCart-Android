@@ -14,8 +14,7 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 /**
  *Created by Victor Loveday on 8/3/23
  */
-class ForgotPasswordInstructionsFragment :
-    Fragment(R.layout.fragment_forgot_password_instructions) {
+class ForgotPasswordInstructionsFragment : Fragment(R.layout.fragment_forgot_password_instructions) {
 
     private lateinit var binding: FragmentForgotPasswordInstructionsBinding
 

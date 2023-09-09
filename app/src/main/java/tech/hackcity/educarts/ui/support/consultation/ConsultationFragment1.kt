@@ -13,10 +13,9 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentConsultation1Binding
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
-import tech.hackcity.educarts.domain.model.support.ConsultationResponse
-import tech.hackcity.educarts.domain.model.support.ConsultationResponseData
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
+import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
+import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponseData
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
@@ -52,11 +51,11 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
         }
     }
 
-    private fun setupConsultationFAQs(data: List<ConsultationResponseData>) {
+    private fun setupConsultationCategory(data: List<MultipleChoiceResponseData>) {
         val options = mutableListOf<String>()
 
         for (i in data) {
-            options.add(i.option)
+            options.add(i.choice)
         }
 
         val arrayAdapter1 =
@@ -82,8 +81,8 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onFetchConsultationTopicsRequestSuccessful(response: ConsultationResponse) {
-        setupConsultationFAQs(response.data)
+    override fun onFetchConsultationTopicsRequestSuccessful(response: MultipleChoiceResponse) {
+        setupConsultationCategory(response.data)
         enablePrimaryButtonState(binding.scheduleMeetingBtn)
         sharedViewModel.updateLoadingScreen(false)
     }
