@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), MainListener {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment, R.id.myOrderFragment,
+                R.id.homeFragment,
                 R.id.paymentFragment, R.id.supportFragment,
                 R.id.accountFragment
             )

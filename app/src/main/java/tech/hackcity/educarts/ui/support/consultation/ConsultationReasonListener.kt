@@ -6,7 +6,7 @@ import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 /**
  *Created by Victor Loveday on 8/4/23
  */
-interface ConsultationStep1Listener {
+interface ConsultationReasonListener {
     fun onFetchConsultationTopicsRequestStarted()
     fun onSubmitConsultationStep1RequestStarted()
     fun onRequestFailed(message: String)

@@ -57,7 +57,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
-            lifecycleScope.launch {
+            lifecycleScope.launchWhenCreated {
                 viewModel.loginUser(requireContext())
             }
 

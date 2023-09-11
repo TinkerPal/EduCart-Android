@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.support.consultation.ConsultationReasonFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,22 +55,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/consultation_faqs"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             app:boxCornerRadiusTopStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:hint="@string/consultation_faqs">
 
             <AutoCompleteTextView
                 android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:inputType="none"
-                android:text="@string/consultation_faqs" />
+                android:background="@drawable/edit_text_bg"
+                android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,14 +111,14 @@
             android:layout_marginBottom="20dp">
 
             <Button
-                android:id="@+id/scheduleMeetingBtn"
+                android:id="@+id/nextBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/disabled_button"
                 android:enabled="false"
                 android:fontFamily="@font/montserrat_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/schedule_meeting"
+                android:text="@string/next"
                 android:textAllCaps="false"
                 app:backgroundTint="@null"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -127,10 +129,10 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@id/scheduleMeetingBtn"
-                app:layout_constraintEnd_toEndOf="@id/scheduleMeetingBtn"
-                app:layout_constraintStart_toStartOf="@id/scheduleMeetingBtn"
-                app:layout_constraintTop_toTopOf="@id/scheduleMeetingBtn" />
+                app:layout_constraintBottom_toBottomOf="@id/nextBtn"
+                app:layout_constraintEnd_toEndOf="@id/nextBtn"
+                app:layout_constraintStart_toStartOf="@id/nextBtn"
+                app:layout_constraintTop_toTopOf="@id/nextBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

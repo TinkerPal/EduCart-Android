@@ -3,6 +3,8 @@ package tech.hackcity.educarts.data.repositories.support
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.domain.model.support.ConsultantProfileResponse
+import tech.hackcity.educarts.domain.model.support.ConsultantsResponse
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 import tech.hackcity.educarts.domain.model.support.ConsultationStep2Response
 import tech.hackcity.educarts.domain.model.support.FaqsResponse
@@ -34,22 +36,12 @@ class SupportRepository(
         }
     }
 
-    suspend fun submitConsultationStep2(
-        consultationWay: String,
-        phoneNumber: String,
-        timeOfConsultation: String,
-        date: String,
-        time: String
-    ): ConsultationStep2Response {
-        return apiRequest {
-            api.supportAPI.submitConsultationStep2(
-                consultationWay,
-                phoneNumber,
-                timeOfConsultation,
-                date,
-                time
-            )
-        }
+    suspend fun fetchConsultants(): ConsultantsResponse {
+        return apiRequest { api.supportAPI.fetchConsultants() }
+    }
+
+    suspend fun fetchConsultantProfile(id: Int): ConsultantProfileResponse {
+        return apiRequest { api.supportAPI.fetchConsultantProfile(id) }
     }
 
     suspend fun fetchFAQs(): FaqsResponse {

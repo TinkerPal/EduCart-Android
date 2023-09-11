@@ -7,10 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentPaymentBinding
-import tech.hackcity.educarts.ui.browser.BrowserActivity
 import tech.hackcity.educarts.ui.payment.PaymentActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
-import tech.hackcity.educarts.uitls.shortenString
+import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.spannableTextWithForegroundColour
 
 /**
@@ -27,20 +26,21 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         setupNavigation()
 
         spannableTextWithForegroundColour(
-            resources.getString(R.string.can_t_find_a_payment_you_want_to_make_t_contact_support),
-            41,
-            56,
+            resources.getString(R.string.can_t_find_a_payment_contact_support),
+            21,
+            39,
             ContextCompat.getColor(requireContext(), R.color.text_heading_light),
             binding.contactSupportTV
         )
     }
 
     private fun setupNavigation() {
-        val intent = Intent(requireContext(), PaymentActivity::class.java)
+        val paymentIntent = Intent(requireContext(), PaymentActivity::class.java)
+        val supportIntent = Intent(requireContext(), SupportActivity::class.java)
 
         binding.sevisFeeCardView.setOnClickListener {
-            intent.putExtra("destination", "sevis fee")
-            startActivity(intent)
+            paymentIntent.putExtra("destination", "sevis fee")
+            startActivity(paymentIntent)
         }
 
         binding.trackOrderCardView.setOnClickListener {
@@ -48,17 +48,18 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
 
         binding.applicationFeeCardView.setOnClickListener {
-            intent.putExtra("destination", "application fee")
-            startActivity(intent)
+            paymentIntent.putExtra("destination", "application fee")
+            startActivity(paymentIntent)
         }
 
         binding.wesEvaluationCardView.setOnClickListener {
-            intent.putExtra("destination", "credential evaluation")
-            startActivity(intent)
+            paymentIntent.putExtra("destination", "credential evaluation")
+            startActivity(paymentIntent)
         }
 
         binding.contactSupportTV.setOnClickListener {
-            startActivity(Intent(requireContext(), BrowserActivity::class.java))
+            supportIntent.putExtra("destination", "consultation")
+            startActivity(supportIntent)
         }
     }
 }

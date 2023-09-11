@@ -17,4 +17,5 @@ object ErrorCodes {
     const val MAX_RETRIES_EXCEEDED = "max_retries_exceeded"
     const val USER_NOT_VERIFIED = "user_not_verified"
     const val NON_FIELD_ERRORS = "non_field_errors"
+    const val INVALID_PK = "invalid_pk"
 }

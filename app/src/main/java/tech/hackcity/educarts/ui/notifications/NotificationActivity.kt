@@ -23,7 +23,7 @@ class NotificationActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val toolbar = binding.toolbar
-        toolbar.title = ""
+        toolbar.title = resources.getString(R.string.notifications)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

@@ -5,6 +5,10 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
+import tech.hackcity.educarts.domain.model.support.ConsultantProfileResponse
+import tech.hackcity.educarts.domain.model.support.ConsultantsResponse
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 import tech.hackcity.educarts.domain.model.support.ConsultationStep2Response
 import tech.hackcity.educarts.domain.model.support.FaqsResponse
@@ -25,15 +29,14 @@ interface SupportAPI {
         @Field("details") details: String,
     ): Response<ConsultationStep1Response>
 
-    @FormUrlEncoded
-    @POST("support/consultation/2/")
-    suspend fun submitConsultationStep2(
-        @Field("consultation_way") consultation_way: String,
-        @Field("phone_number") phone_number: String,
-        @Field("time_of_consultation") time_of_consultation: String,
-        @Field("date") date: String,
-        @Field("time") time: String
-    ): Response<ConsultationStep2Response>
+    @GET("support/consultants/")
+    suspend fun fetchConsultants(): Response<ConsultantsResponse>
+
+    @GET("support/consultants/{id}/")
+    suspend fun fetchConsultantProfile(
+//        @Query("id") id: Int
+        @Path("id") id: Int
+    ): Response<ConsultantProfileResponse>
 
     @GET("support/faqs/")
     suspend fun fetchFAQs(): Response<FaqsResponse>

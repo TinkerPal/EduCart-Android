@@ -7,16 +7,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
-import tech.hackcity.educarts.databinding.FragmentConsultation1Binding
+import tech.hackcity.educarts.databinding.FragmentConsultationReasonBinding
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponseData
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
@@ -24,15 +26,15 @@ import tech.hackcity.educarts.uitls.showButtonLoadingState
 /**
  *Created by Victor Loveday on 5/17/23
  */
-class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
-    ConsultationStep1Listener {
+class ConsultationReasonFragment : Fragment(R.layout.fragment_consultation_reason),
+    ConsultationReasonListener {
 
-    private lateinit var binding: FragmentConsultation1Binding
+    private lateinit var binding: FragmentConsultationReasonBinding
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentConsultation1Binding.bind(view)
+        binding = FragmentConsultationReasonBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
         val api = RetrofitInstance(requireContext())
@@ -40,14 +42,19 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
         val repository = SupportRepository(api, sharePreferencesManager)
         val factory = ConsultationViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[ConsultationViewModel::class.java]
-        viewModel.step1listener = this
+        viewModel.consultationReasonListener = this
 
-        viewModel.fetchConsultationTopics()
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
+            viewModel.fetchConsultationTopics()
+        }
 
-        binding.scheduleMeetingBtn.setOnClickListener {
+        binding.nextBtn.setOnClickListener {
             viewModel.consultation = binding.question.text.toString()
             viewModel.detail = binding.detailsET.text.toString().trim()
-            viewModel.submitConsultationStep1(requireContext())
+
+            Coroutines.onMainWithScope(viewModel.viewModelScope) {
+                viewModel.submitConsultationStep1(requireContext())
+            }
         }
     }
 
@@ -72,29 +79,31 @@ class ConsultationFragment1 : Fragment(R.layout.fragment_consultation_1),
     }
 
     override fun onSubmitConsultationStep1RequestStarted() {
-        showButtonLoadingState(binding.scheduleMeetingBtn, binding.progressBar, "")
+        showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
+        sharedViewModel.updateLoadingScreen(true)
     }
 
     override fun onRequestFailed(message: String) {
         sharedViewModel.updateLoadingScreen(false)
-        hideButtonLoadingState(binding.scheduleMeetingBtn, binding.progressBar, resources.getString(R.string.schedule_meeting))
+        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.schedule_meeting))
         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+        sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onFetchConsultationTopicsRequestSuccessful(response: MultipleChoiceResponse) {
         setupConsultationCategory(response.data)
-        enablePrimaryButtonState(binding.scheduleMeetingBtn)
+        enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationStep1Response) {
-        hideButtonLoadingState(binding.scheduleMeetingBtn, binding.progressBar, resources.getString(R.string.schedule_meeting))
-        findNavController().navigate(R.id.action_consultationFragment1_to_consultationFragment2)
+        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.schedule_meeting))
+        findNavController().navigate(R.id.action_consultationReasonFragment_to_chooseAConsultantFragment)
+        sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.updateStepIndicator(arrayOf(1, 2, 1))
     }
 
 }
