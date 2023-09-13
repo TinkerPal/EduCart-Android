@@ -1,12 +1,15 @@
 package tech.hackcity.educarts.ui.auth.register
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 import tech.hackcity.educarts.uitls.removeSpacesFromString
 
 /**
@@ -16,6 +19,7 @@ class CreatePersonalAccountViewModel(
     private val repository: AuthRepository
 ) : ViewModel() {
 
+    var userType: String? = null
     var email: String? = null
     var firstName: String? = null
     var lastName: String? = null
@@ -35,6 +39,12 @@ class CreatePersonalAccountViewModel(
             || phoneNumber.isNullOrEmpty() || countryOfResidence.isNullOrEmpty()
             || countryCode == null
         ) {
+
+            if (userType.isNullOrEmpty()) {
+                createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.no_user_type_selected))
+                return
+            }
+
             createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
@@ -44,6 +54,7 @@ class CreatePersonalAccountViewModel(
         Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.registerPersonalAccountUser(
+                    userType!!,
                     email!!,
                     firstName!!,
                     lastName!!,
@@ -60,20 +71,24 @@ class CreatePersonalAccountViewModel(
                 } else {
 
                     val messages = mutableListOf(
-                        response.message.email?.get(0) ?: "",
-                        response.message.phone_number?.get(0) ?: "",
-                        response.message.password?.get(0) ?: "",
+                        response.errorMessage.email?.get(0) ?: "",
+                        response.errorMessage.phone_number?.get(0) ?: "",
+                        response.errorMessage.password?.get(0) ?: "",
                     )
 
                     for (message in messages) {
                         createPersonalAccountListener?.onRequestFailed(message)
+                        Log.d("RegisterError", message)
                     }
 
                 }
 
             } catch (e: ApiException) {
                 createPersonalAccountListener?.onRequestFailed(e.message!!)
-                return@onMainWithScope
+            }catch (e: NoInternetException) {
+                createPersonalAccountListener?.onRequestFailed("${e.message}")
+            } catch (e: SocketTimeOutException) {
+                createPersonalAccountListener?.onRequestFailed("${e.message}")
             }
         }
     }

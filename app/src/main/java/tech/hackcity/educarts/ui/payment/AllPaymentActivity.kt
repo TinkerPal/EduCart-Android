@@ -9,7 +9,6 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityAllPaymentBinding
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
-import tech.hackcity.educarts.uitls.Constants
 
 class AllPaymentActivity : AppCompatActivity() {
 
@@ -26,7 +25,7 @@ class AllPaymentActivity : AppCompatActivity() {
 
 
         val toolbar = binding.toolbar
-        toolbar.title = ""
+        toolbar.title = resources.getString(R.string.payment_activities)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -40,7 +39,7 @@ class AllPaymentActivity : AppCompatActivity() {
         binding.allPaymentActivitiesRV.apply {
             adapter = allPaymentAdapter
             layoutManager = LinearLayoutManager(this@AllPaymentActivity)
-            allPaymentAdapter.setData(allHistory.date)
+            allHistory.data?.let { allPaymentAdapter.setData(it) }
         }
 
         allPaymentAdapter.setOnItemClickListener {

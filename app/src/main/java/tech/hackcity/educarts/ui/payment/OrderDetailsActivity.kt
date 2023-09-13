@@ -22,7 +22,7 @@ class OrderDetailsActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val toolbar = binding.toolbar
-        toolbar.title = ""
+        toolbar.title = resources.getString(R.string.order_details)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

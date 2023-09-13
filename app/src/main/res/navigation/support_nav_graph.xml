@@ -3,46 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/support_nav_graph"
-    app:startDestination="@id/consultationFragment1">
+    app:startDestination="@id/consultationReasonFragment">
 
     <fragment
-        android:id="@+id/consultationFragment1"
-        android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment1"
-        android:label=""
-        tools:layout="@layout/fragment_consultation_1">
+        android:id="@+id/consultationReasonFragment"
+        android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationReasonFragment"
+        android:label="@string/consultation"
+        tools:layout="@layout/fragment_consultation_reason">
         <action
-            android:id="@+id/action_consultationFragment1_to_consultationFragment2"
-            app:destination="@id/consultationFragment2"
+            android:id="@+id/action_consultationReasonFragment_to_chooseAConsultantFragment"
+            app:destination="@id/chooseAConsultantFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
-
-    <fragment
-        android:id="@+id/consultationFragment2"
-        android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment2"
-        android:label=""
-        tools:layout="@layout/fragment_consultation_2">
-        <action
-            android:id="@+id/action_consultationFragment2_to_consultationFragment3"
-            app:destination="@id/consultationFragment3"
-            app:enterAnim="@anim/slide_in_right_slow"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left_slow"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/consultationFragment3"
-        android:name="tech.hackcity.educarts.ui.support.consultation.ConsultationFragment3"
-        android:label=""
-        tools:layout="@layout/fragment_consultation_3" />
 
     <fragment
         android:id="@+id/FAQsCategoryFragment"
         android:name="tech.hackcity.educarts.ui.support.faqs.FAQsCategoryFragment"
-        android:label=""
+        android:label="@string/faqs"
         tools:layout="@layout/fragment_faq_category">
         <action
             android:id="@+id/action_FAQsCategoryFragment_to_FAQsFragment"
@@ -56,11 +36,11 @@
     <fragment
         android:id="@+id/FAQsFragment"
         android:name="tech.hackcity.educarts.ui.support.faqs.FAQsFragment"
-        android:label=""
+        android:label="@string/faqs"
         tools:layout="@layout/fragment_faqs">
         <action
-            android:id="@+id/action_FAQsFragment_to_consultationFragment1"
-            app:destination="@id/consultationFragment1"
+            android:id="@+id/action_FAQsFragment_to_consultationReasonFragment"
+            app:destination="@id/consultationReasonFragment"
             app:enterAnim="@anim/slide_in_right_slow"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left_slow"
@@ -68,6 +48,30 @@
         <argument
             android:name="faqs"
             app:argType="tech.hackcity.educarts.domain.model.support.FaqCategory" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseAConsultantFragment"
+        android:name="tech.hackcity.educarts.ui.support.consultation.ChooseAConsultantFragment"
+        android:label="@string/choose_a_consultant"
+        tools:layout="@layout/fragment_choose_a_consultant">
+        <action
+            android:id="@+id/action_chooseAConsultantFragment_to_consultantProfileFragment"
+            app:destination="@id/consultantProfileFragment"
+            app:enterAnim="@anim/slide_in_right_slow"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left_slow"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/consultantProfileFragment"
+        android:name="tech.hackcity.educarts.ui.support.consultation.ConsultantProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_consulant_profile" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

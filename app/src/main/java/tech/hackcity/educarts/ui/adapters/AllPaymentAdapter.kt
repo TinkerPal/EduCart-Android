@@ -2,17 +2,18 @@ package tech.hackcity.educarts.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tech.hackcity.educarts.R
-import tech.hackcity.educarts.domain.model.payment.PaymentHistory
 import tech.hackcity.educarts.databinding.ItemPaymentBinding
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
-import java.util.Locale
+import tech.hackcity.educarts.uitls.formatDateTime
 
 class AllPaymentAdapter(private val context: Context) :
     RecyclerView.Adapter<AllPaymentAdapter.AllPaymentViewHolder>() {
@@ -45,6 +46,7 @@ class AllPaymentAdapter(private val context: Context) :
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AllPaymentViewHolder, position: Int) {
         holder.binding.apply {
@@ -52,7 +54,7 @@ class AllPaymentAdapter(private val context: Context) :
             val paymentHistory = paymentHistoryList[position]
             transactionId.text = paymentHistory.order_id
             service.text = paymentHistory.order_type
-            date.text = paymentHistory.date
+            date.text = formatDateTime(paymentHistory.date)
             transactionStatus.text = paymentHistory.status
 
             val paymentStatus = when (paymentHistory.status) {
@@ -100,6 +102,6 @@ class AllPaymentAdapter(private val context: Context) :
 enum class PaymentStatus(val textColourRes: Int, val iconColourRes: Int) {
     ORDER_COMPLETED(R.color.success_green, R.color.success_green),
     ORDER_IN_PROCESS(R.color.primary_color, R.color.primary_color),
-    PAYMENT_PENDING(R.color.text_light, R.color.text_light),
+    PAYMENT_PENDING(R.color.error_600, R.color.error_600),
     PAYMENT_CONFIRMED(R.color.secondary_color, R.color.secondary_color)
 }

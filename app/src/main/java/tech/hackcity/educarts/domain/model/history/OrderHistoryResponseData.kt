@@ -10,4 +10,4 @@ data class OrderHistoryResponseData(
     val order_type: String,
     val status: String,
     val user: String
-): Serializable
+):Serializable

@@ -26,7 +26,7 @@ class OrderSummaryActivity : AppCompatActivity() {
         currency = intent.getStringExtra("currency").toString()
 
         val toolbar = binding.toolbar
-        toolbar.title = ""
+        toolbar.title = resources.getString(R.string.order_summary)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

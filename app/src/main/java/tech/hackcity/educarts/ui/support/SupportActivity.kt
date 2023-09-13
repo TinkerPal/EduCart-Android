@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivitySupportBinding
+import tech.hackcity.educarts.ui.canvas.CustomLineView
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.hideViews
 import tech.hackcity.educarts.uitls.showViews
@@ -27,7 +28,7 @@ class SupportActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var sharedViewModel: SharedViewModel
-
+    private lateinit var customLineView: CustomLineView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,35 +55,35 @@ class SupportActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        showStepIndicatorIfRequired()
         setupDestination()
+        showStepIndicatorIfRequired()
         setupScreenLoader()
 
     }
 
-    private fun showStepIndicatorIfRequired() {
-        val animate1 = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom_slow)
-        val animate2 = AnimationUtils.loadAnimation(this, R.anim.slide_out_right)
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
+        }
+    }
 
-        sharedViewModel.getStepIndicator().observe(this) { step ->
-            if (step[0] > 0) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    binding.stepIndicator.apply {
-                        if (step[2] == 1) {
-                            setTextColor(ContextCompat.getColor(this@SupportActivity, R.color.text_light))
-                        }
-                        visibility = View.VISIBLE
-                        startAnimation(animate1)
-                        binding.stepIndicator.text = "${step[0]}/${step[1]}"
-                    }
-                }, 100)
+    private fun showStepIndicatorIfRequired() {
+        customLineView = binding.customLineView
+        sharedViewModel.fetchHorizontalStepViewPosition().observe(this) { position ->
+            if (position > 0) {
+                binding.customLineView.visibility = View.VISIBLE
+                Handler(Looper.getMainLooper()).postDelayed(
+                    {
+                        customLineView.setPosition(position)
+                    }, 100
+                )
 
             } else {
-                binding.stepIndicator.apply {
-                    visibility = View.INVISIBLE
-//                    startAnimation(animate2)
-                }
-
+                binding.customLineView.visibility = View.INVISIBLE
             }
         }
     }
@@ -94,7 +95,7 @@ class SupportActivity : AppCompatActivity() {
         if (destination != null) {
             when (destination) {
                 "consultation" -> {
-                    navGraph.setStartDestination(R.id.consultationFragment1)
+                    navGraph.setStartDestination(R.id.consultationReasonFragment)
                 }
                 "faqs" -> {
                     navGraph.setStartDestination(R.id.FAQsCategoryFragment)
@@ -102,16 +103,6 @@ class SupportActivity : AppCompatActivity() {
             }
 
             navController.graph = navGraph
-        }
-    }
-
-    private fun setupScreenLoader() {
-        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
-            if (isScreenLoading) {
-                showViews(listOf(binding.loadingScreen))
-            }else {
-                hideViews(listOf(binding.loadingScreen))
-            }
         }
     }
 

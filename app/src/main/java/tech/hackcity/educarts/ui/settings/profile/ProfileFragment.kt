@@ -56,7 +56,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
 
                 val fullName = "${user.firstName} ${user.lastName}"
-                title.text = resources.getString(R.string.hello__, fullName)
+                fullNameTV.text = resources.getString(R.string.hello__, fullName)
                 userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
                 firstNameTV.text = user.firstName
                 lastNameTV.text = user.lastName

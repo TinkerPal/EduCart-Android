@@ -19,14 +19,15 @@ class AuthRepository(
 ) : SafeApiRequest() {
 
     suspend fun registerPersonalAccountUser(
-        email: String, firstName: String,
-        lastName: String, countryOfResidence: String,
-        countryCode: Int,
+        userType: String, email: String,
+        firstName: String, lastName: String,
+        countryOfResidence: String, countryCode: Int,
         phoneNumber: String, password: String
     ): RegisterUserResponse {
 
         return apiRequest {
             api.authenticationAPI.registerPersonalUserAccount(
+                userType,
                 email,
                 firstName,
                 lastName,
@@ -39,33 +40,27 @@ class AuthRepository(
     }
 
     suspend fun verifyOTPForNewAccount(id: String, otp: String): VerifyOTPResponse {
-        return apiRequest {
-            api.authenticationAPI.verifyOTPForNewAccount(id, otp)
-        }
+        return apiRequest { api.authenticationAPI.verifyOTPForNewAccount(id, otp) }
     }
 
     suspend fun verifyOTPForPasswordReset(id: String, otp: String): VerifyOTPResponse {
-        return apiRequest {
-            api.authenticationAPI.verifyOTPForPasswordReset(id, otp)
-        }
+        return apiRequest { api.authenticationAPI.verifyOTPForPasswordReset(id, otp) }
+    }
+
+    suspend fun regenerateOTP(id: String): RegenerateOTPResponse {
+        return apiRequest { api.authenticationAPI.regenerateOTP(id) }
     }
 
     suspend fun loginUser(email: String, password: String): LoginResponse {
-        return apiRequest {
-            api.authenticationAPI.loginUser(email, password)
-        }
+        return apiRequest { api.authenticationAPI.loginUser(email, password) }
     }
 
     suspend fun forgotPassword(email: String): ForgotPasswordResponse {
-        return apiRequest {
-            api.authenticationAPI.forgotPassword(email)
-        }
+        return apiRequest { api.authenticationAPI.forgotPassword(email) }
     }
 
     suspend fun resetPassword(id: String, password: String): CreateNewPasswordResponse {
-        return apiRequest {
-            api.authenticationAPI.resetPassword(id, password, password)
-        }
+        return apiRequest { api.authenticationAPI.resetPassword(id, password, password) }
     }
 
     fun saveUser(user: User) {

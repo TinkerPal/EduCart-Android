@@ -10,6 +10,7 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
+import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 
 /**
  *Created by Victor Loveday on 8/3/23
@@ -91,7 +92,7 @@ class SEVISFeeRepository(
         }
     }
 
-    suspend fun fetchSevisCategory(): SEVISCategoryResponse {
+    suspend fun fetchSevisCategory(): MultipleChoiceResponse {
         return apiRequest {
             api.sevisFeeAPI.fetchSevisCategory()
         }

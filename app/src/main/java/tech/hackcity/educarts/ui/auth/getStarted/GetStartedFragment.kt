@@ -17,8 +17,8 @@ import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
 
     private lateinit var binding: FragmentGetStartedBinding
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentGetStartedBinding.bind(view)
@@ -46,7 +46,6 @@ class GetStartedFragment: Fragment(R.layout.fragment_get_started) {
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
         sharedViewModel.updateHorizontalStepViewPosition(1)
     }
 

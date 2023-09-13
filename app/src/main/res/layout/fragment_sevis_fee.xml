@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,189 +7,168 @@
     android:orientation="vertical"
     tools:context=".ui.payment.sevisfee.SEVISFeeFragment">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/sevis_fee"
-        android:textColor="@color/text_heading_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_bg_white"
+            android:padding="10dp"
+            android:src="@drawable/info_with_blue_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp">
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/_1_to_make_your_sevis_fee_payment_with_educarts_you_will_be_required_to_upload_any_of_form_i_20_or_ds_2019_issued_for_you_by_your_institution_and_your_recent_passport"
+            android:textColor="@color/text_light"
+            android:textSize="16sp" />
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/round_bg_white"
-                android:padding="10dp"
-                android:src="@drawable/info_with_blue_bg" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/_2_if_you_have_already_generated_the_sevis_payment_coupon_you_will_need_to_upload_the_coupon_with_your_passport"
+            android:textColor="@color/text_light"
+            android:textSize="16sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sevisPaymentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/white_bg_with_gray_borders"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:paddingHorizontal="20dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/randomImageView1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sevis_fee"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_regular"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/_1_to_make_your_sevis_fee_payment_with_educarts_you_will_be_required_to_upload_any_of_form_i_20_or_ds_2019_issued_for_you_by_your_institution_and_your_recent_passport"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/carry_out_all_the_sevis"
                 android:textColor="@color/text_light"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/randomImageView1"
+                app:layout_constraintTop_toTopOf="@id/randomImageView1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/_2_if_you_have_already_generated_the_sevis_payment_coupon_you_will_need_to_upload_the_coupon_with_your_passport"
+                android:text="@string/fee_payment_for_me"
                 android:textColor="@color/text_light"
-                android:textSize="16sp" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/randomImageView1"
+                app:layout_constraintStart_toEndOf="@id/randomImageView1" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sevisPaymentBtn"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/white_bg_with_gray_borders"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingHorizontal="20dp">
+            <RadioButton
+                android:id="@+id/sevisPaymentRadioBtn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/custom_radio_button"
+                android:button="@null"
+                android:clickable="false"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/randomImageView1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/sevis_fee"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/carry_out_all_the_sevis"
-                    android:textColor="@color/text_light"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@id/randomImageView1"
-                    app:layout_constraintTop_toTopOf="@id/randomImageView1" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sevisCouponBtn"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/white_bg_with_gray_borders"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:paddingHorizontal="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/fee_payment_for_me"
-                    android:textColor="@color/text_light"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/randomImageView1"
-                    app:layout_constraintStart_toEndOf="@id/randomImageView1" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sevis_fee"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioButton
-                    android:id="@+id/sevisPaymentRadioBtn"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@null"
-                    android:clickable="false"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/i_have_generated_sevis"
+                android:textColor="@color/text_light"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/imageView2"
+                app:layout_constraintTop_toTopOf="@id/imageView2" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/payment_coupon"
+                android:textColor="@color/text_light"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/imageView2"
+                app:layout_constraintStart_toEndOf="@id/imageView2" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sevisCouponBtn"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/white_bg_with_gray_borders"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingHorizontal="20dp">
+            <RadioButton
+                android:id="@+id/sevisCouponRadioBtn"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/custom_radio_button"
+                android:button="@null"
+                android:clickable="false"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/sevis_fee"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/i_have_generated_sevis"
-                    android:textColor="@color/text_light"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@id/imageView2"
-                    app:layout_constraintTop_toTopOf="@id/imageView2" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_regular"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/payment_coupon"
-                    android:textColor="@color/text_light"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/imageView2"
-                    app:layout_constraintStart_toEndOf="@id/imageView2" />
+    </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/sevisCouponRadioBtn"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:background="@drawable/custom_radio_button"
-                    android:button="@null"
-                    android:clickable="false"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextBtn"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/primary_button"
-        android:fontFamily="@font/montserrat_regular"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

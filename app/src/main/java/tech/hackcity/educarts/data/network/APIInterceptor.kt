@@ -112,9 +112,7 @@ class APIInterceptor(
             }
         }
 
-        throw ApiException(
-            context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"), ""
-        )
+        throw ApiException(context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"))
     }
 
     private fun isInternetAvailable(): Boolean {

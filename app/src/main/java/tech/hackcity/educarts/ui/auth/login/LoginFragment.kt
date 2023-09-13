@@ -2,6 +2,7 @@ package tech.hackcity.educarts.ui.auth.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ import tech.hackcity.educarts.domain.model.auth.LoginResponse
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.errorMessageTextViewPresenter
 import tech.hackcity.educarts.uitls.extractErrorMessagesFromErrorBody
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
@@ -55,7 +57,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.password = binding.passwordET.text.toString().trim()
 
-            lifecycleScope.launch {
+            lifecycleScope.launchWhenCreated {
                 viewModel.loginUser(requireContext())
             }
 
@@ -77,6 +79,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
 
     override fun onRequestFailed(errorMessage: String) {
 
+        Log.d("LoginError", errorMessage)
+//        errorMessageTextViewPresenter(requireContext(), errorMessage, binding.errorMessageTV)
         context?.toast(errorMessage)
 
         val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
@@ -126,7 +130,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
             )
         )
         sharedViewModel.updateHorizontalStepViewPosition(0)
-
     }
 
 }

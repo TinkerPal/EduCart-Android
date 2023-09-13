@@ -12,7 +12,7 @@ import tech.hackcity.educarts.databinding.ActivityUnlockBinding
 import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.uitls.BiometricAuthListener
-import tech.hackcity.educarts.uitls.BiometricUtils
+import tech.hackcity.educarts.uitls.Biometrics
 import tech.hackcity.educarts.uitls.toast
 
 class UnlockActivity : AppCompatActivity(), BiometricAuthListener {
@@ -48,8 +48,8 @@ class UnlockActivity : AppCompatActivity(), BiometricAuthListener {
     }
 
     private fun loginUserWithFingerprint() {
-        if (BiometricUtils.isBiometricReady(this)) {
-            BiometricUtils.showBiometricPrompt(
+        if (Biometrics.isBiometricReady(this)) {
+            Biometrics.showBiometricPrompt(
                 activity = this,
                 listener = this,
                 cryptoObject = null,

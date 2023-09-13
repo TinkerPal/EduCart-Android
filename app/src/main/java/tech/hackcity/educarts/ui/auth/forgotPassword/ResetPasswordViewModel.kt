@@ -7,6 +7,8 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 5/30/23
@@ -40,8 +42,11 @@ class ResetPasswordViewModel(
                 }
 
             } catch (e: ApiException) {
-                resetPasswordListener?.onRequestFailed(e.errorMessage!!)
-                return@onMainWithScope
+                resetPasswordListener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                resetPasswordListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                resetPasswordListener?.onRequestFailed("${e.message}")
             }
 
         }

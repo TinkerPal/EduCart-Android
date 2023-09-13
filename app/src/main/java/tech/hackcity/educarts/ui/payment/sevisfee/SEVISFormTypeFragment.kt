@@ -75,6 +75,7 @@ class SEVISFormTypeFragment : Fragment(R.layout.fragment_sevis_form_type) {
 
     override fun onResume() {
         super.onResume()
+        sharedViewModel.updateHorizontalStepViewPosition(0)
     }
 
 }

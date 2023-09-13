@@ -30,7 +30,7 @@ class FAQsFragment : Fragment(R.layout.fragment_faqs) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.bookConsultationBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_FAQsFragment_to_consultationFragment1)
+            findNavController().navigate(R.id.action_FAQsFragment_to_consultationReasonFragment)
         }
 
         setupRecyclerView()

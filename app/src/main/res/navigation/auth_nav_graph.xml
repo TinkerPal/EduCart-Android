@@ -97,7 +97,7 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="tech.hackcity.educarts.ui.auth.forgotPassword.ForgotPasswordFragment"
-        android:label=""
+        android:label="@string/forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_forgotPasswordInstructionsFragment"
@@ -111,7 +111,7 @@
     <fragment
         android:id="@+id/createNewPasswordFragment"
         android:name="tech.hackcity.educarts.ui.auth.forgotPassword.CreateNewPasswordFragment"
-        android:label=""
+        android:label="@string/create_new_password"
         tools:layout="@layout/fragment_create_new_password">
         <action
             android:id="@+id/action_createNewPasswordFragment_to_loginFragment"
@@ -142,10 +142,11 @@
             app:popEnterAnim="@anim/slide_in_left_slow"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/forgotPasswordInstructionsFragment"
         android:name="tech.hackcity.educarts.ui.auth.forgotPassword.ForgotPasswordInstructionsFragment"
-        android:label=""
+        android:label="@string/forgot_password"
         tools:layout="@layout/fragment_forgot_password_instructions">
         <action
             android:id="@+id/action_forgotPasswordInstructionsFragment_to_OTPFragment"

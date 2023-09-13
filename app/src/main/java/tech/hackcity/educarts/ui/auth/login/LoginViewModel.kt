@@ -14,7 +14,9 @@ import tech.hackcity.educarts.domain.model.auth.LoginResponseData
 import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.HTTPException
 import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 import tech.hackcity.educarts.uitls.extractDataFields
 import tech.hackcity.educarts.uitls.extractErrorMessagesFromErrorBody
@@ -50,10 +52,8 @@ class LoginViewModel(
                     repository.saveLoginStatus(true)
                     repository.saveUserId(response.data.id)
                     saveUser(response.data)
-
-                } else {
-                    loginListener?.onRequestFailed(response.errorMessage.toString())
                 }
+
             } catch (e: ApiException) {
                 loginListener?.onRequestFailed("${e.errorMessage} ${e.errorData}")
                 val errorMessages = extractErrorMessagesFromErrorBody(e.errorMessage)
@@ -70,6 +70,12 @@ class LoginViewModel(
                         }
                     }
                 }
+            } catch (e: NoInternetException) {
+                loginListener?.onRequestFailed("${e.message}")
+            } catch (e: SocketTimeOutException) {
+                loginListener?.onRequestFailed("${e.message}")
+            }catch (e: HTTPException) {
+                loginListener?.onRequestFailed("${e.message}")
             }
         }
 

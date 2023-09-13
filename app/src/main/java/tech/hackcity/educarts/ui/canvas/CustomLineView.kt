@@ -26,11 +26,11 @@ class CustomLineView @JvmOverloads constructor(
 
     private var lineCount = 3
     private var lineHeight = 20f
-    private var lineWidth = 1000f
-    private var lineSpacing = 100f
+    private var lineWidth = 700f
+    private var lineSpacing = 40f
     private var cornerRadius = 10f
 
-    private var position = 1
+    private var position = 0
     private var animProgress = 0f
 
     private val paint = Paint()
@@ -41,8 +41,8 @@ class CustomLineView @JvmOverloads constructor(
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.CustomLineView).apply {
-            lineCount = getInt(R.styleable.CustomLineView_lineCount, 3)
-            lineSpacing = getDimension(R.styleable.CustomLineView_lineSpacing, 100f)
+            lineCount = getInt(R.styleable.CustomLineView_lineCount, lineCount)
+            lineSpacing = getDimension(R.styleable.CustomLineView_lineSpacing, lineSpacing)
             // Retrieve any other custom attributes you define in attrs.xml here...
             recycle()
         }
@@ -58,18 +58,23 @@ class CustomLineView @JvmOverloads constructor(
                 ((lineWidth + lineSpacing) / (lineCount + 1)) * i - lineWidth / (lineCount + 1)
             val lineY = (height - lineHeight) / 2
 
-            paint.color = inactiveColor
-            rectF.set(lineX, lineY, lineX + lineWidth / (lineCount + 1), lineY + lineHeight)
-            canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint)
-
             if (i == position) {
                 paint.color = activeColor
                 val animatedWidth = lineWidth / (lineCount + 1) * animProgress
                 rectF.set(lineX, lineY, lineX + animatedWidth, lineY + lineHeight)
                 canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint)
+            } else if (i <= position) {
+                paint.color = activeColor
+                rectF.set(lineX, lineY, lineX + lineWidth / (lineCount + 1), lineY + lineHeight)
+                canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint)
+            } else {
+                paint.color = inactiveColor
+                rectF.set(lineX, lineY, lineX + lineWidth / (lineCount + 1), lineY + lineHeight)
+                canvas.drawRoundRect(rectF, cornerRadius, cornerRadius, paint)
             }
         }
     }
+
 
     fun setPosition(position: Int) {
         if (position in 1..lineCount && this.position != position) {

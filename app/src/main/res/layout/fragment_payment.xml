@@ -14,7 +14,7 @@
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/select_a_service_below"
         android:textColor="@color/text_light"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,23 +93,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow1"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/sevis_fee"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow1"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -176,23 +165,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow4"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/track_order"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow4"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -267,23 +245,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow3"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/application_fee"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow3"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -350,23 +317,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
+                                android:layout_margin="16dp"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow2"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/tuition_fee"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow2"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -441,23 +398,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow5"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/wes_evaluation"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow5"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -524,23 +470,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginEnd="20dp"
-                                android:layout_toStartOf="@+id/arrow6"
+                                android:layout_margin="16dp"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:text="@string/others"
                                 android:textColor="@color/text_light" />
-
-                            <ImageView
-                                android:id="@+id/arrow6"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:background="@drawable/round_bg_white"
-                                android:src="@drawable/arrow_forward_with_blue_bg" />
 
                         </RelativeLayout>
 
@@ -554,14 +489,16 @@
                 android:id="@+id/contactSupportTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="20dp"
-                android:paddingVertical="3dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/montserrat_regular"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/can_t_find_a_payment_you_want_to_make_t_contact_support"
+                android:paddingVertical="3dp"
+                android:text="@string/can_t_find_a_payment_contact_support"
+                android:textAlignment="center"
                 android:textColor="@color/gray_006" />
 
         </LinearLayout>

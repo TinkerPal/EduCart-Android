@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="tech.hackcity.educarts.ui.main.home.HomeFragment"
-        android:label="Home" />
-    <fragment
-        android:id="@+id/myOrderFragment"
-        android:name="tech.hackcity.educarts.ui.main.MyOrderFragment"
-        android:label="@string/my_order" />
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="tech.hackcity.educarts.ui.main.PaymentFragment"
-        android:label="Payment" />
+        android:label="@string/payment"
+        tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/supportFragment"
         android:name="tech.hackcity.educarts.ui.main.support.SupportFragment"
-        android:label="Support" />
+        android:label="@string/support"
+        tools:layout="@layout/fragment_support" />
     <fragment
         android:id="@+id/accountFragment"
         android:name="tech.hackcity.educarts.ui.main.account.AccountFragment"
-        android:label="Account" />
+        android:label="@string/account"
+        tools:layout="@layout/fragment_account" />
+
 </navigation>

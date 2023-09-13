@@ -1,17 +1,14 @@
 package tech.hackcity.educarts.ui.auth.verifyOTP
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import retrofit2.HttpException
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.auth.AuthRepository
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
-import java.io.IOException
-import java.net.SocketTimeoutException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 5/29/23
@@ -25,37 +22,36 @@ class VerifyOTPViewModel(
     var verifyOTPListener: VerifyOTPListener? = null
 
     fun verifyOTPForNewAccount(context: Context) {
-        verifyOTPListener?.onRequestStarted()
+        verifyOTPListener?.onVerifyOTPRequestStarted()
 
         if (otp.isNullOrEmpty()) {
-            verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
+            verifyOTPListener?.onVerifyRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
-        Log.d("OTPError", "${repository.fetchUserId()} $otp")
         Coroutines.onMainWithScope(viewModelScope) {
             try {
                 val response = repository.verifyOTPForNewAccount(repository.fetchUserId()!!, otp!!)
 
                 if (!response.error) {
-                    verifyOTPListener?.onRequestSuccessful(response)
-
-                } else {
-                    verifyOTPListener?.onRequestFailed(response.errorMessage.toString())
+                    verifyOTPListener?.onVerifyOTPRequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
-                verifyOTPListener?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
+                verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
         }
     }
 
     fun verifyOTPForPasswordReset(context: Context) {
-        verifyOTPListener?.onRequestStarted()
+        verifyOTPListener?.onVerifyOTPRequestStarted()
 
         if (otp.isNullOrEmpty()) {
-            verifyOTPListener?.onRequestFailed(context.resources.getString(R.string.missing_field))
+            verifyOTPListener?.onVerifyRequestFailed(context.resources.getString(R.string.missing_field))
             return
         }
 
@@ -64,18 +60,41 @@ class VerifyOTPViewModel(
                 val response = repository.verifyOTPForPasswordReset(repository.fetchUserId()!!, otp!!)
 
                 if (!response.error) {
-                    verifyOTPListener?.onRequestSuccessful(response)
-
-                } else {
-                    verifyOTPListener?.onRequestFailed(response.errorMessage.toString())
+                    verifyOTPListener?.onVerifyOTPRequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
-                verifyOTPListener?.onRequestFailed(e.errorMessage)
-                return@onMainWithScope
-
+                verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
 
         }
     }
+
+    fun regenerateOTP() {
+        verifyOTPListener?.onRegenerateOTPRequestStarted()
+
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.regenerateOTP(repository.fetchUserId()!!)
+
+                if (!response.error) {
+                    verifyOTPListener?.onRegenerateOTPRequestSuccessful(response)
+                }
+
+            } catch (e: ApiException) {
+                verifyOTPListener?.onRegenerateOTPRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
+            }
+
+        }
+    }
+
+
 }

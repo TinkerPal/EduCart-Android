@@ -233,7 +233,6 @@
                 android:visibility="gone"
                 android:fontFamily="@font/montserrat_light"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:paddingHorizontal="15dp"
                 android:text="@string/view_all"
                 android:textColor="@color/primary_color"
                 android:textSize="14sp" />
@@ -271,11 +270,10 @@
             android:id="@+id/recentActivityRV"
             android:layout_width="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="30dp"
+            android:paddingBottom="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:nestedScrollingEnabled="false"
-            android:visibility="visible" />
+            android:nestedScrollingEnabled="false" />
 
         <LinearLayout
             android:id="@+id/emptyHistoryLayout"

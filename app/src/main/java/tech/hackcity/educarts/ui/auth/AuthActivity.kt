@@ -26,7 +26,9 @@ import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.changeToolbarColor
 import tech.hackcity.educarts.uitls.hideToolBar
+import tech.hackcity.educarts.uitls.hideViews
 import tech.hackcity.educarts.uitls.showToolBar
+import tech.hackcity.educarts.uitls.showViews
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
@@ -79,6 +81,7 @@ class AuthActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         setupDestination()
         showStepIndicatorIfRequired()
+        setupScreenLoader()
 
         sharedViewModel.fetchToolBarVisibility().observe(this) { isVisible ->
             if (isVisible) {
@@ -111,6 +114,15 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupScreenLoader() {
+        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
+            if (isScreenLoading) {
+                showViews(listOf(binding.loadingScreen))
+            }else {
+                hideViews(listOf(binding.loadingScreen))
+            }
+        }
+    }
 
     private fun setupDestination() {
         val navGraph = navController.navInflater.inflate(R.navigation.auth_nav_graph)

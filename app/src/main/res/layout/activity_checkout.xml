@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_001"
     tools:context=".ui.payment.CheckoutActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_color"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/background_001"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleCentered="true" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,16 +44,16 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                tools:text="Service"
                 android:textColor="@color/text_heading_light"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Service" />
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:paddingVertical="10dp"
-                android:background="@drawable/card_border2">
+                android:background="@drawable/card_border2"
+                android:paddingVertical="10dp">
 
                 <RadioButton
                     android:id="@+id/cards"
@@ -73,9 +75,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
+                    android:enabled="false"
                     android:fontFamily="@font/montserrat_regular"
                     android:text="@string/paypal"
-                    android:enabled="false"
                     android:textColor="@color/text_light" />
 
                 <View
@@ -225,11 +227,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:background="@drawable/card_border2"
+                android:orientation="vertical"
                 android:paddingHorizontal="1dp"
                 android:paddingTop="1dp"
-                android:visibility="gone"
-                android:background="@drawable/card_border2"
-                android:orientation="vertical">
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -246,9 +248,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:textColor="#9B5B00"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Payment through Bank Transfer"/>
+                        android:text="Payment through Bank Transfer"
+                        android:textColor="#9B5B00" />
 
                 </RelativeLayout>
 
@@ -262,18 +264,18 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Account Name" />
+                        android:text="Account Name"
+                        android:textColor="@color/text_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="EduCarts LLC" />
+                        android:text="EduCarts LLC"
+                        android:textColor="@color/text_light" />
 
                 </RelativeLayout>
 
@@ -287,18 +289,18 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Account No" />
+                        android:text="Account No"
+                        android:textColor="@color/text_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="0210800682"
-                        android:textColor="@color/text_light"
-                        android:fontFamily="@font/montserrat_regular"/>
+                        android:textColor="@color/text_light" />
 
                 </RelativeLayout>
 
@@ -313,44 +315,18 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Bank Name" />
+                        android:text="Bank Name"
+                        android:textColor="@color/text_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="GTBank" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/text_light"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:layout_centerVertical="true"
-                        android:text="Payment MEMO/Remark" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/text_light"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Order ID" />
+                        android:text="GTBank"
+                        android:textColor="@color/text_light" />
 
                 </RelativeLayout>
 
@@ -365,54 +341,79 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:textColor="@color/text_heading_light"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Amount" />
+                        android:text="Payment MEMO/Remark"
+                        android:textColor="@color/text_light" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/secondary_color"
-                        android:fontFamily="@font/montserrat_regular"
                         android:layout_centerVertical="true"
-                        android:text="#269,500" />
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Order ID"
+                        android:textColor="@color/text_light" />
 
                 </RelativeLayout>
 
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingHorizontal="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:background="@drawable/text_input_bg_dash"
-                        android:orientation="vertical">
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Amount"
+                        android:textColor="@color/text_heading_light" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="15dp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:gravity="center"
-                            android:padding="20dp"
-                            android:layout_gravity="center"
-                            android:text="Upload reciept of payment"
-                            android:textColor="@color/text_light"
-                            android:textSize="16sp"
-                            app:drawableTopCompat="@drawable/cloud" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="#269,500"
+                        android:textColor="@color/secondary_color" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="15dp"
-                            android:src="@drawable/add_square" />
+                </RelativeLayout>
 
-                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/text_input_bg_dash"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="15dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="Upload reciept of payment"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp"
+                        app:drawableTopCompat="@drawable/cloud" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:src="@drawable/add_square" />
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/payWithBankTransferBtn"

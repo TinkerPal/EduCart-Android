@@ -22,11 +22,11 @@ class SupportFragment : Fragment(R.layout.fragment_support) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.bookConsultationBtn.setOnClickListener {
-            startActivity(Intent(requireContext(), BrowserActivity::class.java))
+//            startActivity(Intent(requireContext(), BrowserActivity::class.java))
 
-//            val intent = Intent(requireContext(), SupportActivity::class.java)
-//            intent.putExtra("destination", "consultation")
-//            startActivity(intent)
+            val intent = Intent(requireContext(), SupportActivity::class.java)
+            intent.putExtra("destination", "consultation")
+            startActivity(intent)
         }
 
         binding.faqsBtn.setOnClickListener {

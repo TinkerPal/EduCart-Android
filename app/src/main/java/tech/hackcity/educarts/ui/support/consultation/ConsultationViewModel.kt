@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
-import tech.hackcity.educarts.data.network.ErrorCodes
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.NoInternetException
+import tech.hackcity.educarts.uitls.SocketTimeOutException
 
 /**
  *Created by Victor Loveday on 8/4/23
@@ -16,8 +16,9 @@ class ConsultationViewModel(
     private val repository: SupportRepository
 ) : ViewModel() {
 
-    var step1listener: ConsultationStep1Listener? = null
-    var step2listener: ConsultationStep2Listener? = null
+    var consultationReasonListener: ConsultationReasonListener? = null
+    var consultantsListener: ConsultantsListener? = null
+    var consultantListener: ConsultantListener? = null
 
     var consultation: String? = null
     var detail: String? = null
@@ -28,29 +29,31 @@ class ConsultationViewModel(
     var time: String? = null
 
     fun fetchConsultationTopics() {
-        step1listener?.onFetchConsultationTopicsRequestStarted()
+        consultationReasonListener?.onFetchConsultationTopicsRequestStarted()
 
         Coroutines.onMain {
             try {
                 val response = repository.fetchConsultationTopics()
 
                 if (!response.error) {
-                    step1listener?.onFetchConsultationTopicsRequestSuccessful(response)
-                } else {
-                    step1listener?.onRequestFailed(response.errorMessage.toString())
+                    consultationReasonListener?.onFetchConsultationTopicsRequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(e.errorMessage)
+                consultationReasonListener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                consultationReasonListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                consultationReasonListener?.onRequestFailed("${e.message}")
             }
         }
     }
 
     fun submitConsultationStep1(context: Context) {
-        step1listener?.onSubmitConsultationStep1RequestStarted()
+        consultationReasonListener?.onSubmitConsultationStep1RequestStarted()
 
         if (consultation.isNullOrEmpty() || detail.isNullOrEmpty()) {
-            step1listener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
+            consultationReasonListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
         }
 
@@ -63,52 +66,60 @@ class ConsultationViewModel(
                 )
 
                 if (!response.error) {
-                    step1listener?.onSubmitConsultationStep1RequestSuccessful(response)
-                } else {
-                    step1listener?.onRequestFailed(response.errorMessage.toString())
+                    consultationReasonListener?.onSubmitConsultationStep1RequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(e.errorMessage)
+                consultationReasonListener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                consultationReasonListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                consultationReasonListener?.onRequestFailed("${e.message}")
             }
         }
 
     }
 
-    fun submitConsultationStep2(context: Context) {
-        step2listener?.onSubmitConsultationStep2RequestStarted()
-
-        if (
-            consultationWay.isNullOrEmpty() ||
-            phoneNumber.isNullOrEmpty() ||
-            timeOfConsultation.isNullOrEmpty() ||
-            date.isNullOrEmpty() ||
-            time.isNullOrEmpty()
-        ) {
-            step2listener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
-            return
-        }
+    fun fetchConsultants() {
+        consultantsListener?.onFetchConsultantsRequestStarted()
 
         Coroutines.onMain {
             try {
-                val response = repository.submitConsultationStep2(
-                    consultationWay!!,
-                    phoneNumber!!,
-                    timeOfConsultation!!,
-                    date!!,
-                    time!!
-                )
+                val response = repository.fetchConsultants()
 
                 if (!response.error) {
-                    step2listener?.onSubmitConsultationStep2RequestSuccessful(response)
-                } else {
-                    step2listener?.onRequestFailed(response.errorMessage.toString())
+                    consultantsListener?.onFetchConsultantsRequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
-                step1listener?.onRequestFailed(e.errorMessage)
+                consultantsListener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                consultantsListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                consultantsListener?.onRequestFailed("${e.message}")
             }
         }
-
     }
+
+    fun fetchConsultantProfile(id: Int) {
+        consultantListener?.onFetchConsultantRequestStarted()
+
+        Coroutines.onMain {
+            try {
+                val response = repository.fetchConsultantProfile(id)
+
+                if (!response.error) {
+                    consultantListener?.onFetchConsultantRequestSuccessful(response)
+                }
+
+            } catch (e: ApiException) {
+                consultantListener?.onRequestFailed(e.errorMessage)
+            }catch (e: NoInternetException) {
+                consultantListener?.onRequestFailed("${e.message}")
+            }catch (e: SocketTimeOutException) {
+                consultantListener?.onRequestFailed("${e.message}")
+            }
+        }
+    }
+
 }
