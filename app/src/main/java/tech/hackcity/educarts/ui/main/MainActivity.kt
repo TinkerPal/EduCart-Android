@@ -19,6 +19,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.ActivityMainBinding
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.uitls.toast
 
 class MainActivity : AppCompatActivity(), MainListener {
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity(), MainListener {
     }
 
     override fun onRequestFailed(message: String) {
-        this.toast(message)
+        toast(description = message, toastType = ToastType.ERROR)
         Log.d("MainActivity", message)
     }
 

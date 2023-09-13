@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.main
+package tech.hackcity.educarts.ui.main.payment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentPaymentBinding
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.payment.PaymentActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.spannableTextWithForegroundColour
+import tech.hackcity.educarts.uitls.toast
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -48,18 +50,43 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
         }
 
         binding.applicationFeeCardView.setOnClickListener {
-            paymentIntent.putExtra("destination", "application fee")
-            startActivity(paymentIntent)
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
+        }
+
+        binding.tuitionFeeCardView.setOnClickListener {
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
         }
 
         binding.wesEvaluationCardView.setOnClickListener {
-            paymentIntent.putExtra("destination", "credential evaluation")
-            startActivity(paymentIntent)
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
+        }
+
+        binding.othersCardView.setOnClickListener {
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
         }
 
         binding.contactSupportTV.setOnClickListener {
-            supportIntent.putExtra("destination", "consultation")
-            startActivity(supportIntent)
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
         }
     }
 }

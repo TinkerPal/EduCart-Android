@@ -13,6 +13,7 @@
     <color name="primary_color">#17324F</color>
     <color name="disabled_color">#BAC6D2</color>
     <color name="secondary_color">#DB8000</color>
+    <color name="orange_002">#B3DB8000</color>
     <color name="gray_001">#ECECEC</color>
     <color name="gray_002">#E9EDF1</color>
     <color name="gray_003">#D9D9D9</color>
@@ -24,15 +25,22 @@
     <color name="light_blue_001">#D5E9FD</color>
     <color name="light_blue_002">#E3F0FF</color>
     <color name="light_orange">#FBF2E6</color>
-    <color name="light_green1">#D3FFEB</color>
     <color name="dark_green1">#168250</color>
     <color name="dark_gray">#4D6B8C</color>
     <color name="success_green">#0A874D</color>
+    <color name="light_green1">#D3FFEB</color>
     <color name="light_green2">#BBF3D9</color>
+    <color name="light_green3">#DEF9ED</color>
+    <color name="light_yellow">#F7ECE6</color>
 
     <color name="background_001">#F8F8FD</color>
 
     <color name="profile_bg">#E5E5E5</color>
+
+    <color name="success_title_color">#11623C</color>
+    <color name="success_description_color">#11623C</color>
+    <color name="error_title_color">#8F3400</color>
+    <color name="error_description_color">#3F1700</color>
 
     <color name="text_heading_light">#3E3E42</color>
     <color name="text_heading_light2">#A6A6A8</color>

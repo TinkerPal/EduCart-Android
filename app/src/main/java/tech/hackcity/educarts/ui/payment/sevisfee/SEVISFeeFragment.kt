@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentSevisFeeBinding
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.toast
 
@@ -49,7 +50,9 @@ class SEVISFeeFragment : Fragment(R.layout.fragment_sevis_fee) {
                     val action = SEVISFeeFragmentDirections.actionSevisFeeFragmentToSEVISFormTypeFragment("sevisCoupon")
                     findNavController().navigate(action)
                 }
-                else -> context?.toast(resources.getString(R.string.select_a_service))
+                else -> context?.toast(description = resources.getString(R.string.select_a_service), toastType = ToastType.ERROR)
+
+
             }
         }
     }

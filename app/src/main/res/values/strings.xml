@@ -51,6 +51,7 @@
     <string name="wallet">Wallet</string>
     <string name="verification_badge">Verification badge</string>
     <string name="copy">Copy</string>
+    <string name="copied_to_clip_board">Copied to clipboard</string>
     <string name="view_profile">View profile</string>
     <string name="identity_verification">Identity verification</string>
     <string name="faqs">FAQs</string>
@@ -169,12 +170,17 @@
     <string name="user_id">User ID: %1$s</string>
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="close">Close</string>
+    <string name="got_it">Got it</string>
+    <string name="hi_there">Hi, there!</string>
     <string name="consultation_fees">Consultation fees</string>
     <string name="recent_activity">Recent activity</string>
     <string name="no_payment_made_yet">No payment made yet!</string>
     <string name="your_recent_payment_history_will_appear_here">Your recent payment history will appear here.</string>
     <string name="view_all">View all ></string>
-    <string name="coming_soon">Coming soon…</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="keep_your_eyes_glue">Keep your eyes glue. You don\'t want to miss the update </string>
     <string name="payment_activities">Payment activities</string>
     <string name="this_screen_is_yet_to_be_implemented">This screen is yet to be implemented</string>
     <string name="track_your_order_here">Track your order here</string>
@@ -185,7 +191,8 @@
     <string name="order_id_">Order ID:</string>
     <string name="order_description">Order description:</string>
     <string name="download_receipt">Download receipt</string>
-    <string name="payment_pending">Payment pending</string>
+    <string name="payment_pending">payment pending</string>
+    <string name="payment_is_yet_to_be_received">payment is yet to be received</string>
     <string name="payment_confirmed">Payment confirmed</string>
     <string name="order_in_process">Order in process</string>
     <string name="order_completed">Order completed</string>
@@ -394,7 +401,8 @@
     <string name="processing_order">Processing order</string>
     <string name="notifications">Notifications</string>
     <string name="please_fill_the_form_below">Please fill the form below</string>
-    <string name="schedule_meeting">Schedule meeting</string>
+    <string name="schedule_appointment">Schedule appointment</string>
+    <string name="schedule_free_appointment">Schedule free appointment</string>
     <string name="select_a_category_below">Select a category below</string>
     <string name="we_are_always_here_fo_you_choose_one_of_the_options_below_to_get_started">We are always here fo you. Choose one of the options below to get started.</string>
     <string name="submit_a_consultation_form_and_get_contacted">Submit a consultation form and get contacted</string>
@@ -402,6 +410,7 @@
     <string name="incomplete_profile">Incomplete profile</string>
     <string name="completing_your_profile_makes_payment_easier">Completing your profile makes payment easier</string>
     <string name="complete_profile">Complete profile</string>
+    <string name="complete_profile_to_enjoy_free_consultation">Complete your profile to enjoy your free consultation</string>
     <string name="payments">Payments</string>
     <string name="track">Track</string>
     <string name="consult">Consult</string>
@@ -450,4 +459,13 @@
     <string name="qualification">Qualification</string>
     <string name="daily_availability">Daily availability</string>
     <string name="bio">Bio</string>
+    <string name="enter_your_card_details">Enter card your details</string>
+    <string name="pay">Pay</string>
+    <string name="payment_by_bank_transfer">Payment by Bank Transfer</string>
+    <string name="account_name">Account Name:</string>
+    <string name="account_no">Account no:</string>
+    <string name="bank_name">Bank name:</string>
+    <string name="payment_memo_remark">Payment memo/remark:</string>
+    <string name="n_b_you_are_to_transfer_exactly">N/B: You are to transfer exactly</string>
+    <string name="click_on_the_finish_button_at_the_bottom_once_you_re_done_scheduling_a_consultation">Click on the \'Finish\' button at the bottom once you\'re done scheduling a consultation.</string>
 </resources>

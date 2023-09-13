@@ -23,7 +23,6 @@ class AllPaymentActivity : AppCompatActivity() {
         //keep app on light mode only
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-
         val toolbar = binding.toolbar
         toolbar.title = resources.getString(R.string.payment_activities)
         setSupportActionBar(toolbar)
@@ -42,8 +41,10 @@ class AllPaymentActivity : AppCompatActivity() {
             allHistory.data?.let { allPaymentAdapter.setData(it) }
         }
 
-        allPaymentAdapter.setOnItemClickListener {
-            startActivity(Intent(this, OrderDetailsActivity::class.java))
+        allPaymentAdapter.setOnItemClickListener { history->
+            val intent = Intent(this, OrderDetailsActivity::class.java)
+            intent.putExtra("history", history)
+            startActivity(intent)
         }
     }
 

@@ -27,6 +27,7 @@ class UserInfoManager(context: Context) {
         val IS_PROFILE_COMPLETED_KEY = preferencesKey<Boolean>("IS_PROFILE_COMPLETED")
         val USER_PROFILE_PHOTO_KEY = preferencesKey<String>("USER_PROFILE_PHOTO")
         val IS_USER_RESTRICTED_KEY = preferencesKey<Boolean>("IS_USER_RESTRICTED")
+        val FREE_CONSULTATION_KEY = preferencesKey<Boolean>("FREE_CONSULTATION")
 
     }
 
@@ -49,6 +50,7 @@ class UserInfoManager(context: Context) {
             preferences[USER_EMAIL_KEY] = user.email
             preferences[IS_PROFILE_COMPLETED_KEY] = user.isProfileCompleted
             preferences[IS_USER_RESTRICTED_KEY] = user.is_restricted
+            preferences[FREE_CONSULTATION_KEY] = user.free_consultation
             user.institutionOfStudy?.let { preferences[USER_INSTITUTION_OF_STUDY_KEY] = it }
             user.countryOfBirth?.let { preferences[USER_COUNTRY_OF_BIRTH_KEY] = it }
             user.state?.let { preferences[USER_STATE_KEY] = it }
@@ -69,6 +71,7 @@ class UserInfoManager(context: Context) {
                 it[USER_EMAIL_KEY] ?: "",
                 it[IS_PROFILE_COMPLETED_KEY] ?: false,
                 it[IS_USER_RESTRICTED_KEY] ?: false,
+                it[FREE_CONSULTATION_KEY] ?: false,
                 it[USER_INSTITUTION_OF_STUDY_KEY] ?: "",
                 it[USER_COUNTRY_OF_BIRTH_KEY] ?: "",
                 it[USER_STATE_KEY] ?: "",

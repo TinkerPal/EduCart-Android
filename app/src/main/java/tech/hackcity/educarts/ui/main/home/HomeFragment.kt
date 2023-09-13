@@ -2,7 +2,8 @@ package tech.hackcity.educarts.ui.main.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -24,19 +25,22 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.DashboardRepository
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentHomeBinding
+import tech.hackcity.educarts.domain.model.auth.User
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponseData
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
 import tech.hackcity.educarts.ui.adapters.NewsAdapter
-import tech.hackcity.educarts.ui.browser.BrowserActivity
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.notifications.NotificationActivity
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
 import tech.hackcity.educarts.ui.payment.OrderDetailsActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
+import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.Constants
 import tech.hackcity.educarts.uitls.Coroutines
+import tech.hackcity.educarts.uitls.copyToClipboard
 import tech.hackcity.educarts.uitls.shortenString
 import tech.hackcity.educarts.uitls.toast
 
@@ -48,7 +52,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var userInfoManager: UserInfoManager
-    private lateinit var viewModel:HomeViewModel
+    private lateinit var viewModel: HomeViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHomeBinding.bind(view)
@@ -61,22 +65,20 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         viewModel.listener = this
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            setupUserInfo()
+        }, 10)
+
         Coroutines.onMainWithScope(viewModel.viewModelScope) {
-            viewModel.fetchProfile()
             viewModel.fetchOrderHistory()
+            viewModel.fetchProfile()
         }
-
-        setupUserInfo()
-        setupProfileCompletionBanner()
-
 
         binding.trackTV.setOnClickListener {
             startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
         }
 
         binding.consultTV.setOnClickListener {
-//            startActivity(Intent(requireContext(), BrowserActivity::class.java))
-
             val intent = Intent(requireContext(), SupportActivity::class.java)
             intent.putExtra("destination", "consultation")
             startActivity(intent)
@@ -88,8 +90,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
             startActivity(intent)
         }
 
-        //This is only for presentation purpose.
-        //Approach will change once real data from an endpoint is consumed
         setupNews()
 
         val menuHost: MenuHost = requireActivity() as MenuHost
@@ -112,46 +112,52 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     }
 
     private fun setupUserInfo() {
-        userInfoManager = UserInfoManager(requireContext())
-        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-
-            with(binding) {
-                val profileUrl = "${Constants.EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
-                val requestOptions = RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .centerCrop()
-
-
-                if (user.profilePhoto.isNullOrEmpty()) {
-                    profilePhoto.setImageResource(R.drawable.default_profile)
-                    Log.d("UserInfo", "Empty profile : ${user.profilePhoto}")
-
-                } else {
-                    Log.d("UserInfo", "profile : $profileUrl")
-                    Glide.with(requireContext())
-                        .load(profileUrl)
-                        .apply(requestOptions)
-                        .into(profilePhoto)
-                }
-
-                greetingsAndNameTV.text = resources.getString(R.string.hello_, user.firstName)
-                userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
-            }
+        viewModel.userInfo.asLiveData().observe(viewLifecycleOwner) { user ->
+            loadUserProfilePhoto(user)
+            setGreetingsAndUserID(user)
+            setCopyUserIDListener(user)
+            handleProfileCompletion(user)
         }
     }
 
-    private fun setupProfileCompletionBanner() {
-        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
-            with(binding) {
+    private fun loadUserProfilePhoto(user: User) {
+        val requestOptions = RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
 
-                incompleteProfileCardView.visibility =
-                    if (user.isProfileCompleted) {
-                        View.GONE
-                    } else {
-                        val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-                        incompleteProfileCardView.startAnimation(fadeIn)
-                        View.VISIBLE
-                    }
+        if (user.profilePhoto.isNullOrEmpty()) {
+            binding.profilePhoto.setImageResource(R.drawable.default_profile)
+        } else {
+            Glide.with(requireContext())
+                .load(user.profilePhoto)
+                .apply(requestOptions)
+                .into(binding.profilePhoto)
+        }
+    }
+
+    private fun setGreetingsAndUserID(user: User) {
+        binding.greetingsAndNameTV.text = resources.getString(R.string.hello_, user.firstName)
+        binding.userIDTV.text = resources.getString(R.string.user_id, shortenString(user.id, 8))
+    }
+
+    private fun setCopyUserIDListener(user: User) {
+        binding.userIDTV.setOnClickListener {
+            copyToClipboard(requireContext(), resources.getString(R.string.copy), user.id)
+        }
+    }
+
+    private fun handleProfileCompletion(user: User) {
+        if (user.isProfileCompleted) {
+            binding.incompleteProfileCardView.visibility = View.GONE
+        } else {
+            val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+            binding.incompleteProfileCardView.startAnimation(fadeIn)
+            binding.incompleteProfileCardView.visibility = View.VISIBLE
+
+            binding.completeProfileBtn.setOnClickListener {
+                val intent = Intent(requireContext(), SettingsActivity::class.java)
+                intent.putExtra("destination", "edit_profile")
+                startActivity(intent)
             }
         }
     }
@@ -175,6 +181,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         } else {
             binding.viewAllPayments.visibility = View.VISIBLE
             binding.recentActivityRV.visibility = View.VISIBLE
+
             val allPaymentAdapter = AllPaymentAdapter(requireContext())
             binding.recentActivityRV.apply {
                 adapter = allPaymentAdapter
@@ -199,16 +206,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
     }
 
     override fun onFetchOrderHistoryFailed(message: String) {
-        context?.toast("$message")
+        context?.toast(description = message, toastType = ToastType.ERROR)
         binding.orderHistoryLoader.visibility = View.GONE
     }
 
     override fun onFetchProfileFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
     }
 
     override fun onFetchProfileRequestSuccessful(response: ProfileResponse) {
-
     }
 
     override fun onFetchOrderHistorySuccessful(response: OrderHistoryResponse) {
@@ -226,8 +232,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
 
     override fun onResume() {
         super.onResume()
-        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-            viewModel.fetchProfile()
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            setupUserInfo()
+        }, 10)
     }
 }

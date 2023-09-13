@@ -11,17 +11,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleCentered="true"
         android:background="@color/background_001"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleCentered="true" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtnLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/serviceImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -52,13 +52,12 @@
                 android:id="@+id/textGuide1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:lineSpacingExtra="3dp"
                 android:text="@string/use_a_valid_credit_debit_card_to_ensure_prompt_processing_of_your_order"
                 android:textColor="@color/text_light"
                 android:textSize="16sp" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -267,70 +266,62 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/montserrat_regular"
+                    android:fontFamily="@font/montserrat_medium"
                     android:gravity="center"
                     android:text="$1 = #700"
                     android:textColor="@color/text_heading_light" />
 
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nextBtnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/proceedToPaymentBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/primary_button"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="@string/proceed_to_payment"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintEnd_toEndOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintStart_toStartOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintTop_toTopOf="@id/proceedToPaymentBtn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/modifyOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="5dp"
+                android:text="@string/modify_order"
+                android:textColor="@color/text_light" />
 
         </LinearLayout>
 
     </ScrollView>
-
-    <TextView
-        android:id="@+id/modifyOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:fontFamily="@font/montserrat_regular"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:padding="5dp"
-        android:text="@string/modify_order"
-        android:textColor="@color/text_light"
-        app:layout_constraintBottom_toBottomOf="@+id/nextBtnLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nextBtnLayout" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nextBtnLayout"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/proceedToPaymentBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/primary_button"
-            android:fontFamily="@font/montserrat_medium"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/proceed_to_payment"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/proceedToPaymentBtn"
-            app:layout_constraintEnd_toEndOf="@id/proceedToPaymentBtn"
-            app:layout_constraintStart_toStartOf="@id/proceedToPaymentBtn"
-            app:layout_constraintTop_toTopOf="@id/proceedToPaymentBtn" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

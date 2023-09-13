@@ -14,6 +14,7 @@ data class User(
     val email: String,
     val isProfileCompleted: Boolean,
     val is_restricted: Boolean,
+    val free_consultation: Boolean,
     val institutionOfStudy: String? = null,
     val countryOfBirth: String? = null,
     val state: String? = null,

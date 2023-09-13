@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.data.repositories
 
+import kotlinx.coroutines.flow.Flow
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.UserInfoManager
@@ -22,6 +23,10 @@ class DashboardRepository(
 
     suspend fun fetchOrderHistory(): OrderHistoryResponse {
         return apiRequest { api.dashboardAPI.fetchOrderHistory() }
+    }
+
+    fun fetchUserInfo(): Flow<User> {
+        return userInfoManager.fetchUserInfo()
     }
 
     fun saveUser(user: User) {

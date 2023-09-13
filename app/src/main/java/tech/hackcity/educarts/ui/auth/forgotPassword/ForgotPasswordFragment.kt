@@ -16,6 +16,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentForgotPasswordBinding
 import tech.hackcity.educarts.domain.model.auth.ForgotPasswordResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
@@ -76,7 +77,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         hideButtonLoadingState(
             binding.sendEmailBtn,
             binding.progressBar,

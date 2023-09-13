@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="tech.hackcity.educarts.ui.main.PaymentFragment"
+        android:name="tech.hackcity.educarts.ui.main.payment.PaymentFragment"
         android:label="@string/payment"
         tools:layout="@layout/fragment_payment" />
     <fragment

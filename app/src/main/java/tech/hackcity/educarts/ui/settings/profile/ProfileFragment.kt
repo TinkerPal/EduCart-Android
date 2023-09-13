@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
@@ -16,9 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentProfileBinding
-import tech.hackcity.educarts.uitls.Constants
 import tech.hackcity.educarts.uitls.shortenString
-import java.lang.StringBuilder
 
 /**
  *Created by Victor Loveday on 2/22/23
@@ -41,7 +38,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
 
             with(binding) {
-                val profileUrl = "${Constants.EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
                 val requestOptions = RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
@@ -50,7 +46,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     profilePhoto.setImageResource(R.drawable.default_profile)
                 } else {
                     Glide.with(requireContext())
-                        .load(profileUrl)
+                        .load(user.profilePhoto)
                         .apply(requestOptions)
                         .into(profilePhoto)
                 }
@@ -86,5 +82,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupUserInfo()
     }
 }

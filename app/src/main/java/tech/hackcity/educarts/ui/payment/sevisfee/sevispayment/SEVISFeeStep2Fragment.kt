@@ -18,6 +18,7 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponseData
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -103,7 +104,7 @@ class SEVISFeeStep2Fragment : Fragment(R.layout.fragment_sevis_fee_step_2), SEIV
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast("$message")
+        context?.toast(description = message, toastType = ToastType.ERROR)
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,

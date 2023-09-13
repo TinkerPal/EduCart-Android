@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.main.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import tech.hackcity.educarts.data.network.ApiException
 import tech.hackcity.educarts.data.repositories.DashboardRepository
 import tech.hackcity.educarts.domain.model.auth.User
@@ -10,7 +11,6 @@ import tech.hackcity.educarts.domain.model.settings.ProfileResponseData
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.SocketTimeOutException
-import tech.hackcity.educarts.uitls.clearExtraCharacters
 
 /**
  *Created by Victor Loveday on 8/19/23
@@ -20,6 +20,7 @@ class HomeViewModel(
 ): ViewModel() {
 
     var listener: DashboardListener? = null
+    val userInfo: Flow<User> = repository.fetchUserInfo()
 
     fun fetchProfile() {
         listener?.onFetchProfileRequestStarted()
@@ -84,6 +85,7 @@ class HomeViewModel(
             data.email,
             data.profile_completed,
             data.is_restricted,
+            data.free_consultation,
             data.institution_of_study,
             data.country_of_birth,
             data.state,

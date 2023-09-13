@@ -9,7 +9,7 @@ import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 interface ConsultationReasonListener {
     fun onFetchConsultationTopicsRequestStarted()
     fun onSubmitConsultationStep1RequestStarted()
-    fun onRequestFailed(message: String)
+    fun onRequestFailed(errorMessage: String)
     fun onFetchConsultationTopicsRequestSuccessful(response: MultipleChoiceResponse)
     fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationStep1Response)
 }

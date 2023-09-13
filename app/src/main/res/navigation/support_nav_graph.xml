@@ -70,8 +70,8 @@
         android:label="@string/profile"
         tools:layout="@layout/fragment_consulant_profile" >
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="consultant"
+            app:argType="tech.hackcity.educarts.domain.model.support.Consultant" />
     </fragment>
 
 </navigation>

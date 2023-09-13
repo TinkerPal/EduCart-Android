@@ -26,33 +26,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/serviceImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 tools:src="@drawable/sevis_fee" />
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/serviceTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/sevis_fee"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textGuide1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:gravity="center"
-                android:textColor="@color/text_heading_light"
-                android:textSize="16sp"
-                tools:text="Service" />
+                android:lineSpacingExtra="3dp"
+                android:text="@string/use_a_valid_credit_debit_card_to_ensure_prompt_processing_of_your_order"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/card_border2"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/primary_edit_text_bg"
                 android:paddingVertical="10dp">
 
                 <RadioButton
@@ -101,50 +111,30 @@
                 android:id="@+id/payWithCardLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/card_border2"
                 android:orientation="vertical"
-                android:paddingHorizontal="1dp"
-                android:paddingTop="1dp"
                 android:visibility="visible">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#FBF2E6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:paddingHorizontal="20dp">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/payment_through_card"
-                        android:textColor="#9B5B00" />
-
-                </RelativeLayout>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/enter_your_card_details"
+                    android:textColor="@color/text_light"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
-                    app:boxCornerRadiusBottomEnd="10dp"
-                    app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusTopEnd="10dp"
-                    app:boxCornerRadiusTopStart="10dp"
+                    android:layout_marginTop="10dp"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_bg"
                         android:fontFamily="@font/montserrat_regular"
                         android:hint="@string/card_number"
                         android:inputType="number" />
@@ -154,6 +144,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -161,8 +152,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_weight="1"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -172,7 +162,8 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edit_text_bg"
                             android:fontFamily="@font/montserrat_regular"
                             android:hint="@string/exp_date"
                             android:inputType="date" />
@@ -183,8 +174,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_weight="1"
                         app:boxCornerRadiusBottomEnd="10dp"
                         app:boxCornerRadiusBottomStart="10dp"
@@ -196,7 +186,8 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edit_text_bg"
                             android:fontFamily="@font/montserrat_regular"
                             android:hint="@string/cvv"
                             android:inputType="number" />
@@ -210,13 +201,12 @@
                     android:id="@+id/payWithCreditOrDebitBtn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/primary_button"
                     android:fontFamily="@font/montserrat_regular"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:text="Pay"
+                    android:text="@string/pay"
                     android:textAllCaps="false"
                     app:backgroundTint="@null" />
 
@@ -226,192 +216,190 @@
                 android:id="@+id/payWithBankTransferLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/card_border2"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
-                android:paddingHorizontal="1dp"
-                android:paddingTop="1dp"
                 android:visibility="gone">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#FBF2E6"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:paddingHorizontal="20dp">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Payment through Bank Transfer"
-                        android:textColor="#9B5B00" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Account Name"
-                        android:textColor="@color/text_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="EduCarts LLC"
-                        android:textColor="@color/text_light" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Account No"
-                        android:textColor="@color/text_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="0210800682"
-                        android:textColor="@color/text_light" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Bank Name"
-                        android:textColor="@color/text_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="GTBank"
-                        android:textColor="@color/text_light" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Payment MEMO/Remark"
-                        android:textColor="@color/text_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Order ID"
-                        android:textColor="@color/text_light" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingHorizontal="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Amount"
-                        android:textColor="@color/text_heading_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="#269,500"
-                        android:textColor="@color/secondary_color" />
-
-                </RelativeLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/text_input_bg_dash"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/primary_edit_text_bg"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/gray_004"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/payment_by_bank_transfer"
+                            android:textColor="@color/primary_color" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/account_name"
+                            android:textColor="@color/text_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="EduCarts LLC"
+                            android:textColor="@color/text_light"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/account_no"
+                            android:textColor="@color/text_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="EduCarts LLC"
+                            android:textColor="@color/text_light"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/bank_name"
+                            android:textColor="@color/text_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="EduCarts LLC"
+                            android:textColor="@color/text_light"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/payment_memo_remark"
+                            android:textColor="@color/text_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Order ID"
+                            android:textColor="@color/text_light"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="@string/n_b_you_are_to_transfer_exactly"
+                            android:textColor="@color/text_light" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="269,903"
+                            android:textColor="@color/secondary_color"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/uploadReceiptBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/primary_edit_text_bg"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawablePadding="15dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="Upload reciept of payment"
-                        android:textColor="@color/text_light"
-                        android:textSize="16sp"
-                        app:drawableTopCompat="@drawable/cloud" />
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="15dp"
-                        android:src="@drawable/add_square" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:id="@+id/textGuide2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/upload_receipt"
+                        android:textColor="@color/text_light"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -419,8 +407,7 @@
                     android:id="@+id/payWithBankTransferBtn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/primary_button"
                     android:fontFamily="@font/montserrat_regular"
@@ -429,9 +416,7 @@
                     android:textAllCaps="false"
                     app:backgroundTint="@null" />
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 

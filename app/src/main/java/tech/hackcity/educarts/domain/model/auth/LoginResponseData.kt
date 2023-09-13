@@ -12,5 +12,6 @@ data class LoginResponseData(
     val phone_number: String,
     val profile_completed: Boolean,
     val refresh: String,
-    val is_restricted: Boolean
+    val is_restricted: Boolean,
+    val free_consultation: Boolean
 )

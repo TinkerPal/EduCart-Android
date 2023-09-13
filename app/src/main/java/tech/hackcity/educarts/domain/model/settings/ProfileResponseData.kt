@@ -14,5 +14,6 @@ data class ProfileResponseData(
     val phone_number: String,
     val profile_completed: Boolean,
     val profile_picture: String?,
-    val state: String?
+    val state: String?,
+    val free_consultation: Boolean,
 )

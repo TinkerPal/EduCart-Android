@@ -16,6 +16,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentCreateNewPasswordBinding
 import tech.hackcity.educarts.domain.model.auth.CreateNewPasswordResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.compareTwoPasswordFields
@@ -68,7 +69,8 @@ class CreateNewPasswordFragment : Fragment(R.layout.fragment_create_new_password
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
+
         hideButtonLoadingState(
             binding.changePasswordBtn,
             binding.progressBar,
