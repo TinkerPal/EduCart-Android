@@ -72,10 +72,6 @@ class LoginViewModel(
                 }
             } catch (e: NoInternetException) {
                 loginListener?.onRequestFailed("${e.message}")
-            } catch (e: SocketTimeOutException) {
-                loginListener?.onRequestFailed("${e.message}")
-            }catch (e: HTTPException) {
-                loginListener?.onRequestFailed("${e.message}")
             }
         }
 

@@ -7,6 +7,10 @@ import retrofit2.HttpException
 import tech.hackcity.educarts.uitls.NoInternetException
 import java.io.IOException
 import java.net.SocketTimeoutException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import tech.hackcity.educarts.uitls.HTTPException
+import java.net.UnknownHostException
 
 /**
  *Created by Victor Loveday on 4/28/23
@@ -14,30 +18,52 @@ import java.net.SocketTimeoutException
 
 abstract class SafeApiRequest {
     suspend fun <T : Any> apiRequest(call: suspend () -> Response<T>): T {
-        val response = call.invoke()
-
-        if (response.isSuccessful && response.body() != null) {
-            return response.body()!!
-        } else {
-            val errorMessage = StringBuilder()
-            val dataMessage = StringBuilder()
-
+        return withContext(Dispatchers.IO) {
             try {
-                response.errorBody()?.let { errorBody ->
-                    val errorJson = JSONObject(errorBody.string())
-                    errorMessage.append(errorJson.optString("errorMessage"))
+                val response = call.invoke()
 
-                    // Capture the "data" field if it exists
-                    if (errorJson.has("data")) {
-                        dataMessage.append(errorJson.getString("data"))
-                    }
+                if (response.isSuccessful && response.body() != null) {
+                    return@withContext response.body()!!
+                } else {
+                    handleApiError(response)
                 }
-            } catch (e: JSONException) {
-                errorMessage.append(e.message)
+            } catch (e: Exception) {
+                throw handleNetworkError(e)
             }
+        }
+    }
 
-            throw ApiException(errorMessage.toString(), dataMessage.toString())
+    private fun handleApiError(response: Response<*>): Nothing {
+        val errorMessage = StringBuilder()
+        val dataMessage = StringBuilder()
+
+        try {
+            response.errorBody()?.let { errorBody ->
+                val errorJson = JSONObject(errorBody.string())
+                errorMessage.append(errorJson.optString("errorMessage"))
+
+                // Capture the "data" field if it exists
+                if (errorJson.has("data")) {
+                    dataMessage.append(errorJson.getString("data"))
+                }
+            }
+        } catch (e: JSONException) {
+            errorMessage.append(e.message)
+        }
+
+        throw ApiException(errorMessage.toString(), dataMessage.toString())
+    }
+
+    private fun handleNetworkError(e: Exception): ApiException {
+        return when (e) {
+            is SocketTimeoutException -> ApiException("Check your internet connection and try again")
+            is UnknownHostException -> ApiException("Something went wrong. Please try again")
+            is NoInternetException -> ApiException("No internet connection")
+            is IOException -> ApiException("Something went wrong: ${e.message}")
+            is HTTPException -> ApiException("${e.message}")
+            else -> ApiException("${e.message}")
         }
     }
 }
+
 

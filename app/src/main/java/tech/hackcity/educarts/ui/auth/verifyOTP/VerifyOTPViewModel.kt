@@ -39,10 +39,6 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
         }
     }
@@ -65,10 +61,6 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onVerifyRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                verifyOTPListener?.onVerifyRequestFailed("${e.message}")
             }
 
         }
@@ -87,10 +79,6 @@ class VerifyOTPViewModel(
 
             } catch (e: ApiException) {
                 verifyOTPListener?.onRegenerateOTPRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                verifyOTPListener?.onRegenerateOTPRequestFailed("${e.message}")
             }
 
         }

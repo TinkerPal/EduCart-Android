@@ -71,10 +71,6 @@ class CreatePersonalAccountViewModel(
 
             } catch (e: ApiException) {
                 createPersonalAccountListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                createPersonalAccountListener?.onRequestFailed("${e.message}")
-            } catch (e: SocketTimeOutException) {
-                createPersonalAccountListener?.onRequestFailed("${e.message}")
             }
         }
     }

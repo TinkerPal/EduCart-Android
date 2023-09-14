@@ -80,10 +80,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener1?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener1?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener1?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -120,10 +116,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener2?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener2?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener2?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -158,10 +150,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener3?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener3?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener3?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -179,10 +167,6 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
 
             } catch (e: ApiException) {
                 listener2?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener2?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener2?.onRequestFailed("${e.message}")
             }
         }
 

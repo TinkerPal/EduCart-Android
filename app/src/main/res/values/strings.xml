@@ -225,6 +225,7 @@
     <string name="later">Later</string>
     <string name="by_proceeding_to_sign_up_you_re_agreein_to_our_terms_and_conditions">By proceeding to sign up, you\'re agreeing to our terms and conditions</string>
     <string name="field_can_not_be_empty">Field can not be empty!</string>
+    <string name="something_went_wrong">Something went wrong. Please try again</string>
     <string name="no_user_type_selected">No user type selected</string>
     <string name="no_photo_selected">No photo selected</string>
     <string name="missing_field">Missing field</string>
@@ -324,6 +325,9 @@
     <string name="no">No</string>
     <string name="nil">Nil</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="something_went_wrong_please_try_again">Something went wrong. Please try again</string>
+    <string name="check_internet_connection_and_try_again">Check your internet connection and try again</string>
     <string name="is_there_any_specific_forms_or_reference_number_provided_by_the_recipient_requesting_institution_or_organization">Is there any specific form or reference number provided by the recipient (requesting institution or organization)?</string>
     <string name="input_reference_number_if_any">Input Reference Number (If any)</string>
     <string name="upload_specific_form_if_any">Upload specific form (If any)</string>

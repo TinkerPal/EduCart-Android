@@ -39,10 +39,6 @@ class HomeViewModel(
 
             } catch (e: ApiException) {
                 listener?.onFetchProfileFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                listener?.onFetchProfileFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener?.onFetchProfileFailed("${e.message}")
             }
         }
 
@@ -65,10 +61,6 @@ class HomeViewModel(
 
             }catch (e: ApiException) {
                 listener?.onFetchOrderHistoryFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener?.onFetchOrderHistoryFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener?.onFetchOrderHistoryFailed("${e.message}")
             }
         }
     }

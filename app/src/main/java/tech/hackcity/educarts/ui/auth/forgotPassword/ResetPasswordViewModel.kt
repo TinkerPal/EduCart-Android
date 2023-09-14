@@ -43,12 +43,7 @@ class ResetPasswordViewModel(
 
             } catch (e: ApiException) {
                 resetPasswordListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                resetPasswordListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                resetPasswordListener?.onRequestFailed("${e.message}")
             }
-
         }
     }
 }

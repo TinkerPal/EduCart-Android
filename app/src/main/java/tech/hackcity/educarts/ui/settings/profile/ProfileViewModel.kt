@@ -51,10 +51,6 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                editListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                editListener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -100,10 +96,6 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                editListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                editListener?.onRequestFailed("${e.message}")
             }
         }
     }
