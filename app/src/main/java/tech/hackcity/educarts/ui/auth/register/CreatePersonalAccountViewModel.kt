@@ -67,28 +67,10 @@ class CreatePersonalAccountViewModel(
                 if (!response.error) {
                     createPersonalAccountListener?.onRequestSuccessful(response)
                     repository.saveUserId(response.data.id)
-
-                } else {
-
-                    val messages = mutableListOf(
-                        response.errorMessage.email?.get(0) ?: "",
-                        response.errorMessage.phone_number?.get(0) ?: "",
-                        response.errorMessage.password?.get(0) ?: "",
-                    )
-
-                    for (message in messages) {
-                        createPersonalAccountListener?.onRequestFailed(message)
-                        Log.d("RegisterError", message)
-                    }
-
                 }
 
             } catch (e: ApiException) {
-                createPersonalAccountListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                createPersonalAccountListener?.onRequestFailed("${e.message}")
-            } catch (e: SocketTimeOutException) {
-                createPersonalAccountListener?.onRequestFailed("${e.message}")
+                createPersonalAccountListener?.onRequestFailed(e.errorMessage)
             }
         }
     }

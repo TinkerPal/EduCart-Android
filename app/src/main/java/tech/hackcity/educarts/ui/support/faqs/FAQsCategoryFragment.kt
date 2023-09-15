@@ -19,11 +19,13 @@ import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.support.FaqCategory
 import tech.hackcity.educarts.domain.model.support.FaqsResponse
 import tech.hackcity.educarts.ui.adapters.FAQsCategoryAdapter
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.showViews
 import tech.hackcity.educarts.uitls.startShimmerLoader
 import tech.hackcity.educarts.uitls.stopShimmerLoader
+import tech.hackcity.educarts.uitls.toast
 
 /**
  *Created by Victor Loveday on 2/26/23
@@ -73,7 +75,7 @@ class FAQsCategoryFragment : Fragment(R.layout.fragment_faq_category), FaqListen
     override fun onRequestFailed(message: String) {
 //        stopShimmerLoader(binding.shimmerLayout)
         binding.faqsProgressBar.visibility = View.GONE
-        Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+        context?.toast(description = message, toastType = ToastType.ERROR)
     }
 
     override fun onRequestSuccessful(response: FaqsResponse) {

@@ -7,7 +7,7 @@
     android:background="@color/background_001"
     android:orientation="vertical"
     android:scrollbars="none"
-    tools:context=".ui.settings.profile.ProfileFragment">
+    tools:context=".ui.settings.profile.EditProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

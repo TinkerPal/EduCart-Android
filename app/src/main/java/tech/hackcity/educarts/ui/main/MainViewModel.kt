@@ -27,7 +27,6 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
                 if (!response.error) {
                     listener?.onFetchProfileRequestSuccessful(response)
-                    saveUser(response.data)
 
                 } else {
                     listener?.onRequestFailed(response.errorMessage.toString())
@@ -42,29 +41,5 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     }
 
-    private fun saveUser(data: ProfileResponseData) {
-        val user = User(
-            clearExtraCharacters(data.id),
-            data.profile_picture,
-            clearExtraCharacters(data.first_name),
-            clearExtraCharacters(data.last_name),
-            data.country_code,
-            clearExtraCharacters(data.phone_number),
-            clearExtraCharacters(data.country_of_residence),
-            clearExtraCharacters(data.email),
-            data.profile_completed,
-            data.is_restricted,
-            data.institution_of_study?.let { clearExtraCharacters(it) },
-            data.country_of_birth?.let { clearExtraCharacters(it) },
-            data.state?.let { clearExtraCharacters(it) },
-            data.city?.let { clearExtraCharacters(it) },
-        )
-
-        Log.d("UserInfo", "saved data : $user")
-
-        Coroutines.onMain {
-            repository.saveUser(user)
-        }
-    }
 
 }

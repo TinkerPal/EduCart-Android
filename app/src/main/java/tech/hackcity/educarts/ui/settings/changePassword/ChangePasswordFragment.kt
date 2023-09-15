@@ -13,6 +13,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentChangePasswordBinding
 import tech.hackcity.educarts.domain.model.settings.ChangePasswordResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
@@ -54,7 +55,7 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password), Chan
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         hideButtonLoadingState(
             binding.updateBtn,
             binding.progressBar,
@@ -63,7 +64,7 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password), Chan
     }
 
     override fun onRequestSuccessful(response: ChangePasswordResponse) {
-        context?.toast(response.message)
+        context?.toast(description = response.message, toastType = ToastType.SUCCESS)
         activity?.finish()
     }
 

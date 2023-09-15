@@ -21,6 +21,7 @@ import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentOtpBinding
 import tech.hackcity.educarts.domain.model.auth.RegenerateOTPResponse
 import tech.hackcity.educarts.domain.model.auth.VerifyOTPResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
@@ -131,12 +132,12 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     }
 
     override fun onVerifyRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         binding.astericksImageView.clearAnimation()
     }
 
     override fun onRegenerateOTPRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         sharedViewModel.updateLoadingScreen(false)
         hideButtonLoadingState(binding.resendCodeBtn, binding.progressBar, resources.getString(R.string.resend_code))
         if (countdownTimer.isRunning()) {
@@ -147,7 +148,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
 
     override fun onVerifyOTPRequestSuccessful(response: VerifyOTPResponse) {
         binding.astericksImageView.clearAnimation()
-        context?.toast(response.message)
+        context?.toast(description = response.message, toastType = ToastType.SUCCESS)
 
         try {
             navigateToDestination()

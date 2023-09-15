@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentFaqsBinding
 import tech.hackcity.educarts.ui.adapters.FAQsAdapter
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Constants
+import tech.hackcity.educarts.uitls.toast
 
 /**
  *Created by Victor Loveday on 2/26/23
@@ -29,11 +31,19 @@ class FAQsFragment : Fragment(R.layout.fragment_faqs) {
         binding = FragmentFaqsBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
         binding.bookConsultationBtn.setOnClickListener {
             findNavController().navigate(R.id.action_FAQsFragment_to_consultationReasonFragment)
         }
 
-        setupRecyclerView()
+        binding.chatWithUsTV.setOnClickListener {
+            context?.toast(
+                title = resources.getString(R.string.coming_soon),
+                description = resources.getString(R.string.keep_your_eyes_glue),
+                toastType = ToastType.INFO
+            )
+        }
     }
 
     private fun setupRecyclerView() {
@@ -41,7 +51,6 @@ class FAQsFragment : Fragment(R.layout.fragment_faqs) {
         binding.faqsRV.apply {
             adapter = faqsAdapter
             layoutManager = LinearLayoutManager(requireContext())
-
             faqsAdapter.setData(args.faqs.data)
         }
     }

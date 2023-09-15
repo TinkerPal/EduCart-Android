@@ -70,12 +70,6 @@ class LoginViewModel(
                         }
                     }
                 }
-            } catch (e: NoInternetException) {
-                loginListener?.onRequestFailed("${e.message}")
-            } catch (e: SocketTimeOutException) {
-                loginListener?.onRequestFailed("${e.message}")
-            }catch (e: HTTPException) {
-                loginListener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -83,16 +77,17 @@ class LoginViewModel(
 
     private fun saveUser(data: LoginResponseData) {
         val user = User(
-            clearExtraCharacters(data.id),
+            data.id,
             data.profile_picture,
-            clearExtraCharacters(data.first_name),
-            clearExtraCharacters(data.last_name),
+            data.first_name,
+            data.last_name,
             data.country_code,
             data.phone_number,
-            clearExtraCharacters(data.country_of_residence),
-            clearExtraCharacters(data.email),
+            data.country_of_residence,
+            data.email,
             data.profile_completed,
             data.is_restricted,
+            data.free_consultation
         )
 
         Log.d("UserInfo", "saved data : $user")

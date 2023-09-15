@@ -27,6 +27,8 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
+import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -208,9 +210,9 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                context?.toast(resources.getString(R.string.permission_granted_you_can_now_pick_files))
+                context?.toast(description = resources.getString(R.string.permission_granted_you_can_now_pick_files), toastType = ToastType.ERROR)
             } else {
-                context?.toast(resources.getString(R.string.permission_denied_you_can_not_access_files))
+                context?.toast(description = resources.getString(R.string.permission_denied_you_can_not_access_files), toastType = ToastType.ERROR)
             }
         }
     }
@@ -271,7 +273,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast("$message")
+        context?.toast(description = message, toastType = ToastType.ERROR)
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,
@@ -290,11 +292,21 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateLoadingScreen(false)
 
-        val action =
-            SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
-                args.formType
-            )
-        findNavController().navigate(action)
+        when(args.sevisPaymentMethod) {
+            resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me) -> {
+                val action =
+                    SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                        args.formType
+                    )
+                findNavController().navigate(action)
+            }
+            resources.getString(R.string.i_have_generated_sevis_payment_coupon) -> {
+                val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
+                intent.putExtra("service", resources.getString(R.string.sevis_fee))
+                startActivity(intent)
+            }
+        }
+
     }
 
     override fun onResume() {

@@ -24,25 +24,6 @@ class HTTPException(response: Response<*>) : HttpException(response)
 class SocketTimeOutException(message: String) : SocketTimeoutException(message)
 class NoInternetException(message: String) : IOException(message)
 
-fun errorMessageTextViewPresenter(context: Context, errorMessage: String, textView: TextView) {
-    val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
-    val text = StringBuilder()
-
-    if (errorMessages.isNotEmpty()) {
-        for ((code, message) in errorMessages) {
-            text.append("$message \n")
-        }
-
-        val animate = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-        textView.startAnimation(animate)
-        textView.visibility = View.VISIBLE
-        textView.text = text.toString()
-
-    } else {
-        textView.visibility = View.GONE
-    }
-}
-
 fun extractErrorMessagesFromErrorBody(errorJson: String): List<Pair<String, String>> {
     val errorList = mutableListOf<Pair<String, String>>()
 
@@ -59,6 +40,32 @@ fun extractErrorMessagesFromErrorBody(errorJson: String): List<Pair<String, Stri
     }
 
     return errorList
+}
+
+fun extractErrorMessagesFromRegisterErrorBody(jsonString: String): String {
+    val textValues = mutableListOf<String>()
+
+    try {
+        val jsonObject = JSONObject(jsonString)
+
+        for (key in jsonObject.keys()) {
+            if (key in setOf("email", "phone_number", "password")) {
+                val jsonArray = jsonObject.optJSONArray(key)
+                if (jsonArray != null) {
+                    for (i in 0 until jsonArray.length()) {
+                        val value = jsonArray.optString(i)
+                        if (!value.isNullOrEmpty()) {
+                            textValues.add(value)
+                        }
+                    }
+                }
+            }
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return textValues.joinToString("\n\n")
 }
 
 fun extractDataFields(dataJson: String): Pair<String?, String?> {

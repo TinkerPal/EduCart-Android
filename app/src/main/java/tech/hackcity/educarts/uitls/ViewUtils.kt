@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -25,18 +24,54 @@ import tech.hackcity.educarts.R
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.animation.LinearInterpolator
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import tech.hackcity.educarts.ui.alerts.CustomToast
+import tech.hackcity.educarts.ui.alerts.ToastType
+import java.lang.StringBuilder
 
 /**
  *Created by Victor Loveday on 5/10/23
  */
 
+fun Context.toast(title: String? = null, description: String, toastType: ToastType) {
 
-fun Context.toast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    val duration = when(toastType) {
+        ToastType.INFO -> 3000
+        ToastType.ERROR -> 5000
+        ToastType.SUCCESS -> 2000
+    }
+
+    val formattedDescription = StringBuilder()
+
+    if (isJsonContainMessageAndCode(description)) {
+        val errorMessages = extractErrorMessagesFromErrorBody(description)
+        if (errorMessages.isNotEmpty()) {
+            for ((code, message) in errorMessages) {
+                formattedDescription.append(message)
+            }
+
+            if (errorMessages.size > 1) {
+                formattedDescription.append("\n\n")
+            }
+        }
+    } else {
+        formattedDescription.append(description)
+    }
+
+    CustomToast.makeText(
+        this,
+        title,
+        formattedDescription.toString(),
+        duration,
+        toastType
+    )
 }
 
 fun View.snackbar(message: String, action: String) {
@@ -136,6 +171,7 @@ fun spannableTextWithForegroundColour(
 
     textView.text = spannableString
 }
+
 fun shortenString(input: String, length: Int): String {
     if (input.length <= length) {
         return input
@@ -197,6 +233,31 @@ fun hideToolBar(toolbar: MaterialToolbar) {
 
 fun showToolBar(toolbar: MaterialToolbar) {
     toolbar.visibility = View.VISIBLE
+}
+
+fun showCustomInfoDialog(
+    context: Context,
+    title: String,
+    message: String,
+    positiveButtonMessage: String,
+    activity: Class<*>? = null,
+    destination: String? = null,
+    cancelable: Boolean = false
+) {
+    MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme)
+        .setTitle(title)
+        .setMessage(message)
+        .setCancelable(cancelable)
+        .setPositiveButton(positiveButtonMessage) { dialog, which ->
+            dialog.dismiss()
+
+            activity?.let {
+                val intent = Intent(context, it)
+                intent.putExtra("destination", destination)
+                context.startActivity(intent)
+            }
+        }
+        .show()
 }
 
 fun compareTwoPasswordFields(
@@ -282,8 +343,15 @@ fun clickableLink(
         spannableTextView.text = spanned
         spannableTextView.movementMethod = LinkMovementMethod.getInstance()
     } catch (e: Exception) {
-        context.toast("$e")
+        context.toast(description = "$e", toastType = ToastType.ERROR)
     }
+}
+
+fun copyToClipboard(context: Context, label: String, textToCopy: String) {
+    val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData = ClipData.newPlainText(label, textToCopy)
+    clipboardManager.setPrimaryClip(clipData)
+    context.toast(description = context.resources.getString(R.string.copied_to_clip_board), toastType = ToastType.INFO)
 }
 
 

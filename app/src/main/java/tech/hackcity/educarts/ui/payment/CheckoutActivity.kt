@@ -3,6 +3,7 @@ package tech.hackcity.educarts.ui.payment
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityCheckoutBinding
 
@@ -19,6 +20,9 @@ class CheckoutActivity : AppCompatActivity() {
         binding = ActivityCheckoutBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
+
+        //keep app on light mode only
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val toolbar = binding.toolbar
         toolbar.title = resources.getString(R.string.checkout)
@@ -54,7 +58,7 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun displayService() {
-        binding.title.text = service
+        binding.serviceTV.text = service
         when (service) {
             "Application fee" -> {
                 binding.serviceImage.setImageResource(R.drawable.application_fee)
@@ -76,8 +80,8 @@ class CheckoutActivity : AppCompatActivity() {
             "Admission docs shipment" -> {
                 binding.serviceImage.setImageResource(R.drawable.admission_docs_shipment)
             }
-            "Consultation fees" -> {
-                binding.serviceImage.setImageResource(R.drawable.app_icon_foreground)
+            "Consultation" -> {
+                binding.serviceImage.setImageResource(R.drawable.consultation)
             }
             else -> {
                 binding.serviceImage.setImageResource(R.drawable.others)

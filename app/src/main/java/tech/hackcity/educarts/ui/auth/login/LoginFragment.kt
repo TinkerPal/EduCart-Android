@@ -21,10 +21,9 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentLoginBinding
 import tech.hackcity.educarts.domain.model.auth.LoginResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.errorMessageTextViewPresenter
 import tech.hackcity.educarts.uitls.extractErrorMessagesFromErrorBody
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
@@ -78,10 +77,8 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
     }
 
     override fun onRequestFailed(errorMessage: String) {
-
         Log.d("LoginError", errorMessage)
-//        errorMessageTextViewPresenter(requireContext(), errorMessage, binding.errorMessageTV)
-        context?.toast(errorMessage)
+        context?.toast(description = errorMessage, toastType = ToastType.ERROR)
 
         val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
         if (errorMessages.isNotEmpty()) {

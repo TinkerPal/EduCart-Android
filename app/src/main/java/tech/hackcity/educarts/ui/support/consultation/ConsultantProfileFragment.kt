@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -14,9 +15,11 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.support.SupportRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
+import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentConsulantProfileBinding
 import tech.hackcity.educarts.domain.model.support.Consultant
 import tech.hackcity.educarts.domain.model.support.ConsultantProfileResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.browser.BrowserActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.toast
@@ -42,14 +45,24 @@ class ConsultantProfileFragment: Fragment(R.layout.fragment_consulant_profile), 
         val viewModel = ViewModelProvider(this, factory)[ConsultationViewModel::class.java]
         viewModel.consultantListener = this
 
+        setupProfile(args.consultant)
+
         lifecycleScope.launchWhenCreated {
-            viewModel.fetchConsultantProfile(args.id)
+            viewModel.fetchConsultantProfile(args.consultant.id)
         }
 
         binding.scheduleMeetingBtn.setOnClickListener {
-            startActivity(Intent(requireContext(), BrowserActivity::class.java))
+            val intent = Intent(requireContext(), BrowserActivity::class.java)
+            intent.putExtra("destination", "Consultation")
+            startActivity(intent)
         }
 
+        val userInfoManager = UserInfoManager(requireContext())
+        userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) {
+            if (it.free_consultation) {
+                binding.scheduleMeetingBtn.text = resources.getString(R.string.schedule_free_appointment)
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -104,7 +117,7 @@ class ConsultantProfileFragment: Fragment(R.layout.fragment_consulant_profile), 
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         sharedViewModel.updateLoadingScreen(false)
     }
 

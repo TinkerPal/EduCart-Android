@@ -31,8 +31,8 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentEditProfileBinding
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.Constants.EDU_CARTS_MEDIA_URL
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.toast
@@ -50,7 +50,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
     private var dialCode = 0
     private var isNumberValid = false
     private lateinit var userInfoManager: UserInfoManager
-    private lateinit var viewModel : ProfileViewModel
+    private lateinit var viewModel: ProfileViewModel
 
     private var firstName = ""
     private var lastName = ""
@@ -91,7 +91,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
         validatePhoneNumber()
 
         binding.doneBtn.setOnClickListener {
-            viewModel.profilePicture = createFilePart(requireContext(),"profile_picture", profileUri)
+            viewModel.profilePicture =
+                createFilePart(requireContext(), "profile_picture", profileUri)
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()
             viewModel.countryOfResidence = "Nigeria"
@@ -120,17 +121,15 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             city = user.city.toString()
 
             with(binding) {
-                val profileUrl = "${EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
                 val requestOptions = RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
 
                 if (user.profilePhoto.isNullOrEmpty()) {
                     profilePhoto.setImageResource(R.drawable.default_profile)
-                }else {
-                    Log.d("ProfilePhoto", profileUrl)
+                } else {
                     Glide.with(requireContext())
-                        .load(profileUrl)
+                        .load(user.profilePhoto)
                         .apply(requestOptions)
                         .into(profilePhoto)
                 }
@@ -139,10 +138,13 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                 lastNameET.setText(lastName)
                 phoneNumberET.setText(phoneNumber)
                 countryOfResidenceET.setText(countryOfResisdence)
-                institutionOfStudyET.setText( institutionOfStudy.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
-                countryOfBirthET.setText( countryOfBirth.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
-                stateET.setText( state.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
-                cityET.setText( city.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
+                institutionOfStudyET.setText(institutionOfStudy.takeIf { it.isNotEmpty() }
+                    ?: resources.getString(R.string.nil))
+                countryOfBirthET.setText(countryOfBirth.takeIf { it.isNotEmpty() }
+                    ?: resources.getString(R.string.nil))
+                stateET.setText(state.takeIf { it.isNotEmpty() }
+                    ?: resources.getString(R.string.nil))
+                cityET.setText(city.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
             }
 
         }
@@ -235,13 +237,18 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         Log.d("EditProfile", message)
         sharedViewModel.updateLoadingScreen(false)
     }
 
     override fun onEditProfileRequestSuccessful(response: ProfileResponse) {
-        response.message?.let { context?.toast(it) }
+        response.message?.let {
+            context?.toast(
+                description = it,
+                toastType = ToastType.SUCCESS
+            )
+        }
         sharedViewModel.updateLoadingScreen(false)
     }
 

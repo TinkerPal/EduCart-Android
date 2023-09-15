@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
@@ -16,7 +17,9 @@ import tech.hackcity.educarts.databinding.FragmentChooseAConsultantBinding
 import tech.hackcity.educarts.domain.model.support.Consultant
 import tech.hackcity.educarts.domain.model.support.ConsultantsResponse
 import tech.hackcity.educarts.ui.adapters.ConsultantsAdapter
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.toast
 
 /**
@@ -39,24 +42,24 @@ class ChooseAConsultantFragment: Fragment(R.layout.fragment_choose_a_consultant)
         val viewModel = ViewModelProvider(this, factory)[ConsultationViewModel::class.java]
         viewModel.consultantsListener = this
 
-        lifecycleScope.launchWhenCreated {
+        Coroutines.onMainWithScope(viewModel.viewModelScope) {
             viewModel.fetchConsultants()
         }
-
     }
 
     private fun setupConsultants(consultants: List<Consultant>) {
         val consultantsAdapter = ConsultantsAdapter()
         binging.consultantRV.apply {
-            adapter = consultantsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            consultantsAdapter.setData(consultants)
+            this.let {
+                adapter = consultantsAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+                consultantsAdapter.setData(consultants)
 
-            consultantsAdapter.setOnItemClickListener {
-                val action = ChooseAConsultantFragmentDirections.actionChooseAConsultantFragmentToConsultantProfileFragment(it.id)
-                findNavController().navigate(action)
+                consultantsAdapter.setOnItemClickListener {
+                    val action = ChooseAConsultantFragmentDirections.actionChooseAConsultantFragmentToConsultantProfileFragment(it)
+                    findNavController().navigate(action)
+                }
             }
-
         }
     }
 
@@ -65,7 +68,7 @@ class ChooseAConsultantFragment: Fragment(R.layout.fragment_choose_a_consultant)
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        context?.toast(description = message, toastType = ToastType.ERROR)
         sharedViewModel.updateLoadingScreen(false)
     }
 

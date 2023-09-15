@@ -15,6 +15,7 @@ import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.uitls.NoInternetException
 import java.io.IOException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 /**
  *Created by Victor Loveday on 3/24/23
@@ -48,7 +49,6 @@ class APIInterceptor(
         val response = chain.proceed(requestBuilder.build())
 
         if (response.code == 401) {
-            Log.e("TokenRefresh", "Expired")
             val refreshToken = sessionManager.fetchRefreshToken()
             val newAccessToken = runBlocking {
                 refreshAccessToken(refreshToken!!)
@@ -69,10 +69,9 @@ class APIInterceptor(
     }
 
     private suspend fun refreshAccessToken(refreshToken: String): String? {
-        var retryCount = 0
         val maxRetries = 3
 
-        while (retryCount < maxRetries) {
+        for (retryCount in 1..maxRetries) {
             try {
                 val response = retrofitInstance.authenticationAPI.refreshAccessToken(refreshToken)
 
@@ -83,36 +82,43 @@ class APIInterceptor(
                     sessionManager.saveTokens(accessToken ?: "", newRefreshToken ?: "")
 
                     accessToken
-
                 } else {
                     val errorMessage = response.body()?.errorMessage.toString()
                     Log.e("TokenRefresh", "Refresh token request failed: $errorMessage")
-                    errorMessage
+                    throw ApiException(errorMessage)
                 }
-
-            } catch (e: IOException) {
-                Log.e("TokenRefresh", "IOException: ${e.message}")
-                retryCount++
-                delay(1000)
-
-            } catch (e: NoInternetException) {
-                Log.e("TokenRefresh", "No Internet Connection: ${e.message}")
-                retryCount++
-                delay(1000)
-
-            } catch (e: HttpException) {
-                Log.e("TokenRefresh", "HTTP Exception: ${e.message}")
-                retryCount++
-                delay(1000)
-
             } catch (e: SocketTimeoutException) {
-                Log.e("TokenRefresh", "Socket Timeout Exception: ${e.message}")
-                retryCount++
-                delay(1000)
+                if (retryCount < maxRetries) {
+                    delay(1000)
+                } else {
+                    throw ApiException(context.resources.getString(R.string.check_internet_connection_and_try_again))
+                }
+            } catch (e: UnknownHostException) {
+                if (retryCount < maxRetries) {
+                    delay(1000)
+                } else {
+                    throw ApiException(context.resources.getString(R.string.something_went_wrong_please_try_again))
+                }
+            } catch (e: NoInternetException) {
+                if (retryCount < maxRetries) {
+                    delay(1000)
+                } else {
+                    throw ApiException(context.resources.getString(R.string.no_internet_connection))
+                }
+            } catch (e: HttpException) {
+                val responseCode = e.code()
+                val responseBody = e.response()?.errorBody()?.string()
+                throw ApiException("$responseBody")
+            } catch (e: IOException) {
+                if (retryCount < maxRetries) {
+                    delay(1000)
+                } else {
+                    throw ApiException(context.resources.getString(R.string.something_went_wrong))
+                }
             }
         }
 
-        throw ApiException(context.resources.getString(R.string.failed_to_refresh_token_after, "$$maxRetries"))
+        throw ApiException("Failed to refresh token after $maxRetries retries")
     }
 
     private fun isInternetAvailable(): Boolean {

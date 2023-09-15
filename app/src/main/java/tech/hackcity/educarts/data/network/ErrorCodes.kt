@@ -16,6 +16,7 @@ object ErrorCodes {
     const val WEAK_PASSWORD = "weak_password"
     const val MAX_RETRIES_EXCEEDED = "max_retries_exceeded"
     const val USER_NOT_VERIFIED = "user_not_verified"
+    const val PROFILE_NOT_COMPLETED = "profile_not_completed"
     const val NON_FIELD_ERRORS = "non_field_errors"
     const val INVALID_PK = "invalid_pk"
 }

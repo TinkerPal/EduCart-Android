@@ -93,13 +93,16 @@ class SettingsActivity : AppCompatActivity() {
         val destination = intent.getStringExtra("destination")
         if (destination != null) {
             when (destination) {
-                "Profile" -> {
+                "profile" -> {
                     navGraph.setStartDestination(R.id.profileFragment)
+                }
+                "edit_profile" -> {
+                    navGraph.setStartDestination(R.id.editProfileFragment)
                 }
                 "IDV" -> {
                     navGraph.setStartDestination(R.id.identityVerificationFragmentStep1)
                 }
-                "Password and PIN" -> {
+                "password_and_PIN" -> {
                     navGraph.setStartDestination(R.id.passwordAndPinFragment)
                 }
             }

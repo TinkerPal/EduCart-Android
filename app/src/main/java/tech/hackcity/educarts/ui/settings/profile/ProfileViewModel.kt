@@ -51,10 +51,6 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                editListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                editListener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -100,10 +96,6 @@ class ProfileViewModel(
 
             } catch (e: ApiException) {
                 editListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                editListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                editListener?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -120,6 +112,7 @@ class ProfileViewModel(
             data.email,
             data.profile_completed,
             data.is_restricted,
+            data.free_consultation,
             data.institution_of_study,
             data.country_of_birth,
             data.state,

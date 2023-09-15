@@ -33,10 +33,6 @@ class FaqViewModel(
 
             } catch (e: ApiException) {
                 listener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                listener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                listener?.onRequestFailed("${e.message}")
             }
         }
     }

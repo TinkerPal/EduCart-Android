@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentSevisFeeBinding
 import tech.hackcity.educarts.databinding.FragmentSevisFormTypeBinding
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.toast
 
@@ -50,7 +51,8 @@ class SEVISFormTypeFragment : Fragment(R.layout.fragment_sevis_form_type) {
                         val action =
                             SEVISFormTypeFragmentDirections
                                 .actionSEVISFormTypeFragmentToSevisFeeStep1Fragment(
-                                    formType
+                                    formType,
+                                    resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me)
                                 )
                         findNavController().navigate(action)
                     }
@@ -64,11 +66,11 @@ class SEVISFormTypeFragment : Fragment(R.layout.fragment_sevis_form_type) {
                         findNavController().navigate(action)
                     }
 
-                    else -> context?.toast(resources.getString(R.string.select_a_service))
+                    else -> context?.toast(description = resources.getString(R.string.select_a_service), toastType = ToastType.ERROR)
                 }
 
             } else {
-                context?.toast(resources.getString(R.string.select_a_form_type))
+                context?.toast(description = resources.getString(R.string.select_a_form_type), toastType = ToastType.ERROR)
             }
         }
     }

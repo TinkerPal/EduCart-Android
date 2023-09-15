@@ -6,9 +6,11 @@ import android.provider.OpenableColumns
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.json.JSONArray
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
+import org.json.JSONObject
 
 /**
  *Created by Victor Loveday on 7/7/23
@@ -94,3 +96,39 @@ fun fileToBytes(file: File): ByteArray {
         inputStream.readBytes()
     }
 }
+
+fun isJsonContainMessageAndCode(input: String): Boolean {
+    try {
+        val jsonArray = JSONArray(input)
+        for (i in 0 until jsonArray.length()) {
+            val jsonObject = jsonArray.getJSONObject(i)
+            val hasMessage = jsonObject.has("message")
+            val hasCode = jsonObject.has("code")
+            if (!hasMessage || !hasCode) {
+                return false
+            }
+        }
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+
+fun isJsonContainImportantFields(jsonString: String): Boolean {
+    try {
+        val jsonObject = JSONObject(jsonString)
+        val keys = jsonObject.keys()
+
+        while (keys.hasNext()) {
+            val key = keys.next()
+            if (key == "password" || key == "phone_number" || key == "email") {
+                return true
+            }
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return false
+}
+

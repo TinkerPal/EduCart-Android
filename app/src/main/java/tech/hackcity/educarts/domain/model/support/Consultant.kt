@@ -1,5 +1,7 @@
 package tech.hackcity.educarts.domain.model.support
 
+import java.io.Serializable
+
 data class Consultant(
     val country: String?,
     val id: Int,
@@ -15,4 +17,4 @@ data class Consultant(
     val daily_availability: String?,
     val bio: String?,
     val qualification: String?
-)
+):Serializable

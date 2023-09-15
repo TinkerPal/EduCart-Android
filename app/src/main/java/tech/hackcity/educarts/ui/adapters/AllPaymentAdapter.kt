@@ -57,21 +57,21 @@ class AllPaymentAdapter(private val context: Context) :
             date.text = formatDateTime(paymentHistory.date)
             transactionStatus.text = paymentHistory.status
 
-            val paymentStatus = when (paymentHistory.status) {
-                "Order completed" -> PaymentStatus.ORDER_COMPLETED
-                "Order in process" -> PaymentStatus.ORDER_IN_PROCESS
-                "Payment Pending" -> PaymentStatus.PAYMENT_PENDING
-                "Payment confirmed" -> PaymentStatus.PAYMENT_CONFIRMED
-                else -> PaymentStatus.ORDER_COMPLETED
+            val orderStatus = when (paymentHistory.status) {
+                "Order completed" -> OrderStatus.ORDER_COMPLETED
+                "Order in process" -> OrderStatus.ORDER_IN_PROCESS
+                "Payment Pending" -> OrderStatus.PAYMENT_PENDING
+                "Payment confirmed" -> OrderStatus.PAYMENT_CONFIRMED
+                else -> OrderStatus.ORDER_COMPLETED
             }
 
             transactionStatus.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    paymentStatus.textColourRes
+                    orderStatus.textColourRes
                 )
             )
-            icon.setColorFilter(ContextCompat.getColor(context, paymentStatus.iconColourRes))
+            icon.setColorFilter(ContextCompat.getColor(context, orderStatus.iconColourRes))
 
             holder.itemView.apply {
                 setOnClickListener {
@@ -99,7 +99,7 @@ class AllPaymentAdapter(private val context: Context) :
 
 }
 
-enum class PaymentStatus(val textColourRes: Int, val iconColourRes: Int) {
+enum class OrderStatus(val textColourRes: Int, val iconColourRes: Int) {
     ORDER_COMPLETED(R.color.success_green, R.color.success_green),
     ORDER_IN_PROCESS(R.color.primary_color, R.color.primary_color),
     PAYMENT_PENDING(R.color.error_600, R.color.error_600),

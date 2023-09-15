@@ -16,6 +16,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentSevisFeeStep3Binding
 import tech.hackcity.educarts.domain.model.error.ErrorMessage
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
@@ -73,7 +74,7 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast("$message")
+        context?.toast(description = message, toastType = ToastType.ERROR)
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,

@@ -1,6 +1,7 @@
 package tech.hackcity.educarts.ui.auth.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentCreatePersonalAccountBinding
 import tech.hackcity.educarts.domain.model.auth.RegisterUserResponse
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.*
 import java.lang.IllegalArgumentException
@@ -135,7 +137,13 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
     }
 
     override fun onRequestFailed(message: String) {
-        context?.toast(message)
+        if (isJsonContainImportantFields(message)) {
+            val formattedErrorMessage = extractErrorMessagesFromRegisterErrorBody(message)
+            context?.toast(description = formattedErrorMessage, toastType = ToastType.ERROR)
+        } else {
+            context?.toast(description = message, toastType = ToastType.ERROR)
+        }
+
         hideButtonLoadingState(
             binding.signupBtn,
             binding.progressBar,

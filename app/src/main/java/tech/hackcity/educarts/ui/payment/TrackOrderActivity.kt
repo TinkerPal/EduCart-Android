@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityTrackOrderBinding
+import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
+import tech.hackcity.educarts.uitls.toast
 
 class TrackOrderActivity : AppCompatActivity() {
 
@@ -26,7 +29,16 @@ class TrackOrderActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.trackOrderBtn.setOnClickListener {
-            startActivity(Intent(this, OrderDetailsActivity::class.java))
+            val orderId = binding.orderIDET.text.toString().trim()
+
+            if (orderId.isEmpty()) {
+                toast(description = resources.getString(R.string.field_can_not_be_empty), toastType = ToastType.ERROR)
+                return@setOnClickListener
+            }
+
+            val intent = Intent(this, OrderDetailsActivity::class.java)
+            intent.putExtra("orderId", orderId)
+            startActivity(intent)
         }
 
     }

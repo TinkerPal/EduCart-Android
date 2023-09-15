@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricPrompt
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityUnlockBinding
+import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.auth.AuthActivity
 import tech.hackcity.educarts.ui.main.MainActivity
 import tech.hackcity.educarts.uitls.BiometricAuthListener
@@ -55,7 +56,7 @@ class UnlockActivity : AppCompatActivity(), BiometricAuthListener {
                 cryptoObject = null,
             )
         } else {
-            toast(resources.getString(R.string.no_biometric_feature_perform_on_this_device))
+            toast(description = resources.getString(R.string.no_biometric_feature_perform_on_this_device), toastType = ToastType.ERROR)
         }
     }
 

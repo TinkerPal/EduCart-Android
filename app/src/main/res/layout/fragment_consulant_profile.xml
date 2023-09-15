@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
     android:layout_marginHorizontal="16dp"
     tools:context=".ui.support.consultation.ConsultantProfileFragment">
 
@@ -80,6 +81,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:visibility="gone"
                                 android:orientation="horizontal">
 
                                 <ImageView
@@ -133,7 +135,7 @@
                                 android:id="@+id/specializationTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="3dp"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:textColor="@color/text_light"
                                 android:textSize="16sp"
@@ -373,7 +375,7 @@
             android:background="@drawable/primary_button"
             android:fontFamily="@font/montserrat_medium"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/schedule_meeting"
+            android:text="@string/schedule_appointment"
             android:textAllCaps="false"
             app:backgroundTint="@null"
             app:layout_constraintTop_toTopOf="parent" />

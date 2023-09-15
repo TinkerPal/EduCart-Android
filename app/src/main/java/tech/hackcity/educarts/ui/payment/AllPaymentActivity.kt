@@ -9,6 +9,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityAllPaymentBinding
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
+import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
 
 class AllPaymentActivity : AppCompatActivity() {
 
@@ -22,7 +23,6 @@ class AllPaymentActivity : AppCompatActivity() {
 
         //keep app on light mode only
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
 
         val toolbar = binding.toolbar
         toolbar.title = resources.getString(R.string.payment_activities)
@@ -42,8 +42,10 @@ class AllPaymentActivity : AppCompatActivity() {
             allHistory.data?.let { allPaymentAdapter.setData(it) }
         }
 
-        allPaymentAdapter.setOnItemClickListener {
-            startActivity(Intent(this, OrderDetailsActivity::class.java))
+        allPaymentAdapter.setOnItemClickListener { history->
+            val intent = Intent(this, OrderDetailsActivity::class.java)
+            intent.putExtra("orderId", history.order_id)
+            startActivity(intent)
         }
     }
 

@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.transition.AutoTransition
@@ -26,8 +25,6 @@ import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.settings.SettingsViewModel
 import tech.hackcity.educarts.ui.settings.SettingsViewModelFactory
 import tech.hackcity.educarts.ui.support.SupportActivity
-import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
-import tech.hackcity.educarts.uitls.Constants
 import tech.hackcity.educarts.uitls.shortenString
 
 /**
@@ -87,25 +84,24 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
 
 
     private fun setupNavigation() {
+        val settingsIntent = Intent(requireContext(), SettingsActivity::class.java)
+        val supportIntent = Intent(requireContext(), SupportActivity::class.java)
+
         binding.viewProfile.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "Profile")
-            startActivity(intent)
+            settingsIntent.putExtra("destination", "profile")
+            startActivity(settingsIntent)
         }
         binding.identityVerification.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "IDV")
-            startActivity(intent)
+            settingsIntent.putExtra("destination", "IDV")
+            startActivity(settingsIntent)
         }
         binding.faqs.setOnClickListener {
-            val intent = Intent(requireContext(), SupportActivity::class.java)
-            intent.putExtra("destination", "faqs")
-            startActivity(intent)
+            supportIntent.putExtra("destination", "faqs")
+            startActivity(supportIntent)
         }
         binding.createPin.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            intent.putExtra("destination", "Password and PIN")
-            startActivity(intent)
+            settingsIntent.putExtra("destination", "password_and_PIN")
+            startActivity(settingsIntent)
         }
     }
 
@@ -115,7 +111,6 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         userInfoManager.fetchUserInfo().asLiveData().observe(viewLifecycleOwner) { user ->
 
             with(binding) {
-                val profileUrl = "${Constants.EDU_CARTS_MEDIA_URL}${user.profilePhoto}"
                 val requestOptions = RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
@@ -124,7 +119,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     profilePhoto.setImageResource(R.drawable.default_profile)
                 } else {
                     Glide.with(requireContext())
-                        .load(profileUrl)
+                        .load(user.profilePhoto)
                         .apply(requestOptions)
                         .into(profilePhoto)
                 }
@@ -145,6 +140,11 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         intent.putExtra("destination", "login")
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupUserInfo()
     }
 
 }

@@ -41,10 +41,6 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 consultationReasonListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                consultationReasonListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                consultationReasonListener?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -71,10 +67,6 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 consultationReasonListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                consultationReasonListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                consultationReasonListener?.onRequestFailed("${e.message}")
             }
         }
 
@@ -93,10 +85,6 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 consultantsListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                consultantsListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                consultantsListener?.onRequestFailed("${e.message}")
             }
         }
     }
@@ -114,10 +102,6 @@ class ConsultationViewModel(
 
             } catch (e: ApiException) {
                 consultantListener?.onRequestFailed(e.errorMessage)
-            }catch (e: NoInternetException) {
-                consultantListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                consultantListener?.onRequestFailed("${e.message}")
             }
         }
     }

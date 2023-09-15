@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityOrderSummaryBinding
 
@@ -20,6 +21,9 @@ class OrderSummaryActivity : AppCompatActivity() {
         binding = ActivityOrderSummaryBinding.inflate(layoutInflater)
         setTheme(R.style.Theme_EduCarts)
         setContentView(binding.root)
+
+        //keep app on light mode only
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         service = intent.getStringExtra("service").toString()
         amount = intent.getStringExtra("amount").toString()
@@ -58,7 +62,7 @@ class OrderSummaryActivity : AppCompatActivity() {
             "Visa fee" -> {binding.serviceImage.setImageResource(R.drawable.visa_fee)}
             "Credentials evaluation" -> {binding.serviceImage.setImageResource(R.drawable.credential_evaluation)}
             "Admission docs shipment" -> {binding.serviceImage.setImageResource(R.drawable.admission_docs_shipment)}
-            "Consultation fees" -> {binding.serviceImage.setImageResource(R.drawable.app_icon_foreground)}
+            "Consultation" -> {binding.serviceImage.setImageResource(R.drawable.consultation)}
             else -> {binding.serviceImage.setImageResource(R.drawable.others)}
         }
     }

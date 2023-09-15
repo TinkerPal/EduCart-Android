@@ -47,10 +47,6 @@ class ChangePasswordViewModel(
 
             } catch (e: ApiException) {
                 changePasswordListener?.onRequestFailed(e.message!!)
-            }catch (e: NoInternetException) {
-                changePasswordListener?.onRequestFailed("${e.message}")
-            }catch (e: SocketTimeOutException) {
-                changePasswordListener?.onRequestFailed("${e.message}")
             }
         }
 

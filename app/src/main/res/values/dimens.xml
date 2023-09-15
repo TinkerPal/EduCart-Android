@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="primary_margin">16dp</dimen>
+    <dimen name="custom_toast_margin_top">0dp</dimen>
+    <dimen name="custom_toast_jump_distance">60dp</dimen>
+    <dimen name="custom_toast_bounce_distance">60dp</dimen>
+</resources>
