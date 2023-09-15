@@ -28,6 +28,7 @@ import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -291,11 +292,21 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateLoadingScreen(false)
 
-        val action =
-            SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
-                args.formType
-            )
-        findNavController().navigate(action)
+        when(args.sevisPaymentMethod) {
+            resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me) -> {
+                val action =
+                    SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                        args.formType
+                    )
+                findNavController().navigate(action)
+            }
+            resources.getString(R.string.i_have_generated_sevis_payment_coupon) -> {
+                val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
+                intent.putExtra("service", resources.getString(R.string.sevis_fee))
+                startActivity(intent)
+            }
+        }
+
     }
 
     override fun onResume() {

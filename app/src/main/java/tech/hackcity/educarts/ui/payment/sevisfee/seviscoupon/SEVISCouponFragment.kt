@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentHaveSevisPaymentCouponBinding
 import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
@@ -16,7 +18,9 @@ import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon) {
 
     private lateinit var binding: FragmentHaveSevisPaymentCouponBinding
+
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val args: SEVISCouponFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentHaveSevisPaymentCouponBinding.bind(view)
@@ -25,9 +29,11 @@ class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon
         sharedViewModel.updateStepIndicator(arrayOf(1, 1))
 
         binding.nextBtn.setOnClickListener {
-            val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
-            intent.putExtra("service", resources.getString(R.string.sevis_fee))
-            startActivity(intent)
+            val action = SEVISCouponFragmentDirections.actionSevisCouponFragmentToSevisFeeStep1Fragment(
+                args.formType,
+                resources.getString(R.string.i_have_generated_sevis_payment_coupon)
+            )
+            findNavController().navigate(action)
         }
     }
 

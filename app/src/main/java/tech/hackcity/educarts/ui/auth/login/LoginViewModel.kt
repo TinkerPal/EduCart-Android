@@ -70,8 +70,6 @@ class LoginViewModel(
                         }
                     }
                 }
-            } catch (e: NoInternetException) {
-                loginListener?.onRequestFailed("${e.message}")
             }
         }
 

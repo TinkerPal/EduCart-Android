@@ -17,7 +17,7 @@ fun formatDateTime(
     showTime: Boolean = true
 ): String {
     // Parse the input date-time string
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX")
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     val date = inputFormat.parse(dateTimeString)
 
     // Format date

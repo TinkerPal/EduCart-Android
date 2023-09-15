@@ -51,7 +51,8 @@ class SEVISFormTypeFragment : Fragment(R.layout.fragment_sevis_form_type) {
                         val action =
                             SEVISFormTypeFragmentDirections
                                 .actionSEVISFormTypeFragmentToSevisFeeStep1Fragment(
-                                    formType
+                                    formType,
+                                    resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me)
                                 )
                         findNavController().navigate(action)
                     }

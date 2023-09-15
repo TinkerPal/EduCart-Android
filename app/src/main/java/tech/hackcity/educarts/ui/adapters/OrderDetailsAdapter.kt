@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.OrderStatusItemBinding
-import tech.hackcity.educarts.domain.model.history.OrderDetails
+import tech.hackcity.educarts.domain.model.history.OrderStage
 import tech.hackcity.educarts.uitls.formatDateTime
 
 class OrderDetailsAdapter(private val context: Context) :
@@ -20,20 +20,20 @@ class OrderDetailsAdapter(private val context: Context) :
     inner class OrderStatusViewHolder(val binding: OrderStatusItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object : DiffUtil.ItemCallback<OrderDetails>() {
-        override fun areItemsTheSame(oldItem: OrderDetails, newItem: OrderDetails): Boolean {
-            return oldItem.id == newItem.id
+    private val diffCallback = object : DiffUtil.ItemCallback<OrderStage>() {
+        override fun areItemsTheSame(oldItem: OrderStage, newItem: OrderStage): Boolean {
+            return oldItem.stage == newItem.stage
         }
 
-        override fun areContentsTheSame(oldItem: OrderDetails, newItem: OrderDetails): Boolean {
+        override fun areContentsTheSame(oldItem: OrderStage, newItem: OrderStage): Boolean {
             return oldItem == newItem
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
-    var orderDetailsList = emptyList<OrderDetails>()
+    var orderStageList = emptyList<OrderStage>()
 
-    override fun getItemCount() = orderDetailsList.size
+    override fun getItemCount() = orderStageList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderStatusViewHolder {
         return OrderStatusViewHolder(
@@ -50,23 +50,20 @@ class OrderDetailsAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: OrderStatusViewHolder, position: Int) {
         holder.binding.apply {
 
-            val orderHistory = orderDetailsList[position]
-            titleTV.text = orderHistory.statusTitle
-            descriptionTV.text = orderHistory.statusDescription
-            dateTV.text = formatDateTime(orderHistory.date)
+            val orderStage = orderStageList[position]
+            titleTV.text = orderStage.stage
+            descriptionTV.text = orderStage.description
+            dateTV.text = orderStage.date?.let { formatDateTime(it) }
 
-            when(orderHistory.step) {
-                1 -> activeImageView.setImageResource(R.drawable.done_with_circle_border)
-                2 -> activeImageView.setImageResource(R.drawable.done_with_circle_border)
-                3 -> activeImageView.setImageResource(R.drawable.done_with_circle_border)
-                4 -> activeImageView.setImageResource(R.drawable.done_with_circle_border)
+            if (orderStage.is_completed) {
+                activeImageView.setImageResource(R.drawable.done_with_circle_border)
             }
         }
 
     }
 
-    fun setData(paymentHistories: List<OrderDetails>) {
-        this.orderDetailsList = paymentHistories
+    fun setData(orderDetails: List<OrderStage>) {
+        this.orderStageList = orderDetails
         notifyDataSetChanged()
     }
 

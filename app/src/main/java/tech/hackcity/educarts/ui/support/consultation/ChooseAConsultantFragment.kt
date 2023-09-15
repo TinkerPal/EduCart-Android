@@ -50,15 +50,16 @@ class ChooseAConsultantFragment: Fragment(R.layout.fragment_choose_a_consultant)
     private fun setupConsultants(consultants: List<Consultant>) {
         val consultantsAdapter = ConsultantsAdapter()
         binging.consultantRV.apply {
-            adapter = consultantsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            consultantsAdapter.setData(consultants)
+            this.let {
+                adapter = consultantsAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+                consultantsAdapter.setData(consultants)
 
-            consultantsAdapter.setOnItemClickListener {
-                val action = ChooseAConsultantFragmentDirections.actionChooseAConsultantFragmentToConsultantProfileFragment(it)
-                findNavController().navigate(action)
+                consultantsAdapter.setOnItemClickListener {
+                    val action = ChooseAConsultantFragmentDirections.actionChooseAConsultantFragmentToConsultantProfileFragment(it)
+                    findNavController().navigate(action)
+                }
             }
-
         }
     }
 

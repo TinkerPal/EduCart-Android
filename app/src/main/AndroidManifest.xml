@@ -61,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.payment.OrderDetailsActivity"
+            android:name=".ui.payment.orderdetails.OrderDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

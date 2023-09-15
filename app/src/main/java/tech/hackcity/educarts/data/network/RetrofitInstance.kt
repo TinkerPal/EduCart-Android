@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import tech.hackcity.educarts.data.network.apis.AuthAPI
 import tech.hackcity.educarts.data.network.apis.DashboardAPI
+import tech.hackcity.educarts.data.network.apis.OrderAPI
 import tech.hackcity.educarts.data.network.apis.SupportAPI
 import tech.hackcity.educarts.data.network.apis.SEVISFeeAPI
 import tech.hackcity.educarts.data.network.apis.SettingsAPI
@@ -66,6 +67,9 @@ class RetrofitInstance(context: Context) {
 
     val dashboardAPI: DashboardAPI by lazy {
         eduCartsAPI.create(DashboardAPI::class.java)
+    }
+    val orderAPI: OrderAPI by lazy {
+        eduCartsAPI.create(OrderAPI::class.java)
     }
 
 }

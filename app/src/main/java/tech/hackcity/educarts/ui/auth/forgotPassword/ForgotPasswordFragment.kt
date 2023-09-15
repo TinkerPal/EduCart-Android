@@ -53,24 +53,8 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password), Forg
                 viewModel.forgotPassword(requireContext())
             }
         }
-
-        binding.swapTextInputTxt.setOnClickListener {
-            swapTextInput()
-        }
     }
 
-    private fun swapTextInput() {
-        if (isEmailTextInput) {
-            isEmailTextInput = false
-            binding.emailTextInputLayout.visibility = View.GONE
-            binding.phoneTextInputLayout.visibility = View.VISIBLE
-
-        } else {
-            isEmailTextInput = true
-            binding.emailTextInputLayout.visibility = View.VISIBLE
-            binding.phoneTextInputLayout.visibility = View.GONE
-        }
-    }
 
     override fun onRequestStarted() {
         showButtonLoadingState(binding.sendEmailBtn, binding.progressBar, "")

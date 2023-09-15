@@ -29,7 +29,7 @@ class ForgotPasswordInstructionsFragment : Fragment(R.layout.fragment_forgot_pas
             val action =
                 ForgotPasswordInstructionsFragmentDirections.actionForgotPasswordInstructionsFragmentToOTPFragment(
                     "reset password",
-                    resources.getString(R.string.code_from_sms),
+                    resources.getString(R.string.verification),
                     resources.getString(R.string.reset_instructions_has_been_sent_to, args.email),
                     2
                 )

@@ -9,6 +9,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityAllPaymentBinding
 import tech.hackcity.educarts.domain.model.history.OrderHistoryResponse
 import tech.hackcity.educarts.ui.adapters.AllPaymentAdapter
+import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
 
 class AllPaymentActivity : AppCompatActivity() {
 
@@ -43,7 +44,7 @@ class AllPaymentActivity : AppCompatActivity() {
 
         allPaymentAdapter.setOnItemClickListener { history->
             val intent = Intent(this, OrderDetailsActivity::class.java)
-            intent.putExtra("history", history)
+            intent.putExtra("orderId", history.order_id)
             startActivity(intent)
         }
     }

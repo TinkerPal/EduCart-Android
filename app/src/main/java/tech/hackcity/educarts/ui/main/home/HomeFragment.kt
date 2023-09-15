@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -34,7 +33,7 @@ import tech.hackcity.educarts.ui.adapters.NewsAdapter
 import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.notifications.NotificationActivity
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
-import tech.hackcity.educarts.ui.payment.OrderDetailsActivity
+import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
 import tech.hackcity.educarts.ui.payment.TrackOrderActivity
 import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
@@ -150,8 +149,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         if (user.isProfileCompleted) {
             binding.incompleteProfileCardView.visibility = View.GONE
         } else {
-            val fadeIn = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-            binding.incompleteProfileCardView.startAnimation(fadeIn)
             binding.incompleteProfileCardView.visibility = View.VISIBLE
 
             binding.completeProfileBtn.setOnClickListener {
@@ -191,7 +188,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
 
             allPaymentAdapter.setOnItemClickListener { history ->
                 val intent = Intent(requireContext(), OrderDetailsActivity::class.java)
-                intent.putExtra("history", history)
+                intent.putExtra("orderId", history.order_id)
                 startActivity(intent)
             }
         }
