@@ -110,6 +110,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    
+//    private fun showBottomSheet() {
+//        val bottomSheetFragment = RegionsBottomSheetFragment()
+//        currentBottomSheetFragment = bottomSheetFragment // Store the reference
+//        activity?.supportFragmentManager?.let { bottomSheetFragment.show(it, bottomSheetFragment.tag) }
+//    }
+
+
     private fun setupUserInfo() {
         viewModel.userInfo.asLiveData().observe(viewLifecycleOwner) { user ->
             loadUserProfilePhoto(user)

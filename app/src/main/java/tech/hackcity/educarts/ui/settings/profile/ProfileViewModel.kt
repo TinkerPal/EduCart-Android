@@ -32,6 +32,9 @@ class ProfileViewModel(
     var phoneNumber: String? = null
     var countryOfResidence: String? = null
     var institutionOfStudy: String? = null
+    var countryOfBirth: String? = null
+    var state: String? = null
+    var city: String? = null
     var profilePicture: MultipartBody.Part? = null
 
     fun fetchProfile() {
@@ -46,11 +49,11 @@ class ProfileViewModel(
                     saveUser(response.data)
 
                 } else {
-                    editListener?.onRequestFailed(response.errorMessage.toString())
+                    profileListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                editListener?.onRequestFailed(e.message!!)
+                profileListener?.onRequestFailed(e.message!!)
             }
         }
 
@@ -74,8 +77,6 @@ class ProfileViewModel(
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
         Coroutines.onMainWithScope(viewModelScope) {
-            Log.d("UserInfo", "$firstName $lastName $countryCode $formattedPhoneNumber $countryOfResidence $institutionOfStudy ")
-
             try {
                 val response = repository.editProfile(
                     firstName!!,
@@ -84,6 +85,9 @@ class ProfileViewModel(
                     formattedPhoneNumber,
                     countryOfResidence!!,
                     institutionOfStudy!!,
+                    countryOfBirth!!,
+                    state!!,
+                    city!!,
                     profilePicture ?: MultipartBody.Part.createFormData("", "")
                 )
 
@@ -98,6 +102,25 @@ class ProfileViewModel(
                 editListener?.onRequestFailed(e.message!!)
             }
         }
+    }
+
+    fun fetchRegions() {
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.fetchRegions()
+
+                if (!response.error) {
+                    editListener?.onFetchRegionsRequestSuccessful(response)
+
+                } else {
+                    editListener?.onFetchRegionsRequestFailed(response.errorMessage.toString())
+                }
+
+            } catch (e: ApiException) {
+                editListener?.onFetchRegionsRequestFailed(e.message!!)
+            }
+        }
+
     }
 
     private fun saveUser(data: ProfileResponseData) {

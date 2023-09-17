@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.settings.profile
 
+import tech.hackcity.educarts.domain.model.location.RegionResponse
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 
 /**
@@ -8,5 +9,7 @@ import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 interface EditProfileListener {
     fun onEditProfileRequestStarted()
     fun onRequestFailed(message: String)
+    fun onFetchRegionsRequestFailed(message: String)
+    fun onFetchRegionsRequestSuccessful(response: RegionResponse)
     fun onEditProfileRequestSuccessful(response: ProfileResponse)
 }

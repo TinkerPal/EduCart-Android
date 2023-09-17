@@ -324,6 +324,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="nil">Nil</string>
+    <string name="failed_to_fetch_countries">Failed to fetch countries. Please try again</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="unknown_error">Unknown error</string>
     <string name="something_went_wrong_please_try_again">Something went wrong. Please try again</string>
@@ -472,4 +473,5 @@
     <string name="payment_memo_remark">Payment memo/remark:</string>
     <string name="n_b_you_are_to_transfer_exactly">N/B: You are to transfer exactly</string>
     <string name="click_on_the_finish_button_at_the_bottom_once_you_re_done_scheduling_a_consultation">Click on the \'Finish\' button at the bottom once you\'re done scheduling a consultation.</string>
+    <string name="search">Search</string>
 </resources>

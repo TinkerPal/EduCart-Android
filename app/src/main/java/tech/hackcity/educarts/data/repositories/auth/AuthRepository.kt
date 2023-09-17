@@ -6,6 +6,7 @@ import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.domain.model.auth.*
+import tech.hackcity.educarts.domain.model.location.RegionResponse
 import tech.hackcity.educarts.uitls.Coroutines
 
 /**
@@ -61,6 +62,10 @@ class AuthRepository(
 
     suspend fun resetPassword(id: String, password: String): CreateNewPasswordResponse {
         return apiRequest { api.authenticationAPI.resetPassword(id, password, password) }
+    }
+
+    suspend fun fetchRegions(): RegionResponse {
+        return apiRequest { api.regionsAPI.fetchRegions() }
     }
 
     fun saveUser(user: User) {

@@ -77,9 +77,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
     }
 
     override fun onRequestFailed(errorMessage: String) {
-        Log.d("LoginError", errorMessage)
         context?.toast(description = errorMessage, toastType = ToastType.ERROR)
-
         val errorMessages = extractErrorMessagesFromErrorBody(errorMessage)
         if (errorMessages.isNotEmpty()) {
             for ((code, message) in errorMessages) {
