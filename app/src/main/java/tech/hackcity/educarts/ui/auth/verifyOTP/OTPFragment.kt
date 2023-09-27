@@ -3,7 +3,6 @@ package tech.hackcity.educarts.ui.auth.verifyOTP
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -127,7 +126,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     }
 
     override fun onRegenerateOTPRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
         showButtonLoadingState(binding.resendCodeBtn, binding.progressBar, "")
     }
 
@@ -138,7 +137,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
 
     override fun onRegenerateOTPRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         hideButtonLoadingState(binding.resendCodeBtn, binding.progressBar, resources.getString(R.string.resend_code))
         if (countdownTimer.isRunning()) {
             countdownTimer.stop()
@@ -158,7 +157,7 @@ class OTPFragment : Fragment(R.layout.fragment_otp), VerifyOTPListener {
     }
 
     override fun onRegenerateOTPRequestSuccessful(response: RegenerateOTPResponse) {
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         binding.message.text = resources.getString(R.string.enter_the_4_digit_code_resent_to_your_email)
         hideButtonLoadingState(binding.resendCodeBtn, binding.progressBar, resources.getString(R.string.resend_code))
         setupResendOTPCountdownTimer()

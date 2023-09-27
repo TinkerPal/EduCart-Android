@@ -1,0 +1,17 @@
+package tech.hackcity.educarts.domain.model.payment.sevis
+
+data class SevisCouponStep2ResponseData(
+    val date_of_birth: String,
+    val fee_in_dollars: String,
+    val fee_in_naira: String,
+    val form: String,
+    val form_type: String,
+    val given_name: String,
+    val international_passport: String,
+    val last_name: String,
+    val passport: String,
+    val sevis_coupon: String,
+    val sevis_fee: String,
+    val sevis_id: String,
+    val user: String
+)

@@ -64,10 +64,6 @@ class AuthRepository(
         return apiRequest { api.authenticationAPI.resetPassword(id, password, password) }
     }
 
-    suspend fun fetchRegions(): RegionResponse {
-        return apiRequest { api.regionsAPI.fetchRegions() }
-    }
-
     fun saveUser(user: User) {
         Coroutines.onMain {
             userInfoManager.saveUser(user)

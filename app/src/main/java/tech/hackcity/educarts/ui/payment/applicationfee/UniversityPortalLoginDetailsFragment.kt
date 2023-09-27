@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentUniversityPortalLoginDetailsBinding
-import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
 import tech.hackcity.educarts.ui.payment.PaymentActivity
 
 /**

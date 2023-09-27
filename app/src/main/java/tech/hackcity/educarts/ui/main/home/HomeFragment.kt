@@ -34,7 +34,7 @@ import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.notifications.NotificationActivity
 import tech.hackcity.educarts.ui.payment.AllPaymentActivity
 import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
-import tech.hackcity.educarts.ui.payment.TrackOrderActivity
+import tech.hackcity.educarts.ui.payment.orderdetails.TrackOrderActivity
 import tech.hackcity.educarts.ui.settings.SettingsActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.Constants
@@ -109,14 +109,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
-
-    
-//    private fun showBottomSheet() {
-//        val bottomSheetFragment = RegionsBottomSheetFragment()
-//        currentBottomSheetFragment = bottomSheetFragment // Store the reference
-//        activity?.supportFragmentManager?.let { bottomSheetFragment.show(it, bottomSheetFragment.tag) }
-//    }
-
 
     private fun setupUserInfo() {
         viewModel.userInfo.asLiveData().observe(viewLifecycleOwner) { user ->

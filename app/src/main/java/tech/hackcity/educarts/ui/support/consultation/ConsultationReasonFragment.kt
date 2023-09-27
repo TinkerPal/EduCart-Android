@@ -81,16 +81,16 @@ class ConsultationReasonFragment : Fragment(R.layout.fragment_consultation_reaso
     }
 
     override fun onFetchConsultationTopicsRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onSubmitConsultationStep1RequestStarted() {
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onRequestFailed(errorMessage: String) {
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
         context?.toast(description = errorMessage, toastType = ToastType.ERROR)
 
@@ -115,13 +115,13 @@ class ConsultationReasonFragment : Fragment(R.layout.fragment_consultation_reaso
     override fun onFetchConsultationTopicsRequestSuccessful(response: MultipleChoiceResponse) {
         setupConsultationCategory(response.data)
         enablePrimaryButtonState(binding.nextBtn)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onSubmitConsultationStep1RequestSuccessful(response: ConsultationStep1Response) {
         hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
         findNavController().navigate(R.id.action_consultationReasonFragment_to_chooseAConsultantFragment)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onResume() {

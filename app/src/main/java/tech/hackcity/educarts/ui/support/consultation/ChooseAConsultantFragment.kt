@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,16 +63,16 @@ class ChooseAConsultantFragment: Fragment(R.layout.fragment_choose_a_consultant)
     }
 
     override fun onFetchConsultantsRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onFetchConsultantsRequestSuccessful(response: ConsultantsResponse) {
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         setupConsultants(response.data)
     }
 }

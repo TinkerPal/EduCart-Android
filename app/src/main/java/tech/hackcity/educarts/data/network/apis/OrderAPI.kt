@@ -8,6 +8,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import tech.hackcity.educarts.domain.model.history.OrderDetailsResponse
+import tech.hackcity.educarts.domain.model.payment.OrderSummaryResponse
 import tech.hackcity.educarts.domain.model.support.ConsultantProfileResponse
 import tech.hackcity.educarts.domain.model.support.ConsultantsResponse
 import tech.hackcity.educarts.domain.model.support.ConsultationStep1Response
@@ -25,5 +26,10 @@ interface OrderAPI {
     suspend fun trackOrder(
         @Field("order_id") order_id: String
     ): Response<OrderDetailsResponse>
+
+    @GET("order-summary/{order_type}/")
+    suspend fun fetchOrderSummary(
+        @Path("order_type") order_type: String
+    ): Response<OrderSummaryResponse>
 
 }

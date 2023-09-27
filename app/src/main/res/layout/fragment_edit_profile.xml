@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="20dp"
-                app:ccpDialog_cornerRadius="20dp"
+                app:ccpDialog_cornerRadius="10dp"
                 app:ccpDialog_keyboardAutoPopup="false"
                 app:ccpDialog_showCloseIcon="true"
                 app:ccp_arrowSize="12sp"
@@ -110,9 +110,12 @@
                 app:ccp_showFlag="true"
                 app:ccp_showFullName="false"
                 app:ccp_showNameCode="false"
+                app:ccp_defaultNameCode="NG"
+                app:ccp_autoDetectCountry="false"
+                app:ccp_clickable="false"
                 app:ccp_showPhoneCode="true"
                 app:ccp_textSize="14sp"
-                app:ccp_useFlagEmoji="true"
+                app:ccp_useFlagEmoji="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -166,6 +169,7 @@
                 android:background="@drawable/edit_text_bg"
                 android:fontFamily="@font/montserrat_regular"
                 android:inputType="none"
+                android:enabled="false"
                 android:textColor="@color/text_light" />
 
         </com.google.android.material.textfield.TextInputLayout>

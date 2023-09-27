@@ -62,11 +62,19 @@ class SupportActivity : AppCompatActivity() {
     }
 
     private fun setupScreenLoader() {
-        sharedViewModel.isScreenLoading().observe(this) {isScreenLoading ->
-            if (isScreenLoading) {
-                showViews(listOf(binding.loadingScreen))
-            }else {
-                hideViews(listOf(binding.loadingScreen))
+        sharedViewModel.isScreenLoading().observe(this) { screenLoader ->
+            with(binding) {
+                val (isScreenLoading, message) = screenLoader
+                when (isScreenLoading) {
+                    true -> {
+                        showViews(listOf(loadingScreen, progressBar))
+                        messageTV.text = message
+                    }
+
+                    false -> {
+                        hideViews(listOf(loadingScreen, progressBar))
+                    }
+                }
             }
         }
     }

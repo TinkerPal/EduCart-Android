@@ -47,13 +47,12 @@ class OrderDetailsActivity : AppCompatActivity(), OrderDetailsListener {
         val repository = OrderRepository(api)
         val factory = OrderDetailsViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[OrderDetailsViewModel::class.java]
-        viewModel.listener = this
+        viewModel.orderDetailsListener = this
 
         val orderId = intent.getStringExtra("orderId")
         Coroutines.onMainWithScope(viewModel.viewModelScope) {
             orderId?.let {
-                viewModel.orderId = it
-                viewModel.trackOrder(this)
+                viewModel.trackOrder(this, it)
             }
         }
 

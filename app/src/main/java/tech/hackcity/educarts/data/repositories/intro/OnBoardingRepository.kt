@@ -7,10 +7,6 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
  */
 class OnBoardingRepository(private val sharePreferencesManager: SharePreferencesManager) {
 
-    fun saveIsGetStartedPressed(isGetStartedPressed: Boolean) {
-        sharePreferencesManager.saveIsGetStartedPressed(isGetStartedPressed)
-    }
-
     fun fetchIsGetStartedPressed(): Boolean{
         return sharePreferencesManager.fetchIsGetStartedPressed()
     }

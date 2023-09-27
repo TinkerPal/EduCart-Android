@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".EduCartsApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -54,7 +55,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.payment.OrderSummaryActivity"
+            android:name=".ui.payment.ordersummary.OrderSummaryActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -68,7 +69,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.payment.TrackOrderActivity"
+            android:name=".ui.payment.orderdetails.TrackOrderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

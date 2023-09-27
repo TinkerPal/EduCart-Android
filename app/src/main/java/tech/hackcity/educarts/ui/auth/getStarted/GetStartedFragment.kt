@@ -2,13 +2,23 @@ package tech.hackcity.educarts.ui.auth.getStarted
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import tech.hackcity.educarts.R
+import tech.hackcity.educarts.data.network.RetrofitInstance
+import tech.hackcity.educarts.data.repositories.RegionRepository
+import tech.hackcity.educarts.data.storage.AppDatabase
 import tech.hackcity.educarts.databinding.FragmentGetStartedBinding
+import tech.hackcity.educarts.domain.model.location.Country
+import tech.hackcity.educarts.domain.model.location.RegionResponse
+import tech.hackcity.educarts.ui.settings.profile.ProfileViewModelFactory
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
+import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
 
 /**

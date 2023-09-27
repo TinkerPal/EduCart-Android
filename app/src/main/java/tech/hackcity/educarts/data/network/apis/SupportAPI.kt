@@ -34,7 +34,6 @@ interface SupportAPI {
 
     @GET("support/consultants/{id}/")
     suspend fun fetchConsultantProfile(
-//        @Query("id") id: Int
         @Path("id") id: Int
     ): Response<ConsultantProfileResponse>
 

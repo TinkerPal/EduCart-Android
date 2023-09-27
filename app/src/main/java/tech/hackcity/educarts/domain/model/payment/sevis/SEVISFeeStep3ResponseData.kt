@@ -1,5 +1,7 @@
 package tech.hackcity.educarts.domain.model.payment.sevis
 
+import java.io.Serializable
+
 data class SEVISFeeStep3ResponseData(
     val category: String,
     val city: String,
@@ -24,4 +26,4 @@ data class SEVISFeeStep3ResponseData(
     val street_address_1: String,
     val street_address_2: String,
     val user: String
-)
+): Serializable

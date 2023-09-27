@@ -28,13 +28,16 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.animation.LinearInterpolator
+import android.widget.Toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import tech.hackcity.educarts.ui.alerts.CustomToast
 import tech.hackcity.educarts.ui.alerts.ToastType
 import java.lang.StringBuilder
+import android.util.Patterns
+import android.widget.CheckBox
+
 
 /**
  *Created by Victor Loveday on 5/10/23
@@ -42,7 +45,7 @@ import java.lang.StringBuilder
 
 fun Context.toast(title: String? = null, description: String, toastType: ToastType) {
 
-    val duration = when(toastType) {
+    val duration = when (toastType) {
         ToastType.INFO -> 3000
         ToastType.ERROR -> 5000
         ToastType.SUCCESS -> 2000
@@ -260,6 +263,233 @@ fun showCustomInfoDialog(
         .show()
 }
 
+//fun setupInputValidation(
+//    emailInput: TextInputEditText,
+//    firstNameInput: TextInputEditText,
+//    lastNameInput: TextInputEditText,
+//    countryInput: TextInputEditText,
+//    isPhoneValid: Boolean,
+//    isPasswordStrong: Boolean,
+//    isTermsAgreed: Boolean,
+//    submitButton: Button
+//) {
+//    emailInput.doOnTextChanged { _, _, _, _ ->
+//        val shouldEnable = shouldEnableButton(
+//            emailInput,
+//            firstNameInput,
+//            lastNameInput,
+//            countryInput,
+//            isPhoneValid,
+//            isPasswordStrong,
+//            isTermsAgreed
+//        )
+//        submitButton.isEnabled = shouldEnable
+//    }
+//
+//    firstNameInput.doOnTextChanged { _, _, _, _ ->
+//        val shouldEnable = shouldEnableButton(
+//            emailInput,
+//            firstNameInput,
+//            lastNameInput,
+//            countryInput,
+//            isPhoneValid,
+//            isPasswordStrong,
+//            isTermsAgreed
+//        )
+//        submitButton.isEnabled = shouldEnable
+//    }
+//
+//    lastNameInput.doOnTextChanged { _, _, _, _ ->
+//        val shouldEnable = shouldEnableButton(
+//            emailInput,
+//            firstNameInput,
+//            lastNameInput,
+//            countryInput,
+//            isPhoneValid,
+//            isPasswordStrong,
+//            isTermsAgreed
+//        )
+//        submitButton.isEnabled = shouldEnable
+//    }
+//
+//    countryInput.doOnTextChanged { _, _, _, _ ->
+//        val shouldEnable = shouldEnableButton(
+//            emailInput,
+//            firstNameInput,
+//            lastNameInput,
+//            countryInput,
+//            isPhoneValid,
+//            isPasswordStrong,
+//            isTermsAgreed
+//        )
+//        submitButton.isEnabled = shouldEnable
+//    }
+//}
+
+//fun shouldEnableButton(
+//    emailInput: TextInputEditText,
+//    firstNameInput: TextInputEditText,
+//    lastNameInput: TextInputEditText,
+//    countryInput: TextInputEditText,
+//    isPhoneValid: Boolean,
+//    isPasswordStrong: Boolean,
+//    isTermsAgreed: Boolean
+//): Boolean {
+//    val emailText = emailInput.text
+//    val firstNameText = firstNameInput.text
+//    val lastNameText = lastNameInput.text
+//    val countryText = countryInput.text
+//
+//    // Check all conditions and return true if the button should be enabled, false otherwise
+//    return !emailText.isNullOrBlank() &&
+//            !firstNameText.isNullOrBlank() &&
+//            !lastNameText.isNullOrBlank() &&
+//            !countryText.isNullOrBlank() &&
+//            isPhoneValid &&
+//            isPasswordStrong &&
+//            isTermsAgreed
+//}
+
+
+fun checkEmailFormat(textInputEditText: TextInputEditText): Boolean {
+    val email = textInputEditText.text.toString().trim()
+
+    val disallowedDomains = listOf("yopmail.com", "example.com")
+
+    return Patterns.EMAIL_ADDRESS.matcher(email)
+        .matches() && !disallowedDomains.any { email.endsWith("@$it") }
+}
+
+fun checkPasswordStrength(
+    context: Context,
+    textInput: TextInputEditText,
+    lowerCasePar: TextView,
+    upperCasePar: TextView,
+    numberPar: TextView,
+    specialCharPar: TextView,
+    eightCharPar: TextView
+): Boolean {
+    var hasLowerCase = false
+    var hasUpperCase = false
+    var hasNumber = false
+    var hasSpecialChar = false
+    var hasEightChar = false
+
+    textInput.doOnTextChanged { text, _, _, _ ->
+        if (text != null) {
+
+            if (text.any { it.isLowerCase() }) {
+                hasLowerCase = true
+                lowerCasePar.setTextColor(context.getColor(R.color.success_green))
+            } else {
+                lowerCasePar.setTextColor(context.getColor(R.color.error_600))
+            }
+
+            if (text.any { it.isUpperCase() }) {
+                hasUpperCase = true
+                upperCasePar.setTextColor(context.getColor(R.color.success_green))
+            } else {
+                upperCasePar.setTextColor(context.getColor(R.color.error_600))
+            }
+
+            if (text.any { it.isDigit() }) {
+                hasNumber = true
+                numberPar.setTextColor(context.getColor(R.color.success_green))
+            } else {
+                numberPar.setTextColor(context.getColor(R.color.error_600))
+            }
+
+            if (text.any { !it.isLetterOrDigit() }) {
+                hasSpecialChar = true
+                specialCharPar.setTextColor(context.getColor(R.color.success_green))
+            } else {
+                specialCharPar.setTextColor(context.getColor(R.color.error_600))
+            }
+
+            if (text.length >= 8) {
+                hasEightChar = true
+                eightCharPar.setTextColor(context.getColor(R.color.success_green))
+            } else {
+                eightCharPar.setTextColor(context.getColor(R.color.error_600))
+            }
+
+        }
+
+    }
+
+    return hasLowerCase && hasUpperCase && hasNumber && hasSpecialChar && hasEightChar
+}
+
+
+fun signupFormValidation(
+    context: Context,
+    emailInput: TextInputEditText,
+    emailTextInputLayout: TextInputLayout,
+    firstNameInput: TextInputEditText,
+    lastNameInput: TextInputEditText,
+    countryOfResidenceInput: TextInputEditText,
+    phoneNumberInput: TextInputEditText,
+    passwordInput: TextInputEditText,
+    checkBox: CheckBox,
+    button: Button
+) {
+    var isTermsAndConditionAgreed = false
+
+    fun validateFields() {
+        val email = emailInput.text.toString().trim()
+        val firstName = firstNameInput.text.toString().trim()
+        val lastName = lastNameInput.text.toString().trim()
+        val countryOfResidence = countryOfResidenceInput.text.toString().trim()
+        val phoneNumber = phoneNumberInput.text.toString().trim()
+        val password = passwordInput.text.toString().trim()
+
+        val isEmailValid = checkEmailFormat(emailInput)
+        val isNotEmpty = email.isNotEmpty() && firstName.isNotEmpty() && lastName.isNotEmpty() && countryOfResidence.isNotEmpty() && phoneNumber.isNotEmpty() && password.isNotEmpty() && isTermsAndConditionAgreed
+
+        if (!isEmailValid) {
+            emailTextInputLayout.error = context.resources.getString(R.string.wrongly_formatted_email)
+        } else {
+            emailTextInputLayout.error = null
+        }
+
+        if (isNotEmpty) {
+            enablePrimaryButtonState(button)
+        } else {
+            disablePrimaryButtonState(button)
+        }
+    }
+
+    emailInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    firstNameInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    lastNameInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    countryOfResidenceInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    phoneNumberInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    passwordInput.doOnTextChanged { text, start, before, count ->
+        validateFields()
+    }
+
+    checkBox.setOnClickListener {
+        isTermsAndConditionAgreed = !isTermsAndConditionAgreed
+        validateFields()
+    }
+}
+
+
 fun compareTwoPasswordFields(
     context: Context, editText1: TextInputEditText, editText2: TextInputEditText,
     editText1Layout: TextInputLayout, editText2Layout: TextInputLayout, actionButton: MaterialButton
@@ -347,11 +577,22 @@ fun clickableLink(
     }
 }
 
-fun copyToClipboard(context: Context, label: String, textToCopy: String) {
+fun copyToClipboard(context: Context, label: String, textToCopy: String?) {
     val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val clipData = ClipData.newPlainText(label, textToCopy)
-    clipboardManager.setPrimaryClip(clipData)
-    context.toast(description = context.resources.getString(R.string.copied_to_clip_board), toastType = ToastType.INFO)
+    if (textToCopy != null) {
+        val clipData = ClipData.newPlainText(label, textToCopy)
+        clipboardManager.setPrimaryClip(clipData)
+        context.toast(
+            description = context.resources.getString(R.string.copied_to_clip_board),
+            toastType = ToastType.INFO
+        )
+    } else {
+        context.toast(
+            description = context.resources.getString(R.string.no_text_to_copy),
+            toastType = ToastType.INFO
+        )
+    }
+
 }
 
 

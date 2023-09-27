@@ -9,7 +9,7 @@ import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentPaymentBinding
 import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.ui.payment.PaymentActivity
-import tech.hackcity.educarts.ui.payment.TrackOrderActivity
+import tech.hackcity.educarts.ui.payment.orderdetails.TrackOrderActivity
 import tech.hackcity.educarts.ui.support.SupportActivity
 import tech.hackcity.educarts.uitls.spannableTextWithForegroundColour
 import tech.hackcity.educarts.uitls.toast

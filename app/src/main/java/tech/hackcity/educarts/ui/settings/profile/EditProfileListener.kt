@@ -9,7 +9,5 @@ import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 interface EditProfileListener {
     fun onEditProfileRequestStarted()
     fun onRequestFailed(message: String)
-    fun onFetchRegionsRequestFailed(message: String)
-    fun onFetchRegionsRequestSuccessful(response: RegionResponse)
     fun onEditProfileRequestSuccessful(response: ProfileResponse)
 }

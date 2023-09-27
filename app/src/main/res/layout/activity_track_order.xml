@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_001"
-    tools:context=".ui.payment.TrackOrderActivity">
+    tools:context=".ui.payment.orderdetails.TrackOrderActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -69,38 +69,18 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/signInBtnLayout"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <Button
-            android:id="@+id/trackOrderBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/primary_button"
-            android:fontFamily="@font/montserrat_medium"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:text="@string/view_status"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/trackOrderBtn"
-            app:layout_constraintEnd_toEndOf="@id/trackOrderBtn"
-            app:layout_constraintStart_toStartOf="@id/trackOrderBtn"
-            app:layout_constraintTop_toTopOf="@id/trackOrderBtn" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/trackOrderBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/primary_margin"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/primary_button"
+        android:fontFamily="@font/montserrat_medium"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/view_status"
+        android:textAllCaps="false"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

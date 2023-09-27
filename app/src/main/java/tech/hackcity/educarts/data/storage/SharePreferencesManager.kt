@@ -43,9 +43,9 @@ class SharePreferencesManager(context: Context) {
         return prefs.getBoolean(USER_LOGGED_IN, false)
     }
 
-    fun saveIsGetStartedPressed(isGetStartedPressed: Boolean) {
+    fun saveAppSetupStatus(isAppSetup: Boolean) {
         val editor = prefs.edit()
-        editor.putBoolean(GET_STARTED, isGetStartedPressed)
+        editor.putBoolean(GET_STARTED, isAppSetup)
         editor.apply()
     }
 

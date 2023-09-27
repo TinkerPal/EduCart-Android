@@ -30,6 +30,7 @@ class ProfileViewModel(
     var lastName: String? = null
     var countryCode: Int? = null
     var phoneNumber: String? = null
+    var isPhoneNumberValid: Boolean? = null
     var countryOfResidence: String? = null
     var institutionOfStudy: String? = null
     var countryOfBirth: String? = null
@@ -62,6 +63,11 @@ class ProfileViewModel(
     fun editProfile(context: Context) {
         editListener?.onEditProfileRequestStarted()
 
+        if (!isPhoneNumberValid!!) {
+            editListener?.onRequestFailed(context.resources.getString(R.string.wrongly_formatted_phone_number))
+            return
+        }
+
         if (
             institutionOfStudy.isNullOrEmpty() ||
             firstName.isNullOrEmpty() ||
@@ -69,6 +75,7 @@ class ProfileViewModel(
             phoneNumber.isNullOrEmpty() ||
             countryOfResidence.isNullOrEmpty() ||
             countryCode == null
+
         ) {
             editListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
@@ -102,25 +109,6 @@ class ProfileViewModel(
                 editListener?.onRequestFailed(e.message!!)
             }
         }
-    }
-
-    fun fetchRegions() {
-        Coroutines.onMainWithScope(viewModelScope) {
-            try {
-                val response = repository.fetchRegions()
-
-                if (!response.error) {
-                    editListener?.onFetchRegionsRequestSuccessful(response)
-
-                } else {
-                    editListener?.onFetchRegionsRequestFailed(response.errorMessage.toString())
-                }
-
-            } catch (e: ApiException) {
-                editListener?.onFetchRegionsRequestFailed(e.message!!)
-            }
-        }
-
     }
 
     private fun saveUser(data: ProfileResponseData) {

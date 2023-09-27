@@ -36,6 +36,7 @@ import java.lang.IllegalArgumentException
 class LoginFragment : Fragment(R.layout.fragment_login), LoginListener {
 
     private lateinit var binding: FragmentLoginBinding
+
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

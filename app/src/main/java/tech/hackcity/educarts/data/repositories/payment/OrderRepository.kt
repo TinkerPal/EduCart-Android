@@ -7,6 +7,7 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.network.SafeApiRequest
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.history.OrderDetailsResponse
+import tech.hackcity.educarts.domain.model.payment.OrderSummaryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
@@ -22,5 +23,9 @@ class OrderRepository(
 
     suspend fun trackOrder(orderId: String): OrderDetailsResponse {
         return apiRequest { api.orderAPI.trackOrder(orderId) }
+    }
+
+    suspend fun fetchOrderSummary(orderType: String): OrderSummaryResponse {
+        return apiRequest { api.orderAPI.fetchOrderSummary(orderType) }
     }
 }

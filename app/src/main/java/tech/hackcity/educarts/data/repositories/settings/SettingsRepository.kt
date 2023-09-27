@@ -35,10 +35,6 @@ class SettingsRepository(
         }
     }
 
-    suspend fun fetchRegions(): RegionResponse {
-        return apiRequest { api.regionsAPI.fetchRegions() }
-    }
-
     suspend fun editProfile(
         first_name: String,
         last_name: String,

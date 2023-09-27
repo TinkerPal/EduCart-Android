@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityCheckoutBinding
+import tech.hackcity.educarts.domain.model.payment.OrderSummary
 
 class CheckoutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCheckoutBinding
 
-    private var service = ""
-    private var amount = ""
-    private var currency = ""
+    private lateinit var orderSummary: OrderSummary
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,26 +28,19 @@ class CheckoutActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        service = intent.getStringExtra("service").toString()
-        amount = intent.getStringExtra("amount").toString()
-        currency = intent.getStringExtra("currency").toString()
+        orderSummary = intent.getSerializableExtra("oderSummary") as OrderSummary
 
-        displayService()
+        displayServiceImages()
         displayPaymentMethods()
     }
 
     private fun displayPaymentMethods() {
         binding.payWithCreditOrDebitBtn.text =
-            resources.getString(R.string.paying_amount, currency, amount)
+            resources.getString(R.string.paying_amount, "$${orderSummary.total_in_dollars}")
 
-        binding.cards.setOnClickListener {
+        binding.debitOrCreditCard.setOnClickListener {
             binding.payWithBankTransferLayout.visibility = View.GONE
-            binding.payWithCardLayout.apply {
-                visibility = View.VISIBLE
-            }
-
-            binding.payWithCreditOrDebitBtn.text =
-                resources.getString(R.string.paying_amount, currency, amount)
+            binding.payWithCardLayout.visibility = View.VISIBLE
         }
 
         binding.bankTransfer.setOnClickListener {
@@ -57,9 +49,9 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
 
-    private fun displayService() {
-        binding.serviceTV.text = service
-        when (service) {
+    private fun displayServiceImages() {
+        binding.serviceTV.text = orderSummary.order_type
+        when (orderSummary.order_type) {
             "Application fee" -> {
                 binding.serviceImage.setImageResource(R.drawable.application_fee)
             }

@@ -7,17 +7,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.databinding.FragmentSevisFeeStep3Binding
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.domain.model.location.State
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
+import tech.hackcity.educarts.ui.adapters.CountriesAdapter
+import tech.hackcity.educarts.ui.adapters.StatesAdapter
+import tech.hackcity.educarts.ui.alerts.RegionsBottomSheetFragment
 import tech.hackcity.educarts.ui.alerts.ToastType
-import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
+import tech.hackcity.educarts.ui.viewmodels.CountryViewModel
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -33,9 +37,15 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
 
     private lateinit var binding: FragmentSevisFeeStep3Binding
 
+    private var currentBottomSheetFragment: RegionsBottomSheetFragment? = null
+
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var viewModel: SEVISFeeViewModel
+    private lateinit var countryViewModel: CountryViewModel
     private val args: SEVISFeeStep3FragmentArgs by navArgs()
+    private var country = ""
+    private var state = ""
+    private var city = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSevisFeeStep3Binding.bind(view)
@@ -46,6 +56,7 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
         val repository = SEVISFeeRepository(api, sharePreferencesManager)
         val factory = SEVISFeeViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[SEVISFeeViewModel::class.java]
+        countryViewModel = ViewModelProvider(this)[CountryViewModel::class.java]
         viewModel.listener3 = this
 
 
@@ -54,12 +65,16 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
             args.formType
         )
 
+        binding.country.setOnClickListener {
+            showCountriesBottomSheet()
+        }
+
         binding.nextBtn.setOnClickListener {
             viewModel.streetAddress1 = binding.streetAddress1ET.text.toString().trim()
             viewModel.streetAddress2 = binding.streetAddress2ET.text.toString().trim()
-            viewModel.country = "Nigeria"
-            viewModel.state = "Kano"
-            viewModel.city = "Kano"
+            viewModel.country = country
+            viewModel.state = state
+            viewModel.city = binding.city.text.toString().trim()
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.submitSevisFeeStep3(requireContext())
@@ -67,8 +82,67 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
         }
     }
 
+    private fun showCountriesBottomSheet() {
+        countryViewModel.readAllCountries.observe(viewLifecycleOwner) { countries ->
+            if (countries.isEmpty()) {
+                context?.toast(description = resources.getString(R.string.no_country_available), toastType = ToastType.ERROR)
+                return@observe
+            }
+
+            val bottomSheetFragment = RegionsBottomSheetFragment()
+            currentBottomSheetFragment = bottomSheetFragment // Store the reference
+
+            bottomSheetFragment.onBindingReady { bottomSheetBinding ->
+                val recyclerView = bottomSheetBinding.regionsRV
+
+                val countriesAdapter = CountriesAdapter()
+                recyclerView.apply {
+                    adapter = countriesAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                    countriesAdapter.setData(countries.toMutableList())
+
+                    countriesAdapter.setOnItemClickListener {
+                        country = it.name
+                        binding.country.setText(it.name)
+                        showStatesBottomSheet(it.states)
+                        currentBottomSheetFragment?.closeBottomSheet()
+                    }
+                }
+            }
+            activity?.supportFragmentManager?.let {
+                bottomSheetFragment.show(it, bottomSheetFragment.tag)
+            }
+
+        }
+    }
+
+    private fun showStatesBottomSheet(states: List<State>) {
+        binding.state.setOnClickListener {
+            val bottomSheetFragment = RegionsBottomSheetFragment()
+            currentBottomSheetFragment = bottomSheetFragment // Store the reference
+
+            bottomSheetFragment.onBindingReady { bottomSheetBinding ->
+                val recyclerView = bottomSheetBinding.regionsRV
+
+                val statesAdapter = StatesAdapter()
+                recyclerView.apply {
+                    adapter = statesAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                    statesAdapter.setData(states.toMutableList())
+                    statesAdapter.setOnItemClickListener {
+                        state = it.name
+                        binding.state.setText(it.name)
+                        currentBottomSheetFragment?.closeBottomSheet()
+                    }
+                }
+            }
+            activity?.supportFragmentManager?.let { bottomSheetFragment.show(it, bottomSheetFragment.tag) }
+        }
+    }
+
+
     override fun onRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
         disablePrimaryButtonState(binding.nextBtn)
     }
@@ -81,7 +155,7 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onRequestSuccessful(response: SEVISFeeStep3Response) {
@@ -91,10 +165,10 @@ class SEVISFeeStep3Fragment : Fragment(R.layout.fragment_sevis_fee_step_3), SEIV
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
 
         val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
-        intent.putExtra("service", resources.getString(R.string.sevis_fee))
+        intent.putExtra("orderType", "sevis")
         startActivity(intent)
     }
 

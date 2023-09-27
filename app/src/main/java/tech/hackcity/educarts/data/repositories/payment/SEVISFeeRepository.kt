@@ -10,6 +10,8 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SevisCouponStep1Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SevisCouponStep2Response
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 
 /**
@@ -97,6 +99,56 @@ class SEVISFeeRepository(
             api.sevisFeeAPI.fetchSevisCategory()
         }
     }
+
+    suspend fun sevisCouponStep1(
+        user: String,
+        form_type: String,
+        sevis_coupon: MultipartBody.Part
+
+    ): SevisCouponStep1Response {
+
+        val userRB = RequestBody.create("text/plain".toMediaTypeOrNull(), user)
+        val formTypeRB = RequestBody.create("text/plain".toMediaTypeOrNull(), form_type)
+
+        return apiRequest {
+            api.sevisFeeAPI.sevisCouponStep1(
+                sevis_coupon,
+                userRB,
+                formTypeRB
+            )
+        }
+    }
+
+    suspend fun sevisCouponStep2(
+        user_id: String,
+        last_name: String,
+        given_name: String,
+        date_of_birth: String,
+        form: MultipartBody.Part,
+        passport: MultipartBody.Part,
+        internationalPassport: MultipartBody.Part
+
+    ): SevisCouponStep2Response {
+
+        val userIdRB = RequestBody.create("text/plain".toMediaTypeOrNull(), user_id)
+        val lastNameRB = RequestBody.create("text/plain".toMediaTypeOrNull(), last_name)
+        val givenNameRB = RequestBody.create("text/plain".toMediaTypeOrNull(), given_name)
+        val dateOfBirthRB = RequestBody.create("text/plain".toMediaTypeOrNull(), date_of_birth)
+
+        return apiRequest {
+            api.sevisFeeAPI.sevisCouponStep2(
+                form,
+                passport,
+                internationalPassport,
+                userIdRB,
+                lastNameRB,
+                givenNameRB,
+                dateOfBirthRB
+            )
+        }
+    }
+
+
 
     fun fetchUserId(): String? {
         return sharedPreferenceManager.fetchUserId()

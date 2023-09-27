@@ -33,13 +33,13 @@ import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentEditProfileBinding
 import tech.hackcity.educarts.domain.model.location.Country
-import tech.hackcity.educarts.domain.model.location.RegionResponse
 import tech.hackcity.educarts.domain.model.location.State
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.adapters.CountriesAdapter
 import tech.hackcity.educarts.ui.adapters.StatesAdapter
 import tech.hackcity.educarts.ui.alerts.RegionsBottomSheetFragment
 import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.viewmodels.CountryViewModel
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
@@ -58,9 +58,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
     private var profileUri: Uri? = null
     private lateinit var ccpGetNumber: CountryCodePicker
     private var dialCode = 0
-    private var isNumberValid = false
+    private var isPhoneNumberValid = false
     private lateinit var userInfoManager: UserInfoManager
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var countryViewModel: CountryViewModel
 
     private var firstName = ""
     private var lastName = ""
@@ -95,13 +96,14 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             SettingsRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = ProfileViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
+        countryViewModel = ViewModelProvider(this)[CountryViewModel::class.java]
         viewModel.editListener = this
 
         setupUserInfo()
         validatePhoneNumber()
 
-        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-            viewModel.fetchRegions()
+        binding.countryOfBirthET.setOnClickListener {
+            showCountriesBottomSheet()
         }
 
         binding.doneBtn.setOnClickListener {
@@ -111,12 +113,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             viewModel.countryOfResidence = binding.countryOfResidenceET.text.toString().trim()
             viewModel.countryCode = dialCode
             viewModel.phoneNumber = binding.phoneNumberET.text.toString()
-            viewModel.institutionOfStudy = "Bayero University, Kano"
+            viewModel.isPhoneNumberValid = isPhoneNumberValid
+            viewModel.institutionOfStudy = resources.getString(R.string.nil)
             viewModel.countryOfBirth = countryOfBirth
             viewModel.state = state
             viewModel.city = binding.cityET.text.toString().trim()
-
-            Log.d("DEMO", city)
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.editProfile(requireContext())
@@ -184,11 +185,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                     )
                 )
 
-                isNumberValid = true
+                isPhoneNumberValid = true
 
             } else {
                 binding.verifyIcon.visibility = View.INVISIBLE
-                isNumberValid = false
+                isPhoneNumberValid = false
 
                 dialCode = ccpGetNumber.selectedCountryCode.toInt()
             }
@@ -247,8 +248,13 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
         private const val PERMISSION_REQUEST_CODE = 123
     }
 
-    private fun showCountriesBottomSheet(countries: List<Country>) {
-        binding.countryOfBirthET.setOnClickListener {
+    private fun showCountriesBottomSheet() {
+        countryViewModel.readAllCountries.observe(viewLifecycleOwner) { countries ->
+            if (countries.isEmpty()) {
+                context?.toast(description = resources.getString(R.string.no_country_available), toastType = ToastType.ERROR)
+                return@observe
+            }
+
             val bottomSheetFragment = RegionsBottomSheetFragment()
             currentBottomSheetFragment = bottomSheetFragment // Store the reference
 
@@ -269,9 +275,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                     }
                 }
             }
-            activity?.supportFragmentManager?.let { bottomSheetFragment.show(it, bottomSheetFragment.tag) }
-        }
+            activity?.supportFragmentManager?.let {
+                bottomSheetFragment.show(it, bottomSheetFragment.tag)
+            }
 
+        }
     }
 
     private fun showStatesBottomSheet(states: List<State>) {
@@ -299,20 +307,12 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
     }
 
     override fun onEditProfileRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        sharedViewModel.updateLoadingScreen(false)
-    }
-
-    override fun onFetchRegionsRequestFailed(message: String) {
-        context?.toast(description = resources.getString(R.string.failed_to_fetch_countries), toastType = ToastType.ERROR)
-    }
-
-    override fun onFetchRegionsRequestSuccessful(response: RegionResponse) {
-        showCountriesBottomSheet(response.data)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onEditProfileRequestSuccessful(response: ProfileResponse) {
@@ -322,7 +322,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                 toastType = ToastType.SUCCESS
             )
         }
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         findNavController().popBackStack()
     }
 
