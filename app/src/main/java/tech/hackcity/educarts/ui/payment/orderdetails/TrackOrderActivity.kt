@@ -1,4 +1,4 @@
-package tech.hackcity.educarts.ui.payment
+package tech.hackcity.educarts.ui.payment.orderdetails
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityTrackOrderBinding
 import tech.hackcity.educarts.ui.alerts.ToastType
-import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsActivity
 import tech.hackcity.educarts.uitls.toast
 
 class TrackOrderActivity : AppCompatActivity() {

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/getStartedFragment">
+    app:startDestination="@id/getCountriesFragment">
 
     <fragment
         android:id="@+id/createPersonalAccountFragment"
@@ -164,6 +164,20 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="tech.hackcity.educarts.ui.main.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="@string/home" />
+
+    <fragment
+        android:id="@+id/getCountriesFragment"
+        android:name="tech.hackcity.educarts.ui.auth.getStarted.GetCountriesFragment"
+        android:label=""
+        tools:layout="@layout/fragment_get_countries" >
+        <action
+            android:id="@+id/action_getCountriesFragment_to_getStartedFragment"
+            app:destination="@id/getStartedFragment"
+            app:enterAnim="@anim/slide_in_bottom_slow"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top_slow"
+            app:popExitAnim="@anim/slide_out_bottom"/>
+    </fragment>
 
 </navigation>

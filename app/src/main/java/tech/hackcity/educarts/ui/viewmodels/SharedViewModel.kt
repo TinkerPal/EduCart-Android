@@ -61,13 +61,13 @@ class SharedViewModel : ViewModel() {
         stepIndicator.postValue(step)
     }
 
-    private var loadingScreen: MutableLiveData<Boolean> = MutableLiveData()
+    private var screenLoader: MutableLiveData<Pair<Boolean, String>> = MutableLiveData()
 
-    fun isScreenLoading(): MutableLiveData<Boolean> {
-        return loadingScreen
+    fun isScreenLoading(): MutableLiveData<Pair<Boolean, String>> {
+        return screenLoader
     }
 
-    fun updateLoadingScreen(isScreenLoading: Boolean) {
-        loadingScreen.postValue(isScreenLoading)
+    fun updateScreenLoader(isScreenLoading: Pair<Boolean, String>) {
+        screenLoader.postValue(isScreenLoading)
     }
 }

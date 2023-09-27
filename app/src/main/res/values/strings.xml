@@ -47,11 +47,12 @@
     <string name="account">Account</string>
     <string name="support">Support</string>
     <string name="payment">Payment</string>
-    <string name="paying_amount">Pay %1$s %2$s</string>
+    <string name="paying_amount">Pay %1$s</string>
     <string name="wallet">Wallet</string>
     <string name="verification_badge">Verification badge</string>
     <string name="copy">Copy</string>
     <string name="copied_to_clip_board">Copied to clipboard</string>
+    <string name="no_text_to_copy">No text to copy</string>
     <string name="view_profile">View profile</string>
     <string name="identity_verification">Identity verification</string>
     <string name="faqs">FAQs</string>
@@ -171,6 +172,10 @@
     <string name="track_order">Track order</string>
     <string name="consultation">Consultation</string>
     <string name="congratulations">Congratulations!</string>
+    <string name="setting_the_app">Wait a moment. We\'re setting the app</string>
+    <string name="no_country_available">No country available</string>
+    <string name="select_a_country">Select a country</string>
+    <string name="select_a_state">Select a state</string>
     <string name="close">Close</string>
     <string name="got_it">Got it</string>
     <string name="hi_there">Hi, there!</string>
@@ -324,6 +329,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="nil">Nil</string>
+    <string name="failed_to_fetch_countries">Failed to fetch countries. Please try again</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="unknown_error">Unknown error</string>
     <string name="something_went_wrong_please_try_again">Something went wrong. Please try again</string>
@@ -472,4 +478,12 @@
     <string name="payment_memo_remark">Payment memo/remark:</string>
     <string name="n_b_you_are_to_transfer_exactly">N/B: You are to transfer exactly</string>
     <string name="click_on_the_finish_button_at_the_bottom_once_you_re_done_scheduling_a_consultation">Click on the \'Finish\' button at the bottom once you\'re done scheduling a consultation.</string>
+    <string name="search">Search</string>
+    <string name="charges">Charges</string>
+    <string name="message">Message</string>
+    <string name="at_least_one_lower_or_upper_case">At least one lower or upper case</string>
+    <string name="at_least_one_number">At least one number</string>
+    <string name="at_least_one_special_character">At least one special character</string>
+    <string name="must_be_up_to_8_characters">Must be up to 8 characters</string>
+    <string name="retry">Retry</string>
 </resources>

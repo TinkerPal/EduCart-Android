@@ -27,11 +27,22 @@ class CreatePersonalAccountViewModel(
     var countryCode: Int? = null
     var phoneNumber: String? = null
     var password: String? = null
+    var isPhoneNumberValid: Boolean? = null
 
     var createPersonalAccountListener: CreatePersonalAccountListener? = null
 
     fun registerPersonalAccountUser(context: Context) {
         createPersonalAccountListener?.onRequestStarted()
+
+        if (userType.isNullOrEmpty()) {
+            createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.no_user_type_selected))
+            return
+        }
+
+        if (!isPhoneNumberValid!!) {
+            createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.wrongly_formatted_phone_number))
+            return
+        }
 
         if (
             email.isNullOrEmpty() || firstName.isNullOrEmpty()
@@ -39,11 +50,6 @@ class CreatePersonalAccountViewModel(
             || phoneNumber.isNullOrEmpty() || countryOfResidence.isNullOrEmpty()
             || countryCode == null
         ) {
-
-            if (userType.isNullOrEmpty()) {
-                createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.no_user_type_selected))
-                return
-            }
 
             createPersonalAccountListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return

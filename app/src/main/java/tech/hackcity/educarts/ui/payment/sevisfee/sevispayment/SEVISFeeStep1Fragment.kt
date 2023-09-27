@@ -27,8 +27,9 @@ import tech.hackcity.educarts.data.network.RetrofitInstance
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SevisCouponStep2Response
 import tech.hackcity.educarts.ui.alerts.ToastType
-import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
@@ -112,18 +113,23 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             viewModel.dateOfBirth = binding.dateOfBirth.text.toString().trim()
 
             viewModel.form = createFilePart(requireContext(), "form", formUri)
-            viewModel.internationalPassport =
-                createFilePart(requireContext(), "international_passport", internationalPassportUri)
+            viewModel.internationalPassport = createFilePart(requireContext(), "international_passport", internationalPassportUri)
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
-                viewModel.submitSevisFeeStep1(requireContext())
+                when(args.sevisPaymentMethod) {
+                    resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me) -> {
+                        viewModel.submitSevisFeeStep1(requireContext())
+                    }
+                    resources.getString(R.string.i_have_generated_sevis_payment_coupon) -> {
+                        viewModel.submitSevisCouponStep2(requireContext())
+                    }
+                }
+
             }
         }
 
         binding.pickFormButton.setOnClickListener { openFilePickerForForm() }
-        binding.pickRecentPassportButton.setOnClickListener {
-            pickImageFromGallery()
-        }
+        binding.pickRecentPassportButton.setOnClickListener { pickImageFromGallery() }
         binding.pickInternationalPassportButton.setOnClickListener { openFilePickerForPassport() }
     }
 
@@ -257,7 +263,6 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         formUri = uri
     }
 
-
     private fun handleSelectedPassportFile(uri: Uri) {
         internationalPassportUri = uri
     }
@@ -267,7 +272,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
     }
 
     override fun onRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
         showButtonLoadingState(binding.nextBtn, binding.progressBar, "")
         disablePrimaryButtonState(binding.nextBtn)
     }
@@ -280,17 +285,17 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
-    override fun onRequestSuccessful(response: SEVISFeeStep1Response) {
+    override fun onSevisStep1RequestSuccessful(response: SEVISFeeStep1Response) {
         hideButtonLoadingState(
             binding.nextBtn,
             binding.progressBar,
             resources.getString(R.string.next)
         )
         enablePrimaryButtonState(binding.nextBtn)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
 
         when(args.sevisPaymentMethod) {
             resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me) -> {
@@ -302,11 +307,35 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             }
             resources.getString(R.string.i_have_generated_sevis_payment_coupon) -> {
                 val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
-                intent.putExtra("service", resources.getString(R.string.sevis_fee))
+                intent.putExtra("orderType", "sevis")
                 startActivity(intent)
             }
         }
+    }
 
+    override fun onSevisCouponStep21RequestSuccessful(response: SevisCouponStep2Response) {
+        hideButtonLoadingState(
+            binding.nextBtn,
+            binding.progressBar,
+            resources.getString(R.string.next)
+        )
+        enablePrimaryButtonState(binding.nextBtn)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
+
+        when(args.sevisPaymentMethod) {
+            resources.getString(R.string.carry_out_all_the_sevis_fee_payment_for_me) -> {
+                val action =
+                    SEVISFeeStep1FragmentDirections.actionSevisFeeStep1FragmentToSevisFeeStep2Fragment(
+                        args.formType
+                    )
+                findNavController().navigate(action)
+            }
+            resources.getString(R.string.i_have_generated_sevis_payment_coupon) -> {
+                val intent = Intent(requireContext(), OrderSummaryActivity::class.java)
+                intent.putExtra("orderType", "sevis")
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onResume() {

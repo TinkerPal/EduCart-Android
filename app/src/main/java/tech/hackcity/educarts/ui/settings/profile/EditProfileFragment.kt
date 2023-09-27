@@ -19,6 +19,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -30,8 +32,14 @@ import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.databinding.FragmentEditProfileBinding
+import tech.hackcity.educarts.domain.model.location.Country
+import tech.hackcity.educarts.domain.model.location.State
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
+import tech.hackcity.educarts.ui.adapters.CountriesAdapter
+import tech.hackcity.educarts.ui.adapters.StatesAdapter
+import tech.hackcity.educarts.ui.alerts.RegionsBottomSheetFragment
 import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.viewmodels.CountryViewModel
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
@@ -44,18 +52,21 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
 
     private lateinit var binding: FragmentEditProfileBinding
 
+    private var currentBottomSheetFragment: RegionsBottomSheetFragment? = null
+
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private var profileUri: Uri? = null
     private lateinit var ccpGetNumber: CountryCodePicker
     private var dialCode = 0
-    private var isNumberValid = false
+    private var isPhoneNumberValid = false
     private lateinit var userInfoManager: UserInfoManager
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var countryViewModel: CountryViewModel
 
     private var firstName = ""
     private var lastName = ""
     private var phoneNumber = ""
-    private var countryOfResisdence = ""
+    private var countryOfResidence = ""
     private var institutionOfStudy = ""
     private var countryOfBirth = ""
     private var state = ""
@@ -85,20 +96,28 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             SettingsRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = ProfileViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
+        countryViewModel = ViewModelProvider(this)[CountryViewModel::class.java]
         viewModel.editListener = this
 
         setupUserInfo()
         validatePhoneNumber()
 
+        binding.countryOfBirthET.setOnClickListener {
+            showCountriesBottomSheet()
+        }
+
         binding.doneBtn.setOnClickListener {
-            viewModel.profilePicture =
-                createFilePart(requireContext(), "profile_picture", profileUri)
+            viewModel.profilePicture = createFilePart(requireContext(), "profile_picture", profileUri)
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()
-            viewModel.countryOfResidence = "Nigeria"
+            viewModel.countryOfResidence = binding.countryOfResidenceET.text.toString().trim()
             viewModel.countryCode = dialCode
             viewModel.phoneNumber = binding.phoneNumberET.text.toString()
-            viewModel.institutionOfStudy = "Bayero University, Kano"
+            viewModel.isPhoneNumberValid = isPhoneNumberValid
+            viewModel.institutionOfStudy = resources.getString(R.string.nil)
+            viewModel.countryOfBirth = countryOfBirth
+            viewModel.state = state
+            viewModel.city = binding.cityET.text.toString().trim()
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
                 viewModel.editProfile(requireContext())
@@ -114,7 +133,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
             lastName = user.lastName
             dialCode = user.countryCode
             phoneNumber = user.phoneNumber
-            countryOfResisdence = user.countryOfResidence
+            countryOfResidence = user.countryOfResidence
             institutionOfStudy = user.institutionOfStudy.toString()
             countryOfBirth = user.countryOfBirth.toString()
             state = user.state.toString()
@@ -137,14 +156,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                 firstNameET.setText(firstName)
                 lastNameET.setText(lastName)
                 phoneNumberET.setText(phoneNumber)
-                countryOfResidenceET.setText(countryOfResisdence)
-                institutionOfStudyET.setText(institutionOfStudy.takeIf { it.isNotEmpty() }
-                    ?: resources.getString(R.string.nil))
-                countryOfBirthET.setText(countryOfBirth.takeIf { it.isNotEmpty() }
-                    ?: resources.getString(R.string.nil))
-                stateET.setText(state.takeIf { it.isNotEmpty() }
-                    ?: resources.getString(R.string.nil))
-                cityET.setText(city.takeIf { it.isNotEmpty() } ?: resources.getString(R.string.nil))
+                countryOfResidenceET.setText(countryOfResidence)
+                institutionOfStudyET.setText(institutionOfStudy.takeIf { it.isNotEmpty() } ?: "")
+                countryOfBirthET.setText(countryOfBirth.takeIf { it.isNotEmpty() } ?: "")
+                stateET.setText(state.takeIf { it.isNotEmpty() } ?: "")
+                cityET.setText(city.takeIf { it.isNotEmpty() } ?: "")
             }
 
         }
@@ -169,11 +185,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                     )
                 )
 
-                isNumberValid = true
+                isPhoneNumberValid = true
 
             } else {
                 binding.verifyIcon.visibility = View.INVISIBLE
-                isNumberValid = false
+                isPhoneNumberValid = false
 
                 dialCode = ccpGetNumber.selectedCountryCode.toInt()
             }
@@ -205,9 +221,9 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showToast("Permission granted. You can now pick files.")
+                context?.toast(description = resources.getString(R.string.permission_granted_you_can_now_pick_files), toastType = ToastType.SUCCESS)
             } else {
-                showToast("Permission denied. Cannot access files.")
+                context?.toast(description = resources.getString(R.string.permission_denied_you_can_not_access_files), toastType = ToastType.ERROR)
             }
         }
     }
@@ -232,14 +248,71 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
         private const val PERMISSION_REQUEST_CODE = 123
     }
 
+    private fun showCountriesBottomSheet() {
+        countryViewModel.readAllCountries.observe(viewLifecycleOwner) { countries ->
+            if (countries.isEmpty()) {
+                context?.toast(description = resources.getString(R.string.no_country_available), toastType = ToastType.ERROR)
+                return@observe
+            }
+
+            val bottomSheetFragment = RegionsBottomSheetFragment()
+            currentBottomSheetFragment = bottomSheetFragment // Store the reference
+
+            bottomSheetFragment.onBindingReady { bottomSheetBinding ->
+                val recyclerView = bottomSheetBinding.regionsRV
+
+                val countriesAdapter = CountriesAdapter()
+                recyclerView.apply {
+                    adapter = countriesAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                    countriesAdapter.setData(countries.toMutableList())
+
+                    countriesAdapter.setOnItemClickListener {
+                        countryOfBirth = it.name
+                        binding.countryOfBirthET.setText(it.name)
+                        showStatesBottomSheet(it.states)
+                        currentBottomSheetFragment?.closeBottomSheet()
+                    }
+                }
+            }
+            activity?.supportFragmentManager?.let {
+                bottomSheetFragment.show(it, bottomSheetFragment.tag)
+            }
+
+        }
+    }
+
+    private fun showStatesBottomSheet(states: List<State>) {
+        binding.stateET.setOnClickListener {
+            val bottomSheetFragment = RegionsBottomSheetFragment()
+            currentBottomSheetFragment = bottomSheetFragment // Store the reference
+
+            bottomSheetFragment.onBindingReady { bottomSheetBinding ->
+                val recyclerView = bottomSheetBinding.regionsRV
+
+                val statesAdapter = StatesAdapter()
+                recyclerView.apply {
+                    adapter = statesAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
+                    statesAdapter.setData(states.toMutableList())
+                    statesAdapter.setOnItemClickListener {
+                        state = it.name
+                        binding.stateET.setText(it.name)
+                        currentBottomSheetFragment?.closeBottomSheet()
+                    }
+                }
+            }
+            activity?.supportFragmentManager?.let { bottomSheetFragment.show(it, bottomSheetFragment.tag) }
+        }
+    }
+
     override fun onEditProfileRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        Log.d("EditProfile", message)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onEditProfileRequestSuccessful(response: ProfileResponse) {
@@ -249,7 +322,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile), EditProfil
                 toastType = ToastType.SUCCESS
             )
         }
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
+        findNavController().popBackStack()
     }
 
 }

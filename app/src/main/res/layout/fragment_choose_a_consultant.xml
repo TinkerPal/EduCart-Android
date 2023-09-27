@@ -15,7 +15,7 @@
         android:paddingHorizontal="20dp">
 
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_marginEnd="20dp"

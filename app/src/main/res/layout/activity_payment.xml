@@ -46,8 +46,19 @@
         android:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/messageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/message"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:lineSpacingExtra="3dp"/>
 
     </LinearLayout>
 

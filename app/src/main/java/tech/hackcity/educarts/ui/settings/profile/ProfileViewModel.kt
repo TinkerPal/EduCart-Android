@@ -30,8 +30,12 @@ class ProfileViewModel(
     var lastName: String? = null
     var countryCode: Int? = null
     var phoneNumber: String? = null
+    var isPhoneNumberValid: Boolean? = null
     var countryOfResidence: String? = null
     var institutionOfStudy: String? = null
+    var countryOfBirth: String? = null
+    var state: String? = null
+    var city: String? = null
     var profilePicture: MultipartBody.Part? = null
 
     fun fetchProfile() {
@@ -46,11 +50,11 @@ class ProfileViewModel(
                     saveUser(response.data)
 
                 } else {
-                    editListener?.onRequestFailed(response.errorMessage.toString())
+                    profileListener?.onRequestFailed(response.errorMessage.toString())
                 }
 
             } catch (e: ApiException) {
-                editListener?.onRequestFailed(e.message!!)
+                profileListener?.onRequestFailed(e.message!!)
             }
         }
 
@@ -59,6 +63,11 @@ class ProfileViewModel(
     fun editProfile(context: Context) {
         editListener?.onEditProfileRequestStarted()
 
+        if (!isPhoneNumberValid!!) {
+            editListener?.onRequestFailed(context.resources.getString(R.string.wrongly_formatted_phone_number))
+            return
+        }
+
         if (
             institutionOfStudy.isNullOrEmpty() ||
             firstName.isNullOrEmpty() ||
@@ -66,6 +75,7 @@ class ProfileViewModel(
             phoneNumber.isNullOrEmpty() ||
             countryOfResidence.isNullOrEmpty() ||
             countryCode == null
+
         ) {
             editListener?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
             return
@@ -74,8 +84,6 @@ class ProfileViewModel(
         val formattedPhoneNumber = removeSpacesFromString(phoneNumber!!)
 
         Coroutines.onMainWithScope(viewModelScope) {
-            Log.d("UserInfo", "$firstName $lastName $countryCode $formattedPhoneNumber $countryOfResidence $institutionOfStudy ")
-
             try {
                 val response = repository.editProfile(
                     firstName!!,
@@ -84,6 +92,9 @@ class ProfileViewModel(
                     formattedPhoneNumber,
                     countryOfResidence!!,
                     institutionOfStudy!!,
+                    countryOfBirth!!,
+                    state!!,
+                    city!!,
                     profilePicture ?: MultipartBody.Part.createFormData("", "")
                 )
 

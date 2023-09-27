@@ -82,41 +82,44 @@ class APIInterceptor(
                     sessionManager.saveTokens(accessToken ?: "", newRefreshToken ?: "")
 
                     accessToken
+
                 } else {
-                    val errorMessage = response.body()?.errorMessage.toString()
+                    val errorResponse = response.body()
+                    val errorMessage = errorResponse?.errorMessage?.getOrNull(0)?.message ?: "Unknown error occurred while refreshing the access token"
                     Log.e("TokenRefresh", "Refresh token request failed: $errorMessage")
                     throw ApiException(errorMessage)
                 }
-            } catch (e: SocketTimeoutException) {
-                if (retryCount < maxRetries) {
-                    delay(1000)
-                } else {
-                    throw ApiException(context.resources.getString(R.string.check_internet_connection_and_try_again))
-                }
-            } catch (e: UnknownHostException) {
-                if (retryCount < maxRetries) {
-                    delay(1000)
-                } else {
-                    throw ApiException(context.resources.getString(R.string.something_went_wrong_please_try_again))
-                }
-            } catch (e: NoInternetException) {
-                if (retryCount < maxRetries) {
-                    delay(1000)
-                } else {
-                    throw ApiException(context.resources.getString(R.string.no_internet_connection))
-                }
-            } catch (e: HttpException) {
-                val responseCode = e.code()
-                val responseBody = e.response()?.errorBody()?.string()
-                throw ApiException("$responseBody")
-            } catch (e: IOException) {
-                if (retryCount < maxRetries) {
-                    delay(1000)
-                } else {
-                    throw ApiException(context.resources.getString(R.string.something_went_wrong))
-                }
+            }  catch (e: SocketTimeoutException) {
+            if (retryCount < maxRetries) {
+                delay(1000)
+            } else {
+                throw ApiException("Socket timeout exception while refreshing token: ${e.message}")
+            }
+        } catch (e: UnknownHostException) {
+            if (retryCount < maxRetries) {
+                delay(1000)
+            } else {
+                throw ApiException("Unknown host exception while refreshing token: ${e.message}")
+            }
+        } catch (e: NoInternetException) {
+            if (retryCount < maxRetries) {
+                delay(1000)
+            } else {
+                throw ApiException("No internet connection while refreshing token: ${e.message}")
+            }
+        } catch (e: HttpException) {
+            val responseCode = e.code()
+            val responseBody = e.response()?.errorBody()?.string()
+            throw ApiException("HTTP exception while refreshing token. Response code: $responseCode, Response body: $responseBody")
+        } catch (e: IOException) {
+            if (retryCount < maxRetries) {
+                delay(1000)
+            } else {
+                throw ApiException("IO exception while refreshing token: ${e.message}")
             }
         }
+
+    }
 
         throw ApiException("Failed to refresh token after $maxRetries retries")
     }

@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.FragmentCredentialEvaluationRecipientInformationBinding
-import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
 import tech.hackcity.educarts.ui.viewmodels.SharedViewModel
 
 /**

@@ -102,4 +102,16 @@ fun extractDataFieldsFromErrorBody(dataJson: String): Pair<String?, String?> {
     return Pair(id, email)
 }
 
+fun extractIdAndEmailFromErrorBody(jsonStr: String): Pair<String?, String?> {
+    try {
+        val data = JSONObject(jsonStr).optJSONObject("data")
+        val userId = data?.optString("id")
+        val userEmail = data?.optString("email")
+        return Pair(userId, userEmail)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return Pair(null, null)
+    }
+}
+
 

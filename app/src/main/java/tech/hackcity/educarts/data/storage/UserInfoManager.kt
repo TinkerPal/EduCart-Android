@@ -69,7 +69,7 @@ class UserInfoManager(context: Context) {
                 it[USER_PHONE_KEY] ?: "",
                 it[USER_COUNTRY_OF_RESIDENCE_KEY] ?: "",
                 it[USER_EMAIL_KEY] ?: "",
-                it[IS_PROFILE_COMPLETED_KEY] ?: false,
+                it[IS_PROFILE_COMPLETED_KEY] ?: true,
                 it[IS_USER_RESTRICTED_KEY] ?: false,
                 it[FREE_CONSULTATION_KEY] ?: false,
                 it[USER_INSTITUTION_OF_STUDY_KEY] ?: "",

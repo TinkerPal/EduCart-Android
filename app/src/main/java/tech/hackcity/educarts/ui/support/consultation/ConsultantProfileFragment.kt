@@ -113,16 +113,16 @@ class ConsultantProfileFragment: Fragment(R.layout.fragment_consulant_profile), 
     }
 
     override fun onFetchConsultantRequestStarted() {
-        sharedViewModel.updateLoadingScreen(true)
+        sharedViewModel.updateScreenLoader(Pair(true, ""))
     }
 
     override fun onRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onFetchConsultantRequestSuccessful(response: ConsultantProfileResponse) {
-        sharedViewModel.updateLoadingScreen(false)
+        sharedViewModel.updateScreenLoader(Pair(false, ""))
         setupProfile(response.data)
     }
 }

@@ -3,22 +3,18 @@ package tech.hackcity.educarts.ui.browser
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.annotation.RequiresApi
-import android.webkit.WebChromeClient
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.databinding.ActivityBrowserBinding
-import tech.hackcity.educarts.ui.payment.OrderSummaryActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
 import tech.hackcity.educarts.ui.viewmodels.InternetConnectivityViewModel
 import tech.hackcity.educarts.uitls.showCustomInfoDialog
 
@@ -94,7 +90,7 @@ class BrowserActivity : AppCompatActivity() {
             when (destination) {
                 "Consultation" -> {
                     val intent = Intent(this, OrderSummaryActivity::class.java)
-                    intent.putExtra("service", "Consultation")
+                    intent.putExtra("orderType", "consultation")
                     startActivity(intent)
                     finish()
                 }

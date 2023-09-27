@@ -56,7 +56,7 @@ class OnBoardingActivity : AppCompatActivity() {
         next = binding.nextBtn
         binding.skipTextView.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
-            intent.putExtra("destination", "login")
+            intent.putExtra("destination", "get countries")
             startActivity(intent)
             finish()
         }
@@ -98,9 +98,8 @@ class OnBoardingActivity : AppCompatActivity() {
                 viewPager!!.currentItem = position
             }
             if (position == onBoardingList.size) {
-                viewModel.saveIsGetStartedPressed(true)
                 val intent = Intent(this, AuthActivity::class.java)
-                intent.putExtra("destination", "get started")
+                intent.putExtra("destination", "get countries")
                 startActivity(intent)
                 finish()
             }

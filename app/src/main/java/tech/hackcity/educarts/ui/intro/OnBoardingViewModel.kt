@@ -11,12 +11,6 @@ class OnBoardingViewModel(
     val repository: OnBoardingRepository
 ): ViewModel() {
 
-    fun saveIsGetStartedPressed(isGetStartedPressed: Boolean) {
-        Coroutines.onMain {
-            repository.saveIsGetStartedPressed(isGetStartedPressed)
-        }
-    }
-
     fun fetchIsGetStartedPressed(): Boolean {
         return repository.fetchIsGetStartedPressed()
     }

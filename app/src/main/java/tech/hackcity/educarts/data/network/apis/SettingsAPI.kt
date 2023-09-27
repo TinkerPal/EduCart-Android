@@ -29,19 +29,6 @@ interface SettingsAPI {
     @GET("account-setup/profile/")
     suspend fun fetchProfile():Response<ProfileResponse>
 
-//    @Multipart
-//    @PATCH("account-setup/profile/")
-//    suspend fun editProfile(
-//        @Part("first_name") first_name: String,
-//        @Part("last_name") last_name: String,
-//        @Part("country_code") country_code: Int,
-//        @Part("phone_number") phone_number: String,
-//        @Part("country_of_residence") country_of_residence: String,
-//        @Part("institution_of_study") institution_of_study: String,
-//        @Part profile_picture: MultipartBody.Part?
-//    ): Response<ProfileResponse>
-
-
     @Multipart
     @PATCH("account-setup/profile/")
     suspend fun editProfile(
@@ -51,6 +38,9 @@ interface SettingsAPI {
         @Part("phone_number") phone_number: RequestBody,
         @Part("country_of_residence") country_of_residence: RequestBody,
         @Part("institution_of_study") institution_of_study: RequestBody,
+        @Part("country_of_birth") country_of_birth: RequestBody,
+        @Part("state") state: RequestBody,
+        @Part("city") city: RequestBody,
         @Part profile_picture: MultipartBody.Part?
     ): Response<ProfileResponse>
 

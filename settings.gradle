@@ -16,5 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "EduCarts"
 include ':app'
 include ':otpview'
-include ':CountryPicker'
-include ':HorizontalStepIndicator'
+//include ':CountryPicker'

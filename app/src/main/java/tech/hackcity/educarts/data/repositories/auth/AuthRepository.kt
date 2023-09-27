@@ -6,6 +6,7 @@ import tech.hackcity.educarts.data.storage.SessionManager
 import tech.hackcity.educarts.data.storage.SharePreferencesManager
 import tech.hackcity.educarts.data.storage.UserInfoManager
 import tech.hackcity.educarts.domain.model.auth.*
+import tech.hackcity.educarts.domain.model.location.RegionResponse
 import tech.hackcity.educarts.uitls.Coroutines
 
 /**

@@ -1,20 +1,14 @@
 package tech.hackcity.educarts.ui.payment.sevisfee.sevispayment
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import okhttp3.MultipartBody
 import tech.hackcity.educarts.R
 import tech.hackcity.educarts.data.network.ApiException
-import tech.hackcity.educarts.data.network.ErrorCodes.EMPTY_FORM_FIELD
-import tech.hackcity.educarts.data.network.ErrorCodes.IO_EXCEPTION
 import tech.hackcity.educarts.data.repositories.payment.SEVISFeeRepository
-import tech.hackcity.educarts.domain.model.error.ErrorMessage
+import tech.hackcity.educarts.ui.payment.sevisfee.seviscoupon.SEIVSCouponStep1Listener
 import tech.hackcity.educarts.uitls.Coroutines
-import tech.hackcity.educarts.uitls.NoInternetException
-import tech.hackcity.educarts.uitls.SocketTimeOutException
-import tech.hackcity.educarts.uitls.clearExtraCharacters
 
 /**
  *Created by Victor Loveday on 8/3/23
@@ -25,6 +19,8 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
     var listener1: SEIVSFeeStep1Listener? = null
     var listener2: SEIVSFeeStep2Listener? = null
     var listener3: SEIVSFeeStep3Listener? = null
+    var listener4: SEIVSCouponStep1Listener? = null
+//    var listener5: SEIVSCouponStep2Listener? = null
 
     var sevisId: String? = null
     var lastName: String? = null
@@ -33,6 +29,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
     var form: MultipartBody.Part? = null
     var passport: MultipartBody.Part? = null
     var internationalPassport: MultipartBody.Part? = null
+    var sevisCoupon: MultipartBody.Part? = null
 
     var formType: String? = null
     var category: String? = null
@@ -75,7 +72,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
                 )
 
                 if (!response.error) {
-                    listener1?.onRequestSuccessful(response)
+                    listener1?.onSevisStep1RequestSuccessful(response)
                 }
 
             } catch (e: ApiException) {
@@ -88,7 +85,7 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
         listener2?.onRequestStarted()
 
         if (
-            formType.isNullOrEmpty() || category.isNullOrEmpty()
+            formType.isNullOrEmpty()
             || email.isNullOrEmpty() || phoneNumber.isNullOrEmpty()
             || countryOfCitizenship == null || countryOfBirth == null
         ) {
@@ -153,6 +150,70 @@ class SEVISFeeViewModel(private val repository: SEVISFeeRepository) : ViewModel(
             }
         }
     }
+
+    fun submitSevisCouponStep1(context: Context) {
+        listener4?.onRequestStarted()
+
+        if (
+            formType.isNullOrEmpty() || sevisCoupon == null
+        ) {
+            listener4?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
+            return
+        }
+
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.sevisCouponStep1(
+                    repository.fetchUserId()!!,
+                    formType!!,
+                    sevisCoupon!!
+                )
+
+                if (!response.error) {
+                    listener4?.onRequestSuccessful(response)
+                }
+
+            } catch (e: ApiException) {
+                listener4?.onRequestFailed(e.errorMessage)
+            }
+        }
+    }
+
+    fun submitSevisCouponStep2(context: Context) {
+        listener1?.onRequestStarted()
+
+        if (
+            sevisId.isNullOrEmpty() || lastName.isNullOrEmpty()
+            || givenName.isNullOrEmpty() || dateOfBirth.isNullOrEmpty()
+            || form == null || passport == null
+            || internationalPassport == null
+        ) {
+            listener1?.onRequestFailed(context.resources.getString(R.string.field_can_not_be_empty))
+            return
+        }
+
+        Coroutines.onMainWithScope(viewModelScope) {
+            try {
+                val response = repository.sevisCouponStep2(
+                    repository.fetchUserId()!!,
+                    lastName!!,
+                    givenName!!,
+                    dateOfBirth!!,
+                    form!!,
+                    passport!!,
+                    internationalPassport!!
+                )
+
+                if (!response.error) {
+                    listener1?.onSevisCouponStep21RequestSuccessful(response)
+                }
+
+            } catch (e: ApiException) {
+                listener1?.onRequestFailed(e.errorMessage)
+            }
+        }
+    }
+
 
     fun fetchSevisCategory() {
         listener2?.onFetchSevisCategoryStarted()

@@ -13,6 +13,8 @@ import tech.hackcity.educarts.domain.model.payment.sevis.SEVISCategoryResponse
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep1Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep2Response
 import tech.hackcity.educarts.domain.model.payment.sevis.SEVISFeeStep3Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SevisCouponStep1Response
+import tech.hackcity.educarts.domain.model.payment.sevis.SevisCouponStep2Response
 import tech.hackcity.educarts.domain.model.support.MultipleChoiceResponse
 
 /**
@@ -56,4 +58,24 @@ interface SEVISFeeAPI {
 
     @GET("sevis/information/2/")
     suspend fun fetchSevisCategory(): Response<MultipleChoiceResponse>
+
+    @Multipart
+    @POST("sevis/coupon/1/")
+    suspend fun sevisCouponStep1(
+        @Part sevis_coupon: MultipartBody.Part,
+        @Part("user") user: RequestBody,
+        @Part("form_type") form_type: RequestBody,
+    ): Response<SevisCouponStep1Response>
+
+    @Multipart
+    @POST("sevis/coupon/2/")
+    suspend fun sevisCouponStep2(
+        @Part form: MultipartBody.Part,
+        @Part passport: MultipartBody.Part,
+        @Part international_passport: MultipartBody.Part,
+        @Part("sevis_id") sevis_id: RequestBody,
+        @Part("last_name") last_name: RequestBody,
+        @Part("given_name") given_name: RequestBody,
+        @Part("date_of_birth") date_of_birth: RequestBody
+    ): Response<SevisCouponStep2Response>
 }

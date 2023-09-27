@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.getStarted.GetCountriesFragment">
+
+    <LinearLayout
+        android:id="@+id/retryLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/something_went_wrong_please_try_again"/>
+
+        <Button
+            android:id="@+id/retryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/montserrat_medium"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:paddingHorizontal="50dp"
+            android:text="@string/retry"
+            android:textAllCaps="false"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.ui.settings.profile
 
+import tech.hackcity.educarts.domain.model.location.RegionResponse
 import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 
 /**

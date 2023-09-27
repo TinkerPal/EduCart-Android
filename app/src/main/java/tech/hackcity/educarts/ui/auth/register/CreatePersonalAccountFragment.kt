@@ -1,9 +1,7 @@
 package tech.hackcity.educarts.ui.auth.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -37,8 +35,10 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
     private var isTermsAndConditionAgreed = false
     private lateinit var ccpGetNumber: CountryCodePicker
     private var dialCode = ""
-    private var isNumberValid = false
+    private var isPhoneNumberValid = false
+    private var isPasswordStrong = false
     private var userType = "user"
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentCreatePersonalAccountBinding.bind(view)
@@ -48,18 +48,20 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
         val sessionManager = SessionManager(requireContext())
         val sharePreferencesManager = SharePreferencesManager(requireContext())
         val userInfoManager = UserInfoManager(requireContext())
-        val repository = AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
+        val repository =
+            AuthRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
         val factory = CreatePersonalAccountViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, factory)[CreatePersonalAccountViewModel::class.java]
         viewModel.createPersonalAccountListener = this
 
         validatePhoneNumber()
 
+        binding.tabLayout.getTabAt(1)?.view?.setBackgroundResource(R.drawable.disabled_bg)
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position) {
+                when (tab?.position) {
                     0 -> userType = "user"
-                    1 -> userType = "consultant"
+                    1 -> userType = "user"
                 }
             }
 
@@ -67,33 +69,47 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                when(tab?.position) {
+                when (tab?.position) {
                     0 -> userType = "user"
-                    1 -> userType = "consultant"
+                    1 -> userType = "user"
                 }
             }
 
         })
 
-        binding.checkboxTC.setOnClickListener {
-            if (isTermsAndConditionAgreed) {
-                isTermsAndConditionAgreed = false
-                disablePrimaryButtonState(binding.signupBtn)
 
-            } else {
-                isTermsAndConditionAgreed = true
-                enablePrimaryButtonState(binding.signupBtn)
-            }
-        }
+        checkPasswordStrength(
+            requireContext(),
+            binding.passwordET,
+            binding.lowercaseTV,
+            binding.uppercaseTV,
+            binding.numberTV,
+            binding.specialCharTV,
+            binding.eightCharTV
+        )
+
+        signupFormValidation(
+            requireContext(),
+            binding.emailET,
+            binding.emailTextInputLayout,
+            binding.firstNameET,
+            binding.lastNameET,
+            binding.countryOfResidenceET,
+            binding.phoneNumberET,
+            binding.passwordET,
+            binding.checkboxTC,
+            binding.signupBtn
+        )
 
         binding.signupBtn.setOnClickListener {
             viewModel.userType = userType
             viewModel.email = binding.emailET.text.toString().trim()
             viewModel.firstName = binding.firstNameET.text.toString().trim()
             viewModel.lastName = binding.lastNameET.text.toString().trim()
-            viewModel.countryOfResidence = binding.countryOfResidenceET.text.toString().trim()
+            viewModel.countryOfResidence = resources.getString(R.string.nigeria)
             viewModel.countryCode = dialCode.toInt()
             viewModel.phoneNumber = binding.phoneNumberET.text.toString().trim()
+            viewModel.isPhoneNumberValid = isPhoneNumberValid
             viewModel.password = binding.passwordET.text.toString().trim()
 
             Coroutines.onMainWithScope(viewModel.viewModelScope) {
@@ -120,11 +136,11 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
                     )
                 )
 
-                isNumberValid = true
+                isPhoneNumberValid = true
 
             } else {
                 binding.verifyIcon.visibility = View.INVISIBLE
-                isNumberValid = false
+                isPhoneNumberValid = false
 
                 dialCode = ccpGetNumber.selectedCountryCode
             }
@@ -169,14 +185,19 @@ class CreatePersonalAccountFragment : Fragment(R.layout.fragment_create_personal
                 )
             findNavController().navigate(action)
 
-        }catch (e: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             e.printStackTrace()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        sharedViewModel.setToolBarColor(ContextCompat.getColor(requireContext(), R.color.background_001))
+        sharedViewModel.setToolBarColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.background_001
+            )
+        )
         sharedViewModel.updateHorizontalStepViewPosition(2)
     }
 

@@ -19,7 +19,9 @@ import tech.hackcity.educarts.uitls.NoInternetException
 import tech.hackcity.educarts.uitls.SocketTimeOutException
 import tech.hackcity.educarts.uitls.clearExtraCharacters
 import tech.hackcity.educarts.uitls.extractDataFields
+import tech.hackcity.educarts.uitls.extractDataFieldsFromErrorBody
 import tech.hackcity.educarts.uitls.extractErrorMessagesFromErrorBody
+import tech.hackcity.educarts.uitls.extractIdAndEmailFromErrorBody
 import java.lang.IllegalArgumentException
 
 /**
@@ -57,16 +59,21 @@ class LoginViewModel(
             } catch (e: ApiException) {
                 loginListener?.onRequestFailed("${e.errorMessage} ${e.errorData}")
                 val errorMessages = extractErrorMessagesFromErrorBody(e.errorMessage)
-                val (id, email) = extractDataFields(e.errorData.toString())
+                val (id, email) = extractIdAndEmailFromErrorBody(e.errorData.toString())
 
                 if (errorMessages.isNotEmpty()) {
                     for ((code, message) in errorMessages) {
                         if (code == USER_NOT_VERIFIED) {
                             Log.d("LoginError", "${e.errorMessage} ${e.errorData} ")
-                            id?.let { userId ->
-                                Log.d("LoginError", "UserId: $id Email: $email")
-                                repository.saveUserId(userId)
-                            }
+
+//                            val (userId, userEmail) = extractIdAndEmailFromErrorBody(e.errorMessage)
+
+//                            if (userId != null && userEmail != null) {
+//                                Log.d("LoginError", "User ID: $userId")
+//                            } else {
+//                                Log.d("LoginError", "Failed to extract user data from JSON response.")
+//                            }
+
                         }
                     }
                 }
