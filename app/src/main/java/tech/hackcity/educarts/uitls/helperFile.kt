@@ -1,5 +1,6 @@
 package tech.hackcity.educarts.uitls
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
@@ -51,6 +52,20 @@ fun File.copyInputStreamToFile(inputStream: InputStream?) {
     this.outputStream().use { fileOut ->
         inputStream?.copyTo(fileOut)
     }
+}
+
+@SuppressLint("Range")
+fun getFileNameFromUri(context: Context, uri: Uri): String? {
+    val contentResolver = context.applicationContext.contentResolver
+    val cursor = contentResolver.query(uri, null, null, null, null)
+
+    cursor.use { c ->
+        if (c != null && c.moveToFirst()) {
+            return c.getString(c.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+        }
+    }
+
+    return null
 }
 
 

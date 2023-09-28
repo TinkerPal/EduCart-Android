@@ -11,11 +11,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleCentered="true"
         android:background="@color/background_001"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleCentered="true" />
 
 
     <ScrollView
@@ -47,9 +47,9 @@
             <RelativeLayout
                 android:id="@+id/orderIdLayout"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textView"
@@ -68,18 +68,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/textView"
-                    android:fontFamily="@font/montserrat_medium"
-                    tools:text="SF12003"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:drawablePadding="5dp"
-                    android:paddingVertical="2dp"
-                    android:paddingHorizontal="15dp"
-                    app:drawableEndCompat="@drawable/content_copy_16"
                     android:background="@drawable/white_bg_with_gray_borders"
+                    android:clickable="true"
+                    android:drawablePadding="5dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="2dp"
                     android:textColor="@color/text_heading_light"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:drawableEndCompat="@drawable/content_copy_16"
+                    tools:text="SF12003" />
 
             </RelativeLayout>
 
@@ -87,8 +87,8 @@
                 android:id="@+id/dateLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -108,9 +108,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/textView2"
                     android:fontFamily="@font/montserrat_medium"
-                    tools:text="March 3, 2023"
                     android:textColor="@color/text_heading_light"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="March 3, 2023" />
 
             </RelativeLayout>
 
@@ -126,69 +126,95 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/montserrat_medium"
-                tools:text="@string/processing_order"
                 android:textColor="@color/text_heading_light"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/processing_order" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/orderDetailsRV"
                 android:layout_width="match_parent"
-                android:nestedScrollingEnabled="false"
-                android:layout_height="wrap_content" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:visibility="gone"
-                android:layout_marginBottom="20dp">
+                android:nestedScrollingEnabled="false" />
 
-                <TextView
-                    android:id="@+id/rateUsTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:clickable="true"
-                    android:focusable="true"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/proceedToPaymentBtnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/proceedToPaymentBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/primary_button"
                     android:fontFamily="@font/montserrat_regular"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:paddingHorizontal="10dp"
-                    android:text="@string/rate_us"
-                    android:textColor="@color/text_light"
-                    android:textSize="16sp" />
+                    android:text="@string/proceed_to_payment"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true">
+                <ProgressBar
+                    android:id="@+id/progressBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintEnd_toEndOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintStart_toStartOf="@id/proceedToPaymentBtn"
+                    app:layout_constraintTop_toTopOf="@id/proceedToPaymentBtn" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/downloadReceiptBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/primary_button"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/download_receipt"
-                        android:textAllCaps="false"
-                        app:backgroundTint="@null" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ProgressBar
-                        android:id="@+id/progressBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="@id/downloadReceiptBtn"
-                        app:layout_constraintEnd_toEndOf="@id/downloadReceiptBtn"
-                        app:layout_constraintStart_toStartOf="@id/downloadReceiptBtn"
-                        app:layout_constraintTop_toTopOf="@id/downloadReceiptBtn" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/downloadReceiptBtnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/downloadReceiptBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/primary_button"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="@string/download_receipt"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null" />
 
-            </RelativeLayout>
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/downloadReceiptBtn"
+                    app:layout_constraintEnd_toEndOf="@id/downloadReceiptBtn"
+                    app:layout_constraintStart_toStartOf="@id/downloadReceiptBtn"
+                    app:layout_constraintTop_toTopOf="@id/downloadReceiptBtn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/rateUsTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingHorizontal="10dp"
+                android:text="@string/rate_us"
+                android:textColor="@color/text_light"
+                android:textSize="16sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -34,6 +34,7 @@ import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
+import tech.hackcity.educarts.uitls.getFileNameFromUri
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
@@ -137,6 +138,8 @@ class SEVISCouponFragment : Fragment(R.layout.fragment_have_sevis_payment_coupon
 
     private fun handleSelectedFormFile(uri: Uri) {
         formUri = uri
+        binding.couponGuide.text = getFileNameFromUri(requireContext(), uri)
+        binding.pickSevisCouponButton.setBackgroundResource(R.drawable.file_selected_bg)
     }
 
     companion object {

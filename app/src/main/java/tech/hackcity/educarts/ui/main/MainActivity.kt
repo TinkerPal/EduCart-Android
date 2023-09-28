@@ -22,13 +22,12 @@ import tech.hackcity.educarts.domain.model.settings.ProfileResponse
 import tech.hackcity.educarts.ui.alerts.ToastType
 import tech.hackcity.educarts.uitls.toast
 
-class MainActivity : AppCompatActivity(), MainListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,38 +61,5 @@ class MainActivity : AppCompatActivity(), MainListener {
             return@setOnItemReselectedListener
         }
         binding.bottomNav.itemIconTintList = null
-
-        val api = RetrofitInstance(this)
-        val sessionManager = SessionManager(this)
-        val sharePreferencesManager = SharePreferencesManager(this)
-        val userInfoManager = UserInfoManager(this)
-        val repository = MainRepository(api, sessionManager, sharePreferencesManager, userInfoManager)
-        val factory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-        viewModel.listener = this
-
-//        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-//            viewModel.fetchProfile()
-//        }
-    }
-
-    override fun onFetchProfileRequestStarted() {
-
-    }
-
-    override fun onRequestFailed(message: String) {
-        toast(description = message, toastType = ToastType.ERROR)
-        Log.d("MainActivity", message)
-    }
-
-    override fun onFetchProfileRequestSuccessful(response: ProfileResponse) {
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        Coroutines.onMainWithScope(viewModel.viewModelScope) {
-//            viewModel.fetchProfile()
-//        }
     }
 }

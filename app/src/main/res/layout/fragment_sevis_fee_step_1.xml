@@ -138,27 +138,43 @@
                 android:id="@+id/pickFormButton"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/primary_edit_text_bg"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_marginTop="20dp"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cloud" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:id="@+id/fileType1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="12sp"
+                        android:text="@string/form_i_20_or_ds_2019" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textGuide2"
+                    android:id="@+id/formGuide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="@string/upload_i_20_or_ds_2019_form_here"
+                    tools:text="@string/upload_i_20_or_ds_2019_form_here"
                     android:textColor="@color/text_light"
                     android:textSize="16sp" />
 
@@ -177,13 +193,29 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <ImageView
-                    android:id="@+id/demoImage"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cloud" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:id="@+id/fileType2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="12sp"
+                        android:text="@string/recent_passport" />
+
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/passportGuide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -207,12 +239,29 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cloud" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:id="@+id/fileType3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="12sp"
+                        android:text="@string/international_passport" />
+
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/internationalPassportGuide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

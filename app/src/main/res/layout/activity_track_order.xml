@@ -17,70 +17,77 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
         app:titleCentered="true" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <ImageView
-            android:id="@+id/astericksImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_track_order" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/enter_the_tracking_id_to_order_status_with_educarts"
-            android:textColor="@color/text_light"
-            android:textSize="16sp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="30dp"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:endIconMode="clear_text">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/orderIDET"
+            <ImageView
+                android:id="@+id/astericksImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_track_order" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/enter_the_tracking_id_to_order_status_with_educarts"
+                android:textColor="@color/text_light"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_bg"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="@string/order_id"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="15dp" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="30dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:endIconMode="clear_text">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/orderIDET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bg"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:hint="@string/order_id"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="15dp" />
 
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/trackOrderBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/primary_margin"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/primary_button"
+                android:fontFamily="@font/montserrat_medium"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/view_status"
+                android:textAllCaps="false"
+                app:backgroundTint="@null" />
 
-    <Button
-        android:id="@+id/trackOrderBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/primary_margin"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/primary_button"
-        android:fontFamily="@font/montserrat_medium"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:text="@string/view_status"
-        android:textAllCaps="false"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
