@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +15,7 @@ import tech.hackcity.educarts.databinding.ActivityOrderSummaryBinding
 import tech.hackcity.educarts.domain.model.payment.OrderSummary
 import tech.hackcity.educarts.domain.model.payment.OrderSummaryResponse
 import tech.hackcity.educarts.ui.alerts.ToastType
-import tech.hackcity.educarts.ui.payment.CheckoutActivity
+import tech.hackcity.educarts.ui.payment.checkout.CheckoutActivity
 import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsViewModel
 import tech.hackcity.educarts.ui.payment.orderdetails.OrderDetailsViewModelFactory
 import tech.hackcity.educarts.uitls.Coroutines

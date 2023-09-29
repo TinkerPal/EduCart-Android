@@ -44,13 +44,29 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/cloud" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cloud" />
+
+                    <TextView
+                        android:id="@+id/fileType1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="12sp"
+                        android:text="@string/coupon" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textGuide2"
+                    android:id="@+id/couponGuide"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

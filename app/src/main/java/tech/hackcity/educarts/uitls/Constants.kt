@@ -13,6 +13,7 @@ object Constants {
 
     const val EDU_CARTS_BASE_URL = "https://educartapi.herokuapp.com/api/v1/"
     const val EDU_CARTS_MEDIA_URL = "https://educartapi.herokuapp.com"
+    const val FLUTTER_WAVE_BASE_URL = "https://api.flutterwave.com/v3/"
 
     val dummySchoolList = listOf(
         School(

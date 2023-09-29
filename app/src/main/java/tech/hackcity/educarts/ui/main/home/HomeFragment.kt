@@ -15,6 +15,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -73,14 +76,25 @@ class HomeFragment : Fragment(R.layout.fragment_home), DashboardListener {
             viewModel.fetchProfile()
         }
 
-        binding.trackTV.setOnClickListener {
-            startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
-        }
-
         binding.consultTV.setOnClickListener {
             val intent = Intent(requireContext(), SupportActivity::class.java)
             intent.putExtra("destination", "consultation")
             startActivity(intent)
+        }
+
+//        binding.paymentTV.setOnClickListener {
+//            val action = HomeFragmentDirections.actionHomeFragmentToPaymentFragment()
+//            val navController = Navigation.findNavController(view)
+//
+//            val builder = NavOptions.Builder()
+//                .setPopUpTo(R.id.homeFragment, false) // Clear the back stack up to the home fragment
+//                .build()
+//
+//            navController.navigate(action, builder)
+//        }
+
+        binding.trackTV.setOnClickListener {
+            startActivity(Intent(requireContext(), TrackOrderActivity::class.java))
         }
 
         binding.faqsTV.setOnClickListener {

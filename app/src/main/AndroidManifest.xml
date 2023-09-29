@@ -40,7 +40,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,7 +69,8 @@
         </activity>
         <activity
             android:name=".ui.payment.orderdetails.TrackOrderActivity"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -83,7 +83,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.payment.CheckoutActivity"
+            android:name=".ui.payment.checkout.CheckoutActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="tech.hackcity.educarts.ui.main.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="tech.hackcity.educarts.ui.main.payment.PaymentFragment"

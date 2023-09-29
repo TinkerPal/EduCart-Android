@@ -1,8 +1,10 @@
 package tech.hackcity.educarts.ui.payment.orderdetails
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -15,8 +17,11 @@ import tech.hackcity.educarts.data.repositories.payment.OrderRepository
 import tech.hackcity.educarts.databinding.ActivityOrderDetailsBinding
 import tech.hackcity.educarts.domain.model.history.OrderDetails
 import tech.hackcity.educarts.domain.model.history.OrderDetailsResponse
+import tech.hackcity.educarts.domain.model.payment.OrderSummary
 import tech.hackcity.educarts.ui.adapters.OrderDetailsAdapter
 import tech.hackcity.educarts.ui.alerts.ToastType
+import tech.hackcity.educarts.ui.payment.checkout.CheckoutActivity
+import tech.hackcity.educarts.ui.payment.ordersummary.OrderSummaryActivity
 import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.copyToClipboard
 import tech.hackcity.educarts.uitls.formatDateTime
@@ -70,7 +75,7 @@ class OrderDetailsActivity : AppCompatActivity(), OrderDetailsListener {
     private fun setupOrderDetails(data: List<OrderDetails> ) {
         val orderDetailsAdapter = OrderDetailsAdapter(this)
         setCopyUserIDListener(data[0].order_id)
-        showRateAndReceiptButton(data[0].status)
+        setupActionButtons(data[0])
         with(binding) {
             orderIdLayout.visibility = View.VISIBLE
             orderIDTV.text = data[0].order_id
@@ -91,16 +96,18 @@ class OrderDetailsActivity : AppCompatActivity(), OrderDetailsListener {
         }
     }
 
-    private fun showRateAndReceiptButton(status: String) {
-        if (status == "Order Completed") {
-            showViews(
-                listOf(
-                    binding.downloadReceiptBtn,
-                    binding.progressBar,
-                    binding.rateUsTV
-                )
-            )
-
+    private fun setupActionButtons(orderDetails: OrderDetails) {
+        when (orderDetails.status) {
+            "Payment Pending" -> {
+                showViews(listOf(binding.proceedToPaymentBtnLayout))
+                binding.proceedToPaymentBtn.setOnClickListener {
+                    val intent = Intent(this, OrderSummaryActivity::class.java)
+                    intent.putExtra("orderType", orderDetails.order_type)
+                    startActivity(intent)
+                    Toast.makeText(this, orderDetails.order_type, Toast.LENGTH_SHORT).show()
+                }
+            }
+            "Order Completed" -> { showViews(listOf(binding.downloadReceiptBtnLayout)) }
         }
     }
 

@@ -34,10 +34,12 @@ import tech.hackcity.educarts.uitls.Coroutines
 import tech.hackcity.educarts.uitls.createFilePart
 import tech.hackcity.educarts.uitls.disablePrimaryButtonState
 import tech.hackcity.educarts.uitls.enablePrimaryButtonState
+import tech.hackcity.educarts.uitls.getFileNameFromUri
 import tech.hackcity.educarts.uitls.hideButtonLoadingState
 import tech.hackcity.educarts.uitls.showButtonLoadingState
 import tech.hackcity.educarts.uitls.toast
 import tech.hackcity.educarts.uitls.uriToFile
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -70,12 +72,12 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         }
 
 
-    private val pickPassportResultLauncher =
+    private val pickInternationalPassportResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 data?.data?.let { uri ->
-                    handleSelectedPassportFile(uri)
+                    handleSelectedInternationalPassportFile(uri)
                 }
             }
         }
@@ -97,11 +99,15 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
         )
 
         when (args.formType) {
-            resources.getString(R.string.form_i_20) -> binding.textGuide2.text =
-                resources.getString(R.string.upload_i_20_form_here)
+            resources.getString(R.string.form_i_20) -> {
+                binding.formGuide.text = resources.getString(R.string.upload_i_20_form_here)
+                binding.fileType1.text = args.formType
+            }
 
-            resources.getString(R.string.ds_2019) -> binding.textGuide2.text =
-                resources.getString(R.string.upload_ds_2019_form_here)
+            resources.getString(R.string.ds_2019) -> {
+                binding.formGuide.text = resources.getString(R.string.upload_ds_2019_form_here)
+                binding.fileType1.text = args.formType
+            }
         }
 
         setupDatePicker()
@@ -148,8 +154,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                 passportUri = data?.data
                 val file = passportUri?.let { uriToFile(requireContext(), it) }
 
-                val picture =
-                    file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
+                val picture = file?.let { RequestBody.create("image/*".toMediaTypeOrNull(), it) }?.let {
                         MultipartBody.Part.createFormData(
                             "passport",
                             file.name,
@@ -157,6 +162,7 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
                         )
                     }
 
+                handleSelectedPassportFile(file)
                 viewModel.passport = picture
             }
         }
@@ -255,16 +261,27 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
             )
             intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
 
-            pickPassportResultLauncher.launch(intent)
+            pickInternationalPassportResultLauncher.launch(intent)
         }
     }
 
     private fun handleSelectedFormFile(uri: Uri) {
         formUri = uri
+        binding.formGuide.text = getFileNameFromUri(requireContext(), uri)
+        binding.pickFormButton.setBackgroundResource(R.drawable.file_selected_bg)
     }
 
-    private fun handleSelectedPassportFile(uri: Uri) {
+    private fun handleSelectedPassportFile(file: File?) {
+        file?.let {
+            binding.passportGuide.text = it.name
+            binding.pickRecentPassportButton.setBackgroundResource(R.drawable.file_selected_bg)
+        }
+    }
+
+    private fun handleSelectedInternationalPassportFile(uri: Uri) {
         internationalPassportUri = uri
+        binding.internationalPassportGuide.text = getFileNameFromUri(requireContext(), uri)
+        binding.pickInternationalPassportButton.setBackgroundResource(R.drawable.file_selected_bg)
     }
 
     companion object {
@@ -279,21 +296,13 @@ class SEVISFeeStep1Fragment : Fragment(R.layout.fragment_sevis_fee_step_1), SEIV
 
     override fun onRequestFailed(message: String) {
         context?.toast(description = message, toastType = ToastType.ERROR)
-        hideButtonLoadingState(
-            binding.nextBtn,
-            binding.progressBar,
-            resources.getString(R.string.next)
-        )
+        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
         enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateScreenLoader(Pair(false, ""))
     }
 
     override fun onSevisStep1RequestSuccessful(response: SEVISFeeStep1Response) {
-        hideButtonLoadingState(
-            binding.nextBtn,
-            binding.progressBar,
-            resources.getString(R.string.next)
-        )
+        hideButtonLoadingState(binding.nextBtn, binding.progressBar, resources.getString(R.string.next))
         enablePrimaryButtonState(binding.nextBtn)
         sharedViewModel.updateScreenLoader(Pair(false, ""))
 

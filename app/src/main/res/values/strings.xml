@@ -486,4 +486,8 @@
     <string name="at_least_one_special_character">At least one special character</string>
     <string name="must_be_up_to_8_characters">Must be up to 8 characters</string>
     <string name="retry">Retry</string>
+    <string name="form_i_20_or_ds_2019">Form i-20 or DS-2019</string>
+    <string name="recent_passport">Recent passport</string>
+    <string name="coupon">Coupon</string>
+    <string name="payment_receipt">Payment receipt</string>
 </resources>
